@@ -11,6 +11,7 @@ const Button = ({
 	error = false,
 	succes = false,
 	children,
+	onClick = () => {},
 }) => {
 	let FinalClassName = "button ";
 	disabled && (FinalClassName += "button-disabled ");
@@ -19,7 +20,11 @@ const Button = ({
 	error && (FinalClassName += "button-error ");
 	succes && (FinalClassName += "button-succes ");
 	FinalClassName += className;
-	return <button className={FinalClassName}>{children}</button>;
+	return (
+		<button className={FinalClassName} onClick={onClick}>
+			{children}
+		</button>
+	);
 };
 
 export default Button;
