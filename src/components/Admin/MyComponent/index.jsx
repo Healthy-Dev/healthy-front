@@ -1,8 +1,7 @@
 import React from "react";
 import Logo from "assets/img/logo.svg";
-
-import "./index.scss";
 import Button from "components/_shared/Button";
+import "./index.scss";
 
 function MyComponent() {
 	return (
@@ -12,24 +11,9 @@ function MyComponent() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
-        {/*Default: */}
-				<Button className="MyComponent-buttons"> Button</Button>
-        {/*Disabled: */}
-				<Button className="MyComponent-buttons" disabled={true}>
-					Button
-				</Button>
-        {/*Outlined variant: */}
 				<Button className="MyComponent-buttons" outlined={true}>
-					Button
-				</Button>
-        {/*error: */}
-				<Button className="MyComponent-buttons" error={true}>
-					Button
-				</Button>
-        {/*succes: */}
-				<Button className="MyComponent-buttons" succes={true}>
-					Button
-				</Button>
+				Button
+			</Button>
 				<a
 					className="MyComponent-link"
 					href="https://reactjs.org"
