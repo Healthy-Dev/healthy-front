@@ -1,12 +1,15 @@
 import React from "react";
 import "./index.scss";
+import fakeData from '../data';
 
-function CardContext() {
+const CardContent = () => {
 	return (
 		<div className="CardContext">
-			Contenido texto
+			<p>
+				{fakeData.content}
+			</p>
 		</div>
 	);
 }
 
-export default CardContext;
+export default CardContent;

@@ -1,10 +1,12 @@
 import React from "react";
 import "./index.scss";
 
-function CardImage() {
+import fakeData from '../data';
+
+const CardImage = () => {
 	return (
 		<div className="CardImage">
-			Imagen
+			<img src={fakeData.image} alt={fakeData.imageAlt} />
 		</div>
 	);
 }
