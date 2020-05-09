@@ -1,14 +1,10 @@
 import React from "react";
 import "./index.scss";
 
-import fakeData from '../data';
-
-const CardImage = () => {
-	return (
-		<div className="CardImage">
-			<img src={fakeData.image} alt={fakeData.imageAlt} />
-		</div>
+const CardImage = ({ image, imageAlt }) =>(
+		<figure className="CardImage">
+			<img src={image} alt={imageAlt} />
+		</figure>
 	);
-}
 
 export default CardImage;
