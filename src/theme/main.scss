@@ -1,0 +1,14 @@
+@import './colors';
+@import './variables';
+@import './mixings';
+@import './base';
+@import './themes';
+
+
+body {
+  /* The mixin variables are css property target and name we want in the _themes.scss map */
+  @include theme-aware('background', 'color-background');
+  @include theme-aware('color', 'color-text');
+  @include theme-aware('font-family', 'font-stack');
+  @include theme-aware('font-size', 'font-size');
+}
