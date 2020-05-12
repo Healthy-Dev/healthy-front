@@ -5,7 +5,6 @@
 ### Crear tarjeta
 - Agus [Front]
 - Maxi [Front]
-- Brian [Front]
 ### Detalles Tarjeta
 - Brian [Front]
 - Max [Front]
