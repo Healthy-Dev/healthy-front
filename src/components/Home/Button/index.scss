@@ -1,0 +1,15 @@
+.home-button {
+    width: 50px;
+    height: 50px;
+    background-color: #F4DD27;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+     img {
+         width: 50%;
+         height: auto;
+     }
+}
