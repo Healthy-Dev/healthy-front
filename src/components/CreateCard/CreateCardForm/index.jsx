@@ -11,7 +11,7 @@ const CreateCardForm = () => {
 		console.log(data);
 	};
 
-	console.log(watch("example"));
+	console.log(watch("title"));
 
 	const HTML_PAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
@@ -33,6 +33,7 @@ const CreateCardForm = () => {
 				ref={register({ required: true, maxLength: 100, pattern: HTML_PAT })}
 			/>
 			{errors.description && <p>This field is required</p>}
+			<input type="submit" />
 		</form>
 	);
 };
