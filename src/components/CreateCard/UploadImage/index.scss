@@ -1,1 +1,9 @@
 @import "theme";
+
+.upload-image-container {
+  display: flex;
+
+  p {
+    font-size: $s-1
+  }
+}

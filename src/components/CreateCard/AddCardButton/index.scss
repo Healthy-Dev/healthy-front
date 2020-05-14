@@ -1,11 +1,8 @@
 @import "theme";
 
-button {
-  background-color: $yellow-300;
-  width: 100%;
+.add-card-button {
+  background-color: $yellow;
   border-radius: 10px;
-}
-
-p {
-  color: $primary-dark;
+  width: 100%;
+  color: $dark-blue;
 }

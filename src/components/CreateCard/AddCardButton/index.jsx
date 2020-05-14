@@ -1,10 +1,10 @@
 import React from "react";
 // Styles
-import "./index";
+import "./index.scss";
 
 const AddCardButton = () => {
 	return (
-		<button>
+		<button className="add-card-button">
 			<p>Agregar articulo</p>
 		</button>
 	);

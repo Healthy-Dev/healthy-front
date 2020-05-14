@@ -1,0 +1,19 @@
+@import "theme";
+
+.create-card-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: $s1;
+  font-family: $font-plain;
+  font-size: $s0;
+  background-color: $dark-blue;
+  color: $ivory;
+
+  h1 {
+    font-size: $s1;
+  }
+}
