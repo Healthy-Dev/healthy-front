@@ -1,6 +1,6 @@
 import React from "react";
 // Styles
-import "./styles.scss";
+import "./index";
 
 const AddCardButton = () => {
 	return (
