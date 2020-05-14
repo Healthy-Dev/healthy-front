@@ -3,7 +3,9 @@
 .upload-image-container {
   display: flex;
 
-  p {
-    font-size: $s-1
-  }
+}
+
+.upload-image-container p {
+  display: inline;
+  font-size: $s-1
 }

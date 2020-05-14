@@ -1,6 +1,6 @@
 import React from "react";
 // Styles
-import "./index";
+import "./index.scss";
 
 const UploadImage = () => {
 	return (
