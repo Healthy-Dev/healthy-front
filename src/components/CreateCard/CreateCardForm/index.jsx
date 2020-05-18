@@ -29,7 +29,8 @@ const CreateCardForm = () => {
 			{errors.description && <p>This field is required</p>}
 			<label>URL</label>
 			<input
-				name="Ingresá el link de destino"
+				name="URL"
+				defaultValue="Ingresá el link de destino"
 				ref={register({ required: true, maxLength: 100, pattern: HTML_PAT })}
 			/>
 			{errors.description && <p>This field is required</p>}
