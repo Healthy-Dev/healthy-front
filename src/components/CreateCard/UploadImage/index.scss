@@ -1,28 +1,50 @@
 @import "theme";
 
 .upload-image-container {
-  display: flex;
-  width:100%;
-  justify-content: inherit;
+  display: grid;
+  grid-template-columns: auto 2fr;
+  grid-template-rows: repeat(3, auto);
+  width: 100%;
+  justify-content: center;
+  align-content: space-between;
+  grid-gap: $s-1;
+
+  p {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    align-self: center;
+    justify-self: center;
+  }
 
   img {
-    border-radius: 10px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    justify-self: center;
+    border-radius: $radius0;
+  }
+
+  button {
+    grid-column: 2 / 3;
+    grid-row: 2 / 2;
+    align-self: center;
+    justify-self: stretch;
+  }
+
+  span {
+    grid-column: 2 / 3;
+    grid-row: 3 / 3;
+    font-size: $s-1;
+    align-self: center;
+    justify-self: center;
   }
 }
 
-.button-wrapper {
-  display:flex;
-  width:70%;
-  flex-direction:column;
-  justify-content: inherit;
-  text-align: center;
-}
 
 .upload-image-button {
   background-color: $light-blue;
-  border-radius: 10px;
-  border:none;
-  width: 100%;
+  border-radius: $radius0;
+  border: none;
   padding: $s0;
   font-family: $font-plain;
   font-size: $s0;
