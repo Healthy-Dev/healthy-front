@@ -4,18 +4,27 @@
   display: flex;
   width:100%;
   justify-content: inherit;
-}
 
-.upload-image-container p {
-  display: inline;
-  font-size: $s-1;
-}
-
-.image-wrapper {
-
+  img {
+    border-radius: 10px;
+  }
 }
 
 .button-wrapper {
   display:flex;
+  width:70%;
   flex-direction:column;
+  justify-content: inherit;
+  text-align: center;
+}
+
+.upload-image-button {
+  background-color: $light-blue;
+  border-radius: 10px;
+  border:none;
+  width: 100%;
+  padding: $s0;
+  font-family: $font-plain;
+  font-size: $s0;
+  color: white;
 }
