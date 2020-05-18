@@ -1,1 +1,23 @@
 @import "theme";
+
+.form {
+
+  font-family: $font-plain;
+  font-size: $s-1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input {
+  border-radius: 10px;
+  border: none;
+  background-color: $medium-grey;
+  color: $light-grey;
+  padding:$s-1;
+  margin-bottom: $s1;
+  margin-top: $s-2;
+  .description {
+    height:120px;
+  }
+}

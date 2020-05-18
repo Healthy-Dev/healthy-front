@@ -8,7 +8,7 @@ import "./index.scss";
 const CreateCard = () => {
 	return (
 		<div className="create-card-container">
-			<h1>Agregar articulo</h1>
+			<h1>Agregar artículo</h1>
 			<UploadImage />
 			<CreateCardForm />
 			<AddCardButton />

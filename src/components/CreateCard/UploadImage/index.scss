@@ -2,10 +2,20 @@
 
 .upload-image-container {
   display: flex;
-
+  width:100%;
+  justify-content: inherit;
 }
 
 .upload-image-container p {
   display: inline;
-  font-size: $s-1
+  font-size: $s-1;
+}
+
+.image-wrapper {
+
+}
+
+.button-wrapper {
+  display:flex;
+  flex-direction:column;
 }
