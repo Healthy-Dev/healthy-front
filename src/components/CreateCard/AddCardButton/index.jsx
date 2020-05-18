@@ -5,7 +5,7 @@ import "./index.scss";
 const AddCardButton = () => {
 	return (
 		<button className="add-card-button">
-			<p>Agregar articulo</p>
+			<p>Agregar artículo</p>
 		</button>
 	);
 };
