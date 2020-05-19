@@ -33,13 +33,17 @@ const CreateCardForm = () => {
 				ref={register({ required: true, maxLength: 200 })}
 			/>
 			{errors.description && <p>This field is required</p>}
+
 			<label>URL</label>
 			<input
-				name="URL"
+				name="url"
 				defaultValue="Explicá en que consiste el artículo"
 				ref={register({ required: true, maxLength: 100, pattern: HTML_PAT })}
 			/>
-			{errors.description && <p>This field is required</p>}
+
+			{errors.url && errors.url.type === "required" ? <p>This field is required</p> : ""}
+			{errors.url && errors.url.type === "pattern" ? <p>This must be a URL</p> : ""}
+
 			<AddCardButton />
 		</form>
 	);
