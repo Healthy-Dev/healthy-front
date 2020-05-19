@@ -3,6 +3,11 @@
 .add-card-button {
   background-color: $yellow;
   border-radius: 10px;
+  border:none;
   width: 100%;
   color: $dark-blue;
+  padding: $s0;
+  font-family: $font-plain;
+  font-size: $s0;
+  box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
 }

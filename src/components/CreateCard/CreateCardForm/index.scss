@@ -1,1 +1,34 @@
 @import "theme";
+
+.form {
+
+  font-family: $font-plain;
+  font-size: $s0;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 100%;
+
+  input {
+    border-radius: $radius0;
+    font-family: $font-plain;
+    border: none;
+    font-size: $s-1;
+    background-color: $medium-grey;
+    color: $light-grey;
+    padding: $s-1;
+    margin-bottom: $s0;
+    margin-top: $s-2;
+
+    &[name="description"] {
+      height: 50%;
+    }
+  }
+
+  .tooltip {
+    display: inline-block;
+    position: relative;
+    border-bottom: 1px dotted #666;
+    text-align: left;
+  }
+}
