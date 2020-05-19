@@ -36,13 +36,8 @@ const CreateCardForm = () => {
 
 			<label>URL</label>
 			<input
-<<<<<<< HEAD
-				name="URL"
-				defaultValue="Ingresá el link de destino"
-=======
 				name="url"
 				defaultValue="Explicá en que consiste el artículo"
->>>>>>> create-card-AM
 				ref={register({ required: true, maxLength: 100, pattern: HTML_PAT })}
 			/>
 
