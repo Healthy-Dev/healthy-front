@@ -7,10 +7,12 @@ import "./index.scss";
 import AddCardButton from "components/CreateCard/AddCardButton";
 
 const CreateCardForm = () => {
-	const { register, handleSubmit, watch, errors } = useForm();
+	const { register, handleSubmit, watch, errors, reset } = useForm();
 
 	const onSubmit = (data) => {
 		console.log(data);
+		// Add fetch function
+		// when data is submitted clear inputs
 	};
 
 	console.log(watch("title"));
@@ -22,14 +24,14 @@ const CreateCardForm = () => {
 			<label>Título</label>
 			<input
 				name="title"
-				defaultValue="Ingresa un título"
+				placeholder="Ingresa un título"
 				ref={register({ required: true, maxLength: 30 })}
 			/>
 			{errors.title && <p>This field is required</p>}
 			<label>Descripción</label>
 			<input
 				name="description"
-				defaultValue="Explicá en que consiste el artículo"
+				placeholder="Explicá en que consiste el artículo"
 				ref={register({ required: true, maxLength: 200 })}
 			/>
 			{errors.description && <p>This field is required</p>}
@@ -37,7 +39,7 @@ const CreateCardForm = () => {
 			<label>URL</label>
 			<input
 				name="url"
-				defaultValue="Explicá en que consiste el artículo"
+				placeholder="Ingresa una URL"
 				ref={register({ required: true, maxLength: 100, pattern: HTML_PAT })}
 			/>
 
