@@ -9,7 +9,7 @@ import { fakeData } from '../data';
 
 const Card = () => (
 	<section>
-		<article>
+		<article className='Card'>
 			<Image image={fakeData.image} imageAlt={fakeData.imageAlt} />
 			<Content content={fakeData.content} />
 		</article>

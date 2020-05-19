@@ -1,3 +1,9 @@
 .CardImage {
-  color: black;
+  margin: 0;
+  padding: 10px;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
 }
