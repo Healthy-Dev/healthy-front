@@ -1,8 +1,5 @@
-@import '../../../theme/colors.scss';
-
 .Card {
-  background: $primary-dark;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	height: 100vh;
+	padding: 76px 24px 0 24px;
+	background-color: #03111f;
 }

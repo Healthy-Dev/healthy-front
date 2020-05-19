@@ -1,15 +1,15 @@
 import React from "react";
 //Import Components
-import Image from '../CardImage';
-import Content from '../CardContent';
+import Image from "../CardImage";
+import Content from "../CardContent";
 //Import style
-import './index.scss';
+import "./index.scss";
 //Import Data
-import { fakeData } from '../data';
+import { fakeData } from "../data";
 
 const Card = () => (
 	<section>
-		<article className='Card'>
+		<article className="Card">
 			<Image image={fakeData.image} imageAlt={fakeData.imageAlt} />
 			<Content content={fakeData.content} />
 		</article>

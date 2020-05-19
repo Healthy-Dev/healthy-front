@@ -1,19 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&display=swap");
+
 .CardContent {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
+	font-family: "Rubik", sans-serif;
+	/* Ivory */
+	color: #fcfcfc;
+	margin-bottom: 108px;
 
-  /* Ivory */
-  color: #FCFCFC;
-
-  padding: 10px;
-
-    p {
-      text-align: left;
-    }
-
+	p {
+		margin: 0;
+	}
 }
