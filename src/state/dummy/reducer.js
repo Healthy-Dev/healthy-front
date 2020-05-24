@@ -10,20 +10,26 @@ const reducer = generalStatus.createReducer(
 	{
 		[types.DUMMY_REQUEST]: (state) => ({
 			...state,
-			loading: true,
-			error: false,
+			module1: {
+				loading: true,
+				error: false,
+			},
 		}),
 		[types.DUMMY_SUCCESS]: (state, { payload }) => ({
 			...state,
-			loading: false,
-			error: false,
-			data: payload,
+			module1: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
 		}),
 		[types.DUMMY_FAILURE]: (state) => ({
 			...state,
-			loading: false,
-			error: true,
-			data: null,
+			module1: {
+				loading: false,
+				error: true,
+				data: null,
+			},
 		}),
 	},
 	initialState,
