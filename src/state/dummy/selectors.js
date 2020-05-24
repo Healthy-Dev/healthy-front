@@ -1,8 +1,5 @@
 import { createSelector } from "reselect";
 
-const reducer = ({ GeneralStatus }) => GeneralStatus;
+const reducer = ({ Dummy }) => Dummy;
 
-export const generalStatusSelector = createSelector(
-	[reducer],
-	(generalStatus) => generalStatus,
-);
+export const DummySelector = createSelector([reducer], (Dummy) => Dummy);
