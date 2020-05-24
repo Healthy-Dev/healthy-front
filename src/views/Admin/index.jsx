@@ -6,12 +6,13 @@ import MyComponent from "components/Admin/MyComponent";
 // Redux
 import { useDispatch } from "react-redux";
 import { requestDummy } from "state/dummy/actions";
-
+// selectores:
+import { DummySelector } from "state/dummy/selectors";
 const AdminView = () => {
 	const d = useDispatch();
 
 	useEffect(() => {
-		d(requestDummy());
+		d(requestDummy({ mensaje: "alo polisia" }));
 	}, [d]);
 	return (
 		<>
