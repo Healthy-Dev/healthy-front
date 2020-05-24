@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Button from "components/_shared/Button";
 import MyComponent from "components/Admin/MyComponent";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { requestDummy } from "state/dummy/actions";
+
 const AdminView = () => {
+	const d = useDispatch();
+
+	useEffect(() => {
+		d(requestDummy());
+	}, [d]);
 	return (
 		<>
-        <MyComponent/>
+			<MyComponent />
 			{/*Default: */}
 			<Button className="MyComponent-buttons"> Button</Button>
 			{/*Disabled: */}
