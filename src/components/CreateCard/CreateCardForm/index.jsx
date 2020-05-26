@@ -7,7 +7,7 @@ import "./index.scss";
 import AddCardButton from "components/CreateCard/AddCardButton";
 
 const CreateCardForm = () => {
-	const { register, handleSubmit, watch, errors, reset } = useForm();
+	const { register, handleSubmit, watch, errors } = useForm();
 
 	const onSubmit = (data) => {
 		console.log(data);
