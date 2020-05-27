@@ -18,7 +18,10 @@ const UploadImage = () => {
 
 		current.file = file;
 
-		reader.onload = (event) => (current.src = event.target.result);
+		reader.onload = (event) => {
+			current.src = event.target.result;
+			/* 			localStorage.setItem('uploadedImage', event.target.result) */
+		};
 		// TODO: hay que guardar `e.target.result` en el estado de la app para
 		// conservar el data src de la imagen
 

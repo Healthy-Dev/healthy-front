@@ -9,18 +9,26 @@ import AddCardButton from "components/CreateCard/AddCardButton";
 const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
 
-	const onSubmit = async (data) => {
+	const onSubmit = async ({ title, description, externalUrl }) => {
+		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
+		const CORS = "https://max-cors-anywhere.herokuapp.com/";
 		const options = {
 			method: "POST",
+			body: {
+				title,
+				description,
+				photo: "fotito",
+				externalUrl,
+			},
 		};
+		console.log(options);
+		const response = await fetch(
+			`https://www.mocky.io/v2/5185415ba171ea3a00704eed`,
+			options,
+		);
 
-		await fetch("https://max-cors-anywhere.herokuapp.com/http://google.com", options);
-		console.log(data);
-
-		await fetch("https://max-cors-anywhere.herokuapp.com/http://facebook.com", options);
-		console.log(data);
-		// Add fetch function
-		// when data is submitted clear inputs
+		const result = await response.json();
+		console.log(result);
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
@@ -49,14 +57,26 @@ const CreateCardForm = () => {
 
 			<label>URL</label>
 			<input
-				name="url"
+				name="externalUrl"
 				placeholder="Ingresa una URL"
 				ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
 			/>
 
-			{errors.url && errors.url.type === "required" ? <p>This field is required</p> : ""}
-			{errors.url && errors.url.type === "maxLength" ? <p>Max length is 254</p> : ""}
-			{errors.url && errors.url.type === "pattern" ? <p>This must be a URL</p> : ""}
+			{errors.externalUrl && errors.externalUrl.type === "required" ? (
+				<p>This field is required</p>
+			) : (
+				""
+			)}
+			{errors.externalUrl && errors.externalUrl.type === "maxLength" ? (
+				<p>Max length is 254</p>
+			) : (
+				""
+			)}
+			{errors.externalUrl && errors.externalUrl.type === "pattern" ? (
+				<p>This must be a URL</p>
+			) : (
+				""
+			)}
 
 			<AddCardButton />
 		</form>
