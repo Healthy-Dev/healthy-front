@@ -68,17 +68,17 @@ const CreateCardForm = () => {
 			/>
 
 			{errors.externalUrl && errors.externalUrl.type === "required" ? (
-				<p>This field is required</p>
+				<p className="tooltip">This field is required</p>
 			) : (
 				""
 			)}
 			{errors.externalUrl && errors.externalUrl.type === "maxLength" ? (
-				<p>Max length is 254</p>
+				<p className="tooltip">Max length is 254</p>
 			) : (
 				""
 			)}
 			{errors.externalUrl && errors.externalUrl.type === "pattern" ? (
-				<p>This must be a URL</p>
+				<p className="tooltip">This must be a URL</p>
 			) : (
 				""
 			)}

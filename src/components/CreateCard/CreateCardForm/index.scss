@@ -6,8 +6,10 @@
   font-size: $s0;
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  justify-content: flex-end;
+  height: 100%;
   width: 100%;
+
 
   input {
     border-radius: $radius0;
@@ -33,6 +35,7 @@
   }
 
   .upload-form-container {
-    flex-grow: 1;
+    margin-top: $s1;
+    margin-bottom: $s2;
   }
 }
