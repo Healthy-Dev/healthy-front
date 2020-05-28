@@ -10,25 +10,25 @@ const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
-		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
-		const CORS = "https://max-cors-anywhere.herokuapp.com/";
+/* 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
+		const CORS = "https://max-cors-anywhere.herokuapp.com/"; */
 		const options = {
 			method: "POST",
 			body: {
 				title,
 				description,
-				photo: "fotito",
+				photo: "photo",
 				externalUrl,
 			},
 		};
 		console.log(options);
-		const response = await fetch(
+		/* 		const response = await fetch(
 			`https://www.mocky.io/v2/5185415ba171ea3a00704eed`,
 			options,
 		);
 
 		const result = await response.json();
-		console.log(result);
+		console.log(result); */
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
