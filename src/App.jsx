@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import AdminView from "views/Admin";
+/* import AdminView from "views/Admin"; */
 import CreateCardView from "views/CreateCard";
 import ThemeProvider from "components/_utils/ThemeProvider";
 
