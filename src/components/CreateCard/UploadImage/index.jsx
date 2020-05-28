@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 // Styles
 import "./index.scss";
 // icons
-import { ReactComponent as UploadIcon } from "/home/max/Dev/FEC/healthy-front/src/assets/icons/upload.svg";
-import { ReactComponent as CancelIcon } from "/home/max/Dev/FEC/healthy-front/src/assets/icons/cancel-icon.svg";
+import { ReactComponent as UploadIcon } from "../../../assets/icons/upload.svg";
+import { ReactComponent as CancelIcon } from "../../../assets/icons/cancel-icon.svg";
 
 const UploadImage = () => {
 	const imgInput = useRef(null);

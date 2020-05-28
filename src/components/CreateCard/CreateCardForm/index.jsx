@@ -36,7 +36,10 @@ const CreateCardForm = () => {
 
 	return (
 		<form className="form" onSubmit={handleSubmit(onSubmit)}>
-			<UploadImage />
+			<div className="upload-form-container">
+				<UploadImage />
+			</div>
+
 			<label>Título</label>
 			<input
 				name="title"
