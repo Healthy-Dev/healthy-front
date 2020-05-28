@@ -5,12 +5,13 @@ import { useForm } from "react-hook-form";
 import "./index.scss";
 // Components
 import AddCardButton from "components/CreateCard/AddCardButton";
+import UploadImage from "components/CreateCard/UploadImage";
 
 const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
-/* 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
+		/* 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
 		const CORS = "https://max-cors-anywhere.herokuapp.com/"; */
 		const options = {
 			method: "POST",
@@ -35,6 +36,7 @@ const CreateCardForm = () => {
 
 	return (
 		<form className="form" onSubmit={handleSubmit(onSubmit)}>
+			<UploadImage />
 			<label>Título</label>
 			<input
 				name="title"

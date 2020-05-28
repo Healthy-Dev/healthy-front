@@ -42,6 +42,8 @@
 
 
 .upload-btn {
+  display: flex;
+  justify-content: center;
   background-color: $medium-grey;
   border-radius: $radius0;
   border: none;
@@ -54,8 +56,22 @@
   background: linear-gradient(to right, $light-blue, $light-blue 50%, $medium-grey 15%, $medium-grey 100%);
   background-size: 250% 100%;
   background-position: var(--progress) 50%;
+}
 
+.pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
+.upload-icon {
+  display: inline;
+  margin-left: $s-1;
+}
+
+.cancel-icon {
+  display: inline;
+  margin-left: $s-1;
 }
 
 /* .uploading {
