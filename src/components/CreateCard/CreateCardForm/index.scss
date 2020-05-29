@@ -25,6 +25,10 @@
     &[name="description"] {
       height: 50%;
     }
+
+    &:valid {
+      background-color: $medium-grey;
+    }
   }
 
   .tooltip {

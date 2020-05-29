@@ -5,7 +5,7 @@ import "./index.scss";
 import { ReactComponent as UploadIcon } from "../../../assets/icons/upload.svg";
 import { ReactComponent as CancelIcon } from "../../../assets/icons/cancel-icon.svg";
 
-const UploadImage = () => {
+const UploadImage = ({ photo, setPhoto }) => {
 	const imgInput = useRef(null);
 	const img = useRef(null);
 	const [isUploading, setIsUploading] = useState(false);
@@ -26,7 +26,7 @@ const UploadImage = () => {
 		current.file = file;
 
 		reader.onload = (event) => {
-			current.src = event.target.result;
+			setPhoto(event.target.result);
 			console.log(current.file.name);
 			/* 			localStorage.setItem('uploadedImage', event.target.result) */
 			const slicedImageName = current.file.name.slice(0, 10) + "...";
@@ -52,15 +52,22 @@ const UploadImage = () => {
 
 	return (
 		<div className="upload-image-container">
-			<img
-				src="http://via.placeholder.com/80x80"
-				alt="Example image"
-				ref={img}
-				className="img"
-			/>
+			{isImageUploaded ? (
+				<img src={photo} alt="Example image" ref={img} className="img" />
+			) : (
+				<img
+					src="http://via.placeholder.com/80x80"
+					alt="Example image"
+					ref={img}
+					className="img"
+				/>
+			)}
+
 			<p>Elegí una imagen de portada</p>
+
 			<button
 				// TODO: Hay que hacer que el botton funcione como una barra de progreso.
+				type="button"
 				className={isUploading ? "upload-btn uploading" : "upload-btn pointer"}
 				style={{ "--progress": progressAmount + "%" }}
 				onClick={() => {

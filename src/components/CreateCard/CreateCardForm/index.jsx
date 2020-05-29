@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
@@ -9,35 +9,59 @@ import UploadImage from "components/CreateCard/UploadImage";
 
 const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
+	const [photo, setPhoto] = useState(null);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
-		/* 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
-		const CORS = "https://max-cors-anywhere.herokuapp.com/"; */
+		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
+		const username = process.env.REACT_APP_USER;
+		const password = process.env.REACT_APP_PASS;
+
+		const url = `${ENDPOINT_URL}`;
+
+		// Fetch to authenticate session. Temporary.
+		// TODO: Remove this from the form to higher state.
+
+		const loginOptions = {
+			method: "POST",
+			mode: "no-cors",
+			body: {
+				username,
+				password,
+			},
+		};
+
+		const response = await fetch(`${url}/login`, loginOptions);
+		console.log(response);
+		const { access_token, refresh_token } = await response.json();
+		console.log(access_token, refresh_token);
+
+		// Fetch to POST card data with authentication token
+
 		const options = {
 			method: "POST",
+			mode: "no-cors",
 			body: {
 				title,
 				description,
-				photo: "photo",
+				photo,
 				externalUrl,
 			},
 		};
-		console.log(options);
-		/* 		const response = await fetch(
-			`https://www.mocky.io/v2/5185415ba171ea3a00704eed`,
-			options,
-		);
 
-		const result = await response.json();
-		console.log(result); */
+		const dataResponse = await fetch(url, {
+			...options,
+			"X-Auth-Token": access_token,
+		});
+		const result = await dataResponse.json();
+		console.log(result);
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 	return (
-		<form className="form" onSubmit={handleSubmit(onSubmit)}>
+		<form className="form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
 			<div className="upload-form-container">
-				<UploadImage />
+				<UploadImage photo={photo} setPhoto={setPhoto} />
 			</div>
 
 			<label>Título</label>
