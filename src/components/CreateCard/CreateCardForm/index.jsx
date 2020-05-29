@@ -13,45 +13,56 @@ const CreateCardForm = () => {
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
-		const username = process.env.REACT_APP_USER;
-		const password = process.env.REACT_APP_PASS;
 
-		const url = `${ENDPOINT_URL}`;
+		const token = process.env.REACT_APP_TOKEN;
+		const url = `${ENDPOINT_URL}/api/post`;
 
 		// Fetch to authenticate session. Temporary.
-		// TODO: Remove this from the form to higher state.
+		// TODO: Remove this from the form to higher state
 
-		const loginOptions = {
-			method: "POST",
-			mode: "no-cors",
-			body: {
-				username,
-				password,
-			},
-		};
-
-		const response = await fetch(`${url}/login`, loginOptions);
-		console.log(response);
-		const { access_token, refresh_token } = await response.json();
-		console.log(access_token, refresh_token);
+		console.log(token);
 
 		// Fetch to POST card data with authentication token
+		const type = "application/x-www-form-urlencoded;charset=UTF-8"; // End target may be JSON data
 
 		const options = {
 			method: "POST",
+			crossDomain: true,
 			mode: "no-cors",
+			headers: {
+				Accept: "application/x-www-form-urlencoded;charset=UTF-8",
+				"Content-Type": type,
+				"X-Auth-Token": token,
+			},
+			body: new URLSearchParams({
+				title,
+				description,
+				photo,
+				externalUrl,
+			}),
+		};
+
+		/* 		const options = {
+			method: "POST",
+			crossDomain: true,
+			mode: "no-cors",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": type,
+				"X-Auth-Token": token,
+			},
 			body: {
 				title,
 				description,
 				photo,
 				externalUrl,
 			},
-		};
+		}; */
 
-		const dataResponse = await fetch(url, {
-			...options,
-			"X-Auth-Token": access_token,
-		});
+		console.log(options);
+
+		const dataResponse = await fetch(url, options);
+
 		const result = await dataResponse.json();
 		console.log(result);
 	};
