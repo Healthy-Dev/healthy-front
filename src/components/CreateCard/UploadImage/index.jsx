@@ -5,13 +5,12 @@ import "./index.scss";
 import { ReactComponent as UploadIcon } from "../../../assets/icons/upload.svg";
 import { ReactComponent as CancelIcon } from "../../../assets/icons/cancel-icon.svg";
 
-const UploadImage = ({ photo, setPhoto }) => {
+const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 	const imgInput = useRef(null);
 	const img = useRef(null);
 	const [isUploading, setIsUploading] = useState(false);
 	const [progressAmount, setProgressAmount] = useState(0);
 	const [isImageUploaded, setIsImageUploaded] = useState(false);
-	const [imageFileName, setImageFileName] = useState("");
 
 	const updateImg = (event) => {
 		const [file] = event.target.files;

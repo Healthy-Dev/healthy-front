@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
@@ -10,6 +10,18 @@ import UploadImage from "components/CreateCard/UploadImage";
 const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
 	const [photo, setPhoto] = useState(null);
+	const [imageFileName, setImageFileName] = useState("");
+	const [photoBlob, setPhotoBlob] = useState("");
+
+	useEffect(() => {
+		async function base64toblob() {
+			const request = await fetch(photo);
+			const blob = await request.blob();
+			setPhotoBlob(blob);
+			console.log(blob);
+		}
+		base64toblob();
+	}, [photo]);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
@@ -17,54 +29,44 @@ const CreateCardForm = () => {
 		const token = process.env.REACT_APP_TOKEN;
 		const url = `${ENDPOINT_URL}/api/post`;
 
-		// Fetch to authenticate session. Temporary.
+		const createDataObject = () => {
+			let formData = new FormData();
+			formData.append("title", title);
+			formData.append("description", description);
+			formData.append("photo", photoBlob, imageFileName);
+			formData.append("externalUrl", externalUrl);
+			const checkForm = formData.values();
+			for (const value of checkForm) {
+				console.log(value);
+			}
+			return formData;
+		};
+
 		// TODO: Remove this from the form to higher state
 
-		console.log(token);
-
 		// Fetch to POST card data with authentication token
-		const type = "application/x-www-form-urlencoded;charset=UTF-8"; // End target may be JSON data
 
 		const options = {
 			method: "POST",
 			crossDomain: true,
 			mode: "no-cors",
 			headers: {
-				Accept: "application/x-www-form-urlencoded;charset=UTF-8",
-				"Content-Type": type,
+				Accept: "multipart/form-data",
 				"X-Auth-Token": token,
 			},
-			body: new URLSearchParams({
-				title,
-				description,
-				photo,
-				externalUrl,
-			}),
+			body: createDataObject(),
 		};
-
-		/* 		const options = {
-			method: "POST",
-			crossDomain: true,
-			mode: "no-cors",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": type,
-				"X-Auth-Token": token,
-			},
-			body: {
-				title,
-				description,
-				photo,
-				externalUrl,
-			},
-		}; */
-
 		console.log(options);
 
-		const dataResponse = await fetch(url, options);
-
-		const result = await dataResponse.json();
-		console.log(result);
+		try {
+			const dataResponse = await fetch(url, options);
+			console.log(dataResponse);
+			const result = await dataResponse.json();
+			console.log(dataResponse);
+			return result;
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
@@ -72,10 +74,16 @@ const CreateCardForm = () => {
 	return (
 		<form className="form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
 			<div className="upload-form-container">
-				<UploadImage photo={photo} setPhoto={setPhoto} />
+				<UploadImage
+					photo={photo}
+					setPhoto={setPhoto}
+					imageFileName={imageFileName}
+					setImageFileName={setImageFileName}
+				/>
 			</div>
 
 			<label>Título</label>
+
 			<input
 				name="title"
 				placeholder="Ingresa un título"
@@ -122,5 +130,4 @@ const CreateCardForm = () => {
 		</form>
 	);
 };
-
 export default CreateCardForm;
