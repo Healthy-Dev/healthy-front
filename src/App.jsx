@@ -1,18 +1,27 @@
 import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import AdminView from "views/Admin";
-import Card from './components/CardDetails/Card'
+import CardDetails from 'views/CardDetails';
+// Redux:
+import { Provider } from "react-redux";
+import makeStore, { history } from "state";
+import { ConnectedRouter } from "connected-react-router";
+const store = makeStore();
 
 const App = () => (
-	<BrowserRouter>
-		<Switch>
-			<Card />
-			<AdminView />
-			<Route path="*">
-				<Redirect to="/" />
-			</Route>
-		</Switch>
-	</BrowserRouter>
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<BrowserRouter>
+				<Switch>
+					{/* <AdminView /> */}
+					<CardDetails />
+					<Route path="*">
+						<Redirect to="/" />
+					</Route>
+				</Switch>
+			</BrowserRouter>
+		</ConnectedRouter>
+	</Provider>
 );
 
 export default App;

@@ -7,12 +7,16 @@ import "./index.scss";
 //Import Data
 import { fakeData } from "../data";
 
-const Card = () => (
+const Card = ({data, loading}) => (
 	<section>
-		<article className="Card">
-			<Image image={fakeData.image} imageAlt={fakeData.imageAlt} />
-			<Content content={fakeData.content} />
-		</article>
+		{loading && <p>Loading...</p>}
+		{
+			data &&
+			<article className="Card">
+				<Image image={data.img} imageAlt={fakeData.imageAlt} />
+				<Content content={data.content} />
+			</article>
+		}
 	</section>
 );
 
