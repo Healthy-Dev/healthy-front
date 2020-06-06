@@ -48,8 +48,6 @@ const CreateCardForm = () => {
 
 		const options = {
 			method: "POST",
-			crossDomain: true,
-			mode: "no-cors",
 			headers: {
 				Accept: "multipart/form-data",
 				"X-Auth-Token": token,
