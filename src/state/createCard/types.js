@@ -1,5 +1,5 @@
-import dummyDuck from ".";
+import createCardDuck from ".";
 
-export const DUMMY_REQUEST = dummyDuck.defineType("DUMMY_REQUEST");
-export const DUMMY_SUCCESS = dummyDuck.defineType("DUMMY_SUCCESS");
-export const DUMMY_FAILURE = dummyDuck.defineType("DUMMY_FAILURE");
+export const CREATE_CARD_REQUEST = createCardDuck.defineType("CREATE_CARD_REQUEST");
+export const CREATE_CARD_SUCCESS = createCardDuck.defineType("CREATE_CARD_SUCCESS");
+export const CREATE_CARD_FAILURE = createCardDuck.defineType("CREATE_CARD_FAILURE");

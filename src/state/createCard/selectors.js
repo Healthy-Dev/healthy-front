@@ -1,5 +1,8 @@
 import { createSelector } from "reselect";
 
-const reducer = ({ Dummy }) => Dummy;
+const reducer = ({ CreateCard }) => CreateCard;
 
-export const DummySelector = createSelector([reducer], (Dummy) => Dummy?.module1);
+export const CreateCardSelector = createSelector(
+	[reducer],
+	(CreateCard) => CreateCard?.cardForm,
+);

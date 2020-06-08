@@ -1,5 +1,5 @@
 import Duck from "redux-ducks-ts";
 
-const dummyDuck = new Duck("dummy", "healthy");
+const createCardDuck = new Duck("createCard", "healthy");
 
-export default dummyDuck;
+export default createCardDuck;

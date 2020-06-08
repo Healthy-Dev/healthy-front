@@ -3,29 +3,29 @@ import * as types from "./types";
 import { makeReducer } from "../utils";
 
 export const initialState = {
-	...makeReducer("module1"),
+	...makeReducer("cardForm"),
 };
 
 const reducer = generalStatus.createReducer(
 	{
-		[types.DUMMY_REQUEST]: (state) => ({
+		[types.CREATE_CARD_REQUEST]: (state) => ({
 			...state,
-			module1: {
+			cardForm: {
 				loading: true,
 				error: false,
 			},
 		}),
-		[types.DUMMY_SUCCESS]: (state, { payload }) => ({
+		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			module1: {
+			cardForm: {
 				loading: false,
 				error: false,
 				data: payload,
 			},
 		}),
-		[types.DUMMY_FAILURE]: (state) => ({
+		[types.CREATE_CARD_FAILURE]: (state) => ({
 			...state,
-			module1: {
+			cardForm: {
 				loading: false,
 				error: true,
 				data: null,
