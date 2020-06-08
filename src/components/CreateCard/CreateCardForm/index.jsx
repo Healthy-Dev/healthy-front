@@ -66,7 +66,7 @@ const CreateCardForm = () => {
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 	return (
-		<form className="form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
 			<div className="upload-form-container">
 				<UploadImage
 					photo={photo}

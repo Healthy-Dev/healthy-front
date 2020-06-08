@@ -49,7 +49,7 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 	};
 
 	return (
-		<div className="upload-image-container">
+		<div className="UploadImage">
 			{isImageUploaded ? (
 				<img src={photo} alt="Example image" ref={img} className="img" />
 			) : (
