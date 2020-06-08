@@ -4,28 +4,28 @@ import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import makeStore, { history } from "state";
 import { ConnectedRouter } from "connected-react-router";
-/* import AdminView from "views/Admin"; */
+// Components
 import AdminView from "views/Admin";
-import CreateCardView from "views/CreateCard";
+/* import CreateCardView from "views/CreateCard"; */
 import ThemeProvider from "components/_utils/ThemeProvider";
 
 const store = makeStore();
 
 const App = () => (
 	<Provider store={store}>
-	<ConnectedRouter history={history}>
-	<BrowserRouter>
-		<Switch>
-			<ThemeProvider>
-				/* <AdminView /> */
-				{/* <CreateCardView /> */}
-			</ThemeProvider>
-			<Route path="*">
-				<Redirect to="/" />
-			</Route>
-		</Switch>
-	</BrowserRouter>
-	</ConnectedRouter>
+		<ConnectedRouter history={history}>
+			<BrowserRouter>
+				<Switch>
+					<ThemeProvider>
+						<AdminView />
+						{/* <CreateCardView /> */}
+					</ThemeProvider>
+					<Route path="*">
+						<Redirect to="/" />
+					</Route>
+				</Switch>
+			</BrowserRouter>
+		</ConnectedRouter>
 	</Provider>
 );
 
