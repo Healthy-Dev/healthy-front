@@ -26,10 +26,10 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 
 		reader.onload = (event) => {
 			setPhoto(event.target.result);
-			console.log(current.file.name);
 			/* 			localStorage.setItem('uploadedImage', event.target.result) */
 			const slicedImageName = current.file.name.slice(0, 10) + "...";
-			setImageFileName(slicedImageName);
+			const plainImageName = current.file.name;
+			setImageFileName(plainImageName.length > 10 ? plainImageName : slicedImageName);
 			setIsUploading(false);
 			setIsImageUploaded(true);
 			setProgressAmount(0);
@@ -41,7 +41,6 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 			setIsUploading(true);
 			if (data.lengthComputable) {
 				const progress = parseInt((data.loaded / data.total) * 100, 10);
-				console.log(progress);
 				setProgressAmount(progress);
 			}
 		};

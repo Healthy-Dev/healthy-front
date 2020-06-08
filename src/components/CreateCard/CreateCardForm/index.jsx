@@ -17,8 +17,8 @@ const CreateCardForm = () => {
 		async function base64toblob() {
 			const request = await fetch(photo);
 			const blob = await request.blob();
+
 			setPhotoBlob(blob);
-			console.log(blob);
 		}
 		base64toblob();
 	}, [photo]);
@@ -35,9 +35,8 @@ const CreateCardForm = () => {
 			formData.append("description", description);
 			formData.append("photo", photoBlob, imageFileName);
 			formData.append("externalUrl", externalUrl);
-			const checkForm = formData.values();
-			for (const value of checkForm) {
-				console.log(value);
+			for (const pair of formData.entries()) {
+				console.log(pair[0] + ", " + pair[1]);
 			}
 			return formData;
 		};
@@ -54,13 +53,10 @@ const CreateCardForm = () => {
 			},
 			body: createDataObject(),
 		};
-		console.log(options);
 
 		try {
 			const dataResponse = await fetch(url, options);
-			console.log(dataResponse);
 			const result = await dataResponse.json();
-			console.log(dataResponse);
 			return result;
 		} catch (err) {
 			console.error(err);
