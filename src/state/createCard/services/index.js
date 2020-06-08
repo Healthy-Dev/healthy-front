@@ -1,3 +1,3 @@
 import { fakeHttpModule } from "common/http";
 
-export const getDummy = () => fakeHttpModule.get("", undefined);
+export const postCard = () => fakeHttpModule.post("", undefined);
