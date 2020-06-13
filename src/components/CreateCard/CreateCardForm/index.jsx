@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { requestCreateCard } from "state/createCard/actions";
+// Selectors
+import { CreateCardSelector } from "state/createCard/selectors";
 // Components
 import AddCardButton from "components/CreateCard/AddCardButton";
 import UploadImage from "components/CreateCard/UploadImage";
@@ -23,7 +28,22 @@ const CreateCardForm = () => {
 		base64toblob();
 	}, [photo]);
 
+	const d = useDispatch();
+	const { data, loading, error } = useSelector((state) => CreateCardSelector(state));
+
+	useEffect(() => {
+		d(requestCreateCard());
+	}, [d]);
+
+	useEffect(() => {
+		if (error) console.log("ups la cagamos con algo");
+		if (loading) console.log("estamos esperando que termine la request :D");
+		if (!loading) console.log("ya no estamos esperando (?)");
+		if (data) console.log("desde backed me llego esto:", data);
+	}, [data, loading, error]);
+
 	const onSubmit = async ({ title, description, externalUrl }) => {
+		// TODO: remove this and refactor our into redux
 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
 
 		const token = process.env.REACT_APP_TOKEN;

@@ -10,13 +10,13 @@ const SuccessDummy = (payload, reqData) => {
 };
 
 function* watchDummy() {
-	const workerDummy = makeWorker(services.getDummy, {
-		success: actions.successDummy,
-		fail: actions.failureDummy,
-		retry: actions.requestDummy,
+	const workerDummy = makeWorker(services.postCard, {
+		success: actions.successCreateCard,
+		fail: actions.failureCreateCard,
+		retry: actions.requestCreateCard,
 		hooks: { 200: SuccessDummy },
 	});
-	yield takeLatest(types.DUMMY_REQUEST, workerDummy);
+	yield takeLatest(types.CREATE_CARD_REQUEST, workerDummy);
 }
 
 export default [watchDummy];
