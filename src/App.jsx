@@ -1,7 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import AdminView from "views/Admin";
-import CardDetails from "views/CardDetails";
+// import CardDetails from "views/CardDetails";
+// import AdminView from "views/Admin";
+import AdminView from "containers/Admin";
+import CardDetails from "containers/CardDetails";
 // Redux:
 import { Provider } from "react-redux";
 import makeStore, { history } from "state";
