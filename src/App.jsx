@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import makeStore, { history } from "state";
 import { ConnectedRouter } from "connected-react-router";
 // Components
-import AdminView from "views/Admin";
-/* import CreateCardView from "views/CreateCard"; */
+/* import AdminView from "views/Admin"; */
+import CreateCardView from "views/CreateCard";
 import ThemeProvider from "components/_utils/ThemeProvider";
 
 const store = makeStore();
@@ -17,8 +17,8 @@ const App = () => (
 			<BrowserRouter>
 				<Switch>
 					<ThemeProvider>
-						<AdminView />
-						{/* <CreateCardView /> */}
+						{/* <AdminView /> */}
+						<CreateCardView />
 					</ThemeProvider>
 					<Route path="*">
 						<Redirect to="/" />

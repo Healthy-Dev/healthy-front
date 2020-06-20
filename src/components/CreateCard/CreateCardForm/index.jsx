@@ -43,7 +43,7 @@ const CreateCardForm = () => {
 	}, [data, loading, error]);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
-		// TODO: remove this and refactor our into redux
+		// TODO: remove this and refactor out into redux
 		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
 
 		const token = process.env.REACT_APP_TOKEN;
