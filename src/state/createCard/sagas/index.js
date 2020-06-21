@@ -1,3 +1,3 @@
-import createCardSagas from "./dummy.saga";
+import createCardSagas from "./createCard.saga";
 
 export const sagas = [...createCardSagas];

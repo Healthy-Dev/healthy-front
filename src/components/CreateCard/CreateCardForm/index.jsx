@@ -81,6 +81,7 @@ const CreateCardForm = () => {
 		} catch (err) {
 			console.error(err);
 		}
+		
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
