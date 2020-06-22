@@ -1,24 +1,52 @@
 import { BASE_URL } from "../constants";
 
-// Fake backend
+/**
+ * @enum {string}
+ */
+export const METHODS = {
+	get: "GET",
+	post: "POST",
+	put: "PUT",
+	options: "OPTIONS",
+	delete: "DELETE",
+};
+
+/**
+ * @enum {string}
+ */
+export const TYPES = {
+	json: "application/json",
+	multipart: "multipart/form-data",
+	default: "application/x-www-form-urlencoded;charset=UTF-8",
+};
+
+/**
+ * @param {string} url
+ * @param {string} token
+ * @param {METHODS} method
+ * @param {payload}
+ * @param {TYPES} type
+ */
 export const fakeFetchModule = async (
 	url,
-	token,
-	method = "GET",
+	token = null,
+	method = METHODS.get,
 	payload = undefined,
-	json = false,
+	type = TYPES.default,
 ) => {
-	const type = json
-		? "application/json"
-		: "application/x-www-form-urlencoded;charset=UTF-8";
+	const headers = (token) ? {
+		Accept: "application/json",
+		"Content-Type": type,
+		"X-Auth-Token": token,
+	} : {
+		Accept: "application/json",
+		"Content-Type": type,
+	};
+
 	const requestOptions = {
 		crossDomain: true,
 		method: method,
-		headers: {
-			Accept: "application/json",
-			"Content-Type": type,
-			"X-Auth-Token": token,
-		},
+		headers: headers,
 		body: payload,
 	};
 	try {

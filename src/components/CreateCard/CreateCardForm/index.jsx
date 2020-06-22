@@ -16,24 +16,15 @@ const CreateCardForm = () => {
 	const { register, handleSubmit, errors } = useForm();
 	const [photo, setPhoto] = useState(null);
 	const [imageFileName, setImageFileName] = useState("");
-	const [photoBlob, setPhotoBlob] = useState("");
+	const [payload, setPayload] = useState(null);
 
-	useEffect(() => {
-		async function base64toblob() {
-			const request = await fetch(photo);
-			const blob = await request.blob();
-
-			setPhotoBlob(blob);
-		}
-		base64toblob();
-	}, [photo]);
-
+	// Redux
 	const d = useDispatch();
 	const { data, loading, error } = useSelector((state) => CreateCardSelector(state));
 
 	useEffect(() => {
-		d(requestCreateCard());
-	}, [d]);
+		d(requestCreateCard(payload));
+	}, [d, payload]);
 
 	useEffect(() => {
 		if (error) console.log("ups la cagamos con algo");
@@ -43,45 +34,14 @@ const CreateCardForm = () => {
 	}, [data, loading, error]);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
-		// TODO: remove this and refactor out into redux
-		const ENDPOINT_URL = process.env.REACT_APP_ENDPOINT_URL;
-
-		const token = process.env.REACT_APP_TOKEN;
-		const url = `${ENDPOINT_URL}/api/post`;
-
-		const createDataObject = () => {
-			let formData = new FormData();
-			formData.append("title", title);
-			formData.append("description", description);
-			formData.append("photo", photoBlob, imageFileName);
-			formData.append("externalUrl", externalUrl);
-			for (const pair of formData.entries()) {
-				console.log(pair[0] + ", " + pair[1]);
-			}
-			return formData;
-		};
-
-		// TODO: Remove this from the form to higher state
-
-		// Fetch to POST card data with authentication token
-
-		const options = {
-			method: "POST",
-			headers: {
-				Accept: "multipart/form-data",
-				"X-Auth-Token": token,
-			},
-			body: createDataObject(),
-		};
-
-		try {
-			const dataResponse = await fetch(url, options);
-			const result = await dataResponse.json();
-			return result;
-		} catch (err) {
-			console.error(err);
-		}
-		
+		setPayload(
+			JSON.stringify({
+				title,
+				description,
+				photo,
+				externalUrl,
+			}),
+		);
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
