@@ -1,5 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
+import AdminView from "views/Admin";
+import CardDetails from "views/CardDetails";
 // Redux:
 import { Provider } from "react-redux";
 import makeStore, { history } from "state";
@@ -17,12 +19,12 @@ const App = () => (
 			<BrowserRouter>
 				<Switch>
 					<ThemeProvider>
-						{/* <AdminView /> */}
 						<CreateCardView />
+						<CardDetails />
+						<Route path="*">
+							<Redirect to="/" />
+						</Route>
 					</ThemeProvider>
-					<Route path="*">
-						<Redirect to="/" />
-					</Route>
 				</Switch>
 			</BrowserRouter>
 		</ConnectedRouter>

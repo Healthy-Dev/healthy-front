@@ -6,16 +6,19 @@ import MyComponent from "components/Admin/MyComponent";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestDummy } from "state/dummy/actions";
+
 // selectores:
 import { DummySelector } from "state/dummy/selectors";
+
+
 
 const AdminView = () => {
 	const d = useDispatch();
 	const { data, loading, error } = useSelector((state) => DummySelector(state));
-
 	useEffect(() => {
 		d(requestDummy({ mensaje: "alo polisia" }));
 	}, [d]);
+
 
 	useEffect(() => {
 		if (error) console.log("ups, la cagamos con algo");

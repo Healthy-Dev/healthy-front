@@ -18,11 +18,13 @@ const CreateCardForm = () => {
 	const [imageFileName, setImageFileName] = useState("");
 	const [payload, setPayload] = useState(null);
 
-	// Redux
 	const d = useDispatch();
 	const { data, loading, error } = useSelector((state) => CreateCardSelector(state));
 
 	useEffect(() => {
+		if (payload === null) {
+			return;
+		}
 		d(requestCreateCard(payload));
 	}, [d, payload]);
 

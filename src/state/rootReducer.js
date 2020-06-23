@@ -3,6 +3,7 @@ import { connectRouter } from "connected-react-router";
 
 // aca tienen que importar sus reducers y agregarlos
 // en "combineReducers" para tener un reducer unico para todo el store
+import CardDetails from "../state/cardDetails/reducer";
 import Dummy from "state/dummy/reducer";
 import CreateCard from "state/createCard/reducer";
 
@@ -10,6 +11,7 @@ const createRootReducer = (history) =>
 	combineReducers({
 		Dummy,
 		CreateCard,
+		CardDetails,
 		router: connectRouter(history),
 	});
 
