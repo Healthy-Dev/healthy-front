@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Hooks
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
@@ -13,6 +14,7 @@ import AddCardButton from "components/CreateCard/AddCardButton";
 import UploadImage from "components/CreateCard/UploadImage";
 
 const CreateCardForm = () => {
+	const history = useHistory();
 	const { register, handleSubmit, errors } = useForm();
 	const [photo, setPhoto] = useState(null);
 	const [imageFileName, setImageFileName] = useState("");
@@ -30,7 +32,10 @@ const CreateCardForm = () => {
 		if (error) console.log("ups la cagamos con algo");
 		if (loading) console.log("estamos esperando que termine la request :D");
 		if (!loading) console.log("ya no estamos esperando (?)");
-		if (data) console.log("desde backed me llego esto:", data);
+		if (data) {
+			console.log("desde backed me llego esto:", data);
+			history.push(`/card?id=${data.id}`);
+		}
 	}, [data, loading, error]);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
