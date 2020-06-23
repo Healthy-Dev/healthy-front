@@ -5,8 +5,8 @@ import { put, call } from "redux-saga/effects";
 /**
  * @brief makeWorker, esta funcion crea una funcion generadora de JS que se utiliza para la creacion de sagas
  * @param {*} service funcion que se utiliza para realizar el pedido a backend, dentro de ella va a recibir el payload y el token
- * @param {*} actions objeto con las actions de redux que va a utilizar, 
- * 						"success" => en caso de un 200, 
+ * @param {*} actions objeto con las actions de redux que va a utilizar,
+ * 						"success" => en caso de un 200,
  * 						"retry" => en caso de un 401 aka token vencido, (misma accion que disparo esta)
  * 						"fail" => en caso de un error con el backend, se utiliza esta para volcar el codigod de error
  * extra:
@@ -28,7 +28,10 @@ export const makeWorker = (service, actions) => {
 		});
 		//	llamamos a los hooks externos si existen:
 		if (actions.hooks && actions.hooks[response.status]) {
-			yield call(actions.hooks[response.status], { payload: data, reqData: payload });
+			yield call(actions.hooks[response.status], {
+				payload: { reponse: response, data: data },
+				reqData: payload,
+			});
 		}
 		if (actions.hooks?.all) {
 			yield call(actions.hooks.all, {
@@ -42,6 +45,14 @@ export const makeWorker = (service, actions) => {
 				yield payload && put(actions.success({ ...data, reqData: payload }));
 				yield !payload && put(actions.success(data));
 				break;
+			case 201:
+				yield payload && put(actions.success({ ...data, reqData: payload }));
+				yield !payload && put(actions.success(data));
+				break;
+			case 204:
+				yield payload && put(actions.success({ ...data, reqData: payload }));
+				yield !payload && put(actions.success(data));
+				break;
 			case 401:
 				console.log("retry");
 				if ((payload?.retry ? payload.retry + 1 : 1) < 4) {
@@ -52,7 +63,7 @@ export const makeWorker = (service, actions) => {
 				} else yield put(actions.fail({ data: "token caducado" }));
 				break;
 			default:
-				yield put(actions.fail({ ...data }));
+				yield put(actions.fail({ data: data, reponse: response }));
 				break;
 		}
 	};

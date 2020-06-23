@@ -4,7 +4,7 @@ import * as types from "../types";
 import * as services from "../services";
 import { makeWorker } from "../../utils";
 
-const SuccessCreateCard = (payload, reqData) => {
+const SuccessCreateCard = ({ payload, reqData }) => {
 	console.log("me llego:", payload);
 	console.log("el payload tiene:", reqData);
 };
