@@ -5,7 +5,7 @@ import CreateCardForm from "components/CreateCard/CreateCardForm";
 // Styles
 import "./index.scss";
 
-const CreateCard = () => {
+const CreateCardView = () => {
 	return (
 		<div className="create-card-container">
 			<h1>Agregar artículo</h1>
@@ -15,4 +15,4 @@ const CreateCard = () => {
 	);
 };
 
-export default CreateCard;
+export default CreateCardView;
