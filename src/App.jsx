@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
+
 // Redux:
 import { Provider } from "react-redux";
 import makeStore, { history } from "state";
@@ -7,7 +8,7 @@ import { ConnectedRouter } from "connected-react-router";
 // Components
 /* import AdminView from "views/Admin"; */
 import CreateCardView from "views/CreateCard";
-import CardDetails from "views/CardDetails";
+import CardDetails from "containers/CardDetails";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 const store = makeStore();
@@ -25,7 +26,8 @@ const App = () => (
 					<Route path="/details/:cardId?">
 						<CardDetails />
 					</Route>
-					{/* 					<Route path="*">
+					{/*
+					<Route path="*">
 						<Redirect to="/" />
 					</Route> */}
 					{/* 					</ThemeProvider> */}

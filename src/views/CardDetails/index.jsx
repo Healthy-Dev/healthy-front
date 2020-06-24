@@ -16,12 +16,11 @@ const CardDetailsView = () => {
 	const d = useDispatch();
 	const { data, loading, error } = useSelector((state) => CardDetailsSelector(state));
 	const { cardId } = useParams();
-	//TODO:
-	useEffect(() => {
-		d(requestDetails({ url: `/v1/cards/${cardId}` }));
-		/* d(requestDetails({ url: `v1/cards` })); */
-	}, [d]);
 
+	useEffect(() => {
+		d(requestDetails({ url: `v1/cards/${cardId}` }));
+	}, [d]);
+	console.log(data);
 	useEffect(() => {
 		if (error) console.log("ups, la cagamos con algo");
 		if (loading) console.log("estamos esperando que termine la request :D");
