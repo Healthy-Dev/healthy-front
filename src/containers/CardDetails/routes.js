@@ -7,7 +7,6 @@ export default [
 	{
 		path: "/details/:cardId",
 		component: CardDetails,
-		exact: true,
+		exact: false,
 	},
-	
 ];

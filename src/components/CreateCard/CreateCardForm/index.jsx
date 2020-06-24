@@ -1,39 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { requestCreateCard } from "state/createCard/actions";
-// Selectors
-import { CreateCardSelector } from "state/createCard/selectors";
+
 // Components
 import AddCardButton from "components/CreateCard/AddCardButton";
 import UploadImage from "components/CreateCard/UploadImage";
 
-const CreateCardForm = () => {
+const CreateCardForm = ({ setPayload }) => {
 	const { register, handleSubmit, errors } = useForm();
 	const [photo, setPhoto] = useState(null);
 	const [imageFileName, setImageFileName] = useState("");
-	const [payload, setPayload] = useState(null);
-
-	const d = useDispatch();
-	const { data, loading, error } = useSelector((state) => CreateCardSelector(state));
-
-	useEffect(() => {
-		if (payload === null) {
-			return;
-		}
-		d(requestCreateCard(payload));
-	}, [d, payload]);
-
-	useEffect(() => {
-		if (error) console.log("ups la cagamos con algo");
-		if (loading) console.log("estamos esperando que termine la request :D");
-		if (!loading) console.log("ya no estamos esperando (?)");
-		if (data) console.log("desde backed me llego esto:", data);
-	}, [data, loading, error]);
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
 		setPayload(
