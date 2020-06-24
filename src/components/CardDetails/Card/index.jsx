@@ -5,17 +5,15 @@ import Content from "../CardContent";
 //Import style
 import "./index.scss";
 //Import Data
-import { fakeData } from "../data";
 
-const Card = ({data}) => (
+const Card = ({ data }) => (
 	<section>
-		{
-			data &&
+		{data && (
 			<article className="Card">
-				<Image image={data['0'].photo} imageAlt={fakeData.imageAlt} />
-				<Content content={data['0'].title} />
+				<Image image={data.photo} imageAlt={data.title} />
+				<Content content={data.description} title={data.title} />
 			</article>
-		}
+		)}
 	</section>
 );
 
