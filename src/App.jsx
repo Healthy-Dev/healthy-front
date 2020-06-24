@@ -15,8 +15,8 @@ const App = () => (
 		<ConnectedRouter history={history}>
 			<BrowserRouter>
 				<Switch>
-					<AdminView />
 					<CardDetails />
+					<AdminView />
 					<Route path="*">
 						<Redirect to="/" />
 					</Route>

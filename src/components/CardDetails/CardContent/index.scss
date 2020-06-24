@@ -4,7 +4,24 @@
 	font-family: "Rubik", sans-serif;
 	/* Ivory */
 	color: #fcfcfc;
+	height: 50vh;
 	p {
 		margin: 0;
+		height: 65%;
+		width: auto;
+		overflow: scroll;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 19px;
+	}
+	h4 {
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 28px;
+		margin-bottom: 5vw;
 	}
 }
