@@ -22,7 +22,7 @@ const App = () => (
 					<Route exact path="/">
 						<CreateCardView />
 					</Route>
-					<Route path="/details">
+					<Route path="/details/:cardId?">
 						<CardDetails />
 					</Route>
 					{/* 					<Route path="*">

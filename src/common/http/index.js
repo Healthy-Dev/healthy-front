@@ -6,7 +6,13 @@ export { TYPES };
 export const fakeHttpModule = {
 	async get(url, token, payload = undefined, type = TYPES.default) {
 		try {
-			const { response, data } = await fakeFetchModule(url, token, payload, type);
+			const { response, data } = await fakeFetchModule(
+				url,
+				token,
+				METHODS.get,
+				payload,
+				type,
+			);
 			return { response, data };
 		} catch (error) {
 			console.log(`fakeHttpModule error [GET] -> ${error}`);

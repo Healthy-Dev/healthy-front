@@ -12,8 +12,8 @@ const Card = ({data}) => (
 		{
 			data &&
 			<article className="Card">
-				<Image image={data['0'].photo} imageAlt={fakeData.imageAlt} />
-				<Content content={data['0'].title} />
+				<Image image={data.photo} imageAlt={fakeData.imageAlt} />
+				<Content content={data.title} />
 			</article>
 		}
 	</section>
