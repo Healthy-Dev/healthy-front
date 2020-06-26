@@ -1,10 +1,7 @@
 .card__container {
-    width: 400px;
-    height: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
     background-color:#03111F;
     color: #FCFCFC;;
     padding: 15px;
@@ -19,9 +16,10 @@
 }
 
 .card__details {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     h2 {
         width: 80%;
     }
@@ -33,8 +31,8 @@
 
 .card__likes {
     position: relative;
-    top: 50px;
-    left: 140px;
+    top: 10%;
+    left: 35%;
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -50,6 +48,7 @@
         margin-right: 10px;
     }
     .card__likes-heart {
+        fill: #ED254E;
         width: 24px;
         height: 20px;
         margin: 0px;
