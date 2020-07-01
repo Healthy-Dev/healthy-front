@@ -5,7 +5,7 @@ const CreateCard = lazy(() => import("views/CreateCard/"));
 
 export default [
 	{
-		path: "/",
+		path: "/new",
 		component: CreateCard,
 		exact: true,
 	},

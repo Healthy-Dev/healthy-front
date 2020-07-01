@@ -1,13 +1,12 @@
 import { lazy } from "react";
 
 // Containers
-const Admin = lazy(() => import("views/Admin/"));
+const Home = lazy(() => import("views/HomeView/"));
 
 export default [
 	{
 		path: "/",
-		component: Admin,
+		component: Home,
 		exact: true,
 	},
-	
 ];
