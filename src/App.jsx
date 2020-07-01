@@ -13,6 +13,7 @@ import CardDetails from "containers/CardDetails";
 
 const store = makeStore();
 
+
 const App = () => (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
