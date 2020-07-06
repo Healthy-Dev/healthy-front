@@ -1,19 +1,30 @@
 .nav-bar-container {
     width: 100%;
     height: 50px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 2;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #000;
+    background: linear-gradient(180deg, rgba(3, 17, 31, 0.4) -7.81%, #03111F 16.89%);
+    padding: 10px;
     .nav-bar-button {
-        color: #FCFCFC;
-        background-color: #000;
+        background-color:#03111F;
         border: none;
         font-size: 20px;
         cursor: pointer;
+        a {
+            .nav-bar-icons {
+                fill: #ffff;
+                width: 35px;
+                height: 35px;
+            } 
+            .fill-yellow {
+                fill:#F4DD27 ;
+            }
+        }
     }
-    .nav-bar-icons:hover {
-        fill: #F4DD27;
-    }  
+    
 }
 

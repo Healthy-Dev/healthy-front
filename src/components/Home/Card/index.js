@@ -1,11 +1,10 @@
 import React from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom'
-import imgHome from './../../../assets/img/card-home.jpg';
 import { ReactComponent as MoreVert } from './../../../assets/icons/more-vert.svg';
 import { ReactComponent as LikesHeart } from './../../../assets/icons/likes-heart.svg';
 
-const Card = () => {
+const Card = ({ img, title, id }) => {
     return (
         <div className="card__container">
             <div className="card__likes">
@@ -14,9 +13,9 @@ const Card = () => {
                 </button>
                 <p>1.3k</p>
             </div>
-            <img className="card__img" src={imgHome} />
+            <img className="card__img" src={img} />
             <div className="card__details">
-                <h2>Rutinas de running para la mañana</h2>
+                <h2>{title}</h2>
                 <Link to="/moredetails">
                     <MoreVert className="card__more-vert" />
                 </Link>

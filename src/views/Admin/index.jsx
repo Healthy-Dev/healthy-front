@@ -10,6 +10,7 @@ import { requestDummy } from "state/dummy/actions";
 // selectores:
 import { DummySelector } from "state/dummy/selectors";
 
+
 const AdminView = () => {
 	const d = useDispatch();
 	const { data, loading, error } = useSelector((state) => DummySelector(state));
@@ -27,12 +28,9 @@ const AdminView = () => {
 	return (
 		<>
 			<MyComponent />
-			{/*Default: */}
-			<Button className="MyComponent-buttons"> Button</Button>
+
 			{/*Disabled: */}
-			<Button className="MyComponent-buttons" disabled={true}>
-				Button
-			</Button>
+			<Button className="MyC"></Button>
 			{/*Outlined variant: */}
 			<Button className="MyComponent-buttons" outlined={true}>
 				Button
@@ -48,5 +46,4 @@ const AdminView = () => {
 		</>
 	);
 };
-
-export default AdminView;
+export default AdminView

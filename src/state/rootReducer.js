@@ -6,12 +6,14 @@ import { connectRouter } from "connected-react-router";
 import CardDetails from "../state/cardDetails/reducer";
 import Dummy from "state/dummy/reducer";
 import CreateCard from "state/createCard/reducer";
+import Home from "state/home/reducer";
 
 const createRootReducer = (history) =>
 	combineReducers({
 		Dummy,
 		CreateCard,
 		CardDetails,
+		Home,
 		router: connectRouter(history),
 	});
 
