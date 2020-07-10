@@ -34,8 +34,6 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 			setIsImageUploaded(true);
 			setProgressAmount(0);
 		};
-		// TODO: hay que guardar `e.target.result` en el estado de la app para
-		// conservar el data src de la imagen
 
 		reader.onprogress = function (data) {
 			setIsUploading(true);
@@ -64,7 +62,6 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 			<p>Elegí una imagen de portada</p>
 
 			<button
-				// TODO: Hay que hacer que el botton funcione como una barra de progreso.
 				type="button"
 				className={isUploading ? "upload-btn uploading" : "upload-btn pointer"}
 				style={{ "--progress": progressAmount + "%" }}
@@ -78,7 +75,6 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 				{!isUploading && !isImageUploaded && <UploadIcon className="upload-icon" />}
 				{!isUploading && isImageUploaded && (
 					<CancelIcon className="cancel-icon pointer" />
-					// TODO: Cancel image upload. Decide and apply if needed.
 				)}
 			</button>
 			<input
