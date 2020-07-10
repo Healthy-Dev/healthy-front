@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // Hooks
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
