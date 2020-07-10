@@ -31,24 +31,27 @@ export const fakeFetchModule = async (
 	url,
 	token = null,
 	method = METHODS.get,
-	payload = undefined,
+	payload = null,
 	type = TYPES.default,
 ) => {
-	const headers = (token) ? {
-		Accept: "application/json",
-		"Content-Type": type,
-		"X-Auth-Token": token,
-	} : {
-		Accept: "application/json",
-		"Content-Type": type,
-	};
-
+	const headers = token
+		? {
+				Accept: "application/json",
+				"Content-Type": type,
+				"X-Auth-Token": token,
+		  }
+		: {
+				Accept: "application/json",
+				"Content-Type": type,
+		  };
+	// TODO: Find out why payload gets defined as "application/x-www-form-urlencoded;charset=UTF-8", body should be undefined but GET fails when asking for a card detail.
 	const requestOptions = {
 		crossDomain: true,
 		method: method,
 		headers: headers,
 		body: payload,
 	};
+
 	try {
 		const response = await fetch(`${BASE_URL}${url}`, requestOptions);
 		const textBody = await response.text();

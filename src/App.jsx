@@ -7,7 +7,9 @@ import { ConnectedRouter } from "connected-react-router";
 // Components
 /* import AdminView from "views/Admin"; */
 import CreateCardView from "views/CreateCard";
-import ThemeProvider from "components/_utils/ThemeProvider";
+import CardDetails from "containers/CardDetails";
+import HomeView from "views/Home";
+/* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 const store = makeStore();
 
@@ -16,13 +18,21 @@ const App = () => (
 		<ConnectedRouter history={history}>
 			<BrowserRouter>
 				<Switch>
-					<ThemeProvider>
-						{/* <AdminView /> */}
+					{/* 					<ThemeProvider> */}
+					{/* <AdminView /> */}
+					<Route exact path="/">
+						<HomeView />
+					</Route>
+					<Route path="/details/:cardId?">
+						<CardDetails />
+					</Route>
+					<Route path="/new">
 						<CreateCardView />
-					</ThemeProvider>
+					</Route>
 					<Route path="*">
 						<Redirect to="/" />
 					</Route>
+					{/* 					</ThemeProvider> */}
 				</Switch>
 			</BrowserRouter>
 		</ConnectedRouter>

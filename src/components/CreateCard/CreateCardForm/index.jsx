@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Hooks
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { requestCreateCard } from "state/createCard/actions";
-// Selectors
-import { CreateCardSelector } from "state/createCard/selectors";
+
 // Components
 import AddCardButton from "components/CreateCard/AddCardButton";
 import UploadImage from "components/CreateCard/UploadImage";
 
+<<<<<<< HEAD
 const CreateCardForm = () => {
 	const history = useHistory();
 	const { register, handleSubmit, errors } = useForm();
@@ -37,6 +34,12 @@ const CreateCardForm = () => {
 			history.push(`/card?id=${data.id}`);
 		}
 	}, [data, loading, error]);
+=======
+const CreateCardForm = ({ setPayload }) => {
+	const { register, handleSubmit, errors } = useForm();
+	const [photo, setPhoto] = useState(null);
+	const [imageFileName, setImageFileName] = useState("");
+>>>>>>> merge-test
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
 		setPayload(
