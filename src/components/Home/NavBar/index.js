@@ -21,17 +21,17 @@ const NavBar = () => {
                 </Link>
             </button>
             <button className="nav-bar-button">
-                <Link>
+                <Link to="/salad">
                     <Salad className={`nav-bar-icons ${isLocation === '/salad' && "fill-yellow"}`} />
                 </Link>
             </button>
             <button className="nav-bar-button">
-                <Link>
+                <Link to="/heartbeat">
                     <HeartBeat className={`nav-bar-icons ${isLocation === '/heartbeat' && "fill-yellow"}`} />
                 </Link>
             </button>
             <button className="nav-bar-button">
-                <Link>
+                <Link to="/user">
                     <UserIcon className={`nav-bar-icons ${isLocation === '/user' && "fill-yellow"}`} />
                 </Link>
             </button>
