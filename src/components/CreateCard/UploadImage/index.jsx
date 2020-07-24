@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 // Styles
 import "./index.scss";
 // icons
-import { ReactComponent as UploadIcon } from "../../../assets/icons/upload.svg";
-import { ReactComponent as CancelIcon } from "../../../assets/icons/cancel-icon.svg";
+import { ReactComponent as UploadIcon } from "assets/icons/upload.svg";
+import { ReactComponent as CancelIcon } from "assets/icons/cancel-icon.svg";
 
 const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 	const imgInput = useRef(null);

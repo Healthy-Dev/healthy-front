@@ -1,8 +1,8 @@
 import React from "react";
 import "./index.scss";
 import { Link } from "react-router-dom";
-import { ReactComponent as MoreVert } from "./../../../assets/icons/more-vert.svg";
-import { ReactComponent as LikesHeart } from "./../../../assets/icons/likes-heart.svg";
+import { ReactComponent as MoreVert } from "assets/icons/more-vert.svg";
+import { ReactComponent as LikesHeart } from "assets/icons/likes-heart.svg";
 
 const Card = ({ img, title, id }) => {
 	return (

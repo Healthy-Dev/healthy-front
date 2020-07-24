@@ -24,7 +24,7 @@ const CreateCardForm = ({ setPayload }) => {
 		);
 	};
 
-	const URL_FORMAT = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+	const URL_FORMAT = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
 	return (
 		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
