@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 // Containers
-const CardDetails = lazy(() => import("views/CardDetails/"));
+const CardDetails = lazy(() => import("views/CardDetails"));
 
 export default [
 	{

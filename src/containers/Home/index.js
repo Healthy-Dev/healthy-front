@@ -5,7 +5,7 @@ import routes from "./routes";
 // Components
 import MultipleRoutes from "components/_shared/MultipleRoutes";
 
-const Admin = () => (
+const Home = () => (
 	<Suspense fallback={<span>loading....</span>}>
 		<Switch>
 			{routes.map((route, i) => (
@@ -15,4 +15,4 @@ const Admin = () => (
 	</Suspense>
 );
 
-export default Admin;
+export default Home;

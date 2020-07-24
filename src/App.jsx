@@ -5,10 +5,9 @@ import { Provider } from "react-redux";
 import makeStore, { history } from "state";
 import { ConnectedRouter } from "connected-react-router";
 // Components
-/* import AdminView from "views/Admin"; */
-import CreateCardView from "views/CreateCard";
+import CreateCardView from "containers/CreateCard";
 import CardDetails from "containers/CardDetails";
-import HomeView from "views/Home";
+import HomeView from "containers/Home";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 const store = makeStore();
@@ -17,23 +16,9 @@ const App = () => (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<BrowserRouter>
-				<Switch>
-					{/* 					<ThemeProvider> */}
-					{/* <AdminView /> */}
-					<Route exact path="/">
-						<HomeView />
-					</Route>
-					<Route path="/details/:cardId?">
-						<CardDetails />
-					</Route>
-					<Route path="/new">
-						<CreateCardView />
-					</Route>
-					<Route path="*">
-						<Redirect to="/" />
-					</Route>
-					{/* 					</ThemeProvider> */}
-				</Switch>
+				<HomeView />
+				<CardDetails />
+				<CreateCardView />
 			</BrowserRouter>
 		</ConnectedRouter>
 	</Provider>
