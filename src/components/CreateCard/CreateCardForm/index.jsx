@@ -38,7 +38,6 @@ const CreateCardForm = ({ setPayload }) => {
 			</div>
 
 			<label>Título</label>
-
 			<input
 				name="title"
 				placeholder="Ingresa un título"
@@ -47,8 +46,16 @@ const CreateCardForm = ({ setPayload }) => {
 			{errors.title && errors.title.type === "required" && <p>This field is required</p>}
 			{errors.title && errors.title.type === "maxLength" && <p>Max length is 30</p>}
 
+			<label>Categorías</label>
+			<select className="select" name="categoria">
+				<option>Rutinas</option>
+				<option>Alimentacion</option>
+				<option>Confort</option>
+				<option>Salud mental</option>
+			</select>
+
 			<label>Descripción</label>
-			<input
+			<input 
 				name="description"
 				placeholder="Explicá en que consiste el artículo"
 				ref={register({ required: true, maxLength: 200 })}

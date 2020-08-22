@@ -9,11 +9,11 @@
 	height: 100%;
 	width: 100%;
 
-	input {
+	input, .select  {
 		border-radius: $radius0;
 		font-family: $font-plain;
 		border: none;
-		font-size: $s-1;
+		font-size: $s0;
 		background-color: $medium-grey;
 		color: $light-grey;
 		padding: $s-1;
