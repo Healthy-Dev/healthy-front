@@ -1,0 +1,59 @@
+@import "theme";
+
+.profile {
+  background: $dark-blue;
+  padding: $s1;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    left: 0;
+    top: 15%;
+    background: linear-gradient(180deg, #424d5791 0%, rgba(4, 26, 47, 0.12) 51.56%);
+    border-radius: 10px 12px 0px 0px;
+    z-index: 1;
+  }
+
+  &__header {
+    width: 100%;
+    border: 1px solid red;
+    color: $ivory;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 $s1;
+    padding-top: $s1;
+    position: relative; // le agregue esta linea para poder subirlo arriba del before
+    z-index: 100;
+
+    &--img {
+      border: 1px solid red;
+      width: $s6;
+      height: $s6;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &--info {
+      border: 1px solid green;
+      width: 65%;
+      text-align: end; // le agregue para que se vaya todo a la derecha
+
+      h2 {
+        font-size: $s1;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center; // le agregue para que se vaya al centro el h2
+      }
+    }
+  }
+}
