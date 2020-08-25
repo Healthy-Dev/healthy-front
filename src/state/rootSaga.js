@@ -6,8 +6,15 @@ import { sagas as CardDetailsSagas } from "state/cardDetails/sagas";
 import { sagas as DummySagas } from "state/dummy/sagas";
 import { sagas as CreateCardSagas } from "state/createCard/sagas";
 import { sagas as HomeSagas } from "state/home/sagas";
+import { sagas as SearchSagas } from "state/search/sagas";
 
-const allSagas = [...DummySagas, ...CreateCardSagas, ...CardDetailsSagas, ...HomeSagas];
+const allSagas = [
+	...DummySagas,
+	...CreateCardSagas,
+	...CardDetailsSagas,
+	...HomeSagas,
+	...SearchSagas
+];
 
 export default function* rootSaga() {
 	yield all(allSagas.map((saga) => fork(saga)));
