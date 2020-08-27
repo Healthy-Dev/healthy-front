@@ -1,0 +1,12 @@
+@import "theme";
+
+.card {
+    width: 100px;
+    padding: 0;
+    margin-right: $s-1;
+
+    img {
+        width:100%;
+        height: 100%;
+    }
+}

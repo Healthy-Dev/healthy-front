@@ -2,7 +2,9 @@
     display: flex;
     width: 100%;
     overflow: scroll;   
-}
-.card__container {
-    width: 400px;
+
+    .card__container {
+        min-width: 100px;
+    }
+    
 }
