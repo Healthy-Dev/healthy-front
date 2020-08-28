@@ -17,10 +17,13 @@ const Carrousel = () => {
 
     return (
         <div className="carrousel">
+            <h4>Titulo</h4>
+            <div className="carrousel__scroll">
             {data &&
                 data.map(({ photo, title, id }) => (
                     <Card img={photo} title={title} key={id} id={id} />
                 ))}
+            </div>
         </div>
     )
 }
