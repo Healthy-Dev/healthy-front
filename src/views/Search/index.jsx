@@ -26,16 +26,16 @@ const Search = ({ history }) => {
 	const d = useDispatch();
 	const { data, loading } = useSelector((state) => SearchSelector(state));
 	
+	function getCards() {
+		d(requestSearch(locationQuery));
+	}
+
 	useEffect(() => {
 		if (history.location.search.includes(`?query=`) && locationQuery) {
 			getCards();
 		}
 	}, []); //eslint-disable-line
 	
-	function getCards() {
-			d(requestSearch(locationQuery));
-	}
-
 	// Filtrar por categoria
 	function filterByCategories(category) {
 		console.log("Filtrar datos por: ", category);
