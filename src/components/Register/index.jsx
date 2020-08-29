@@ -8,7 +8,7 @@ import "./index.scss";
 import Button from "../_shared/Button";
 
 const CreateAccountForm = ({ setPayload }) => {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit, errors, getValues } = useForm();
 
 	const onSubmit = async ({ name, email, password }) => {
 		setPayload(
@@ -44,17 +44,6 @@ const CreateAccountForm = ({ setPayload }) => {
 			{errors.email && errors.email.type === "required" && <p>This field is required</p>}
 			{errors.email && errors.email.type === "maxLength" && <p>Max length is 30</p>}
 
-			<label name="confirmEmail">Confirmar Email</label>
-
-			<input
-				name="confirmEmail"
-				type="email"
-				placeholder="Ingresa tu email"
-				ref={register({ required: true, maxLength: 30 })}
-			/>
-			{errors.email && errors.email.type === "required" && <p>This field is required</p>}
-			{errors.email && errors.email.type === "maxLength" && <p>Max length is 30</p>}
-
 			<label name="password">Contraseña</label>
 
 			<input
@@ -71,12 +60,20 @@ const CreateAccountForm = ({ setPayload }) => {
 				name="confirmPassword"
 				type="password"
 				placeholder="******"
-				ref={register({ required: true, maxLength: 20 })}
+				ref={register({
+					required: "This field is required",
+					maxLength: 20,
+					validate: (value) => {
+						return value === getValues("password") ? true : "Passwords don't match";
+					},
+				})}
 			/>
-			{errors.password && <p>This field is required</p>}
-			{errors.password && errors.password.type === "maxLength" && <p>Max length is 20</p>}
+			{errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+			{errors.confirmPassword && errors.confirmPassword.type === "maxLength" && (
+				<p>Max length is 20</p>
+			)}
 
-			<Button fullWidth>Crear Cuenta</Button>
+			<Button fullWidth>Registrarme</Button>
 		</form>
 	);
 };
