@@ -22,7 +22,6 @@ export const makeWorker = (service, actions) => {
 		//	tiene => data (anteriormente el payload);
 		//	retry => cantidad de reintentos de la solicitud
 		//  const AppToken = localStorage.getItem("token");
-		console.log("estoy adentro del makeworker");
 		const { response, data } = yield call(service, {
 			/* AppToken, */
 			payload: payload,
