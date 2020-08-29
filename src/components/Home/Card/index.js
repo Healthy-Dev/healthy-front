@@ -6,7 +6,7 @@ import { ReactComponent as LikesHeart } from './../../../assets/icons/likes-hear
 
 const Card = ({ img, title, id }) => {
     return (
-        <div className="card__container">
+        <div id={id} className="card__container">
             <div className="card__likes">
                 <button className="card__likes-button">
                     <LikesHeart className="card__likes-heart" />
