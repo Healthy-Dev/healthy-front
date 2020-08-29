@@ -18,12 +18,12 @@ const AdminView = () => {
 		d(requestDummy({ mensaje: "alo polisia" }));
 	}, [d]);
 
-	useEffect(() => {
-		if (error) console.log("ups, la cagamos con algo");
-		if (loading) console.log("estamos esperando que termine la request :D");
-		if (!loading) console.log("ya no estamos esperando (?)");
-		if (data) console.log("desde backend me llego esto:", data);
-	}, [data, loading, error]);
+	// useEffect(() => {
+	// 	if (error) console.log("ups, la cagamos con algo");
+	// 	if (loading) console.log("estamos esperando que termine la request :D");
+	// 	if (!loading) console.log("ya no estamos esperando (?)");
+	// 	if (data) console.log("desde backend me llego esto:", data);
+	// }, [data, loading, error]);
 
 	return (
 		<>
