@@ -33,7 +33,8 @@
         border-radius: $radius-1;
         width: 100%;
         height: 100%;
-        object-fit: center;
+        object-fit: cover;
+        box-shadow: 0 0 7px rgba(244, 220, 39, 0.767);
       }
     }
 
@@ -58,11 +59,14 @@
     &-options {
       grid-area: options;
       text-align: end;
+      position: relative;
     }
   }
 
   &--description {
     margin-top: $s3;
     color: $ivory;
+    line-height: 1.35;
+    letter-spacing: .5px;
   }
 }
