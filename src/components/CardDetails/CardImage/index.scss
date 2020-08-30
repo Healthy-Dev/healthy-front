@@ -1,13 +1,71 @@
-figure {
-	margin: 0;
-}
+@import "theme";
 
-.CardImage {
-	img {
-		width: 100%;
-		height: 45vh;
-		border-radius: 10px;
-		margin-bottom: 20px;
-		object-fit: cover;
-	}
+.card__header {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+  font-family: $font-plain;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(180deg, rgba(3, 17, 31, 0.23) 73.96%, #041A2F 97%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+  }
+
+  &--img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &--more {
+    width: 100%;
+    position: absolute;
+    top: 0;
+		left: 0;
+    z-index: 100;
+		display: flex;
+		align-items: center;
+    justify-content: space-between;
+		padding: 24px;
+		color: $ivory;
+
+		.back {
+			padding: .5rem .7rem;
+			background: rgba(3, 17, 31, 0.23);
+			border-radius: $radius-1;
+      color: $yellow;
+      border: none;
+		}
+
+		.like {
+			display: flex;
+			align-items: center;
+
+			&--icon {
+				fill: $red;
+        background: rgba(3, 17, 31, 0.23);
+				padding: .4rem;
+				width: 35px;
+				height: 35px;
+				border-radius: 50%;
+				margin-right: .5rem;
+			}
+			&--count {
+				color: $ivory;
+			}
+		}
+  }
 }

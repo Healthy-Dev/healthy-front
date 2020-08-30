@@ -1,20 +1,28 @@
-import React from "react";
-//Import Components
+import React, { useState } from "react";
+import "./index.scss";
+
 import Image from "../CardImage";
 import Content from "../CardContent";
-//Import style
-import "./index.scss";
-//Import Data
+import ModalConfirmDelete from "../ModalConfirmDelete";
+import { changeState } from  "libs/changeState";
 
-const Card = ({ data }) => (
-	<section>
-		{data && (
-			<article className="Card">
-				<Image image={data.photo} imageAlt={data.title} />
-				<Content content={data.description} title={data.title} />
-			</article>
-		)}
-	</section>
-);
+const Card = ({ data }) => {
+	const [showModal, setShowModal] = useState(false);
+	const [modalConfirm, setModalConfirm] = useState(false);
+
+	return (
+		<div className="card">
+			{modalConfirm && <ModalConfirmDelete toggleModalConfirm={() => changeState(setModalConfirm)} />}
+			<Image photo={data.photo} title={data.title} />
+			<Content
+				title={data.title}
+				description={data.description}
+				showModal={showModal}
+				toggleModalOptions={() => changeState(setShowModal)}
+				toggleModalConfirm={() => changeState(setModalConfirm)}
+			/>
+		</div>
+	);
+};
 
 export default Card;
