@@ -32,7 +32,7 @@ const LoginView = () => {
 	return (
 		<div className="login-container">
 			<h1>
-				<span>Healthy</span> <span>Dev</span>
+				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
 			</h1>
 			<Login setPayload={setPayload} />
 			<footer>
