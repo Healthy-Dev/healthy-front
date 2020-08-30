@@ -8,6 +8,7 @@ import { ConnectedRouter } from "connected-react-router";
 import CreateCardView from "containers/CreateCard";
 import CardDetails from "containers/CardDetails";
 import HomeView from "containers/Home";
+import Search from "containers/Search";
 import Profile from "containers/Profile";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
@@ -17,6 +18,7 @@ const App = () => (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<BrowserRouter>
+				<Search />
 				<Profile />
 				<HomeView />
 				<CardDetails />
