@@ -27,7 +27,7 @@
 			rgba(4, 26, 47, 1),
 			rgba(4, 26, 47, 1)
 		),
-		url("https://i.imgur.com/COKO7tY.png");
+		url("../../assets/img/login-background.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	h1 {
@@ -54,7 +54,7 @@
 			margin-bottom: $s-2;
 			margin-top: $s-2;
 		}
-		a {
+		.button__link {
 			color: $yellow;
 			font-size: $s-1;
 			margin-bottom: $s-2;

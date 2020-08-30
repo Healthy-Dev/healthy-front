@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
@@ -12,6 +13,7 @@ import { ReactComponent as Eye } from "assets/icons/eye.svg";
 
 const CreateCardForm = ({ setPayload }) => {
 	const { register, handleSubmit, errors } = useForm();
+	const history = useHistory();
 
 	const onSubmit = async ({ email, password }) => {
 		setPayload(
@@ -52,7 +54,13 @@ const CreateCardForm = ({ setPayload }) => {
 				<Eye />
 			</div>
 
-			<p>¿Olvidaste tu contraseña?</p>
+			<p
+				role="button"
+				className="button__link--grey"
+				onClick={() => history.push("/reset_password")}
+			>
+				¿Olvidaste tu contraseña?
+			</p>
 			{errors.password && <p>This field is required</p>}
 			{errors.password && errors.password.type === "maxLength" && <p>Max length is 20</p>}
 

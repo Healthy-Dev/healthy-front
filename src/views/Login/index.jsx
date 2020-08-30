@@ -37,7 +37,13 @@ const LoginView = () => {
 			<Login setPayload={setPayload} />
 			<footer>
 				<p>¿Todavía no tenés una cuenta?</p>
-				<a onClick={() => history.push("/register")}>Registrate</a>
+				<p
+					role="button"
+					className="button__link"
+					onClick={() => history.push("/register")}
+				>
+					Registrate
+				</p>
 			</footer>
 		</div>
 	);
