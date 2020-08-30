@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Card from "../../components/Home/Card/index";
-import CreateCardButton from "../../components/Home/Button/index";
+import NavHome from "components/Home/Nav-Home";
 import NavBar from "../../components/Home/NavBar/index";
 import "./index.scss";
 // Redux
@@ -19,11 +19,11 @@ const HomeView = () => {
 
 	return (
 		<main className="container-home">
-			<NavBar />
+			{<NavHome />}
 			{data &&
 				data.map(({ photo, title, id }) => <Card img={photo} title={title} key={id} id={id} />)
 			}
-			<CreateCardButton />
+			<NavBar />
 		</main>
 	);
 }
