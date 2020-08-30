@@ -9,7 +9,7 @@
 	height: 100%;
 	width: 100%;
 
-	input, .select  {
+	input, textarea, .select  {
 		border-radius: $radius0;
 		font-family: $font-plain;
 		border: none;
@@ -27,6 +27,9 @@
 		&:valid {
 			background-color: $medium-grey;
 		}
+	}
+	.error {
+		border: 1px solid red !important;
 	}
 
 	.tooltip {
