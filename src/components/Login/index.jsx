@@ -6,6 +6,9 @@ import "./index.scss";
 
 // Components
 import Button from "../_shared/Button";
+import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
+import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
+import { ReactComponent as Eye } from "assets/icons/eye.svg";
 
 const CreateCardForm = ({ setPayload }) => {
 	const { register, handleSubmit, errors } = useForm();
@@ -14,41 +17,48 @@ const CreateCardForm = ({ setPayload }) => {
 		setPayload(
 			JSON.stringify({
 				email,
-				password
+				password,
 			}),
 		);
 	};
 
 	return (
 		<form className="Login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-
-			<Button fullWidth>Continuar con Facebook</Button>
-			<Button fullWidth>Continuar con Google</Button>
+			<Button className="blue" fullWidth>
+				<FacebookIcon />
+				Continuar con Facebook
+			</Button>
+			<Button className="red" fullWidth>
+				<GoogleIcon />
+				Continuar con Google
+			</Button>
 
 			<label name="email">Email</label>
-
 			<input
 				name="email"
-				placeholder="Ingresa un título"
+				placeholder="ejemplo@healthydev.com"
 				ref={register({ required: true, maxLength: 30 })}
 			/>
-			{ errors.email && errors.email.type === "required" && <p>This field is required</p>}
-			{ errors.email && errors.email.type === "maxLength" && <p>Max length is 30</p>}
+			{errors.email && errors.email.type === "required" && <p>This field is required</p>}
+			{errors.email && errors.email.type === "maxLength" && <p>Max length is 30</p>}
 
 			<label name="password">Contraseña</label>
+			<div className="input-container">
+				<input
+					name="password"
+					placeholder="******"
+					ref={register({ required: true, maxLength: 20 })}
+				/>
+				<Eye />
+			</div>
 
-			<input
-				name="password"
-				placeholder="******"
-				ref={register({ required: true, maxLength: 20 })}
-			/>
+			<p>¿Olvidaste tu contraseña?</p>
 			{errors.password && <p>This field is required</p>}
-			{ errors.password && errors.password.type === "maxLength" && (
-				<p>Max length is 20</p>
-			)}
+			{errors.password && errors.password.type === "maxLength" && <p>Max length is 20</p>}
 
-			<Button fullWidth>Ingresar</Button>
-			<p>¿Todavía no tenés cuenta? Registrate</p>
+			<Button className="button--login" fullWidth>
+				Ingresar
+			</Button>
 		</form>
 	);
 };

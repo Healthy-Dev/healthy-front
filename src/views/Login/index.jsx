@@ -13,7 +13,7 @@ const LoginView = () => {
 	const [payload, setPayload] = useState(null);
 	const history = useHistory();
 	const d = useDispatch();
-/* 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
+	/* 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
 
 	useEffect(() => {
 		if (payload === null) {
@@ -31,8 +31,14 @@ const LoginView = () => {
  */
 	return (
 		<div className="login-container">
-			<h1>Healthy Dev</h1>
+			<h1>
+				<span>Healthy</span> <span>Dev</span>
+			</h1>
 			<Login setPayload={setPayload} />
+			<footer>
+				<p>¿Todavía no tenés una cuenta?</p>
+				<a onClick={() => history.push("/register")}>Registrate</a>
+			</footer>
 		</div>
 	);
 };

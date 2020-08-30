@@ -17,9 +17,9 @@ const App = () => (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<BrowserRouter>
-{/* 				<HomeView />
+				<HomeView />
 				<CardDetails />
-				<CreateCardView /> */}
+				<CreateCardView />
 				<Login />
 			</BrowserRouter>
 		</ConnectedRouter>
