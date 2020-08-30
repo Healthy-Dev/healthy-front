@@ -9,7 +9,7 @@ import { HomeSelector } from "state/home/selectors";
 
 const Carrousel = () => {
     const d = useDispatch();
-    const { data, loading, error } = useSelector((state) => HomeSelector(state));
+    const { data } = useSelector((state) => HomeSelector(state));
 
     useEffect(() => {
         d(requestHome());
