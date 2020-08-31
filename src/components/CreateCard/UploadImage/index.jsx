@@ -51,11 +51,11 @@ const UploadImage = ({ photo, setPhoto, imageFileName, setImageFileName }) => {
 	return (
 		<div className="UploadImage">
 			{isImageUploaded ? (
-				<img src={photo} alt="Example image" ref={img} className="img" />
+				<img src={photo} alt="card" ref={img} className="img" />
 			) : (
 				<img
 					src="http://via.placeholder.com/80x80"
-					alt="Example image"
+					alt="default"
 					ref={img}
 					className="img"
 				/>
