@@ -8,6 +8,7 @@ import Dummy from "state/dummy/reducer";
 import CreateCard from "state/createCard/reducer";
 import Home from "state/home/reducer";
 import Login from "state/login/reducer";
+import Search from "state/search/reducer";
 
 const createRootReducer = (history) =>
 	combineReducers({
@@ -16,6 +17,7 @@ const createRootReducer = (history) =>
 		CardDetails,
 		Home,
 		Login,
+		Search,
 		router: connectRouter(history),
 	});
 
