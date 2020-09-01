@@ -13,7 +13,7 @@ const Card = ({ img, title, id }) => {
 				</button>
 				<p>1.3k</p>
 			</div>
-			<img className="card__img" src={img} />
+			<img className="card__img" alt="test" src={img} />
 			<div className="card__details">
 				<h2>{title}</h2>
 				<Link to={`/details/${id}`}>

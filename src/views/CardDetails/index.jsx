@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Card from "../../components/CardDetails/Card";
+import Card from "components/_shared/Card";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
