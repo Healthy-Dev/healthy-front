@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./index.scss";
 
-import Image from "../CardImage";
-import Content from "../CardContent";
-import ModalConfirmDelete from "../ModalConfirmDelete";
+import Image from "./CardImage";
+import Content from "./CardContent";
+import ModalConfirmDelete from "./ModalConfirmDelete";
 import { changeState } from  "libs/changeState";
 
 const Card = ({ data }) => {

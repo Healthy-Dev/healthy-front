@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Card from "../../components/Home/Card/index";
-import CreateCardButton from "../../components/Home/Button/index";
-import NavBar from "../../components/Home/NavBar/index";
+import Card from "components/Home/Card/index";
+import CreateCardButton from "components/Home/Button/index";
+import NavBar from "components/Home/NavBar/index";
 import "./index.scss";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
