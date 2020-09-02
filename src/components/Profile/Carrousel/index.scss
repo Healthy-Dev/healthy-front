@@ -2,7 +2,8 @@
 
 .carrousel {
     width: 100%;
-    margin: $s1 0;
+    margin-top: $s1;
+    margin-bottom: $s2;
     position: relative;
     z-index: 10;
 
@@ -10,6 +11,10 @@
         display: flex;
         width: 100%;
         overflow: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     h4 {
