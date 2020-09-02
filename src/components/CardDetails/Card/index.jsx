@@ -11,7 +11,7 @@ const Card = ({ data }) => {
 	const [modalConfirm, setModalConfirm] = useState(false);
 
 	return (
-		<div className="card">
+		<div className="card__detail">
 			{modalConfirm && <ModalConfirmDelete toggleModalConfirm={() => changeState(setModalConfirm)} />}
 			<Image photo={data.photo} title={data.title} />
 			<Content
