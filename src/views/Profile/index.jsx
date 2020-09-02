@@ -1,32 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
-import { ReactComponent as MoreIcon } from "assets/icons/more-vert.svg";
-import Carrousel from "components/Profile/Carrousel"
-import NavBar from "components/Home/NavBar"
 
-const Profile = () => {
-  return (
-    <>
-      <div className="profile">
-        <div className="profile__header">
-          <div className="profile__header--img"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="profile" /></div>
-          <div className="profile__header--info">
-            <h2>Joel Done</h2>
-            <span>
-              <MoreIcon className="icon" />
-            </span>
-          </div>
-        </div>
-        <div>
-          <Carrousel />
-          <Carrousel />
-          <Carrousel />
-          <Carrousel />
-        </div>
-      </div>
-      <NavBar />
-    </>
-  )
-}
+import Carrousel from "components/Profile/Carrousel";
+import NavBar from "components/Home/NavBar";
+import Loading from "components/_shared/Loading";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { requestHome } from "state/home/actions";
+// Selectores
+import { HomeSelector } from "state/home/selectors";
+import MoreOptions from "components/_shared/MoreOptions";
+
+const Profile = ({ history }) => {
+	const d = useDispatch();
+	const { data, loading } = useSelector((state) => HomeSelector(state));
+
+	useEffect(() => {
+		d(requestHome());
+	}, [d]);
+
+	let optionsModal = [
+		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
+		{ title: "Cerrar Sesion", fn: () => console.log("Cerrar Sesion") },
+	]
+
+	return (
+		<>
+			<div className="profile">
+				<div className="profile__header">
+					<div className="profile__header--img">
+						<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="profile" />
+					</div>
+					<h2>Joel Done</h2>
+					<MoreOptions optionsModal={optionsModal} />
+				</div>
+				{loading && <Loading />}
+				{data && (
+					// un carrousel por categoria que exista (filtrar data)
+					<>
+						<Carrousel data={data} />
+						<Carrousel data={data} />
+						<Carrousel data={data} />
+						<Carrousel data={data} />
+					</>
+				)}
+			</div>
+			<NavBar />
+		</>
+	);
+};
 
 export default Profile;
