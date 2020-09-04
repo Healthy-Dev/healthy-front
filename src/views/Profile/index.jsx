@@ -12,15 +12,16 @@ import { HomeSelector } from "state/home/selectors";
 import MoreOptions from "components/_shared/MoreOptions";
 
 const Profile = ({ history }) => {
-	const d = useDispatch();
+	const dispatch = useDispatch();
 	const { data, loading } = useSelector((state) => HomeSelector(state));
 
 	useEffect(() => {
-		d(requestHome());
-	}, [d]);
+		dispatch(requestHome());
+	}, [dispatch]);
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
+		// TODO: [Crear funcionalidad para cerrar sesion]
 		{ title: "Cerrar Sesion", fn: () => console.log("Cerrar Sesion") },
 	]
 
@@ -36,7 +37,7 @@ const Profile = ({ history }) => {
 				</div>
 				{loading && <Loading />}
 				{data && (
-					// un carrousel por categoria que exista (filtrar data)
+					// TODO: [Crear funcionalidad para filtrar datos por categoria y enviar]
 					<>
 						<Carrousel data={data} />
 						<Carrousel data={data} />

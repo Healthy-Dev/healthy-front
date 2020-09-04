@@ -7,7 +7,9 @@ import MoreOptions from "components/_shared/MoreOptions";
 const CardContent = ({ title, id, description, toggleModalConfirm }) => {
 	const history = useHistory();
 	
-	let optionsModal = [
+	// Todo: [Crear una funcionalidad para eliminar tarjeta]
+	// Todo: [Crear una funcionalidad para reportar la tarjeta]
+	let optionsModal = [	
 		{ title: "Editar", fn: () => history.push(`/edit-card/${id}`) },
 		{ title: "Elimar", fn: () => toggleModalConfirm() },
 		{ title: "Reportar", fn: () => console.log("report") },
