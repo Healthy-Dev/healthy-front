@@ -1,25 +1,25 @@
 @import "theme";
 
 .carrousel {
+  width: 100%;
+  margin-top: $s1;
+  margin-bottom: $s2;
+  position: relative;
+  z-index: 10;
+
+  &__scroll {
+    display: flex;
     width: 100%;
-    margin-top: $s1;
-    margin-bottom: $s2;
-    position: relative;
-    z-index: 10;
+    overflow: scroll;
 
-    &__scroll {
-        display: flex;
-        width: 100%;
-        overflow: scroll;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
+    &::-webkit-scrollbar {
+      display: none;
     }
+  }
 
-    h4 {
-        font-size: $s0;
-        margin-bottom: $s-1;
-        color: $ivory;
-    }
+  h4 {
+    font-size: $s0;
+    margin-bottom: $s-1;
+    color: $ivory;
+  }
 }
