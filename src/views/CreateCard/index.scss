@@ -1,20 +1,16 @@
 @import "../../theme/index.scss";
 
 .create-card-container {
-  display: flex;
   min-height: 100vh;
-  width: 100vw;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
   padding: $s1;
   font-family: $font-plain;
-  font-size: $s0;
   background-color: $dark-blue;
   color: $ivory;
 
   h1 {
     font-size: $s1;
+    color: $ivory;
   }
 
   .img {

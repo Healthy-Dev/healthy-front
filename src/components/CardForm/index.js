@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import "./index.scss";
 
 // Components
-import AddCardButton from "./AddCardButton"
 import UploadImage from "./UploadImage";
 import MessageError from "./MessageError";
+import Button from "components/_shared/Button";
 
 const CreateCardForm = ({ sendForm, loading, data }) => {
 	let defaultValues = {
@@ -19,7 +19,6 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 
 	const { register, handleSubmit, errors } = useForm({defaultValues});
 	const [photo, setPhoto] = useState(undefined);
-	// const [imageFileName, setImageFileName] = useState("");
 
 	const onSubmit = async ({ title, description, externalUrl }) => {
 		sendForm(
@@ -41,54 +40,57 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					photo={photo}
 					changePhoto={data.photo} 
 					setPhoto={setPhoto}
-					// imageFileName={imageFileName}
-					// setImageFileName={setImageFileName}
 				/>
 			</div>
 
-			<label>Título</label>
-			<input
-				className={errors.title && "error"}
-				name="title"
-				placeholder="Ingresa un título"
-				ref={register({ required: true, maxLength: 50 })}
-			/>
-			{errors.title && errors.title.type === "required" && <MessageError message="Ingrese un Título" />}
-			{errors.title && errors.title.type === "maxLength" && <MessageError message="Máximo 50 caracteres" />}
+			<section className="input">
+				<label>Título</label>
+				<input
+					name="title"
+					placeholder="Ingresa un título"
+					ref={register({ required: true, maxLength: 50 })}
+				/>
+				{errors.title && errors.title.type === "required" && <MessageError message="Ingrese un Título" />}
+				{errors.title && errors.title.type === "maxLength" && <MessageError message="Máximo 50 caracteres" />}
+			</section>
 
-			<label>Categorías</label>
-			<select className="select" name="categoria">
-				<option>Rutinas</option>
-				<option>Alimentacion</option>
-				<option>Confort</option>
-				<option>Salud mental</option>
-			</select>
+			<section className="input">
+				<label>Categorías</label>
+				<select className="select" name="categoria">
+					<option>Rutinas</option>
+					<option>Alimentacion</option>
+					<option>Confort</option>
+					<option>Salud mental</option>
+				</select>
+			</section>
 
-			<label>Descripción</label>
-			<textarea 
-				className={errors.title && "error"}
-				rows="5"
-				name="description"
-				placeholder="Explicá en que consiste el artículo"
-				ref={register({ required: true, minLength: 150 })}
-			></textarea>
-			{errors.description && errors.description.type === "minLength" && <MessageError message="Mínimo 150 caracteres" />}
-			{errors.description && errors.description.type === "required" && <MessageError message="Ingrese una descripción" />}
+			<section className="input">
+				<label>Descripción</label>
+				<textarea 
+					rows="5"
+					name="description"
+					placeholder="Explicá en que consiste el artículo"
+					ref={register({ required: true, minLength: 100 })}>
+				</textarea>
+				{errors.description && errors.description.type === "minLength" && <MessageError message="Mínimo 100 caracteres" />}
+				{errors.description && errors.description.type === "required" && <MessageError message="Ingrese una descripción" />}
+			</section>
 
-			<label>URL</label>
-			<input
-				className={errors.externalUrl && "error"}
-				name="externalUrl"
-				placeholder="Ingresa una URL"
-				ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
-			/>
-			{errors.externalUrl && errors.externalUrl.type === "required" &&<MessageError message="Ingrese una Url" />}
-			{errors.externalUrl && errors.externalUrl.type === "maxLength" && <MessageError message="Máximo 250 caracteres" />}
-			{errors.externalUrl && errors.externalUrl.type === "pattern" && <MessageError message="Ingrese una Url válida" />}
+			<section className="input">
+				<label>URL</label>
+				<input
+					name="externalUrl"
+					placeholder="Ingresa una URL"
+					ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
+				/>
+				{errors.externalUrl && errors.externalUrl.type === "required" &&<MessageError message="Ingrese una Url" />}
+				{errors.externalUrl && errors.externalUrl.type === "maxLength" && <MessageError message="Máximo 250 caracteres" />}
+				{errors.externalUrl && errors.externalUrl.type === "pattern" && <MessageError message="Ingrese una Url válida" />}
+			</section>
 
-			<AddCardButton type="submit">
+			<Button type="submit">
 				{loading ? "Subiendo..." : "Agregar articulo"}
-			</AddCardButton>
+			</Button>
 		</form>
 	);
 };
