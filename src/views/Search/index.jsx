@@ -6,6 +6,7 @@ import NavBar from "components/Home/NavBar";
 import NotResults from "components/Search/NotResults";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
+import Loading from "components/_shared/Loading";
 
 import { requestSearch } from "state/search/actions";
 import { SearchSelector } from "state/search/selectors";
@@ -48,8 +49,8 @@ const Search = ({ history }) => {
 				{/* Agregar funcionalidad de filtro */}
 				<Tags filterByCategories={filterByCategories} categories={categories} />
 				
+				{loading && <Loading />}
 				<div className="cards">
-					{loading && <p>loadingg................</p>}
 					{data && data.length === 0 
 					? <NotResults />
 					: data && data.map((item) => (

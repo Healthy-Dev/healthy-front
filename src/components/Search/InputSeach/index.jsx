@@ -22,7 +22,7 @@ const InputSearch = ({ getCards, history }) => {
 	function handleChange(e) {
 		let query = e.target.value;
 		setInputFocus(true);
-		history.push(`?query=${query}`);
+		history.replace(`?query=${query}`);
 		setQuery(query);
 	}
 
