@@ -7,18 +7,16 @@ import ModalConfirmDelete from "../ModalConfirmDelete";
 import { changeState } from  "libs/changeState";
 
 const Card = ({ data }) => {
-	const [showModal, setShowModal] = useState(false);
 	const [modalConfirm, setModalConfirm] = useState(false);
 
 	return (
-		<div className="card">
-			{modalConfirm && <ModalConfirmDelete toggleModalConfirm={() => changeState(setModalConfirm)} />}
+		<div className="card__detail">
+			{modalConfirm && <ModalConfirmDelete toggleModalConfirm={() => changeState(setModalConfirm)} id={data.id} />}
 			<Image photo={data.photo} title={data.title} />
 			<Content
 				title={data.title}
+				id={data.id}
 				description={data.description}
-				showModal={showModal}
-				toggleModalOptions={() => changeState(setShowModal)}
 				toggleModalConfirm={() => changeState(setModalConfirm)}
 			/>
 		</div>

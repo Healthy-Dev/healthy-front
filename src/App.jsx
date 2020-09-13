@@ -11,6 +11,9 @@ import HomeView from "containers/Home";
 import Login from "containers/Login";
 import Search from "containers/Search";
 import Profile from "containers/Profile";
+import EditCard from "containers/EditCard";
+import ErrorPage from "containers/ErrorPage";
+
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 const store = makeStore();
@@ -23,8 +26,10 @@ const App = () => (
 				<Profile />
 				<HomeView />
 				<CardDetails />
+				<EditCard />
 				<CreateCardView />
 				<Login />
+				<ErrorPage />
 			</BrowserRouter>
 		</ConnectedRouter>
 	</Provider>

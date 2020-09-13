@@ -1,0 +1,43 @@
+@import "theme";
+
+.CreateCardForm {
+	width: 100%;
+		
+	.input {
+		margin: $s0 0;
+		width: 100%;
+		
+		label {
+			font-size: $s0;
+			color: $ivory;
+		}
+	
+		input, textarea, .select  {
+			width: 100%;
+			border-radius: $radius-1;
+			font-family: $font-plain;
+			border: none;
+			font-size: $s-1;
+			background-color: $medium-grey;
+			color: $ivory;
+			padding: $s-1;
+			margin-top: $s-2;
+			
+			&::placeholder { 
+				color: $light-grey;
+			}
+		}
+	
+		.tooltip {
+			display: inline-block;
+			position: relative;
+			border-bottom: 1px dotted #666;
+			text-align: left;
+		}
+	}
+
+	.upload-form-container {
+		margin-top: $s1;
+		margin-bottom: $s2;
+	}
+}

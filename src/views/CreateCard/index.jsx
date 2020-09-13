@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestCreateCard } from "state/createCard/actions";
 import { CreateCardSelector } from "state/createCard/selectors";
 // Components
-import CreateCardForm from "components/CreateCard/CreateCardForm";
+import CardForm from "components/CardForm";
+import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
 
 const CreateCardView = () => {
-	const [payload, setPayload] = useState(null);
 	const history = useHistory();
-	const d = useDispatch();
-	const { data, loading, error } = useSelector((state) => CreateCardSelector(state));
+	const dispatch = useDispatch();
+	const { error, loading } = useSelector((state) => CreateCardSelector(state));
 
-	useEffect(() => {
-		if (payload === null) {
-			return;
-		}
-		d(requestCreateCard(payload));
-	}, [d, payload]);
-
-	useEffect(() => {
-		if (data) {
-			const cardId = data.id;
-			history.push(`/details/${cardId}`);
-		}
-	}, [data, loading, error, history]);
+	function createCard(payload) {
+		dispatch(requestCreateCard(payload));
+		if(!error) history.push("/");
+	}
 
 	return (
 		<div className="create-card-container">
+			{error && <Alert showButtonClose error>
+				No se pudo crear su tarjeta, Vulve a intentelo mas tarde!  
+			</Alert> }
 			<h1>Agregar artículo</h1>
-			<CreateCardForm setPayload={setPayload} />
+			<CardForm sendForm={createCard} loading={loading} data={{}} />
 		</div>
 	);
 };

@@ -2,7 +2,7 @@
 
 .profile {
   background: $dark-blue;
-  padding: $s1;
+  padding: $s1 0 $s3 $s1;
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -14,8 +14,8 @@
     position: absolute;
     left: 0;
     top: 10%;
-    background: linear-gradient(180deg, #424d5791 0%, rgba(4, 26, 47, 0.12) 51.56%);
-    border-radius: 10px 12px 0px 0px;
+    background: linear-gradient(180deg, #06966669 0%, rgba(4, 26, 47, 0.658) 75.56%);
+    border-radius: $radius1 $radius1 0px 0px;
     z-index: 1;
   }
 
@@ -27,7 +27,7 @@
     justify-content: space-between;
     padding: 0 $s1;
     padding-top: $s1;
-    position: relative; 
+    position: relative;
     z-index: 100;
 
     &--img {
@@ -38,19 +38,21 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: $radius-1;
+        box-shadow: 0 0 7px rgba(3, 24, 44, 0.644);
       }
     }
 
-    &--info {
-      width: 65%;
-      text-align: end; 
+    h2 {
+      font-size: $s2;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-      h2 {
-        font-size: $s1;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center; 
-      }
+    .more {
+      width: auto;
     }
   }
+
 }
