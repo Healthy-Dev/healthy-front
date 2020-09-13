@@ -13,6 +13,9 @@ import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 
+/* Password should be at least one capital letter, one small letter, one number and 8 character length */
+const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
+
 const CreateCardForm = ({ sendLogin, loading }) => {
 	const { register, handleSubmit, errors } = useForm();
 	const history = useHistory();
@@ -28,7 +31,7 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 	};
 
 	return (
-		<form className="Login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
+		<form className="form__login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
 			<Button className="blue" fullWidth>
 				<FacebookIcon />
 				Continuar con Facebook
@@ -60,8 +63,13 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				<input
 					type={isPasswordHidden ? "password" : "text"}
 					name="password"
-					placeholder=""
-					ref={register({ required: true, maxLength: 250, minLength: 8 })}
+					placeholder="******"
+					ref={register({
+						required: true,
+						maxLength: 250,
+						minLength: 8,
+						pattern: PASSWORD_FORMAT,
+					})}
 				/>
 				<div onClick={() => setPasswordHidden(!isPasswordHidden)} className="input__icon">
 					{isPasswordHidden ? <Eye /> : <EyeOff />}
@@ -81,6 +89,9 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 			)}
 			{errors.password && errors.password.type === "minLength" && (
 				<MessageError message="Mínimo 8 caracteres." />
+			)}
+			{errors.password && errors.password.type === "pattern" && (
+				<MessageError message="Debe contener una letra mayúscula, una minúscula y un número. Sin espacios." />
 			)}
 
 			<Button className="button__login" fullWidth>
