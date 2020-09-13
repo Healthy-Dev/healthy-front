@@ -6,35 +6,34 @@ import { requestLogin } from "state/login/actions";
 import { LoginSelector } from "state/login/selectors";
 // Components
 import Login from "components/Login";
+import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
 
 const LoginView = () => {
-	const [payload, setPayload] = useState(null);
 	const history = useHistory();
-	const d = useDispatch();
-	/* 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
+	const dispatch = useDispatch();
+	const { loading, error } = useSelector((state) => LoginSelector(state));
 
-	useEffect(() => {
-		if (payload === null) {
-			return;
-		}
-		d(requestLogin(payload));
-	}, [d, payload]);
+	const loginUser = (payload) => {
+		dispatch(requestLogin(payload));
+		if (!error) history.push("/");
+	};
 
-	useEffect(() => {
-		if (data) {
-			const cardId = data.id;
-			history.push(`/details/${cardId}`);
-		}
-	}, [data, loading, error, history]);
- */
 	return (
 		<div className="login-container">
+			{error ? (
+				<Alert showButtonClose error>
+					Disculpa, no pudimos loguear tu usuario con esa información.{" "}
+					<a href="" onClick={() => history.push("/reset_password")}>
+						¿Necesitás resetear tu contraseña?
+					</a>
+				</Alert>
+			) : null}
 			<h1>
 				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
 			</h1>
-			<Login setPayload={setPayload} />
+			<Login sendLogin={loginUser} loading={loading} />
 			<footer>
 				<p>¿Todavía no tenés una cuenta?</p>
 				<p
