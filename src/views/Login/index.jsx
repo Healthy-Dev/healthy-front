@@ -13,12 +13,15 @@ import "./index.scss";
 const LoginView = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const { loading, error } = useSelector((state) => LoginSelector(state));
+	const { data, loading, error } = useSelector((state) => LoginSelector(state));
 
 	const loginUser = (payload) => {
 		dispatch(requestLogin(payload));
-		if (!error) history.push("/");
 	};
+
+	useEffect(() => {
+		if (data) history.push("/");
+	}, [data]);
 
 	return (
 		<div className="login-container">
