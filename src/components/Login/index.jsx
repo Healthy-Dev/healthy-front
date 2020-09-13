@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // Hooks
 import { useForm } from "react-hook-form";
@@ -7,18 +7,21 @@ import "./index.scss";
 
 // Components
 import Button from "../_shared/Button";
+import MessageError from "./MessageError";
 import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
 import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
+import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 
-const CreateCardForm = ({ setPayload }) => {
+const CreateCardForm = ({ sendLogin, loading }) => {
 	const { register, handleSubmit, errors } = useForm();
 	const history = useHistory();
+	const [isPasswordHidden, setPasswordHidden] = useState(true);
 
-	const onSubmit = async ({ email, password }) => {
-		setPayload(
+	const onSubmit = async ({ usernameOrEmail, password }) => {
+		sendLogin(
 			JSON.stringify({
-				email,
+				usernameOrEmail,
 				password,
 			}),
 		);
@@ -35,23 +38,34 @@ const CreateCardForm = ({ setPayload }) => {
 				Continuar con Google
 			</Button>
 
-			<label name="email">Email</label>
+			<label name="usernameOrEmail">Email/Usuario</label>
 			<input
-				name="email"
+				type="text"
+				name="usernameOrEmail"
 				placeholder="ejemplo@healthydev.com"
-				ref={register({ required: true, maxLength: 30 })}
+				ref={register({ required: true, maxLength: 100, minLength: 4 })}
 			/>
-			{errors.email && errors.email.type === "required" && <p>This field is required</p>}
-			{errors.email && errors.email.type === "maxLength" && <p>Max length is 30</p>}
+			{errors.usernameOrEmail && errors.usernameOrEmail.type === "required" && (
+				<MessageError message="Ingrese su usuario o email." />
+			)}
+			{errors.usernameOrEmail && errors.usernameOrEmail.type === "maxLength" && (
+				<MessageError message="Máximo 100 caracteres." />
+			)}
+			{errors.usernameOrEmail && errors.usernameOrEmail.type === "minLength" && (
+				<MessageError message="Mínimo 4 caracteres." />
+			)}
 
 			<label name="password">Contraseña</label>
-			<div className="input-container">
+			<div className="input__container">
 				<input
+					type={isPasswordHidden ? "password" : "text"}
 					name="password"
-					placeholder="******"
-					ref={register({ required: true, maxLength: 20 })}
+					placeholder=""
+					ref={register({ required: true, maxLength: 250, minLength: 8 })}
 				/>
-				<Eye />
+				<div onClick={() => setPasswordHidden(!isPasswordHidden)} className="input__icon">
+					{isPasswordHidden ? <Eye /> : <EyeOff />}
+				</div>
 			</div>
 
 			<p
@@ -61,10 +75,15 @@ const CreateCardForm = ({ setPayload }) => {
 			>
 				¿Olvidaste tu contraseña?
 			</p>
-			{errors.password && <p>This field is required</p>}
-			{errors.password && errors.password.type === "maxLength" && <p>Max length is 20</p>}
+			{errors.password && <MessageError message="Ingrese su contraseña." />}
+			{errors.password && errors.password.type === "maxLength" && (
+				<MessageError message="Máximo 250 caracteres." />
+			)}
+			{errors.password && errors.password.type === "minLength" && (
+				<MessageError message="Mínimo 8 caracteres." />
+			)}
 
-			<Button className="button--login" fullWidth>
+			<Button className="button__login" fullWidth>
 				Ingresar
 			</Button>
 		</form>
