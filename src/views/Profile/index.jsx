@@ -4,19 +4,25 @@ import "./index.scss";
 import Carrousel from "components/Profile/Carrousel";
 import NavBar from "components/Home/NavBar";
 import Loading from "components/_shared/Loading";
+import MoreOptions from "components/_shared/MoreOptions";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestHome } from "state/home/actions";
+import { getUserRequest } from "state/user/actions";
 // Selectores
 import { HomeSelector } from "state/home/selectors";
-import MoreOptions from "components/_shared/MoreOptions";
+import { UserSelector } from "state/user/selectors";
 
 const Profile = ({ history }) => {
+	const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2MDAwNDIwMDUsImV4cCI6MTYwMDEyODQwNX0.5C9-gH8V-vr8LSYfjhoX5bSdFJMn_5w-jR11BcSWrjQ";
+
 	const dispatch = useDispatch();
-	const { data, loading } = useSelector((state) => HomeSelector(state));
+	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));
+	const { data: dataUser }= useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
 		dispatch(requestHome());
+		dispatch(getUserRequest({ token }));
 	}, [dispatch]);
 
 	let optionsModal = [
@@ -30,19 +36,19 @@ const Profile = ({ history }) => {
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">
-						<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="profile" />
+						<img src={dataUser && dataUser.user.profilePhoto || "https://www.component-creator.com/images/testimonials/defaultuser.png"} alt="profile" />
 					</div>
-					<h2>Joel Done</h2>
+					<h2>{dataUser && dataUser.user.name}</h2>
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
-				{loading && <Loading />}
-				{data && (
+				{loadingCards && <Loading />}
+				{dataCards && (
 					// TODO: [Crear funcionalidad para filtrar datos por categoria y enviar]
 					<>
-						<Carrousel data={data} />
-						<Carrousel data={data} />
-						<Carrousel data={data} />
-						<Carrousel data={data} />
+						<Carrousel data={dataCards} />
+						<Carrousel data={dataCards} />
+						<Carrousel data={dataCards} />
+						<Carrousel data={dataCards} />
 					</>
 				)}
 			</div>

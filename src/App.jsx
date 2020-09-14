@@ -12,6 +12,7 @@ import Search from "containers/Search";
 import Profile from "containers/Profile";
 import EditCard from "containers/EditCard";
 import ErrorPage from "containers/ErrorPage";
+import EditProfile from "containers/EditProfile";
 
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
@@ -23,6 +24,7 @@ const App = () => (
 			<BrowserRouter>
 				<Search />
 				<Profile />
+				<EditProfile />
 				<HomeView />
 				<CardDetails />
 				<EditCard />
