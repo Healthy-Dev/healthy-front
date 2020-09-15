@@ -14,7 +14,7 @@ import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";
 
 const Profile = ({ history }) => {
-	const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2MDAwNDIwMDUsImV4cCI6MTYwMDEyODQwNX0.5C9-gH8V-vr8LSYfjhoX5bSdFJMn_5w-jR11BcSWrjQ";
+	const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2MDAxMzg3MTMsImV4cCI6MTYwMDIyNTExM30.vkN850RYcr8SzsSP2UnBYkWMU1MlHaQrxLw-TkOjOro";
 
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));
@@ -36,7 +36,7 @@ const Profile = ({ history }) => {
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">
-						<img src={dataUser && dataUser.user.profilePhoto || "https://www.component-creator.com/images/testimonials/defaultuser.png"} alt="profile" />
+						<img src={(dataUser && dataUser.user.profilePhoto) || "https://www.component-creator.com/images/testimonials/defaultuser.png"}alt="profile" />
 					</div>
 					<h2>{dataUser && dataUser.user.name}</h2>
 					<MoreOptions optionsModal={optionsModal} />

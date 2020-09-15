@@ -1,0 +1,77 @@
+@import "theme";
+
+.editProfile__form {
+  width: 100%;
+  z-index: 100;
+  position: relative;
+  margin-top: 80px;
+  
+  &--input {
+    margin: $s0 0;
+    width: 100%;
+    
+    .img {
+      display: block;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: #00000081;
+        border-radius: $radius-1;
+      }
+      
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: $radius-1;
+      }
+
+      .icon {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        stroke: red;
+        width: 40px;
+        height: 30px;
+        path {
+          stroke: $green;
+        }
+      }
+    }
+
+
+    input[type=file] {
+      display: none;
+    }
+
+    label {
+      font-size: $s0;
+      color: $ivory;
+    }
+
+    input {
+      width: 100%;
+      border-radius: $radius-1;
+      font-family: $font-plain;
+      border: none;
+      font-size: $s0;
+      background-color: $medium-grey;
+      color: $ivory;
+      padding: $s-1;
+      margin-top: $s-2;
+
+      &::placeholder {
+        color: $light-grey;
+      }
+    }
+  }
+}
