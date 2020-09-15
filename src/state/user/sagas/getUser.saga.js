@@ -8,7 +8,7 @@ const SuccessGetCard = (payload) => {
 	console.log("me llego:", payload?.payload);
 };
 
-function* watchHome() {
+function* watchUser() {
 	const workerUser = makeWorker(services.getUser, {
 		success: actions.getUserSuccess,
 		fail: actions.getUserFailure,
@@ -18,4 +18,4 @@ function* watchHome() {
 	yield takeLatest(types.GET_USER_REQUEST, workerUser);
 }
 
-export default [watchHome];
+export default [watchUser];
