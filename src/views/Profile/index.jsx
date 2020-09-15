@@ -14,7 +14,7 @@ import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";
 
 const Profile = ({ history }) => {
-	const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2MDAxMzg3MTMsImV4cCI6MTYwMDIyNTExM30.vkN850RYcr8SzsSP2UnBYkWMU1MlHaQrxLw-TkOjOro";
+	const token = "";
 
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));
