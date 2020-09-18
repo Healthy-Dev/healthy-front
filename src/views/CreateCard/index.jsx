@@ -14,10 +14,11 @@ const CreateCardView = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { error, loading } = useSelector((state) => CreateCardSelector(state));
+	const token = '';
 
-	function createCard(payload) {
-		dispatch(requestCreateCard(payload));
-		if(!error) history.push("/");
+	function createCard(data) {
+		dispatch(requestCreateCard({ token, data }));
+		setTimeout(() => history.replace("/"), 3500);
 	}
 
 	return (
