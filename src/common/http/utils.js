@@ -38,7 +38,7 @@ export const fakeFetchModule = async (
 		? {
 				Accept: "application/json",
 				"Content-Type": type,
-				"X-Auth-Token": token,
+				"Authorization": token,
 		  }
 		: {
 				Accept: "application/json",
