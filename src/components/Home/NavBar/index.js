@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { ReactComponent as HomeHeart } from '../../../assets/icons/home-heart.svg';
+import { ReactComponent as HomeHeart } from '../../../assets/icons/home.svg';
 import { ReactComponent as Search } from '../../../assets/icons/search.svg';
 import { ReactComponent as UserIcon } from '../../../assets/icons/user.svg';
 
@@ -26,7 +26,7 @@ const NavBar = () => {
             </button>
             <button className="nav-bar-button">
                 <Link to="/user">
-                    <UserIcon className={`nav-bar-icons ${isLocation === '/user' && "fill-yellow"}`} />
+                    <UserIcon className={`nav-bar-icons ${isLocation === '/profile' && "fill-yellow"}`} />
                 </Link>
             </button>
         </nav>
