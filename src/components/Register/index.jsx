@@ -77,7 +77,6 @@ const CreateAccountForm = ({ setPayload }) => {
 				</div>
 			</div>
 
-			{errors.password && <MessageError message="Ingrese su contraseña." />}
 			{errors.password && errors.password.type === "maxLength" && (
 				<MessageError message="Máximo 250 caracteres." />
 			)}

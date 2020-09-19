@@ -31,7 +31,9 @@ const RegisterView = () => {
 
 	return (
 		<div className="register-container">
-			<h1>Healthy Dev</h1>
+			<h1>
+				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
+			</h1>
 			<h2>Registrate</h2>
 			<Register setPayload={setPayload} />
 		</div>
