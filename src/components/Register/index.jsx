@@ -18,10 +18,10 @@ const CreateAccountForm = ({ setPayload }) => {
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 	const [isPassword2Hidden, setPassword2Hidden] = useState(true);
 
-	const onSubmit = async ({ name, email, password }) => {
+	const onSubmit = async ({ username, email, password }) => {
 		setPayload(
 			JSON.stringify({
-				name,
+				username,
 				email,
 				password,
 			}),
@@ -30,21 +30,21 @@ const CreateAccountForm = ({ setPayload }) => {
 
 	return (
 		<form className="form__register" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-			<label name="name">Nombre</label>
+			<label name="username">Nombre</label>
 
 			<input
-				name="name"
+				name="username"
 				type="text"
 				placeholder="Ingresa tu Nombre"
 				ref={register({ required: true, maxLength: 30, minLength: 4 })}
 			/>
-			{errors.name && errors.name.type === "required" && (
+			{errors.username && errors.username.type === "required" && (
 				<MessageError message="Ingrese su nombre." />
 			)}
-			{errors.name && errors.name.type === "maxLength" && (
+			{errors.username && errors.username.type === "maxLength" && (
 				<MessageError message="Maximo 30 caracteres." />
 			)}
-			{errors.name && errors.name.type === "minlength" && (
+			{errors.username && errors.username.type === "minlength" && (
 				<MessageError message="Minimo 4 caracteres." />
 			)}
 
