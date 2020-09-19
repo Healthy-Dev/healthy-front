@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./index.scss";
 
 import Carrousel from "components/Profile/Carrousel";
-import NavBar from "components/Home/NavBar";
+import NavBar from "components/_shared/NavBar";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
 // Redux
@@ -18,7 +18,7 @@ const Profile = ({ history }) => {
 
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));
-	const { data: dataUser }= useSelector((state) => UserSelector(state));
+	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
 		dispatch(requestHome());
@@ -36,7 +36,7 @@ const Profile = ({ history }) => {
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">
-						<img src={(dataUser && dataUser.user.profilePhoto) || "https://www.component-creator.com/images/testimonials/defaultuser.png"}alt="profile" />
+						<img src={(dataUser && dataUser.user.profilePhoto) || "https://www.component-creator.com/images/testimonials/defaultuser.png"} alt="profile" />
 					</div>
 					<h2>{dataUser && dataUser.user.name}</h2>
 					<MoreOptions optionsModal={optionsModal} />

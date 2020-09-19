@@ -25,7 +25,7 @@ const NavBar = () => {
                 </Link>
             </button>
             <button className="nav-bar-button">
-                <Link to="/user">
+                <Link to="/profile">
                     <UserIcon className={`nav-bar-icons ${isLocation === '/profile' && "fill-yellow"}`} />
                 </Link>
             </button>

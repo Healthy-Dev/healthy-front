@@ -1,33 +1,7 @@
 @import "theme";
 
 .search {
-  background: #041A2F;
-  min-height: 100vh;
-  padding: $s1;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5em;
-  justify-content: center;
-  align-items: center;
-
-  &__card {
-    background: $dark-blue;
-    border-radius: $radius0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.788);
-
-    &--img {
-      width: 100%;
-      border-top-left-radius: $radius0;
-      border-top-right-radius: $radius0;
-    }
-
-    &--title {
-      color: $ivory;
-      font-size: $s0;
-      padding: 1rem;
-    }
-  }
+	background: #041a2f;
+	min-height: 100vh;
+	padding: $s1;
 }

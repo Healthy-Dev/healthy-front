@@ -1,9 +1,9 @@
 .nav-bar-container {
 	width: 100%;
-	height: 50px;
+	height: 70px;
 	position: fixed;
 	bottom: 0px;
-	z-index: 2;
+	z-index: 9999;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -16,17 +16,17 @@
 		cursor: pointer;
 		a {
 			.nav-bar-icons {
-				fill: #ffff;
+				color: #ffff;
 				width: 35px;
 				height: 35px;
 			}
 			.fill-yellow {
-				fill: #f4dd27;
+				color: #f4dd27;
 			}
 		}
 	}
 	@media (max-width: 430px) {
-		height: 35px;
+		height: 50px;
 		.nav-bar-button {
 			a {
 				.nav-bar-icons {

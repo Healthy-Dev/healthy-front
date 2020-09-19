@@ -1,11 +1,12 @@
+@import "theme";
+
 .container-home {
 	height: auto;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	background-color: #03111f;
-	margin-bottom: 47px;
-
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	background-color: $dark-blue;
+	padding: 24px;
 	@media (max-width: 430px) {
 		justify-content: space-around;
 	}
