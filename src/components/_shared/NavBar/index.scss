@@ -1,18 +1,19 @@
+@import "theme";
+
 .nav-bar-container {
 	width: 100%;
-	height: 70px;
 	position: fixed;
 	bottom: 0px;
 	z-index: 9999;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	background: linear-gradient(180deg, rgba(3, 17, 31, 0.4) -7.81%, #03111f 16.89%);
-	padding: 10px;
+	background: $darker-blue;
+	border-top: 1px solid #eeeeee5d;
+	padding: 12px 0;
 	.nav-bar-button {
-		background-color: #03111f;
+		background-color: transparent;
 		border: none;
-		font-size: 20px;
 		cursor: pointer;
 		a {
 			.nav-bar-icons {
@@ -22,11 +23,11 @@
 			}
 			.fill-yellow {
 				color: #f4dd27;
+				stroke-width: 3;
 			}
 		}
 	}
 	@media (max-width: 430px) {
-		height: 50px;
 		.nav-bar-button {
 			a {
 				.nav-bar-icons {

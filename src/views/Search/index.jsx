@@ -51,10 +51,10 @@ const Search = ({ history }) => {
 				<Tags filterByCategories={filterByCategories} categories={categories} />
 
 				{loading && <Loading />}
-				<div className="cards">
+				<div className="search__cards">
 					{data && data.length === 0
 						? <NotResults />
-						: data.map(({ photo, title, id }) => (
+						: data && data.map(({ photo, title, id }) => (
 							<Card img={photo} title={title} key={id} id={id} />
 						))
 					}

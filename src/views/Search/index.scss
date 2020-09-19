@@ -4,4 +4,10 @@
 	background: #041a2f;
 	min-height: 100vh;
 	padding: $s1;
+
+	&__cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: $s0;
+	}
 }

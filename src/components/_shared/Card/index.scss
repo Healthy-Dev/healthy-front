@@ -4,13 +4,24 @@ a {
 	text-decoration: none;
 }
 
-.card__profile {
+.card {
 	min-width: 150px;
 	height: 175px;
 	min-height: 200px;
 	padding: 0;
-	margin-right: $s-1;
 	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		border-radius: $radius-1;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 5;
+		background: linear-gradient(to bottom, rgba(3, 17, 31, 0.685), transparent);
+	}
 
 	img {
 		width: 100%;
@@ -20,26 +31,15 @@ a {
 	}
 
 	h2 {
-		border-bottom-left-radius: $radius-1;
-		border-bottom-right-radius: $radius-1;
+		border-bottom-left-radius: $radius-1 - 2px;
+		border-bottom-right-radius: $radius-1 - 2px;
 		position: absolute;
 		bottom: 0;
 		width: 100%;
-		bottom: 0;
 		left: 0;
 		font-size: $s-1;
 		padding: $s-1;
 		color: $ivory;
 		background-color: $darker-blue;
 	}
-}
-
-.card__profile::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: linear-gradient(to bottom, rgba(3, 17, 31, 0.9), transparent);
 }
