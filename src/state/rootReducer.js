@@ -9,6 +9,7 @@ import CreateCard from "state/createCard/reducer";
 import Home from "state/home/reducer";
 import Search from "state/search/reducer";
 import User from "state/user/reducer";
+import Cards from "state/cards/reducer";
 
 const createRootReducer = (history) =>
 	combineReducers({
@@ -18,6 +19,7 @@ const createRootReducer = (history) =>
 		Home,
 		Search,
 		User,
+		Cards,
 		router: connectRouter(history),
 	});
 
