@@ -8,12 +8,20 @@ import { sagas as CreateCardSagas } from "state/createCard/sagas";
 import { sagas as HomeSagas } from "state/home/sagas";
 import { sagas as RegisterSagas } from "state/register/sagas";
 
+import { sagas as LoginSagas } from "state/login/sagas";
+
+import { sagas as SearchSagas } from "state/search/sagas";
+import { sagas as UserSagas } from "state/user/sagas";
+
 const allSagas = [
 	...DummySagas,
 	...CreateCardSagas,
 	...CardDetailsSagas,
 	...HomeSagas,
 	...RegisterSagas,
+	...LoginSagas,
+	...SearchSagas,
+	...UserSagas,
 ];
 
 export default function* rootSaga() {

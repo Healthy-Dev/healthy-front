@@ -1,10 +1,10 @@
 /* Basic font */
 
 @import url(//fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap);
-
-$font-title: "Montserrat", sans-serif;
+@import url(//fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap);
 
 $font-plain: "Rubik", sans-serif;
+$font-title: "Montserrat", sans-serif;
 
 /* Sizes */
 
@@ -16,6 +16,8 @@ $s1: 24px;
 $s2: 32px;
 $s3: 40px;
 $s4: 64px;
+$s5: 72px;
+$s6: 90px;
 
 /* Radius */
 

@@ -1,0 +1,48 @@
+@import "theme";
+
+.search__input {
+  width: 100%;
+  border-radius: $radius-1;
+  border: 2px solid #424D57;
+  font-size: $s0;
+  color: $ivory;
+  background: $dark-blue;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: .5rem;
+  justify-content: flex-start;
+  align-items: center;
+
+  &--icon {
+    margin-right: .5rem;
+
+    svg {
+      padding: .1rem;
+      color: $light-grey;
+    }
+    .back {
+      color: $yellow;
+      border-right: 2px solid #424D57;
+      padding-right: .2rem;
+    }
+    .close {
+      padding: .2rem;
+      background: #041A2F;
+      border-radius: $radius-1;
+    }
+  }
+
+  input {
+    background: transparent;
+    width: 80%;
+    padding: .7rem 0;
+    border: none;
+    font-size: medium;
+    outline: none;
+    color: $ivory;
+
+    ::placeholder {
+      color: $light-grey;
+    }
+  }
+}
