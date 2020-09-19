@@ -116,7 +116,9 @@ const CreateAccountForm = ({ setPayload }) => {
 				<MessageError message="Confirmar contraseña." />
 			)}
 
-			<Button fullWidth>Registrarme</Button>
+			<Button className="button__register" fullWidth>
+				Registrarme
+			</Button>
 		</form>
 	);
 };
