@@ -15,10 +15,10 @@ import { UserSelector } from "state/user/selectors";
 
 //import { useUserSession } from "hooks/useUserSession";
 
-const CardDetailsView = () => {
+const CardDetailsView = ({ history }) => {
 	const dispatch = useDispatch();
 	const { cardId } = useParams();
-	const token = "";
+	const token = "Bearer ";
 
 	const {
 		data: cardData,
@@ -43,6 +43,9 @@ const CardDetailsView = () => {
 
 	function deleteCard() {
 		dispatch(requestDeleteCard({ cardId, token }));
+		setTimeout(() => {
+			if(!cardError) history.replace("/");
+		}, 3000);
 	}
 
 	return (

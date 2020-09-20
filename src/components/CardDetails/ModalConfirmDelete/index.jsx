@@ -10,7 +10,7 @@ const ModalConfirmDelete = ({ toggleModalConfirm, deleteCard,  id }) => {
     console.log("Eliminar esta card con id: ", id);
     toggleModalConfirm();
     deleteCard();
-    history.push("/profile");
+    history.push("/");
   }
 
   return (

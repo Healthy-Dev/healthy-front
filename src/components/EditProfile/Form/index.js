@@ -33,9 +33,7 @@ const EditCardForm = ({ dataUser, sendForm }) => {
 	const onSubmit = ({ name, twitter, instagram }) => {
 		sendForm(
 			JSON.stringify({
-				profilePhoto:
-					(profilePhoto && profilePhoto.split("base64,")[1]) ||
-					dataUser.user.profilePhoto,
+				profilePhoto: profilePhoto ? profilePhoto.split("base64,")[1] : null,
 				name,
 				twitter,
 				instagram,

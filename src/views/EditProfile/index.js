@@ -9,17 +9,20 @@ import EditProfileForm from "components/EditProfile/Form";
 import Loading from "components/_shared/Loading";
 
 const EditProfile = ({ history }) => {
-	const token = "";
+	const token = "Bearer ";
 	const dispatch = useDispatch();
-	const { data, loading } = useSelector((state) => UserSelector(state));
+	const { data, loading, error } = useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
 		dispatch(getUserRequest({ token }));
 	}, [dispatch]); //eslin-disable-line
 
 	function sendForm(data) {
+		console.log(data)
 		dispatch(updateUserRequest({ token, data }));
-		history.goBack();
+		setTimeout(() => {
+			if(!error) history.replace("/profile");
+		}, 3000);
 	}
 
 	return (

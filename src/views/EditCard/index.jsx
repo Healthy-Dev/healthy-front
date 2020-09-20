@@ -13,20 +13,22 @@ import Alert from "components/_shared/Alert";
 const EditCard = ({ history }) => {
 	const { state } = history.location;
 	const { id } = useParams();
-	const token = '';
+	const token = 'Bearer ';
 	const dispatch = useDispatch();
 
 	const { data: success, error } = useSelector(state => EditCardSelector(state));
 
 	function updateCard(payload) {
 		dispatch(requestEditCard({ cardId: id, token, payload }));
+		setTimeout(() => {
+			if(!error) history.replace("/");
+		}, 3000);
 	}
-
 
 	return (
 		<div className="edit">
 			{error && <Alert error showButtonClose>No se pudo actulizar, Intentelo mas tarde</Alert>}
-			{success && <Alert seccess showButtonClose>Se actualizo su tarjeta correctamente</Alert>}
+			{success && <Alert success showButtonClose>Se actualizo su tarjeta correctamente</Alert>}
 			{state && <CardForm sendForm={updateCard} loading={null} data={state} />}
 		</div>
 	);

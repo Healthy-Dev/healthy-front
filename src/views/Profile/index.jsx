@@ -14,7 +14,7 @@ import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";
 
 const Profile = ({ history }) => {
-	const token = "";
+	const token = "Bearer ";
 
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));

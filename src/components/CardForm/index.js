@@ -14,22 +14,22 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 		title: data.title,
 		description: data.description,
 		externalUrl: data.externalUrl,
-		photo: data.photo
 	}
 
 	const { register, handleSubmit, errors } = useForm({defaultValues});
 	const [photo, setPhoto] = useState(null);
 	const [sizeImg, setSizeImg] = useState(undefined);
+	const maxSize = 15 * 1024 * 1024;
 
 	const onSubmit = ({ title, description, externalUrl }) => {
-		if(sizeImg > (15 * 1024)) return;
+		if(sizeImg > maxSize) return;
 		sendForm(
 			JSON.stringify({
 				title,
 				description,
-				photo: photo && photo.split("base64,")[1],
+				photo: photo ? photo.split("base64,")[1] : null,
 				externalUrl,
-				category: '',
+				categoryId: 3,
 			}),
 		);
 	};
@@ -44,10 +44,9 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					changePhoto={data.photo} 
 					setPhoto={setPhoto}
 					setSizeImg={setSizeImg}
-					refForm={register({ required: true })}
+					refForm={register}
 				/>
-				{errors.img && errors.img.type === "required" && <MessageError message="Eliga una Imagen" />}
-				{photo && sizeImg > (15 * 1024) && <MessageError message="La imagen no puede pesar mas de 15Mb" />}
+				{photo && sizeImg > maxSize && <MessageError message="La imagen no puede pesar mas de 15Mb" />}
 			</div>
 
 			<section className="input">
