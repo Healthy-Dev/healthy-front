@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { LoginSelector } from "state/login/selectors";
 // Components
 import Login from "components/Login";
 import Alert from "components/_shared/Alert";
+import useAuth from "hooks/useAuth";
 // Styles
 import "./index.scss";
 
@@ -14,13 +15,20 @@ const LoginView = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
+	const [isAuth, token, closeSession, startSession] = useAuth();
 
 	const loginUser = (payload) => {
 		dispatch(requestLogin(payload));
 	};
 
 	useEffect(() => {
-		if (data) history.push("/");
+		if (isAuth) history.replace("/");
+	}, [isAuth]);
+
+	useEffect(() => {
+		if (data) {
+			startSession(data.accessToken);
+		}
 	}, [data]);
 
 	return (
@@ -28,7 +36,7 @@ const LoginView = () => {
 			{error ? (
 				<Alert showButtonClose error>
 					Disculpa, no pudimos loguear tu usuario con esa información.{" "}
-					<a href="" onClick={() => history.push("/reset_password")}>
+					<a href="!#" onClick={() => history.push("/reset_password")}>
 						¿Necesitás resetear tu contraseña?
 					</a>
 				</Alert>
