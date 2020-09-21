@@ -21,7 +21,7 @@ const Button = ({
 	success && (FinalClassName += "button-success");
 	FinalClassName += className;
 	return (
-		<button className={FinalClassName} type={type} onClick={onClick}>
+		<button className={FinalClassName} disabled={disabled} type={type} onClick={onClick}>
 			{children}
 		</button>
 	);

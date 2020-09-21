@@ -15,7 +15,7 @@ const LoginView = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
-	const [isAuth, token, closeSession, startSession] = useAuth();
+	const { isAuth, startSession } = useAuth();
 
 	const loginUser = (payload) => {
 		dispatch(requestLogin(payload));
@@ -23,13 +23,13 @@ const LoginView = () => {
 
 	useEffect(() => {
 		if (isAuth) history.replace("/");
-	}, [isAuth]);
+	}, [isAuth]); //eslint-disable-line
 
 	useEffect(() => {
 		if (data) {
 			startSession(data.accessToken);
 		}
-	}, [data]);
+	}, [data]); //eslint-disable-line
 
 	return (
 		<div className="login-container">
