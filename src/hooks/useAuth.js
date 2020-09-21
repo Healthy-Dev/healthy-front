@@ -1,7 +1,9 @@
 import { useState } from "react";
 import useLocalStorage from "hooks/useLocalStorage";
+import { useHistory } from "react-router-dom";
 
 export default function useAuth() {
+	const history = useHistory();
 	const [token, setToken] = useLocalStorage("token", "");
 	const [isAuth, setAuth] = useState(token ? true : false);
 
@@ -13,7 +15,8 @@ export default function useAuth() {
 	function closeSession() {
 		setToken(null);
 		setAuth(false);
+		history.replace("/login");
 	}
 
-	return [isAuth, token, closeSession, startSession];
+	return { isAuth, token, closeSession, startSession };
 }
