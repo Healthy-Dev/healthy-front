@@ -38,7 +38,7 @@ export const fakeFetchModule = async (
 		? {
 				Accept: "application/json",
 				"Content-Type": type,
-				"Authorization": "Bearer "+ token,
+				Authorization: `Bearer ${token}`,
 		  }
 		: {
 				Accept: "application/json",
