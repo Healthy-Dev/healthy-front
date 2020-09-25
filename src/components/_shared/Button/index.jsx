@@ -9,7 +9,7 @@ const Button = ({
 	disabled = false,
 	outlined = false,
 	error = false,
-	succes = false,
+	success = false,
 	children,
 	type,
 	onClick = () => {},
@@ -18,10 +18,10 @@ const Button = ({
 	disabled && (FinalClassName += "button-disabled ");
 	outlined && (FinalClassName += "button-outlined ");
 	error && (FinalClassName += "button-error ");
-	succes && (FinalClassName += "button-succes ");
+	success && (FinalClassName += "button-success");
 	FinalClassName += className;
 	return (
-		<button className={FinalClassName} type={type} onClick={onClick}>
+		<button className={FinalClassName} disabled={disabled} type={type} onClick={onClick}>
 			{children}
 		</button>
 	);
@@ -32,8 +32,8 @@ Button.propTypes = {
 	disabled: PropTypes.bool,
 	outlined: PropTypes.bool,
 	error: PropTypes.bool,
-	succes: PropTypes.bool,
-	children: PropTypes.string,
+	success: PropTypes.bool,
+	children: PropTypes.any,
 	type: PropTypes.string,
 	onClick: PropTypes.func,
 };

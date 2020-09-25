@@ -33,7 +33,7 @@
 		font-family: $font-plain;
 		border: none;
 		font-size: $s0;
-		color: $light-grey;
+		color: $ivory;
 		padding: $s-1;
 		margin-bottom: $s1;
 		margin-top: $s-2;
@@ -92,8 +92,22 @@
 			margin-top: $s1;
 			margin-bottom: $s-2;
 		}
+
+		.icon-loader {
+			animation: loaderRotate 1.5s infinite;
+		}
 	}
 	.button__link--grey {
 		width: fit-content;
+	}
+}
+
+@keyframes loaderRotate {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
 	}
 }
