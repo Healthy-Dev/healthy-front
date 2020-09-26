@@ -9,27 +9,38 @@ import { EditCardSelector } from "state/cards/selectors";
 
 import CardForm from "components/CardForm/";
 import Alert from "components/_shared/Alert";
+import useAuth from "hooks/useAuth";
 
 const EditCard = ({ history }) => {
 	const { state } = history.location;
 	const { id } = useParams();
-	const token = 'Bearer ';
+	const { token } = useAuth();
 	const dispatch = useDispatch();
 
-	const { data: success, error } = useSelector(state => EditCardSelector(state));
+	const { data: success, error, loading } = useSelector((state) =>
+		EditCardSelector(state),
+	);
 
 	function updateCard(payload) {
 		dispatch(requestEditCard({ cardId: id, token, payload }));
 		setTimeout(() => {
-			if(!error) history.replace("/");
+			history.replace("/");
 		}, 3000);
 	}
 
 	return (
 		<div className="edit">
-			{error && <Alert error showButtonClose>No se pudo actulizar, Intentelo mas tarde</Alert>}
-			{success && <Alert success showButtonClose>Se actualizo su tarjeta correctamente</Alert>}
-			{state && <CardForm sendForm={updateCard} loading={null} data={state} />}
+			{error && (
+				<Alert error showButtonClose>
+					No se pudo actulizar, Intentelo mas tarde
+				</Alert>
+			)}
+			{success && (
+				<Alert success showButtonClose>
+					Se actualizo su tarjeta correctamente
+				</Alert>
+			)}
+			{state && <CardForm sendForm={updateCard} loading={loading} data={state} />}
 		</div>
 	);
 };

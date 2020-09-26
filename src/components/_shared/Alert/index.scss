@@ -12,7 +12,7 @@
     position: absolute;
     right: 2%;
     top: 10%;
-    
+
     svg {
       color: $ivory;
       border-radius: $radius-1;
@@ -21,20 +21,22 @@
       font-size: $s-2;
     }
   }
-}
 
-.error {
-  background: $red;
-  color: $ivory;
-  filter: drop-shadow(0px 4px 10px rgba(237, 37, 78, 0.46));
-}
-.success {
-  background: $green;
-  color: $dark-blue;
-  filter: drop-shadow(0px 4px 10px rgba(35, 240, 199, 0.29));
-}
-.confirm {
-  background: $light-blue;
-  color: $ivory;
-  filter: drop-shadow(0px 4px 10px rgba(52, 84, 209, 0.5));
+  &__error {
+    background: $red;
+    color: $ivory;
+    filter: drop-shadow(0px 4px 10px rgba(237, 37, 78, 0.46));
+  }
+
+  &__success {
+    background: $green;
+    color: $dark-blue;
+    filter: drop-shadow(0px 4px 10px rgba(35, 240, 199, 0.29));
+  }
+
+  &__confirm {
+    background: $light-blue;
+    color: $ivory;
+    filter: drop-shadow(0px 4px 10px rgba(52, 84, 209, 0.5));
+  }
 }

@@ -12,7 +12,9 @@ import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
 	const { startSession, isAuth } = useAuth();
-	const { data, loading, errorMessage } = useSelector((state) => RegisterSelector(state));
+	const { data, loading, errorMessage, error } = useSelector((state) =>
+		RegisterSelector(state),
+	);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -29,11 +31,12 @@ const RegisterView = ({ history }) => {
 
 	return (
 		<div className="register-container">
-			{errorMessage && (
-				<Alert showButtonClose error>
-					{errorMessage && errorMessage}
-				</Alert>
-			)}
+			{error ||
+				(errorMessage && (
+					<Alert showButtonClose error>
+						{errorMessage && errorMessage}
+					</Alert>
+				))}
 			<h1>
 				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
 			</h1>

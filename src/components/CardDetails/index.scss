@@ -6,3 +6,10 @@
   background-color: $dark-blue;
   overflow: hidden;
 }
+
+.alert-delete-card {
+  position: absolute !important;
+  margin: 1rem;
+  z-index: 110;
+  width: 90% !important;
+}

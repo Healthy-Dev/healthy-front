@@ -13,7 +13,7 @@ export default function useAuth() {
 	}
 
 	function closeSession() {
-		setToken(null);
+		setToken("");
 		setAuth(false);
 		history.replace("/login");
 	}

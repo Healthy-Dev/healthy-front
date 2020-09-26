@@ -10,15 +10,17 @@ import { requestDetails } from "state/cardDetails/actions";
 import { getUserRequest } from "state/user/actions";
 
 import { CardDetailsSelector } from "state/cardDetails/selectors";
-import { requestDeleteCard } from "state/cards/actions";
 import { UserSelector } from "state/user/selectors";
+import { DeleteCardSelector } from "state/cards/selectors";
+import { requestDeleteCard } from "state/cards/actions";
 
-//import { useUserSession } from "hooks/useUserSession";
+import useAuth from "hooks/useAuth";
+import Alert from "components/_shared/Alert";
 
 const CardDetailsView = ({ history }) => {
 	const dispatch = useDispatch();
 	const { cardId } = useParams();
-	const token = "Bearer ";
+	const { token } = useAuth();
 
 	const {
 		data: cardData,
@@ -27,31 +29,36 @@ const CardDetailsView = ({ history }) => {
 	} = useSelector((state) => CardDetailsSelector(state));
 
 	const { data: userData } = useSelector((state) => UserSelector(state));
+	const { data: deleteCardData, error: deleteCardError } = useSelector((state) =>
+		DeleteCardSelector(state),
+	);
 
 	useEffect(() => {
 		dispatch(requestDetails({ cardId }));
 		dispatch(getUserRequest({ token }));
+		if (deleteCardData) history.replace("/");
 	}, [dispatch]); //eslint-disable-line
 
 	function isYourCard() {
 		if (cardData && userData) {
-			if (cardData.creator.id === userData.user.id) 
-				return true;
+			if (cardData.creator.id === userData.user.id) return true;
 			else return false;
 		}
 	}
 
 	function deleteCard() {
 		dispatch(requestDeleteCard({ cardId, token }));
-		setTimeout(() => {
-			if(!cardError) history.replace("/");
-		}, 3000);
 	}
 
 	return (
-		<div className="card__detail">
+		<div>
 			{cardError && <NotFound />}
 			{cardLoading && <Loading />}
+			{deleteCardError && (
+				<Alert error showButtonClose className="alert-delete-card">
+					No se pudo elimar!, Intentelo mas tarde
+				</Alert>
+			)}
 			{cardData && (
 				<Card data={cardData} isYourCard={isYourCard} deleteCard={deleteCard} />
 			)}
