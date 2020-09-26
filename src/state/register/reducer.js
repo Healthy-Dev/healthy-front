@@ -23,12 +23,13 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-		[types.REGISTER_FAILURE]: (state) => ({
+		[types.REGISTER_FAILURE]: (state, { payload }) => ({
 			...state,
 			register: {
 				loading: false,
 				error: true,
 				data: null,
+				errorMessage: payload.data.message,
 			},
 		}),
 	},

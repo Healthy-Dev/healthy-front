@@ -8,16 +8,20 @@ import Register from "components/Register";
 import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
+import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
-	const { data, loading, error } = useSelector((state) => RegisterSelector(state));
+	const { startSession, isAuth } = useAuth();
+	const { data, loading, errorMessage } = useSelector((state) => RegisterSelector(state));
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (data) {
+			startSession(data.accessToken);
 			history.replace("/");
 		}
-	}, [data]);
+		if (isAuth) history.replace("/");
+	}, [data, isAuth]); //eslint-disable-line
 
 	function sendFormRegister(data) {
 		dispatch(requestRegister(data));
@@ -25,9 +29,9 @@ const RegisterView = ({ history }) => {
 
 	return (
 		<div className="register-container">
-			{error && (
+			{errorMessage && (
 				<Alert showButtonClose error>
-					Oops, hubo un error durante el registro
+					{errorMessage && errorMessage}
 				</Alert>
 			)}
 			<h1>

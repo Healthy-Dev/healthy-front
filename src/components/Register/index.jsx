@@ -9,13 +9,14 @@ import Button from "../_shared/Button";
 import MessageError from "./MessageError";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
+import Loader from "components/_shared/Loader";
 
 /* Password should be at least one capital letter, one small letter, one number and 8 character length */
 const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
-const EMAIL_FORMAT = "";
+const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
 const CreateAccountForm = ({ sendFormRegister, loading }) => {
-	const { register, handleSubmit, errors, getValues } = useForm();
+	const { register, handleSubmit, errors, getValues, reset } = useForm();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 	const [isPassword2Hidden, setPassword2Hidden] = useState(true);
 
@@ -27,21 +28,23 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				password,
 			}),
 		);
+
+		reset();
 	};
 
 	return (
 		<form className="form__register" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
 			<section className="form__input">
-				<label name="username">Nombre</label>
+				<label name="username">Nombre se Usuario</label>
 				<input
 					name="username"
 					type="text"
-					placeholder="Ingresa tu Nombre"
+					placeholder="Ingresa su nombre se usuario"
 					ref={register({ required: true, maxLength: 30, minLength: 4 })}
 				/>
 			</section>
 			{errors.username && errors.username.type === "required" && (
-				<MessageError message="Ingrese su nombre." />
+				<MessageError message="Ingrese un nombre de usuario." />
 			)}
 			{errors.username && errors.username.type === "maxLength" && (
 				<MessageError message="Maximo 30 caracteres." />
@@ -62,8 +65,8 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 			{errors.email && errors.email.type === "required" && (
 				<MessageError message="Ingrese un Email" />
 			)}
-			{errors.email && errors.email.type === "maxLength" && (
-				<MessageError message="Max length is 30" />
+			{errors.email && errors.email.type === "pattern" && (
+				<MessageError message="Ingrese un Email válido." />
 			)}
 
 			<section className="form__input">
@@ -131,7 +134,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 			)}
 
 			<Button className="button__register" fullWidth>
-				{loading ? "loading..." : "Registrarme"}
+				{loading ? <Loader /> : "Registrarme"}
 			</Button>
 		</form>
 	);
