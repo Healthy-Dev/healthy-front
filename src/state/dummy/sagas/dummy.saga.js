@@ -5,7 +5,7 @@ import * as services from "../services";
 import { makeWorker } from "../../utils";
 
 const SuccessDummy = (payload, reqData) => {
-	console.log("me llego:", payload?.payload);
+	//console.log("me llego:", payload?.payload);
 };
 
 function* watchDummy() {

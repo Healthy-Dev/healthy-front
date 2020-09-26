@@ -1,0 +1,65 @@
+@import "theme";
+
+.login-container {
+	position: relative;
+	display: flex;
+	min-height: 100vh;
+	width: 100vw;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: $s1;
+	font-family: $font-plain;
+	font-size: $s0;
+	background-color: $dark-blue;
+	color: $ivory;
+	background-image: linear-gradient(
+			to bottom,
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0.3),
+			rgba(4, 26, 47, 0.5),
+			rgba(4, 26, 47, 0.75),
+			rgba(4, 26, 47, 0.99),
+			rgba(4, 26, 47, 1),
+			rgba(4, 26, 47, 1),
+			rgba(4, 26, 47, 1),
+			rgba(4, 26, 47, 1),
+			rgba(4, 26, 47, 1),
+			rgba(4, 26, 47, 1)
+		),
+		url("../../assets/img/login-background.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	h1 {
+		margin-top: $s1;
+		font-family: $font-title;
+		text-transform: uppercase;
+		text-shadow: 0px 0px 15px black;
+		.healthy {
+			font-weight: 700;
+			color: $title-green;
+		}
+		.dev {
+			font-weight: 400;
+		}
+	}
+
+	footer {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		p {
+			color: $light-grey;
+			font-size: $s-1;
+			margin-bottom: $s-2;
+			margin-top: $s-2;
+		}
+		.button__link {
+			color: $yellow;
+			font-size: $s-1;
+			margin-bottom: $s-2;
+			margin-top: $s-2;
+			cursor: pointer;
+		}
+	}
+}

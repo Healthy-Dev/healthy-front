@@ -1,0 +1,83 @@
+@import "theme";
+
+.form__register {
+	font-family: $font-plain;
+	font-size: $s0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 100%;
+	width: 100%;
+
+	.form__input {
+		width: 100%;
+
+		label {
+			display: inline-block;
+			margin: .5rem 0;
+		}
+
+		input {
+			background-color: $medium-grey;
+			width: 100%;
+			border-radius: $radius-1;
+			font-family: $font-plain;
+			border: none;
+			font-size: $s0;
+			color: $ivory;
+			padding: $s-1;
+		}
+
+		.input__container {
+			width: 100%;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: $medium-grey;
+			border-radius: $radius-1;
+
+			.input__icon {
+				width: 20%;
+				text-align: center;
+			}
+		}
+
+		&::placeholder {
+			opacity: 1;
+			color: $light-grey;
+		}
+
+		&:valid {
+			background-color: $medium-grey;
+		}
+
+		&[name="password"] {
+			width: 80%;
+		}
+	}
+
+	p {
+		color: $light-grey;
+		font-size: $s-1;
+	}
+
+	.tooltip {
+		display: inline-block;
+		position: relative;
+		border-bottom: 1px dotted #666;
+		text-align: left;
+	}
+
+	[role="button"] {
+		cursor: pointer;
+	}
+
+	.button__register {
+		margin-top: $s1;
+	}
+
+	.button__link--grey {
+		width: fit-content;
+	}
+}
