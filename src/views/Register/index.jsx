@@ -1,49 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestRegister } from "state/register/actions";
 import { RegisterSelector } from "state/register/selectors";
 // Components
 import Register from "components/Register";
-import MessageError from "components/Register/MessageError";
+import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
 
-const RegisterView = () => {
-	const [payload, setPayload] = useState(null);
-	const [errorMessage, setErrorMessage] = useState(false);
-	const history = useHistory();
+const RegisterView = ({ history }) => {
 	const { data, loading, error } = useSelector((state) => RegisterSelector(state));
-	const d = useDispatch();
-
-	useEffect(() => {
-		if (payload === null) {
-			return;
-		}
-		d(requestRegister(payload));
-	}, [d, payload]);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (data) {
-			// TODO: Redirect to confirmation screen
-			history.push("/");
+			history.replace("/");
+		}
+	}, [data]);
 
-			// TODO: setlocalstorage here??
-		}
-		if (error) {
-			setErrorMessage(true);
-		}
-	}, [data, loading, error]);
+	function sendFormRegister(data) {
+		dispatch(requestRegister(data));
+	}
 
 	return (
 		<div className="register-container">
+			{error && (
+				<Alert showButtonClose error>
+					Oops, hubo un error durante el registro
+				</Alert>
+			)}
 			<h1>
 				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
 			</h1>
 			<h2 className="register-title">Registrate</h2>
-			{errorMessage && <MessageError message="Oops, hubo un error durante el registro" />}
-			<Register setPayload={setPayload} />
+			<Register sendFormRegister={sendFormRegister} loading={loading} />
 		</div>
 	);
 };
