@@ -20,8 +20,6 @@ export const fakeHttpModule = {
 	},
 	// Payload tiene que tener JSON.stringify(payload)
 	async post(url, token, payload, type = TYPES.default) {
-		// TODO: quitar console.log
-		console.log("inicio de request: ", url, token, payload);
 		try {
 			const { response, data } = await fakeFetchModule(
 				url,

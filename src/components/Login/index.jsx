@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
 
-import { ReactComponent as IconLoader } from "assets/icons/loader.svg";
 // Components
 import Button from "../_shared/Button";
 import MessageError from "./MessageError";
+import Loader from "components/_shared/Loader";
 import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
 import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
@@ -82,7 +82,7 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				className="button__login"
 				disabled={Object.entries(errors).length > 0 ? true : false}
 			>
-				{loading ? <IconLoader className="icon-loader" /> : "Ingresar"}
+				{loading ? <Loader /> : "Ingresar"}
 			</Button>
 		</form>
 	);

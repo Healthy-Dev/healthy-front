@@ -8,6 +8,7 @@ import { ConnectedRouter } from "connected-react-router";
 import CreateCardView from "containers/CreateCard";
 import CardDetails from "containers/CardDetails";
 import HomeView from "containers/Home";
+import RegisterView from "containers/Register";
 import Login from "containers/Login";
 import Search from "containers/Search";
 import Profile from "containers/Profile";
@@ -30,6 +31,7 @@ const App = () => (
 				<CardDetails />
 				<EditCard />
 				<CreateCardView />
+				<RegisterView />
 				<Login />
 				<ErrorPage />
 			</BrowserRouter>
