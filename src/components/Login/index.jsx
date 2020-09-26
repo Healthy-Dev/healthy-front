@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
 
+import { ReactComponent as IconLoader } from "assets/icons/loader.svg";
 // Components
 import Button from "../_shared/Button";
 import MessageError from "./MessageError";
@@ -12,9 +13,6 @@ import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
 import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
-
-/* Password should be at least one capital letter, one small letter, one number and 8 character length */
-const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 
 const CreateCardForm = ({ sendLogin, loading }) => {
 	const { register, handleSubmit, errors } = useForm();
@@ -41,34 +39,29 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				Continuar con Google
 			</Button>
 
-			<label name="usernameOrEmail">Email/Usuario</label>
+			<label name="usernameOrEmail" htmlFor="user">
+				Email/Usuario
+			</label>
 			<input
+				id="user"
 				type="text"
 				name="usernameOrEmail"
 				placeholder="ejemplo@healthydev.com"
-				ref={register({ required: true, maxLength: 100, minLength: 4 })}
+				ref={register({ required: true })}
 			/>
-			{errors.usernameOrEmail && errors.usernameOrEmail.type === "required" && (
-				<MessageError message="Ingrese su usuario o email." />
-			)}
-			{errors.usernameOrEmail && errors.usernameOrEmail.type === "maxLength" && (
-				<MessageError message="Máximo 100 caracteres." />
-			)}
-			{errors.usernameOrEmail && errors.usernameOrEmail.type === "minLength" && (
-				<MessageError message="Mínimo 4 caracteres." />
-			)}
+			{errors.usernameOrEmail && <MessageError message="Ingrese su usuario o email." />}
 
-			<label name="password">Contraseña</label>
+			<label name="password" htmlFor="password">
+				Contraseña
+			</label>
 			<div className="input__container">
 				<input
+					id="password"
 					type={isPasswordHidden ? "password" : "text"}
 					name="password"
 					placeholder="******"
 					ref={register({
 						required: true,
-						maxLength: 250,
-						minLength: 8,
-						pattern: PASSWORD_FORMAT,
 					})}
 				/>
 				<div onClick={() => setPasswordHidden(!isPasswordHidden)} className="input__icon">
@@ -84,18 +77,12 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				¿Olvidaste tu contraseña?
 			</p>
 			{errors.password && <MessageError message="Ingrese su contraseña." />}
-			{errors.password && errors.password.type === "maxLength" && (
-				<MessageError message="Máximo 250 caracteres." />
-			)}
-			{errors.password && errors.password.type === "minLength" && (
-				<MessageError message="Mínimo 8 caracteres." />
-			)}
-			{errors.password && errors.password.type === "pattern" && (
-				<MessageError message="Debe contener una letra mayúscula, una minúscula y un número. Sin espacios." />
-			)}
 
-			<Button className="button__login" fullWidth>
-				Ingresar
+			<Button
+				className="button__login"
+				disabled={Object.entries(errors).length > 0 ? true : false}
+			>
+				{loading ? <IconLoader className="icon-loader" /> : "Ingresar"}
 			</Button>
 		</form>
 	);

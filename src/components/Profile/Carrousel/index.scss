@@ -7,6 +7,10 @@
   position: relative;
   z-index: 10;
 
+  .card {
+    margin-right: $s0;
+  }
+
   &__scroll {
     display: flex;
     width: 100%;

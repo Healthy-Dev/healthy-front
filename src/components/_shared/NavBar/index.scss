@@ -1,0 +1,40 @@
+@import "theme";
+
+.nav-bar-container {
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	z-index: 9999;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background: $darker-blue;
+	border-top: 1px solid #eeeeee5d;
+	padding: 12px 0;
+	.nav-bar-button {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		a {
+			.nav-bar-icons {
+				color: #ffff;
+				width: 35px;
+				height: 35px;
+			}
+			.fill-yellow {
+				color: #f4dd27;
+				stroke-width: 3;
+			}
+		}
+	}
+	@media (max-width: 430px) {
+		.nav-bar-button {
+			a {
+				.nav-bar-icons {
+					width: 25px;
+					height: 25px;
+				}
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import Card from "components/Profile/Card";
+import Card from "components/_shared/Card";
 
 const Carrousel = ({ data }) => {
 	return (
