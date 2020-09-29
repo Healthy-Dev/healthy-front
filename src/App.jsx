@@ -15,6 +15,7 @@ import Profile from "containers/Profile";
 import EditCard from "containers/EditCard";
 import ErrorPage from "containers/ErrorPage";
 import EditProfile from "containers/EditProfile";
+import UserCreated from "containers/UserCreated";
 
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
@@ -34,6 +35,7 @@ const App = () => (
 				<RegisterView />
 				<Login />
 				<ErrorPage />
+				<UserCreated />
 			</BrowserRouter>
 		</ConnectedRouter>
 	</Provider>
