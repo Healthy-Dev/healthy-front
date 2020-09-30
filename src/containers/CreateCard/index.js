@@ -4,9 +4,10 @@ import routes from "./routes";
 
 // Components
 import MultipleRoutes from "components/_shared/MultipleRoutes";
+import Loading from "components/_shared/Loading";
 
 const CreateCard = () => (
-	<Suspense fallback={<span>loading....</span>}>
+	<Suspense fallback={<Loading />}>
 		<Switch>
 			{routes.map((route, i) => (
 				<MultipleRoutes key={`${i}_${route.path}`} {...route} />
