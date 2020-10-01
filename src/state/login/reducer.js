@@ -31,6 +31,14 @@ const reducer = generalStatus.createReducer(
 				data: null,
 			},
 		}),
+		[types.USER_LOGOUT]: (state) => ({
+			...state,
+			login: {
+				loading: false,
+				error: false,
+				data: undefined,
+			},
+		}),
 	},
 	initialState,
 );
