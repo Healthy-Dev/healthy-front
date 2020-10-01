@@ -42,16 +42,16 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 					placeholder="Ingresa su nombre se usuario"
 					ref={register({ required: true, maxLength: 30, minLength: 4 })}
 				/>
+				{errors.username && errors.username.type === "required" && (
+					<MessageError message="Ingrese un nombre de usuario." />
+				)}
+				{errors.username && errors.username.type === "maxLength" && (
+					<MessageError message="Maximo 30 caracteres." />
+				)}
+				{errors.username && errors.username.type === "minlength" && (
+					<MessageError message="Minimo 4 caracteres." />
+				)}
 			</section>
-			{errors.username && errors.username.type === "required" && (
-				<MessageError message="Ingrese un nombre de usuario." />
-			)}
-			{errors.username && errors.username.type === "maxLength" && (
-				<MessageError message="Maximo 30 caracteres." />
-			)}
-			{errors.username && errors.username.type === "minlength" && (
-				<MessageError message="Minimo 4 caracteres." />
-			)}
 
 			<section className="form__input">
 				<label name="email">Email</label>
@@ -61,13 +61,13 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 					placeholder="Ingresa tu email"
 					ref={register({ required: true, pattern: EMAIL_FORMAT })}
 				/>
+				{errors.email && errors.email.type === "required" && (
+					<MessageError message="Ingrese un Email" />
+				)}
+				{errors.email && errors.email.type === "pattern" && (
+					<MessageError message="Ingrese un Email válido." />
+				)}
 			</section>
-			{errors.email && errors.email.type === "required" && (
-				<MessageError message="Ingrese un Email" />
-			)}
-			{errors.email && errors.email.type === "pattern" && (
-				<MessageError message="Ingrese un Email válido." />
-			)}
 
 			<section className="form__input">
 				<label name="password">Contraseña</label>
@@ -89,17 +89,16 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 						{isPasswordHidden ? <Eye /> : <EyeOff />}
 					</div>
 				</div>
+				{errors.password && errors.password.type === "required" && (
+					<MessageError message="Ingrese una contraseña" />
+				)}
+				{errors.password && errors.password.type === "minLength" && (
+					<MessageError message="Mínimo 8 caracteres." />
+				)}
+				{errors.password && errors.password.type === "pattern" && (
+					<MessageError message="Debe contener una letra mayúscula, una minúscula y un número. Sin espacios." />
+				)}
 			</section>
-
-			{errors.password && errors.password.type === "required" && (
-				<MessageError message="Ingrese una contraseña" />
-			)}
-			{errors.password && errors.password.type === "minLength" && (
-				<MessageError message="Mínimo 8 caracteres." />
-			)}
-			{errors.password && errors.password.type === "pattern" && (
-				<MessageError message="Debe contener una letra mayúscula, una minúscula y un número. Sin espacios." />
-			)}
 
 			<section className="form__input">
 				<label name="confirmPassword">Confirmar Contraseña</label>
@@ -125,13 +124,13 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 						{isPassword2Hidden ? <Eye /> : <EyeOff />}
 					</div>
 				</div>
+				{errors.confirmPassword && (
+					<MessageError message={errors.confirmPassword.message} />
+				)}
+				{errors.confirmPassword && errors.confirmPassword.type === "required" && (
+					<MessageError message="Confirmar contraseña." />
+				)}
 			</section>
-			{errors.confirmPassword && (
-				<MessageError message={errors.confirmPassword.message} />
-			)}
-			{errors.confirmPassword && errors.confirmPassword.type === "required" && (
-				<MessageError message="Confirmar contraseña." />
-			)}
 
 			<Button className="button__register" fullWidth>
 				{loading ? <Loader /> : "Registrarme"}

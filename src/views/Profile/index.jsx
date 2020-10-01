@@ -5,10 +5,12 @@ import Carrousel from "components/Profile/Carrousel";
 import NavBar from "components/_shared/NavBar";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
+
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestHome } from "state/home/actions";
 import { getUserRequest } from "state/user/actions";
+import { userLogout } from "state/login/actions";
 // Selectores
 import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";
@@ -17,6 +19,11 @@ import useAuth from "hooks/useAuth";
 const Profile = ({ history }) => {
 	const { token, closeSession } = useAuth();
 
+	const deleteDataUser = () => {
+		dispatch(userLogout());
+		closeSession();
+	};
+
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) =>
 		HomeSelector(state),
@@ -24,13 +31,13 @@ const Profile = ({ history }) => {
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
-		dispatch(requestHome());
-		dispatch(getUserRequest({ token }));
-	}, [dispatch, token]);
+		if (!dataCards) dispatch(requestHome());
+		if (!dataUser) dispatch(getUserRequest({ token }));
+	}, [dispatch, token]); //eslint-disable-line
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
-		{ title: "Cerrar Sesion", fn: () => closeSession() },
+		{ title: "Cerrar Sesion", fn: () => deleteDataUser() },
 	];
 
 	return (

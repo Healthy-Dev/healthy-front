@@ -34,8 +34,8 @@ const CardDetailsView = ({ history }) => {
 	);
 
 	useEffect(() => {
-		dispatch(requestDetails({ cardId }));
-		dispatch(getUserRequest({ token }));
+		if (!cardData || cardData.id !== +cardId) dispatch(requestDetails({ cardId }));
+		if (!userData) dispatch(getUserRequest({ token }));
 		if (deleteCardData) history.replace("/");
 	}, [dispatch]); //eslint-disable-line
 

@@ -4,6 +4,7 @@ import NavHome from "components/Home/Nav-Home";
 import NavBar from "../../components/_shared/NavBar/index";
 import Loading from "components/_shared/Loading";
 import Button from "components/Home/Button";
+import Onboarding from "views/Onboarding";
 import "./index.scss";
 import useAuth from "hooks/useAuth";
 // Redux
@@ -12,28 +13,34 @@ import { requestHome } from "state/home/actions";
 // Selectores
 import { HomeSelector } from "state/home/selectors";
 
-const HomeView = ({ history }) => {
+const HomeView = () => {
 	const dispatch = useDispatch();
 	const { isAuth } = useAuth();
 	const { data, loading } = useSelector((state) => HomeSelector(state));
 
 	useEffect(() => {
-		dispatch(requestHome());
-		if (!isAuth) history.replace("/login");
+		if (!data) dispatch(requestHome());
 	}, [dispatch]); //eslint-disable-line
 
 	return (
 		<>
-			<NavHome />
-			{loading && <Loading />}
-			<main className="container-home">
-				{data &&
-					data.map(({ photo, title, id }) => (
-						<Card img={photo} title={title} key={id} id={id} />
-					))}
-				<Button />
-			</main>
-			<NavBar />
+			{!isAuth ? (
+				<Onboarding />
+			) : (
+				<>
+					<NavHome />
+					{loading && <Loading />}
+					{data && (
+						<main className="container-home">
+							{data.map(({ photo, title, id }) => (
+								<Card img={photo} title={title} key={id} id={id} />
+							))}
+						</main>
+					)}
+					<Button />
+					<NavBar />
+				</>
+			)}
 		</>
 	);
 };

@@ -5,6 +5,17 @@
 	min-height: 100vh;
 	padding: $s1;
 
+	&__title {
+		color: $ivory;
+		margin: 1rem 0;
+		font-size: 1.2rem;
+
+		span {
+			color: $yellow;
+			text-transform: uppercase;
+		}
+	}
+
 	&__cards {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
