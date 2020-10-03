@@ -36,7 +36,7 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 		<div className="UploadImage">
 			<div className="UploadImage__img">
 				<img
-					src={photo ? photo : (changePhoto || "http://via.placeholder.com/80x80")}
+					src={photo ? photo : changePhoto || "http://via.placeholder.com/80x80"}
 					alt="card"
 					ref={img}
 				/>
@@ -45,15 +45,16 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 			<p>Elegí una imagen de portada</p>
 
 			<div className="UploadImage__button">
-				<label
-					htmlFor="img"
-					className={`upload-btn ${photo && "success"}`}
-				>
+				<label htmlFor="img" className={`upload-btn ${photo && "success"}`}>
 					{isUploading && "Subiendo..."}
-					{photo 
-						?	<OkIcon /> 
-						: <span> Subir Imagen <UploadIcon className="upload-icon" /></span>
-					}
+					{photo ? (
+						<OkIcon />
+					) : (
+						<span>
+							{" "}
+							Subir Imagen <UploadIcon className="upload-icon" />
+						</span>
+					)}
 				</label>
 				{photo && (
 					<CancelIcon

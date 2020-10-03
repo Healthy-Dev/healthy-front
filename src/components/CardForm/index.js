@@ -19,16 +19,17 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 
 	const { register, handleSubmit, errors } = useForm({ defaultValues });
 	const [photo, setPhoto] = useState(null);
-	const [sizeImg, setSizeImg] = useState(undefined);
-	const maxSize = 15 * 1024 * 1024;
+	const [sizeImg, setSizeImg] = useState(0);
+	const isImgTooBig = sizeImg > 15 * 1024 * 1024;
+	const formatPhoto = photo && photo.split("base64,")[1];
 
 	const onSubmit = ({ title, description, externalUrl }) => {
-		if (sizeImg > maxSize) return;
+		if (isImgTooBig) return;
 		sendForm(
 			JSON.stringify({
 				title,
 				description,
-				photo: photo ? photo.split("base64,")[1] : undefined,
+				photo: photo ? formatPhoto : undefined,
 				externalUrl,
 				categoryId: 3,
 			}),
@@ -47,7 +48,7 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					setSizeImg={setSizeImg}
 					refForm={register}
 				/>
-				{photo && sizeImg > maxSize && (
+				{photo && isImgTooBig && (
 					<MessageError message="La imagen no puede pesar mas de 15Mb" />
 				)}
 			</div>
