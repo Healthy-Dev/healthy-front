@@ -3,6 +3,7 @@ import cardsGetSagas from "./cardsGet.saga";
 import cardDeleteSaga from "./cardDelete.sagas";
 import cardEditSagas from "./cardEdit.sagas";
 import cardCreateSagas from "./createCard.saga";
+import searchCardsSagas from "./searchCards.saga";
 
 export const sagas = [
 	...cardGetSagas,
@@ -10,4 +11,5 @@ export const sagas = [
 	...cardDeleteSaga,
 	...cardEditSagas,
 	...cardCreateSagas,
+	...searchCardsSagas,
 ];

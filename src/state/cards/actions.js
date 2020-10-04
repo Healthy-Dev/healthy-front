@@ -20,3 +20,7 @@ export const failureEditCard = cardsDuck.createAction(types.EDIT_CARD_FAIULRE);
 export const requestCreateCard = cardsDuck.createAction(types.CREATE_CARD_REQUEST);
 export const successCreateCard = cardsDuck.createAction(types.CREATE_CARD_SUCCESS);
 export const failureCreateCard = cardsDuck.createAction(types.CREATE_CARD_FAILURE);
+
+export const requestSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_REQUEST);
+export const successSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_SUCCESS);
+export const failureSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_FAILURE);

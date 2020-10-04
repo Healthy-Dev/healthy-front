@@ -8,8 +8,8 @@ import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
 import Loading from "components/_shared/Loading";
 
-import { requestSearch } from "state/search/actions";
-import { SearchSelector } from "state/search/selectors";
+import { requestSearchCards } from "state/cards/actions";
+import { SearchCardsSelector } from "state/cards/selectors";
 import Card from "components/_shared/Card";
 
 // Reemplazar por los datos del back
@@ -25,11 +25,11 @@ const categories = [
 const Search = ({ history }) => {
 	let locationQuery = history.location.search.replace("?query=", "");
 
-	const d = useDispatch();
-	const { data, loading } = useSelector((state) => SearchSelector(state));
+	const dispatch = useDispatch();
+	const { data, loading } = useSelector((state) => SearchCardsSelector(state));
 
 	function getCards() {
-		d(requestSearch(locationQuery));
+		dispatch(requestSearchCards(locationQuery));
 	}
 
 	useEffect(() => {

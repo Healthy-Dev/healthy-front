@@ -14,3 +14,8 @@ export const CreateCardSelector = createSelector(
 	[reducer],
 	(Cards) => Cards?.createdCard,
 );
+
+export const SearchCardsSelector = createSelector(
+	[reducer],
+	(Search) => Search?.searchCards,
+);

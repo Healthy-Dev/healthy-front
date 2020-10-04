@@ -14,3 +14,6 @@ export const getCard = ({ payload: { cardId } }) =>
 
 export const postCard = ({ payload: { token, data } }) =>
 	fakeHttpModule.post("v1/cards", token, data, TYPES.json);
+
+export const getCardsSearch = ({ payload: query }) =>
+	fakeHttpModule.get(`v1/cards?search=${query}`, undefined);

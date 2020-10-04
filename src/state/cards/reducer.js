@@ -8,6 +8,7 @@ export const initialState = {
 	...makeReducer("deleteCard"),
 	...makeReducer("editCard"),
 	...makeReducer("createdCard"),
+	...makeReducer("searchCards"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -127,7 +128,31 @@ const reducer = generalStatus.createReducer(
 				data: null,
 			},
 		}),
+		[types.SEARCH_CARDS_REQUEST]: (state) => ({
+			...state,
+			searchCards: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.SEARCH_CARDS_SUCCESS]: (state, { payload }) => ({
+			...state,
+			searchCards: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.SEARCH_CARDS_FAILURE]: (state) => ({
+			...state,
+			searchCards: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
 	},
+
 	initialState,
 );
 
