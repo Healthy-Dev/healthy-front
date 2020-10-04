@@ -10,7 +10,7 @@ import MoreOptions from "components/_shared/MoreOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { requestHome } from "state/home/actions";
 import { getUserRequest } from "state/user/actions";
-import { userLogout } from "state/login/actions";
+import { userLogout } from "state/auth/actions";
 // Selectores
 import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";

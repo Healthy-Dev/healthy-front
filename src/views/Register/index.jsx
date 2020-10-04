@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestRegister } from "state/register/actions";
-import { RegisterSelector } from "state/register/selectors";
+
+import { requestRegister } from "state/auth/actions";
+import { RegisterSelector } from "state/auth/selectors";
 // Components
 import Register from "components/Register";
 import Alert from "components/_shared/Alert";

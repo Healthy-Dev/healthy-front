@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestLogin } from "state/login/actions";
-import { LoginSelector } from "state/login/selectors";
+
+import { requestLogin } from "state/auth/actions";
+import { LoginSelector } from "state/auth/selectors";
 // Components
 import Login from "components/Login";
 import Alert from "components/_shared/Alert";

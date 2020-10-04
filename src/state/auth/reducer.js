@@ -4,6 +4,7 @@ import { makeReducer } from "../utils";
 
 export const initialState = {
 	...makeReducer("login"),
+	...makeReducer("register"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -37,6 +38,30 @@ const reducer = generalStatus.createReducer(
 				loading: false,
 				error: false,
 				data: undefined,
+			},
+		}),
+		[types.REGISTER_REQUEST]: (state) => ({
+			...state,
+			register: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.REGISTER_SUCCESS]: (state, { payload }) => ({
+			...state,
+			register: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.REGISTER_FAILURE]: (state, { payload }) => ({
+			...state,
+			register: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMessage: payload.data.message,
 			},
 		}),
 	},
