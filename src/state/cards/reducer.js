@@ -3,6 +3,7 @@ import * as types from "./types";
 import { makeReducer } from "../utils";
 
 export const initialState = {
+	...makeReducer("getCard"),
 	...makeReducer("getCards"),
 	...makeReducer("deleteCard"),
 	...makeReducer("editCard"),
@@ -12,12 +13,35 @@ const reducer = generalStatus.createReducer(
 	{
 		[types.GET_CARD_REQUEST]: (state) => ({
 			...state,
-			getCards: {
+			getCard: {
 				loading: true,
 				error: false,
 			},
 		}),
 		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			getCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.GET_CARD_FAIULRE]: (state) => ({
+			...state,
+			getCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.GET_CARDS_REQUEST]: (state) => ({
+			...state,
+			getCards: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.GET_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
 			getCards: {
 				loading: false,
@@ -25,7 +49,7 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-		[types.GET_CARD_FAIULRE]: (state) => ({
+		[types.GET_CARDS_FAIULRE]: (state) => ({
 			...state,
 			getCards: {
 				loading: false,

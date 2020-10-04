@@ -10,7 +10,7 @@ function* watchHome() {
 		fail: actions.failureGetCards,
 		retry: actions.requestGetCards,
 	});
-	yield takeLatest(types.GET_CARD_REQUEST, workerHome);
+	yield takeLatest(types.GET_CARDS_REQUEST, workerHome);
 }
 
 export default [watchHome];

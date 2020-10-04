@@ -8,3 +8,6 @@ export const editCard = ({ payload: { cardId, token, payload } }) =>
 
 export const deleteCard = ({ payload: { cardId, token } }) =>
 	fakeHttpModule.delete(`v1/cards/${cardId}`, token);
+
+export const getCard = ({ payload: { cardId } }) =>
+	fakeHttpModule.get(`v1/cards/${cardId}`, undefined);
