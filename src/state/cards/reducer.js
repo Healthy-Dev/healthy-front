@@ -10,14 +10,14 @@ export const initialState = {
 
 const reducer = generalStatus.createReducer(
 	{
-		[types.HOME_REQUEST]: (state) => ({
+		[types.GET_CARD_REQUEST]: (state) => ({
 			...state,
 			getCards: {
 				loading: true,
 				error: false,
 			},
 		}),
-		[types.HOME_SUCCESS]: (state, { payload }) => ({
+		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
 			getCards: {
 				loading: false,
@@ -25,7 +25,7 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-		[types.HOME_FAILURE]: (state) => ({
+		[types.GET_CARD_FAIULRE]: (state) => ({
 			...state,
 			getCards: {
 				loading: false,

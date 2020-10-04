@@ -8,11 +8,11 @@ import MoreOptions from "components/_shared/MoreOptions";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestHome } from "state/home/actions";
+import { requestGetCards } from "state/cards/actions";
 import { getUserRequest } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
-import { HomeSelector } from "state/home/selectors";
+import { GetCardsSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
 
@@ -26,12 +26,12 @@ const Profile = ({ history }) => {
 
 	const dispatch = useDispatch();
 	const { data: dataCards, loading: loadingCards } = useSelector((state) =>
-		HomeSelector(state),
+		GetCardsSelector(state),
 	);
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
-		if (!dataCards) dispatch(requestHome());
+		if (!dataCards) dispatch(requestGetCards());
 		if (!dataUser) dispatch(getUserRequest({ token }));
 	}, [dispatch, token]); //eslint-disable-line
 

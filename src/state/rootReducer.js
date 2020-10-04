@@ -6,7 +6,6 @@ import { connectRouter } from "connected-react-router";
 import CardDetails from "../state/cardDetails/reducer";
 import Dummy from "state/dummy/reducer";
 import CreateCard from "state/createCard/reducer";
-import Home from "state/home/reducer";
 import Search from "state/search/reducer";
 import User from "state/user/reducer";
 import Cards from "state/cards/reducer";
@@ -18,7 +17,6 @@ const createRootReducer = (history) =>
 		Dummy,
 		CreateCard,
 		CardDetails,
-		Home,
 		Search,
 		User,
 		Cards,

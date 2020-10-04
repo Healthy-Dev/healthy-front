@@ -5,7 +5,6 @@ import { fork, all } from "redux-saga/effects";
 import { sagas as CardDetailsSagas } from "state/cardDetails/sagas";
 import { sagas as DummySagas } from "state/dummy/sagas";
 import { sagas as CreateCardSagas } from "state/createCard/sagas";
-import { sagas as HomeSagas } from "state/home/sagas";
 
 import { sagas as AuthSagas } from "state/auth/sagas";
 
@@ -18,7 +17,6 @@ const allSagas = [
 	...DummySagas,
 	...CreateCardSagas,
 	...CardDetailsSagas,
-	...HomeSagas,
 	...SearchSagas,
 	...UserSagas,
 	...CardsSagas,

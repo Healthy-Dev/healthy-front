@@ -1,9 +1,9 @@
 import cardsDuck from ".";
 import * as types from "./types";
 
-export const requestHome = cardsDuck.createAction(types.HOME_REQUEST);
-export const successHome = cardsDuck.createAction(types.HOME_SUCCESS);
-export const failureHome = cardsDuck.createAction(types.HOME_FAILURE);
+export const requestGetCards = cardsDuck.createAction(types.GET_CARD_REQUEST);
+export const successGetCards = cardsDuck.createAction(types.GET_CARD_SUCCESS);
+export const failureGetCards = cardsDuck.createAction(types.GET_CARD_FAIULRE);
 
 export const requestDeleteCard = cardsDuck.createAction(types.DELETE_CARD_REQUEST);
 export const successDeleteCard = cardsDuck.createAction(types.DELETE_CARD_SUCCESS);

@@ -4,18 +4,13 @@ import * as types from "../types";
 import * as services from "../services";
 import { makeWorker } from "../../utils";
 
-const SuccessHome = (payload) => {
-	console.log("me llego:", payload?.payload);
-};
-
 function* watchHome() {
 	const workerHome = makeWorker(services.getCards, {
-		success: actions.successHome,
-		fail: actions.failureHome,
-		retry: actions.requestHome,
-		hooks: { 200: SuccessHome },
+		success: actions.successGetCards,
+		fail: actions.failureGetCards,
+		retry: actions.requestGetCards,
 	});
-	yield takeLatest(types.HOME_REQUEST, workerHome);
+	yield takeLatest(types.GET_CARD_REQUEST, workerHome);
 }
 
 export default [watchHome];
