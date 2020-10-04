@@ -16,3 +16,7 @@ export const failureDeleteCard = cardsDuck.createAction(types.DELETE_CARD_FAIULR
 export const requestEditCard = cardsDuck.createAction(types.EDIT_CARD_REQUEST);
 export const successEditCard = cardsDuck.createAction(types.EDIT_CARD_SUCCESS);
 export const failureEditCard = cardsDuck.createAction(types.EDIT_CARD_FAIULRE);
+
+export const requestCreateCard = cardsDuck.createAction(types.CREATE_CARD_REQUEST);
+export const successCreateCard = cardsDuck.createAction(types.CREATE_CARD_SUCCESS);
+export const failureCreateCard = cardsDuck.createAction(types.CREATE_CARD_FAILURE);

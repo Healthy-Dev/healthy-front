@@ -15,3 +15,7 @@ export const DELETE_CARD_FAIULRE = cardsDuck.defineType("DELETE_CARD_FAIULRE");
 export const EDIT_CARD_REQUEST = cardsDuck.defineType("EDIT_CARD_REQUEST");
 export const EDIT_CARD_SUCCESS = cardsDuck.defineType("EDIT_CARD_SUCCESS");
 export const EDIT_CARD_FAIULRE = cardsDuck.defineType("EDIT_CARD_FAIULRE");
+
+export const CREATE_CARD_REQUEST = cardsDuck.defineType("CREATE_CARD_REQUEST");
+export const CREATE_CARD_SUCCESS = cardsDuck.defineType("CREATE_CARD_SUCCESS");
+export const CREATE_CARD_FAILURE = cardsDuck.defineType("CREATE_CARD_FAILURE");

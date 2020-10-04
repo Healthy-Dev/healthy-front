@@ -7,6 +7,7 @@ export const initialState = {
 	...makeReducer("getCards"),
 	...makeReducer("deleteCard"),
 	...makeReducer("editCard"),
+	...makeReducer("createdCard"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -98,6 +99,29 @@ const reducer = generalStatus.createReducer(
 		[types.EDIT_CARD_FAIULRE]: (state) => ({
 			...state,
 			editCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.CREATE_CARD_REQUEST]: (state) => ({
+			...state,
+			createdCard: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			createdCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.CREATE_CARD_FAILURE]: (state) => ({
+			...state,
+			createdCard: {
 				loading: false,
 				error: true,
 				data: null,

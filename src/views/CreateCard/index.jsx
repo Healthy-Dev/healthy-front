@@ -2,8 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestCreateCard } from "state/createCard/actions";
-import { CreateCardSelector } from "state/createCard/selectors";
+import { requestCreateCard } from "state/cards/actions";
+import { CreateCardSelector } from "state/cards/selectors";
 // Components
 import CardForm from "components/CardForm";
 import Alert from "components/_shared/Alert";

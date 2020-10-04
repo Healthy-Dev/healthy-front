@@ -9,3 +9,8 @@ export const GetCardsSelector = createSelector([reducer], (Cards) => Cards?.getC
 export const DeleteCardSelector = createSelector([reducer], (Cards) => Cards?.deleteCard);
 
 export const EditCardSelector = createSelector([reducer], (Cards) => Cards?.editCard);
+
+export const CreateCardSelector = createSelector(
+	[reducer],
+	(Cards) => Cards?.createdCard,
+);

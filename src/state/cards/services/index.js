@@ -11,3 +11,6 @@ export const deleteCard = ({ payload: { cardId, token } }) =>
 
 export const getCard = ({ payload: { cardId } }) =>
 	fakeHttpModule.get(`v1/cards/${cardId}`, undefined);
+
+export const postCard = ({ payload: { token, data } }) =>
+	fakeHttpModule.post("v1/cards", token, data, TYPES.json);
