@@ -6,8 +6,9 @@ import { useForm } from "react-hook-form";
 import { ReactComponent as IconUploadedImg } from "assets/icons/upload.svg";
 import Button from "components/_shared/Button";
 import MessageError from "components/CardForm/MessageError";
+import Loader from "components/_shared/Loader";
 
-const EditCardForm = ({ dataUser, sendForm }) => {
+const EditCardForm = ({ dataUser, sendForm, loading }) => {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 
 	let reader = new FileReader();
@@ -33,9 +34,7 @@ const EditCardForm = ({ dataUser, sendForm }) => {
 	const onSubmit = ({ name, twitter, instagram }) => {
 		sendForm(
 			JSON.stringify({
-				profilePhoto:
-					(profilePhoto && profilePhoto.split("base64,")[1]) ||
-					dataUser.user.profilePhoto,
+				profilePhoto: profilePhoto ? profilePhoto.split("base64,")[1] : undefined,
 				name,
 				twitter,
 				instagram,
@@ -91,7 +90,7 @@ const EditCardForm = ({ dataUser, sendForm }) => {
 				{errors.instagram && <MessageError message="Ingrese una Url válida" />}
 			</section>
 
-			<Button>Actualizar Datos</Button>
+			<Button>{loading ? <Loader /> : "Actualizar Datos"}</Button>
 		</form>
 	);
 };

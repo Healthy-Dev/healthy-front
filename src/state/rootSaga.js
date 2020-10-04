@@ -12,6 +12,7 @@ import { sagas as LoginSagas } from "state/login/sagas";
 
 import { sagas as SearchSagas } from "state/search/sagas";
 import { sagas as UserSagas } from "state/user/sagas";
+import { sagas as CardsSagas } from "state/cards/sagas";
 
 const allSagas = [
 	...DummySagas,
@@ -22,6 +23,7 @@ const allSagas = [
 	...LoginSagas,
 	...SearchSagas,
 	...UserSagas,
+	...CardsSagas,
 ];
 
 export default function* rootSaga() {

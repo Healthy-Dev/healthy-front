@@ -5,38 +5,53 @@ import Carrousel from "components/Profile/Carrousel";
 import NavBar from "components/_shared/NavBar";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
+
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestHome } from "state/home/actions";
 import { getUserRequest } from "state/user/actions";
+import { userLogout } from "state/login/actions";
 // Selectores
 import { HomeSelector } from "state/home/selectors";
 import { UserSelector } from "state/user/selectors";
+import useAuth from "hooks/useAuth";
 
 const Profile = ({ history }) => {
-	const token = "";
+	const { token, closeSession } = useAuth();
+
+	const deleteDataUser = () => {
+		dispatch(userLogout());
+		closeSession();
+	};
 
 	const dispatch = useDispatch();
-	const { data: dataCards, loading: loadingCards } = useSelector((state) => HomeSelector(state));
+	const { data: dataCards, loading: loadingCards } = useSelector((state) =>
+		HomeSelector(state),
+	);
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	useEffect(() => {
-		dispatch(requestHome());
-		dispatch(getUserRequest({ token }));
-	}, [dispatch]);
+		if (!dataCards) dispatch(requestHome());
+		if (!dataUser) dispatch(getUserRequest({ token }));
+	}, [dispatch, token]); //eslint-disable-line
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
-		// TODO: [Crear funcionalidad para cerrar sesion]
-		{ title: "Cerrar Sesion", fn: () => console.log("Cerrar Sesion") },
-	]
+		{ title: "Cerrar Sesion", fn: () => deleteDataUser() },
+	];
 
 	return (
 		<>
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">
-						<img src={(dataUser && dataUser.user.profilePhoto) || "https://www.component-creator.com/images/testimonials/defaultuser.png"} alt="profile" />
+						<img
+							src={
+								(dataUser && dataUser.user.profilePhoto) ||
+								"https://www.component-creator.com/images/testimonials/defaultuser.png"
+							}
+							alt="profile"
+						/>
 					</div>
 					<h2>{dataUser && dataUser.user.name}</h2>
 					<MoreOptions optionsModal={optionsModal} />

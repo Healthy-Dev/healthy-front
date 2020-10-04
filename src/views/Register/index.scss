@@ -46,7 +46,7 @@
 	}
 
 	.register-title {
-		margin-top: 18vh;
+		margin-top: 10vh;
 	}
 
 	footer {
@@ -68,5 +68,16 @@
 			margin-top: $s-2;
 			cursor: pointer;
 		}
+	}
+
+	.link {
+		display: inline-block;
+		width: 100%;
+		text-align: end;
+		display: inline-block;
+		color: $yellow;
+		text-decoration: none;
+		font-size: $s-1;
+		margin-top: 1rem;
 	}
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import "./index.scss";
+import { useHistory } from "react-router-dom";
 import { ReactComponent as LogoIcon } from "assets/icons/logo.svg";
 import Button from "components/_shared/Button";
+import images from "./_images";
 
 function generateRandom(min, max) {
 	return Math.random() * (max - min) + min;
@@ -25,26 +27,14 @@ const RowImages = ({ images }) => (
 	</section>
 );
 
-const Onboarding = ({ history }) => {
-	function randomImage() {
-		return `https://picsum.photos/300/200?random=${Math.floor(generateRandom(0, 25))}`;
-	}
-
-	const images = [
-		{ id: 0, image: randomImage(), title: "random" },
-		{ id: 1, image: randomImage(), title: "random" },
-		{ id: 2, image: randomImage(), title: "random" },
-		{ id: 3, image: randomImage(), title: "random" },
-		{ id: 4, image: randomImage(), title: "random" },
-	];
-
+const Onboarding = () => {
+	const history = useHistory();
 	return (
 		<div className="onboarding">
 			<div className="onboarding__images">
-				<RowImages images={images} />
-				<RowImages images={images} />
-				<RowImages images={images} />
-				<RowImages images={images} />
+				{images.map((image, index) => (
+					<RowImages images={image} key={index} />
+				))}
 			</div>
 			<div className="onboarding__content">
 				<p className="onboarding__content--text">

@@ -30,7 +30,7 @@
   background: #041A2F;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -38,7 +38,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(1, 5, 17, 0.644);
+    background: rgba(1, 5, 17, 0.5055);
     animation: down 1s .5s ease-in-out;
     z-index: 10;
   }

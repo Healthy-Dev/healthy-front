@@ -2,12 +2,13 @@
 
 .container-home {
 	width: 100%;
-	height: auto;
+	min-height: 100vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	gap: $s1 $s0;
 	background-color: $dark-blue;
 	padding: $s1 $s1 70px $s1;
+
 	@media (max-width: 430px) {
 		justify-content: space-around;
 		grid-template-columns: 1fr 1fr;

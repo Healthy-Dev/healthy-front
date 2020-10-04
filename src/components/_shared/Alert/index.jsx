@@ -13,9 +13,9 @@ const Alert = ({
 	showButtonClose = false,
 }) => {
 	let finalClassName = "alert ";
-	error && (finalClassName += "error ");
-	success && (finalClassName += "success ");
-	confirm && (finalClassName += "confirm ");
+	error && (finalClassName += "alert__error ");
+	success && (finalClassName += "alert__success ");
+	confirm && (finalClassName += "alert__confirm ");
 	finalClassName += className;
 
 	const [showAlert, setShowAlert] = useState(true);

@@ -11,6 +11,7 @@ import Register from "state/register/reducer";
 import Login from "state/login/reducer";
 import Search from "state/search/reducer";
 import User from "state/user/reducer";
+import Cards from "state/cards/reducer";
 
 const createRootReducer = (history) =>
 	combineReducers({
@@ -22,6 +23,7 @@ const createRootReducer = (history) =>
 		Login,
 		Search,
 		User,
+		Cards,
 		router: connectRouter(history),
 	});
 

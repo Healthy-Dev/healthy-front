@@ -15,7 +15,7 @@ import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 
 const CreateCardForm = ({ sendLogin, loading }) => {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit, errors, reset } = useForm();
 	const history = useHistory();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 
@@ -26,6 +26,8 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				password,
 			}),
 		);
+
+		reset();
 	};
 
 	return (

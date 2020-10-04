@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestRegister } from "state/register/actions";
@@ -12,7 +13,9 @@ import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
 	const { startSession, isAuth } = useAuth();
-	const { data, loading, errorMessage } = useSelector((state) => RegisterSelector(state));
+	const { data, loading, errorMessage, error } = useSelector((state) =>
+		RegisterSelector(state),
+	);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -29,7 +32,7 @@ const RegisterView = ({ history }) => {
 
 	return (
 		<div className="register-container">
-			{errorMessage && (
+			{error && errorMessage && (
 				<Alert showButtonClose error>
 					{errorMessage && errorMessage}
 				</Alert>
@@ -39,6 +42,9 @@ const RegisterView = ({ history }) => {
 			</h1>
 			<h2 className="register-title">Registrate</h2>
 			<Register sendFormRegister={sendFormRegister} loading={loading} />
+			<Link to="/login" className="link">
+				Iniciar Sesion
+			</Link>
 		</div>
 	);
 };

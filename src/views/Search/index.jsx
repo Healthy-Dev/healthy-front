@@ -34,7 +34,7 @@ const Search = ({ history }) => {
 
 	useEffect(() => {
 		if (history.location.search.includes(`?query=`) && locationQuery) {
-			getCards();
+			if (!data) getCards();
 		}
 	}, []); //eslint-disable-line
 
@@ -51,13 +51,21 @@ const Search = ({ history }) => {
 				<Tags filterByCategories={filterByCategories} categories={categories} />
 
 				{loading && <Loading />}
+				{locationQuery && (
+					<h2 className="search__title">
+						Busqueda:
+						<span> {locationQuery}</span>
+					</h2>
+				)}
 				<div className="search__cards">
-					{data && data.length === 0
-						? <NotResults />
-						: data && data.map(({ photo, title, id }) => (
+					{data && data.length === 0 ? (
+						<NotResults />
+					) : (
+						data &&
+						data.map(({ photo, title, id }) => (
 							<Card img={photo} title={title} key={id} id={id} />
 						))
-					}
+					)}
 				</div>
 			</div>
 			<NavBar />
