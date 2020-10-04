@@ -9,17 +9,17 @@ import "./index.scss";
 import useAuth from "hooks/useAuth";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestHome } from "state/home/actions";
+import { requestGetCards } from "state/cards/actions";
 // Selectores
-import { HomeSelector } from "state/home/selectors";
+import { GetCardsSelector } from "state/cards/selectors";
 
 const HomeView = () => {
 	const dispatch = useDispatch();
 	const { isAuth } = useAuth();
-	const { data, loading } = useSelector((state) => HomeSelector(state));
+	const { data, loading } = useSelector((state) => GetCardsSelector(state));
 
 	useEffect(() => {
-		if (!data) dispatch(requestHome());
+		if (!data) dispatch(requestGetCards());
 	}, [dispatch]); //eslint-disable-line
 
 	return (

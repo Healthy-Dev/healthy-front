@@ -6,10 +6,10 @@ import Loading from "components/_shared/Loading";
 import NotFound from "views/ErrorPage";
 
 import { useDispatch, useSelector } from "react-redux";
-import { requestDetails } from "state/cardDetails/actions";
+import { requestGetCard } from "state/cards/actions";
 import { getUserRequest } from "state/user/actions";
 
-import { CardDetailsSelector } from "state/cardDetails/selectors";
+import { GetCardSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 import { DeleteCardSelector } from "state/cards/selectors";
 import { requestDeleteCard } from "state/cards/actions";
@@ -26,7 +26,7 @@ const CardDetailsView = ({ history }) => {
 		data: cardData,
 		loading: cardLoading,
 		error: cardError,
-	} = useSelector((state) => CardDetailsSelector(state));
+	} = useSelector((state) => GetCardSelector(state));
 
 	const { data: userData } = useSelector((state) => UserSelector(state));
 	const { data: deleteCardData, error: deleteCardError } = useSelector((state) =>
@@ -34,7 +34,7 @@ const CardDetailsView = ({ history }) => {
 	);
 
 	useEffect(() => {
-		if (!cardData || cardData.id !== +cardId) dispatch(requestDetails({ cardId }));
+		if (!cardData || cardData.id !== +cardId) dispatch(requestGetCard({ cardId }));
 		if (!userData) dispatch(getUserRequest({ token }));
 		if (deleteCardData) history.replace("/");
 	}, [dispatch]); //eslint-disable-line

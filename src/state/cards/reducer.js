@@ -3,21 +3,47 @@ import * as types from "./types";
 import { makeReducer } from "../utils";
 
 export const initialState = {
+	...makeReducer("getCard"),
 	...makeReducer("getCards"),
 	...makeReducer("deleteCard"),
 	...makeReducer("editCard"),
+	...makeReducer("createdCard"),
+	...makeReducer("searchCards"),
 };
 
 const reducer = generalStatus.createReducer(
 	{
-		[types.HOME_REQUEST]: (state) => ({
+		[types.GET_CARD_REQUEST]: (state) => ({
+			...state,
+			getCard: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			getCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.GET_CARD_FAIULRE]: (state) => ({
+			...state,
+			getCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.GET_CARDS_REQUEST]: (state) => ({
 			...state,
 			getCards: {
 				loading: true,
 				error: false,
 			},
 		}),
-		[types.HOME_SUCCESS]: (state, { payload }) => ({
+		[types.GET_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
 			getCards: {
 				loading: false,
@@ -25,7 +51,7 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-		[types.HOME_FAILURE]: (state) => ({
+		[types.GET_CARDS_FAIULRE]: (state) => ({
 			...state,
 			getCards: {
 				loading: false,
@@ -79,7 +105,54 @@ const reducer = generalStatus.createReducer(
 				data: null,
 			},
 		}),
+		[types.CREATE_CARD_REQUEST]: (state) => ({
+			...state,
+			createdCard: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			createdCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.CREATE_CARD_FAILURE]: (state) => ({
+			...state,
+			createdCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.SEARCH_CARDS_REQUEST]: (state) => ({
+			...state,
+			searchCards: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.SEARCH_CARDS_SUCCESS]: (state, { payload }) => ({
+			...state,
+			searchCards: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.SEARCH_CARDS_FAILURE]: (state) => ({
+			...state,
+			searchCards: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
 	},
+
 	initialState,
 );
 
