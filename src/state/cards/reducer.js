@@ -9,6 +9,8 @@ export const initialState = {
 	...makeReducer("editCard"),
 	...makeReducer("createdCard"),
 	...makeReducer("searchCards"),
+	...makeReducer("filterCardsByCategory"),
+	...makeReducer("cardCategories"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -146,6 +148,52 @@ const reducer = generalStatus.createReducer(
 		[types.SEARCH_CARDS_FAILURE]: (state) => ({
 			...state,
 			searchCards: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.FILTER_CARDS_BY_CATEGORY_REQUEST]: (state) => ({
+			...state,
+			filterCardsByCategory: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.FILTER_CARDS_BY_CATEGORY_SUCCESS]: (state, { payload }) => ({
+			...state,
+			filterCardsByCategory: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
+			...state,
+			filterCardsByCategory: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.GET_CARDS_CATEGORIES_REQUEST]: (state) => ({
+			...state,
+			cardCategories: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.GET_CARDS_CATEGORIES_SUCCESS]: (state, { payload }) => ({
+			...state,
+			cardCategories: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.GET_CARDS_CATEGORIES_FAILURE]: (state) => ({
+			...state,
+			cardCategories: {
 				loading: false,
 				error: true,
 				data: null,
