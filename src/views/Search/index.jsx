@@ -1,73 +1,84 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
+import useLocalStorage from "hooks/useLocalStorage";
 
 import NavBar from "components/_shared/NavBar";
-import NotResults from "components/Search/NotResults";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
 import Loading from "components/_shared/Loading";
+import CardsSearch from "components/Search/Cards";
 
 import { requestSearchCards } from "state/cards/actions";
 import { SearchCardsSelector } from "state/cards/selectors";
-import Card from "components/_shared/Card";
 
-// Reemplazar por los datos del back
-const categories = [
-	"Espaciodetrabajo",
-	"Deportes",
-	"SaludMental",
-	"Recetas",
-	"Alimentación",
-	"Otros",
-];
+import { requestGetCardsCategories } from "state/cards/actions";
+import { GetCardsCategories } from "state/cards/selectors";
+
+import { requestCardsByCategory } from "state/cards/actions";
+import { filterCardsByCategory } from "state/cards/selectors";
 
 const Search = ({ history }) => {
 	let locationQuery = history.location.search.replace("?query=", "");
+	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
 
 	const dispatch = useDispatch();
-	const { data, loading } = useSelector((state) => SearchCardsSelector(state));
+	const { data: searchData, loading: searchLoading } = useSelector((state) =>
+		SearchCardsSelector(state),
+	);
 
-	function getCards() {
+	const { data: categoriesData, loading: categoriesLoading } = useSelector((state) =>
+		GetCardsCategories(state),
+	);
+
+	const {
+		data: filterByCategoryData,
+		loading: filterByCategoryLoading,
+	} = useSelector((state) => filterCardsByCategory(state));
+
+	const searchCards = React.useCallback(() => {
 		dispatch(requestSearchCards(locationQuery));
+
+		setFilterOrSearch({ name: "search", value: locationQuery });
+	}, [locationQuery, dispatch, setFilterOrSearch]);
+
+	function filterByCategories(categoryId, categoryName) {
+		setFilterOrSearch({ name: "filter", value: categoryName });
+
+		if (filterOrSearch.value !== categoryName)
+			dispatch(requestCardsByCategory(categoryId));
 	}
 
 	useEffect(() => {
+		if (!categoriesData) dispatch(requestGetCardsCategories());
+
 		if (history.location.search.includes(`?query=`) && locationQuery) {
-			if (!data) getCards();
+			if (!searchData) searchCards();
 		}
 	}, []); //eslint-disable-line
-
-	// Filtrar por categoria
-	function filterByCategories(category) {
-		console.log("Filtrar datos por: ", category);
-	}
 
 	return (
 		<>
 			<div className="search">
-				<InputSearch getCards={getCards} history={history} />
-				{/* Agregar funcionalidad de filtro */}
-				<Tags filterByCategories={filterByCategories} categories={categories} />
+				<InputSearch getCards={searchCards} history={history} />
 
-				{loading && <Loading />}
-				{locationQuery && (
-					<h2 className="search__title">
-						Busqueda:
-						<span> {locationQuery}</span>
-					</h2>
+				{categoriesLoading && <Tags categoriesLoading />}
+
+				{categoriesData && (
+					<Tags filterByCategories={filterByCategories} categories={categoriesData} />
 				)}
-				<div className="search__cards">
-					{data && data.length === 0 ? (
-						<NotResults />
-					) : (
-						data &&
-						data.map(({ photo, title, id }) => (
-							<Card img={photo} title={title} key={id} id={id} />
-						))
-					)}
-				</div>
+
+				{(searchLoading || filterByCategoryLoading) && <Loading />}
+
+				{filterOrSearch.name === "filter" && filterByCategoryData && (
+					<CardsSearch data={filterByCategoryData} query={filterOrSearch.value} />
+				)}
+
+				{filterOrSearch.name === "search" && searchData && (
+					<CardsSearch data={searchData} query={filterOrSearch.value} />
+				)}
 			</div>
+
 			<NavBar />
 		</>
 	);
