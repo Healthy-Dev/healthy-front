@@ -9,6 +9,7 @@ export const initialState = {
 	...makeReducer("editCard"),
 	...makeReducer("createdCard"),
 	...makeReducer("searchCards"),
+	...makeReducer("likedCard"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -146,6 +147,29 @@ const reducer = generalStatus.createReducer(
 		[types.SEARCH_CARDS_FAILURE]: (state) => ({
 			...state,
 			searchCards: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.LIKED_CARDS_REQUEST]: (state) => ({
+			...state,
+			likedCard: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
+			...state,
+			likedCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.LIKED_CARDS_FAILURE]: (state) => ({
+			...state,
+			likedCard: {
 				loading: false,
 				error: true,
 				data: null,

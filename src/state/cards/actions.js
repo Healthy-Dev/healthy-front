@@ -24,3 +24,8 @@ export const failureCreateCard = cardsDuck.createAction(types.CREATE_CARD_FAILUR
 export const requestSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_REQUEST);
 export const successSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_SUCCESS);
 export const failureSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_FAILURE);
+
+
+export const requestLikedCards = cardsDuck.createAction(types.LIKED_CARDS_REQUEST);
+export const successLikedCards = cardsDuck.createAction(types.LIKED_CARDS_SUCCESS);
+export const failureLikedCards = cardsDuck.createAction(types.LIKED_CARDS_FAILURE);

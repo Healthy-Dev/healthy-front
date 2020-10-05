@@ -19,3 +19,8 @@ export const SearchCardsSelector = createSelector(
 	[reducer],
 	(Search) => Search?.searchCards,
 );
+
+export const LikedCardsSelector = createSelector(
+	[reducer],
+	(Card) => Card?.likedCard,
+);

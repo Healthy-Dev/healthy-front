@@ -4,6 +4,7 @@ import cardDeleteSaga from "./cardDelete.sagas";
 import cardEditSagas from "./cardEdit.sagas";
 import cardCreateSagas from "./createCard.saga";
 import searchCardsSagas from "./searchCards.saga";
+import likedCardsSagas from "./likedPost.sagas";
 
 export const sagas = [
 	...cardGetSagas,
@@ -12,4 +13,5 @@ export const sagas = [
 	...cardEditSagas,
 	...cardCreateSagas,
 	...searchCardsSagas,
+	...likedCardsSagas
 ];

@@ -18,7 +18,7 @@ const Card = ({ data, isYourCard, deleteCard }) => {
 					id={data.id}
 				/>
 			)}
-			<Image photo={data.photo} title={data.title} likesCount={data.likesCount} />
+			<Image photo={data.photo} title={data.title} likesCount={data.likesCount} id={data.id} />
 			<Content
 				photo={data.photo}
 				externalUrl={data.externalUrl}
