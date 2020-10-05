@@ -1,0 +1,162 @@
+@import "theme";
+
+.layout {
+  display: grid;
+  grid-template-areas: "aside aside aside",
+    "main main main",
+    "navbar navbar avbar";
+}
+
+.aside {
+  width: 100%;
+}
+
+.main {
+  display: block;
+  width: 100%;
+
+  .presentation {
+    display: none;
+    height: 300px;
+    width: 100%;
+    position: relative;
+    margin: $s1 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: $radius-1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to right, rgba(3, 17, 31, 0.685), transparent);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.644);
+      border-radius: $radius-1;
+      border-bottom-right-radius: 150px;
+    }
+
+    h2 {
+      position: absolute;
+      width: 80%;
+      z-index: 6;
+      bottom: 8%;
+      left: 4%;
+      color: $ivory;
+      font-size: 2rem;
+    }
+  }
+}
+
+@include desktop {
+  .layout {
+    grid-template-areas: "navbar main aside";
+    // "navbar main aside",
+    // "navbar main aside";
+  }
+
+  .aside {
+    grid-area: aside;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+
+  .main {
+    width: 70%;
+    grid-area: main;
+    position: absolute;
+    left: 80px;
+    right: 300px;
+    padding: $s1 $s3;
+
+    .presentation {
+      display: block;
+    }
+  }
+
+  .navbar {
+    border: 0;
+    border-right: 1px solid $medium-grey;
+    top: 0;
+    left: 0;
+    grid-area: navbar;
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    gap: 3.5rem;
+
+    button:nth-child(4) {
+      position: absolute;
+      bottom: 15%;
+    }
+
+    .logo-simple {
+      position: absolute;
+      bottom: 5%;
+    }
+  }
+}
+
+
+/** *************************************** Tablet *************************************** */
+
+@include tablet {
+  .aside {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+
+  .main {
+    width: 75%;
+    position: absolute;
+    left: 80px;
+    right: 200px;
+    padding: $s1 $s2;
+
+    .presentation {
+      display: block;
+      height: 250px;
+
+      h2 {
+        font-size: $s1;
+      }
+    }
+  }
+
+  .navbar {
+    border: 0;
+    border-right: 1px solid $medium-grey;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    gap: 3.5rem;
+
+    button:nth-child(4) {
+      position: absolute;
+      bottom: 15%;
+    }
+
+    .logo-simple {
+      position: absolute;
+      bottom: 5%;
+    }
+  }
+}

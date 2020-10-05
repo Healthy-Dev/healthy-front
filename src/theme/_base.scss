@@ -7,7 +7,14 @@ html {
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: inherit;
+  font-family: $font-plain, sans-serif;
+}
+
+body {
+  background: #041a2f;
 }
 
 body,

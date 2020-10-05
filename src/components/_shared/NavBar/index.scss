@@ -1,9 +1,9 @@
 @import "theme";
 
-.nav-bar-container {
+.navbar {
 	width: 100%;
 	position: fixed;
-	bottom: 0px;
+	bottom: 0;
 	z-index: 9999;
 	display: flex;
 	justify-content: space-around;
@@ -11,29 +11,61 @@
 	background: $darker-blue;
 	border-top: 1px solid #eeeeee5d;
 	padding: 12px 0;
+
+	.logo-simple {
+		width: 25px;
+	}
+
+	.home-button {
+		width: 50px;
+		height: 50px;
+		position: fixed;
+		bottom: 15%;
+		right: 10%;
+		background-color: $yellow;
+		border-radius: 50%;
+		z-index: 10;
+		cursor: pointer;
+		padding: .5rem;
+
+		@include desktop {
+			display: block;
+			left: 1rem;
+			top: 30%;
+			background: transparent;
+
+			path {
+				stroke: white;
+			}
+		}
+
+		@include tablet {
+			display: block;
+			left: 1rem;
+			top: 30%;
+			background: transparent;
+
+			path {
+				stroke: white;
+			}
+		}
+	}
+
 	.nav-bar-button {
 		background-color: transparent;
 		border: none;
 		cursor: pointer;
+
 		a {
 			.nav-bar-icons {
 				color: #ffff;
-				width: 35px;
-				height: 35px;
+				width: 25px;
+				height: 25px;
 			}
+
 			.fill-yellow {
 				color: #f4dd27;
 				stroke-width: 3;
-			}
-		}
-	}
-	@media (max-width: 430px) {
-		.nav-bar-button {
-			a {
-				.nav-bar-icons {
-					width: 25px;
-					height: 25px;
-				}
 			}
 		}
 	}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 import useLocalStorage from "hooks/useLocalStorage";
 
-import NavBar from "components/_shared/NavBar";
+import Layout from "components/_shared/Layout";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
 import Loading from "components/_shared/Loading";
@@ -58,7 +58,7 @@ const Search = ({ history }) => {
 	}, []); //eslint-disable-line
 
 	return (
-		<>
+		<Layout title="Buscar">
 			<div className="search">
 				<InputSearch getCards={searchCards} history={history} />
 
@@ -78,9 +78,7 @@ const Search = ({ history }) => {
 					<CardsSearch data={searchData} query={filterOrSearch.value} />
 				)}
 			</div>
-
-			<NavBar />
-		</>
+		</Layout>
 	);
 };
 
