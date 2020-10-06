@@ -25,7 +25,26 @@ export const requestSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_REQU
 export const successSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_SUCCESS);
 export const failureSearchCards = cardsDuck.createAction(types.SEARCH_CARDS_FAILURE);
 
-
 export const requestLikedCards = cardsDuck.createAction(types.LIKED_CARDS_REQUEST);
 export const successLikedCards = cardsDuck.createAction(types.LIKED_CARDS_SUCCESS);
 export const failureLikedCards = cardsDuck.createAction(types.LIKED_CARDS_FAILURE);
+
+export const requestCardsByCategory = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_CATEGORY_REQUEST,
+);
+export const successCardsByCategory = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_CATEGORY_SUCCESS,
+);
+export const failureCardsByCategory = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_CATEGORY_FAILURE,
+);
+
+export const requestGetCardsCategories = cardsDuck.createAction(
+	types.GET_CARDS_CATEGORIES_REQUEST,
+);
+export const successGetCardsCategories = cardsDuck.createAction(
+	types.GET_CARDS_CATEGORIES_SUCCESS,
+);
+export const failureGetCardsCategories = cardsDuck.createAction(
+	types.GET_CARDS_CATEGORIES_FAILURE,
+);

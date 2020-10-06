@@ -25,6 +25,7 @@ const Card = ({ data, isYourCard, deleteCard }) => {
 				id={data.id}
 				creatorInfo={data.creator}
 				description={data.description}
+				category={data.category}
 				createdAt={data.updatedAt}
 				title={data.title}
 				toggleModalConfirm={() => changeState(setModalConfirm)}

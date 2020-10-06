@@ -17,7 +17,17 @@ export const CreateCardSelector = createSelector(
 
 export const SearchCardsSelector = createSelector(
 	[reducer],
-	(Search) => Search?.searchCards,
+	(Cards) => Cards?.searchCards,
+);
+
+export const filterCardsByCategory = createSelector(
+	[reducer],
+	(Cards) => Cards?.filterCardsByCategory,
+);
+
+export const GetCardsCategories = createSelector(
+	[reducer],
+	(Cards) => Cards?.cardCategories,
 );
 
 export const LikedCardsSelector = createSelector(

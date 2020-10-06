@@ -10,6 +10,7 @@ const CardContent = ({
 	id,
 	externalUrl,
 	description,
+	category,
 	creatorInfo,
 	createdAt,
 	toggleModalConfirm,
@@ -24,6 +25,7 @@ const CardContent = ({
 		id,
 		description,
 		externalUrl,
+		category,
 	};
 
 	let optionsModalCreator = [

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
+
+import { useDispatch, useSelector } from "react-redux";
+import { requestGetCardsCategories } from "state/cards/actions";
+import { GetCardsCategories } from "state/cards/selectors";
 
 // Components
 import UploadImage from "./UploadImage";
@@ -11,6 +15,9 @@ import Button from "components/_shared/Button";
 import Loader from "components/_shared/Loader";
 
 const CreateCardForm = ({ sendForm, loading, data }) => {
+	const dispatch = useDispatch();
+	const { data: categoriesData } = useSelector((state) => GetCardsCategories(state));
+
 	let defaultValues = {
 		title: data.title,
 		description: data.description,
@@ -23,7 +30,7 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 	const isImgTooBig = sizeImg > 15 * 1024 * 1024;
 	const formatPhoto = photo && photo.split("base64,")[1];
 
-	const onSubmit = ({ title, description, externalUrl }) => {
+	const onSubmit = ({ title, description, externalUrl, category }) => {
 		if (isImgTooBig) return;
 		sendForm(
 			JSON.stringify({
@@ -31,12 +38,16 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 				description,
 				photo: photo ? formatPhoto : undefined,
 				externalUrl,
-				categoryId: 3,
+				categoryId: category,
 			}),
 		);
 	};
 
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+
+	useEffect(() => {
+		if (!categoriesData) dispatch(requestGetCardsCategories());
+	}, []); //eslint-disable-line
 
 	return (
 		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -70,12 +81,20 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 
 			<section className="input">
 				<label>Categorías</label>
-				<select className="select" name="categoria">
-					<option>Rutinas</option>
-					<option>Alimentacion</option>
-					<option>Confort</option>
-					<option>Salud mental</option>
+				<select className="select" name="category" ref={register({ required: true })}>
+					<option value={(data.category && data.category.id) || ""}>
+						{(data.category && data.category.name) || "Categorias"}
+					</option>
+					{categoriesData &&
+						categoriesData.map((category) => (
+							<option key={category.id} value={category.id}>
+								{category.name}
+							</option>
+						))}
 				</select>
+				{errors.category && errors.category.type === "required" && (
+					<MessageError message="Seleccione una Categoria" />
+				)}
 			</section>
 
 			<section className="input">
