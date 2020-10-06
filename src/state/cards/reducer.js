@@ -10,6 +10,7 @@ export const initialState = {
 	...makeReducer("createdCard"),
 	...makeReducer("searchCards"),
 	...makeReducer("likedCard"),
+	...makeReducer("deslikedCard"),
 	...makeReducer("filterCardsByCategory"),
 	...makeReducer("cardCategories"),
 };
@@ -153,14 +154,14 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 			},
-		}),        
+		}),
 		[types.FILTER_CARDS_BY_CATEGORY_REQUEST]: (state) => ({
 			...state,
 			filterCardsByCategory: {
 				loading: true,
 				error: false,
 			},
-		}),        
+		}),
 		[types.FILTER_CARDS_BY_CATEGORY_SUCCESS]: (state, { payload }) => ({
 			...state,
 			filterCardsByCategory: {
@@ -169,7 +170,7 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-    [types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
+		[types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
 			...state,
 			filterCardsByCategory: {
 				loading: false,
@@ -177,13 +178,13 @@ const reducer = generalStatus.createReducer(
 				data: null,
 			},
 		}),
-    [types.LIKED_CARDS_REQUEST]: (state) => ({
+		[types.LIKED_CARDS_REQUEST]: (state) => ({
 			...state,
 			likedCard: {
 				loading: true,
 				error: false,
 			},
-		}), 
+		}),
 		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
 			likedCard: {
@@ -195,6 +196,29 @@ const reducer = generalStatus.createReducer(
 		[types.LIKED_CARDS_FAILURE]: (state) => ({
 			...state,
 			likedCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+		[types.DELETE_CARD_REQUEST]: (state) => ({
+			...state,
+			deslikedCard: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			deslikedCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.DELETE_CARD_FAIULRE]: (state) => ({
+			...state,
+			deslikedCard: {
 				loading: false,
 				error: true,
 				data: null,

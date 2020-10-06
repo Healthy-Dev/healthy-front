@@ -30,7 +30,9 @@ export const GetCardsCategories = createSelector(
 	(Cards) => Cards?.cardCategories,
 );
 
-export const LikedCardsSelector = createSelector(
+export const LikedCardsSelector = createSelector([reducer], (Card) => Card?.likedCard);
+
+export const DislikedCardsSelector = createSelector(
 	[reducer],
-	(Card) => Card?.likedCard,
+	(Card) => Card?.deslikedCard,
 );

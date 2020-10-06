@@ -28,6 +28,10 @@ export const LIKED_CARDS_REQUEST = cardsDuck.defineType("LIKED_CARDS_REQUEST");
 export const LIKED_CARDS_SUCCESS = cardsDuck.defineType("LIKED_CARDS_SUCCESS");
 export const LIKED_CARDS_FAILURE = cardsDuck.defineType("LIKED_CARDS_FAILURE");
 
+export const DISLIKED_CARDS_REQUEST = cardsDuck.defineType("DISLIKED_CARDS_REQUEST");
+export const DISLIKED_CARDS_SUCCESS = cardsDuck.defineType("DISLIKED_CARDS_SUCCESS");
+export const DISLIKED_CARDS_FAILURE = cardsDuck.defineType("DISLIKED_CARDS_FAILURE");
+
 export const FILTER_CARDS_BY_CATEGORY_REQUEST = cardsDuck.defineType(
 	"FILTER_CARDS_BY_CATEGORY_REQUEST",
 );
