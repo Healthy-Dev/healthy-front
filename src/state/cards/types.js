@@ -23,3 +23,23 @@ export const CREATE_CARD_FAILURE = cardsDuck.defineType("CREATE_CARD_FAILURE");
 export const SEARCH_CARDS_REQUEST = cardsDuck.defineType("SEARCH_CARDS_REQUEST");
 export const SEARCH_CARDS_SUCCESS = cardsDuck.defineType("SEARCH_CARDS_SUCCESS");
 export const SEARCH_CARDS_FAILURE = cardsDuck.defineType("SEARCH_CARDS_FAILURE");
+
+export const FILTER_CARDS_BY_CATEGORY_REQUEST = cardsDuck.defineType(
+	"FILTER_CARDS_BY_CATEGORY_REQUEST",
+);
+export const FILTER_CARDS_BY_CATEGORY_SUCCESS = cardsDuck.defineType(
+	"FILTER_CARDS_BY_CATEGORY_SUCCESS",
+);
+export const FILTER_CARDS_BY_CATEGORY_FAILURE = cardsDuck.defineType(
+	"FILTER_CARDS_BY_CATEGORY_FAILURE",
+);
+
+export const GET_CARDS_CATEGORIES_REQUEST = cardsDuck.defineType(
+	"GET_CARDS_CATEGORIES_REQUEST",
+);
+export const GET_CARDS_CATEGORIES_SUCCESS = cardsDuck.defineType(
+	"GET_CARDS_CATEGORIES_SUCCESS",
+);
+export const GET_CARDS_CATEGORIES_FAILURE = cardsDuck.defineType(
+	"GET_CARDS_CATEGORIES_FAILURE",
+);
