@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import CountLikes from "../LikesCount";
 
-const CardImage = ({ photo, title, likesCount, id}) => {
+const CardImage = ({ photo, title, likesCount, id, isLikedByMe }) => {
 	const history = useHistory();
 	return (
 		<section className="card__header">
@@ -16,7 +16,7 @@ const CardImage = ({ photo, title, likesCount, id}) => {
 				<button className="back" onClick={() => history.goBack()}>
 					<IconBack />
 				</button>
-				<CountLikes likesCount={likesCount} id={id} />
+				<CountLikes likesCount={likesCount} id={id} isLikedByMe={isLikedByMe} />
 			</div>
 		</section>
 	);

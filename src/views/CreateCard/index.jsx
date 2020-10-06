@@ -18,7 +18,6 @@ const CreateCardView = () => {
 	const { token } = useAuth();
 
 	function createCard(data) {
-		console.log(data);
 		dispatch(requestCreateCard({ token, data }));
 		setTimeout(() => history.replace("/"), 3500);
 	}
