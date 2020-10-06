@@ -15,7 +15,7 @@ export const sagas = [
 	...cardEditSagas,
 	...cardCreateSagas,
 	...searchCardsSagas,
-	...likedCardsSagas
+	...likedCardsSagas,
 	...getcardsCategoriesSagas,
 	...filterCardsByCategorySagas,
 ];
