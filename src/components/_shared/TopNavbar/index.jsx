@@ -7,7 +7,6 @@ const TopNavBar = ({ title }) => {
 
 	function goBack() {
 		history.goBack();
-		// window.history.back();
 	}
 
 	return (

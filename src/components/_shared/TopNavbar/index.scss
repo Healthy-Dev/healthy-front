@@ -4,7 +4,20 @@
   width: 100%;
   height: 75px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: $darker-blue;
+  padding: 0 $s1;
+
+  h2 {
+    color: $ivory;
+    font-size: 1em;
+  }
+
+  button {
+    color: $yellow;
+    font-size: 1em;
+    border: none;
+    background-color: transparent;
+  }
 }
