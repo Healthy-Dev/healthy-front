@@ -29,3 +29,8 @@ export const GetCardsCategories = createSelector(
 	[reducer],
 	(Cards) => Cards?.cardCategories,
 );
+
+export const LikedCardsSelector = createSelector(
+	[reducer],
+	(Card) => Card?.likedCard,
+);

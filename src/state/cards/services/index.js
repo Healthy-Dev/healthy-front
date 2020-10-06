@@ -18,6 +18,10 @@ export const postCard = ({ payload: { token, data } }) =>
 export const getCardsSearch = ({ payload: query }) =>
 	fakeHttpModule.get(`v1/cards?search=${query}`, undefined);
 
+export const postlikes = ({ payload: { idCard, token } }) => {
+	return fakeHttpModule.post(`v1/cards/${idCard}/like`, token, undefined)
+}
+
 export const filterCardsByCategory = ({ payload: categoryId }) =>
 	fakeHttpModule.get(`v1/cards?categoryId=${categoryId}`, undefined);
 

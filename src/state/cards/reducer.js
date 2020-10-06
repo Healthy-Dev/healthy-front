@@ -9,6 +9,7 @@ export const initialState = {
 	...makeReducer("editCard"),
 	...makeReducer("createdCard"),
 	...makeReducer("searchCards"),
+	...makeReducer("likedCard"),
 	...makeReducer("filterCardsByCategory"),
 	...makeReducer("cardCategories"),
 };
@@ -152,14 +153,14 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 			},
-		}),
+		}),        
 		[types.FILTER_CARDS_BY_CATEGORY_REQUEST]: (state) => ({
 			...state,
 			filterCardsByCategory: {
 				loading: true,
 				error: false,
 			},
-		}),
+		}),        
 		[types.FILTER_CARDS_BY_CATEGORY_SUCCESS]: (state, { payload }) => ({
 			...state,
 			filterCardsByCategory: {
@@ -168,9 +169,32 @@ const reducer = generalStatus.createReducer(
 				data: payload,
 			},
 		}),
-		[types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
+    [types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
 			...state,
 			filterCardsByCategory: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+		}),
+    [types.LIKED_CARDS_REQUEST]: (state) => ({
+			...state,
+			likedCard: {
+				loading: true,
+				error: false,
+			},
+		}), 
+		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
+			...state,
+			likedCard: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.LIKED_CARDS_FAILURE]: (state) => ({
+			...state,
+			likedCard: {
 				loading: false,
 				error: true,
 				data: null,
