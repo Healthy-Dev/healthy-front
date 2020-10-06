@@ -45,53 +45,55 @@ const EditCardForm = ({ dataUser, sendForm, loading }) => {
 	const URL_FORMAT = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
 	return (
-		<form className="editProfile__form" onSubmit={handleSubmit(onSubmit)}>
-			<section className="editProfile__form--input">
-				<label htmlFor="photo" className="img">
-					<img src={profilePhoto || dataUser.user.profilePhoto} alt="profile" />
-					<IconUploadedImg className="icon" />
-				</label>
-				<input type="file" id="photo" name="photo" onChange={handleChange} />
-			</section>
+		<>
+			<form className="editProfile__form" onSubmit={handleSubmit(onSubmit)}>
+				<section className="editProfile__form--input">
+					<label htmlFor="photo" className="img">
+						<img src={profilePhoto || dataUser.user.profilePhoto} alt="profile" />
+						<IconUploadedImg className="icon" />
+					</label>
+					<input type="file" id="photo" name="photo" onChange={handleChange} />
+				</section>
 
-			<section className="editProfile__form--input">
-				<label htmlFor="name">Nombre: </label>
-				<input
-					type="text"
-					id="name"
-					name="name"
-					placeholder="Nombre"
-					ref={register({ required: true })}
-				/>
-				{errors.name && <MessageError message="Ingrese su Nombre" />}
-			</section>
+				<section className="editProfile__form--input">
+					<label htmlFor="name">Nombre: </label>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						placeholder="Nombre"
+						ref={register({ required: true })}
+					/>
+					{errors.name && <MessageError message="Ingrese su Nombre" />}
+				</section>
 
-			<section className="editProfile__form--input">
-				<label htmlFor="twitter">Twitter: </label>
-				<input
-					type="text"
-					id="twitter"
-					name="twitter"
-					placeholder="https://www.twitter.com/"
-					ref={register({ pattern: URL_FORMAT })}
-				/>
-				{errors.twitter && <MessageError message="Ingrese una Url válida" />}
-			</section>
+				<section className="editProfile__form--input">
+					<label htmlFor="twitter">Twitter: </label>
+					<input
+						type="text"
+						id="twitter"
+						name="twitter"
+						placeholder="https://www.twitter.com/"
+						ref={register({ pattern: URL_FORMAT })}
+					/>
+					{errors.twitter && <MessageError message="Ingrese una Url válida" />}
+				</section>
 
-			<section className="editProfile__form--input">
-				<label htmlFor="instagram">Instagram: </label>
-				<input
-					type="text"
-					id="instagram"
-					name="instagram"
-					placeholder="https://www.instagram.com/"
-					ref={register({ pattern: URL_FORMAT })}
-				/>
-				{errors.instagram && <MessageError message="Ingrese una Url válida" />}
-			</section>
+				<section className="editProfile__form--input">
+					<label htmlFor="instagram">Instagram: </label>
+					<input
+						type="text"
+						id="instagram"
+						name="instagram"
+						placeholder="https://www.instagram.com/"
+						ref={register({ pattern: URL_FORMAT })}
+					/>
+					{errors.instagram && <MessageError message="Ingrese una Url válida" />}
+				</section>
 
-			<Button>{loading ? <Loader /> : "Actualizar Datos"}</Button>
-		</form>
+				<Button>{loading ? <Loader /> : "Actualizar Datos"}</Button>
+			</form>
+		</>
 	);
 };
 

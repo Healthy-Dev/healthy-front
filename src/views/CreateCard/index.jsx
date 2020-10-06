@@ -7,6 +7,7 @@ import { CreateCardSelector } from "state/cards/selectors";
 // Components
 import CardForm from "components/CardForm";
 import Alert from "components/_shared/Alert";
+import TopNavbar from "components/_shared/TopNavbar";
 // Styles
 import "./index.scss";
 import useAuth from "hooks/useAuth";
@@ -24,15 +25,18 @@ const CreateCardView = () => {
 	}
 
 	return (
-		<div className="create-card-container">
-			{error && (
-				<Alert showButtonClose error>
-					No se pudo crear su tarjeta, Vulve a intentelo mas tarde!
-				</Alert>
-			)}
-			<h1>Agregar artículo</h1>
-			<CardForm sendForm={createCard} loading={loading} data={""} />
-		</div>
+		<>
+			<TopNavbar title="Agregar Articulo" />
+			<div className="create-card-container">
+				{error && (
+					<Alert showButtonClose error>
+						No se pudo crear su tarjeta, Vulve a intentelo mas tarde!
+					</Alert>
+				)}
+
+				<CardForm sendForm={createCard} loading={loading} data={""} />
+			</div>
+		</>
 	);
 };
 
