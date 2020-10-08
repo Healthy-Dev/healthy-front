@@ -9,6 +9,7 @@ import { getUserRequest, updateUserRequest } from "state/user/actions";
 import EditProfileForm from "components/EditProfile/Form";
 import Loading from "components/_shared/Loading";
 import Alert from "components/_shared/Alert";
+import TopNavbar from "components/_shared/TopNavbar";
 
 const EditProfile = ({ history }) => {
 	const { token } = useAuth();
@@ -34,17 +35,20 @@ const EditProfile = ({ history }) => {
 	console.log(updateUserData, updateUserLoading, updateUserError);
 
 	return (
-		<div className="editProfile">
-			{loading && <Loading />}
-			{updateUserData && <Alert success>{updateUserData.message}</Alert>}
-			{data && (
-				<EditProfileForm
-					loading={updateUserLoading}
-					dataUser={data}
-					sendForm={sendEditProfile}
-				/>
-			)}
-		</div>
+		<>
+			<TopNavbar title="Editar Perfil" />
+			<div className="editProfile">
+				{loading && <Loading />}
+				{updateUserData && <Alert success>{updateUserData.message}</Alert>}
+				{data && (
+					<EditProfileForm
+						loading={updateUserLoading}
+						dataUser={data}
+						sendForm={sendEditProfile}
+					/>
+				)}
+			</div>
+		</>
 	);
 };
 
