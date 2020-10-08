@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./index.scss";
 
+import Layout from "components/_shared/Layout";
 import Carrousel from "components/Profile/Carrousel";
-import NavBar from "components/_shared/NavBar";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
 
@@ -41,7 +41,7 @@ const Profile = ({ history }) => {
 	];
 
 	return (
-		<>
+		<Layout title="Perfil">
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">
@@ -67,8 +67,7 @@ const Profile = ({ history }) => {
 					</>
 				)}
 			</div>
-			<NavBar />
-		</>
+		</Layout>
 	);
 };
 

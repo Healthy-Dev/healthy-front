@@ -1,16 +1,24 @@
 @import "theme";
 
-.container-home {
-	width: 100%;
+.content {
 	min-height: 100vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	gap: $s1 $s0;
 	background-color: $dark-blue;
-	padding: $s1 $s1 70px $s1;
+	padding: $s0;
+	padding-bottom: 5rem;
 
-	@media (max-width: 430px) {
-		justify-content: space-around;
-		grid-template-columns: 1fr 1fr;
+	@include tablet {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: $s2;
+		padding: $s2 0;
+
+	}
+
+	@include desktop {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: $s2;
+		padding: $s2 0;
 	}
 }
