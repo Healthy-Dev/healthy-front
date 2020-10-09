@@ -1,65 +1,115 @@
 @import "theme";
 
-.login-container {
-	position: relative;
+.login-wrapper {
 	display: flex;
 	min-height: 100vh;
-	width: 100vw;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	padding: $s1;
-	font-family: $font-plain;
-	font-size: $s0;
+	min-width: 100vw;
 	background-color: $dark-blue;
-	color: $ivory;
 	background-image: linear-gradient(
-			to bottom,
-			rgba(4, 26, 47, 0),
-			rgba(4, 26, 47, 0.3),
-			rgba(4, 26, 47, 0.5),
-			rgba(4, 26, 47, 0.75),
-			rgba(4, 26, 47, 0.99),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1)
-		),
-		url("../../assets/img/login-background.png");
+				to bottom,
+				rgba(4, 26, 47, 0),
+				rgba(4, 26, 47, 0.3),
+				rgba(4, 26, 47, 0.5),
+				rgba(4, 26, 47, 0.75),
+				rgba(4, 26, 47, 0.99),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1),
+				rgba(4, 26, 47, 1)
+			),
+			url("../../assets/img/login-background.png");
 	background-repeat: no-repeat;
 	background-size: contain;
-	h1 {
-		margin-top: $s1;
-		font-family: $font-title;
-		text-transform: uppercase;
-		text-shadow: 0px 0px 15px black;
-		.healthy {
-			font-weight: 700;
-			color: $title-green;
+	@include desktop {
+		background: $dark-blue;
 		}
-		.dev {
-			font-weight: 400;
+	.login-container {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: $s1;
+		font-family: $font-plain;
+		font-size: $s0;
+		color: $ivory;
+		@include desktop {
+			padding: $s4 $s1 $s5;
+			margin-left: $s4;
+			justify-content: space-between;
+			width: 40%;
+		}
+		h1 {
+			margin-top: $s1;
+			font-family: $font-title;
+			text-transform: uppercase;
+			text-shadow: 0px 0px 15px black;
+			@include desktop {
+				display: none;
+			}
+			.healthy {
+				font-weight: 700;
+				color: $title-green;
+			}
+			.dev {
+				font-weight: 400;
+			}
+		}
+		.login-footer {
+			@include desktop {
+				width: 100%;
+			}
+		}
+		.desktop-title-wrapper {
+			display: none;
+			@include desktop {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				padding-bottom: $s5;
+			}
+			.desktop-title {
+				font-size: $s2;
+				font-weight: 700;
+			}
+			.desktop-logo {
+
+			}
+		}
+	
+		footer {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			p {
+				color: $light-grey;
+				font-size: $s-1;
+				margin-bottom: $s-2;
+				margin-top: $s-2;
+			}
+			.button__link {
+				color: $yellow;
+				font-size: $s-1;
+				margin-bottom: $s-2;
+				margin-top: $s-2;
+				cursor: pointer;
+			}
 		}
 	}
-
-	footer {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		p {
-			color: $light-grey;
-			font-size: $s-1;
-			margin-bottom: $s-2;
-			margin-top: $s-2;
-		}
-		.button__link {
-			color: $yellow;
-			font-size: $s-1;
-			margin-bottom: $s-2;
-			margin-top: $s-2;
-			cursor: pointer;
+	.login-img {
+		display: none;
+		@include desktop {
+			display: block;
+			width: 60%;
+			height: 100vh;
+			object-fit: cover;
 		}
 	}
 }
+
