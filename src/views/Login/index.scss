@@ -3,7 +3,7 @@
 .login-wrapper {
 	display: flex;
 	min-height: 100vh;
-	min-width: 100vw;
+	width: 100vw;
 	background-color: $dark-blue;
 	background-image: linear-gradient(
 				to bottom,
@@ -34,7 +34,7 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		padding: $s1;
+		padding: $s1 $s1 $s4;
 		font-family: $font-plain;
 		font-size: $s0;
 		color: $ivory;
@@ -61,6 +61,7 @@
 			}
 		}
 		.login-footer {
+			width: 100%;
 			@include desktop {
 				width: 100%;
 			}
