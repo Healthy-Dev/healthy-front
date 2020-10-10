@@ -7,9 +7,19 @@
   margin: auto;
   position: relative;
 
+  .slick-arrow,
+  .slick-left {
+    display: none !important;
+  }
+
   @include desktop {
     width: 100%;
     padding: $s3;
+
+    .slick-arrow,
+    .slick-left {
+      display: inline-block !important;
+    }
   }
 
   @include tablet {
