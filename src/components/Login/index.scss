@@ -8,6 +8,10 @@
 	justify-content: flex-end;
 	height: 100%;
 	width: 100%;
+	@include desktop {
+		justify-content: flex-start;
+		height: auto;
+	}
 
 	.input__container {
 		position: relative;
@@ -17,10 +21,8 @@
 		background-color: $medium-grey;
 		border-radius: $radius0;
 		width: 100%;
-		margin-bottom: $s1;
 		margin-top: $s-2;
 		margin-bottom: $s-3;
-
 		input {
 			margin-bottom: 0px;
 			margin-top: 0px;
@@ -29,6 +31,11 @@
 		.input__icon {
 			width: 20%;
 			text-align: center;
+			@include desktop {
+				width: 10%;
+				display: flex;
+				align-items: center;
+			}
 		}
 	}
 
@@ -41,6 +48,10 @@
 		padding: $s-1;
 		margin-bottom: $s1;
 		margin-top: $s-2;
+		@include desktop {
+			padding: 20px $s-1;
+			margin-bottom: $s2;
+		}
 
 		&::placeholder {
 			opacity: 1;
@@ -88,6 +99,10 @@
 		font-size: $s0;
 		box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
 		margin-bottom: $s1;
+		@include desktop {
+			padding: $s1 $s5;
+			margin-bottom: $s2;
+		}
 
 		&.blue {
 			color: $ivory;
