@@ -19,118 +19,63 @@ const reducer = generalStatus.createReducer(
 	{
 		[types.GET_CARD_REQUEST]: (state) => ({
 			...state,
-			getCard: {
-				loading: true,
-				error: false,
-			},
+			getCard: { loading: true, error: false },
 		}),
 		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			getCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			getCard: { loading: false, error: false, data: payload },
 		}),
 		[types.GET_CARD_FAIULRE]: (state) => ({
 			...state,
-			getCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			getCard: { loading: false, error: true, data: null },
 		}),
 		[types.GET_CARDS_REQUEST]: (state) => ({
 			...state,
-			getCards: {
-				loading: true,
-				error: false,
-			},
+			getCards: { loading: true, error: false },
 		}),
 		[types.GET_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
-			getCards: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			getCards: { loading: false, error: false, data: payload },
 		}),
 		[types.GET_CARDS_FAIULRE]: (state) => ({
 			...state,
-			getCards: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			getCards: { loading: false, error: true, data: null },
 		}),
 		[types.DELETE_CARD_REQUEST]: (state) => ({
 			...state,
-			deleteCard: {
-				loading: true,
-				error: false,
-			},
+			deleteCard: { loading: true, error: false },
 		}),
 		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			deleteCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			deleteCard: { loading: false, error: false, data: payload },
 		}),
 		[types.DELETE_CARD_FAIULRE]: (state) => ({
 			...state,
-			deleteCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			deleteCard: { loading: false, error: true, data: null },
 		}),
 		[types.EDIT_CARD_REQUEST]: (state) => ({
 			...state,
-			editCard: {
-				loading: true,
-				error: false,
-			},
+			editCard: { loading: true, error: false },
 		}),
 		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			editCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			editCard: { loading: false, error: false, data: payload },
 		}),
 		[types.EDIT_CARD_FAIULRE]: (state) => ({
 			...state,
-			editCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			editCard: { loading: false, error: true, data: null },
 		}),
 		[types.CREATE_CARD_REQUEST]: (state) => ({
 			...state,
-			createdCard: {
-				loading: true,
-				error: false,
-			},
+			createdCard: { loading: true, error: false },
 		}),
 		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			createdCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			createdCard: { loading: false, error: false, data: payload },
 		}),
 		[types.CREATE_CARD_FAILURE]: (state) => ({
 			...state,
-			createdCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			createdCard: { loading: false, error: true, data: null },
 		}),
 		[types.SEARCH_CARDS_REQUEST]: (state) => ({
 			...state,
@@ -180,49 +125,29 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.LIKED_CARDS_REQUEST]: (state) => ({
 			...state,
-			likedCard: {
-				loading: true,
-				error: false,
-			},
+			getCard: { ...state.getCard, likesCount: state.getCard.data.likesCount + 1 },
+			likedCard: { loading: true },
 		}),
 		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
-			likedCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			likedCard: { loading: false, error: false, data: payload },
 		}),
 		[types.LIKED_CARDS_FAILURE]: (state) => ({
 			...state,
-			likedCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			getCard: { ...state.getCard, likesCount: state.getCard.data.likesCount - 1 },
+			likedCard: { loading: false, error: true },
 		}),
-		[types.DELETE_CARD_REQUEST]: (state) => ({
+		[types.DISLIKED_CARDS_REQUEST]: (state) => ({
 			...state,
-			deslikedCard: {
-				loading: true,
-				error: false,
-			},
+			deslikedCard: { loading: true, error: false },
 		}),
-		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => ({
+		[types.DISLIKED_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
-			deslikedCard: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
+			deslikedCard: { loading: false, error: false, data: payload },
 		}),
-		[types.DELETE_CARD_FAIULRE]: (state) => ({
+		[types.DISLIKED_CARDS_FAILURE]: (state) => ({
 			...state,
-			deslikedCard: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			deslikedCard: { loading: false, error: true, data: null },
 		}),
 		[types.GET_CARDS_CATEGORIES_REQUEST]: (state) => ({
 			...state,

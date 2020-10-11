@@ -42,7 +42,7 @@ export const makeWorker = (service, actions) => {
 		}
 		switch (response.status) {
 			case 200:
-				yield payload && put(actions.success(data, {reqData: payload}));
+				yield payload && put(actions.success(data, { reqData: payload }));
 				yield !payload && put(actions.success(data));
 				break;
 			case 201:
@@ -71,11 +71,6 @@ export const makeWorker = (service, actions) => {
 
 export const makeReducer = (name, extra) => {
 	return {
-		[name]: {
-			loading: false,
-			error: false,
-			data: null,
-			...extra,
-		},
+		[name]: { loading: false, error: false, data: null, ...extra },
 	};
 };

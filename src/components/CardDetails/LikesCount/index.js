@@ -17,12 +17,12 @@ const CountLikes = ({ likesCount, id, isLikedByMe }) => {
 
 	const iLiked = () => {
 		dispatch(requestLikedCards({ idCard: id, token }));
-		dispatch(requestGetCard({ cardId: id }));
+		// dispatch(requestGetCard({ cardId: id }));
 	};
 
 	const disLiked = () => {
 		dispatch(requestDislikedCards({ idCard: id, token }));
-		dispatch(requestGetCard({ cardId: id }));
+		// dispatch(requestGetCard({ cardId: id }));
 	};
 
 	useEffect(() => {
