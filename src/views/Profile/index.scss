@@ -1,11 +1,31 @@
 @import "theme";
 
 .profile {
-  background: $dark-blue;
-  padding: $s1 0 $s3 $s1;
+  padding: $s1 0 $s3 $s0;
   min-height: 100vh;
-  width: 100%;
+  width: 95vw;
+  margin: auto;
   position: relative;
+
+  .slick-arrow,
+  .slick-left {
+    display: none !important;
+  }
+
+  @include desktop {
+    width: 100%;
+    padding: $s3;
+
+    .slick-arrow,
+    .slick-left {
+      display: inline-block !important;
+    }
+  }
+
+  @include tablet {
+    width: 100%;
+    padding: $s3;
+  }
 
   &::before {
     content: "";

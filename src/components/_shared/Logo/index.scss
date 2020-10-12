@@ -1,0 +1,19 @@
+@import "theme";
+
+.nav {
+	width: 100%;
+	min-height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #03111f;
+	box-shadow: 0 2px 7px rgba(0, 0, 0, .7);
+
+	@include desktop {
+		border-bottom-left-radius: 35px;
+	}
+
+	@include tablet {
+		border-bottom-left-radius: 35px;
+	}
+}

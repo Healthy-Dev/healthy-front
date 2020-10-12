@@ -1,0 +1,19 @@
+@import "theme";
+
+.title {
+  color: $ivory;
+  font-size: $s1;
+  font-weight: bold;
+  margin: 0;
+  display: none;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+
+  @include tablet {
+    display: block;
+  }
+
+  @include desktop {
+    display: block;
+  }
+}

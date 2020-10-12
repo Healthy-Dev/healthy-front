@@ -3,6 +3,8 @@ import "./index.scss";
 import { useParams } from "react-router-dom";
 //import { useUserSession } from "hooks/useUserSession";
 
+import TopNavbar from "components/_shared/TopNavbar";
+
 import { useDispatch, useSelector } from "react-redux";
 import { requestEditCard } from "state/cards/actions";
 import { EditCardSelector } from "state/cards/selectors";
@@ -29,19 +31,22 @@ const EditCard = ({ history }) => {
 	}
 
 	return (
-		<div className="edit">
-			{error && (
-				<Alert error showButtonClose>
-					No se pudo actulizar, Intentelo mas tarde
-				</Alert>
-			)}
-			{success && (
-				<Alert success showButtonClose>
-					Se actualizo su tarjeta correctamente
-				</Alert>
-			)}
-			{state && <CardForm sendForm={updateCard} loading={loading} data={state} />}
-		</div>
+		<>
+			<TopNavbar title="Editar Articulo" />
+			<div className="edit">
+				{error && (
+					<Alert error showButtonClose>
+						No se pudo actulizar, Intentelo mas tarde
+					</Alert>
+				)}
+				{success && (
+					<Alert success showButtonClose>
+						Se actualizo su tarjeta correctamente
+					</Alert>
+				)}
+				{state && <CardForm sendForm={updateCard} loading={loading} data={state} />}
+			</div>
+		</>
 	);
 };
 
