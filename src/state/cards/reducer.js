@@ -23,7 +23,13 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
 			...state,
-			getCard: { loading: false, error: false, data: payload },
+			getCard: {
+				loading: false,
+				error: false,
+				data: payload,
+				likesCount: payload.likesCount,
+				isLikedByMe: (me) => payload.likesBy.some((user) => user.id === me),
+			},
 		}),
 		[types.GET_CARD_FAIULRE]: (state) => ({
 			...state,
@@ -125,7 +131,11 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.LIKED_CARDS_REQUEST]: (state) => ({
 			...state,
-			getCard: { ...state.getCard, likesCount: state.getCard.data.likesCount + 1 },
+			getCard: {
+				...state.getCard,
+				likesCount: state.getCard.likesCount + 1,
+				isLikedByMe: () => true,
+			},
 			likedCard: { loading: true },
 		}),
 		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
@@ -134,11 +144,20 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.LIKED_CARDS_FAILURE]: (state) => ({
 			...state,
-			getCard: { ...state.getCard, likesCount: state.getCard.data.likesCount - 1 },
+			getCard: {
+				...state.getCard,
+				likesCount: state.getCard.data.likesCount - 1,
+				isLikedByMe: () => false,
+			},
 			likedCard: { loading: false, error: true },
 		}),
 		[types.DISLIKED_CARDS_REQUEST]: (state) => ({
 			...state,
+			getCard: {
+				...state.getCard,
+				likesCount: state.getCard.likesCount - 1,
+				isLikedByMe: () => false,
+			},
 			deslikedCard: { loading: true, error: false },
 		}),
 		[types.DISLIKED_CARDS_SUCCESS]: (state, { payload }) => ({
@@ -147,6 +166,11 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.DISLIKED_CARDS_FAILURE]: (state) => ({
 			...state,
+			getCard: {
+				...state.getCard,
+				likesCount: state.getCard.data.likesCount + 1,
+				isLikedByMe: () => true,
+			},
 			deslikedCard: { loading: false, error: true, data: null },
 		}),
 		[types.GET_CARDS_CATEGORIES_REQUEST]: (state) => ({

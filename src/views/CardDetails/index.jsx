@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Card from "components/CardDetails";
@@ -7,7 +7,11 @@ import Alert from "components/_shared/Alert";
 import NotFound from "views/ErrorPage";
 
 import { useDispatch, useSelector } from "react-redux";
-import { requestGetCard } from "state/cards/actions";
+import {
+	requestGetCard,
+	requestLikedCards,
+	requestDislikedCards,
+} from "state/cards/actions";
 import { getUserRequest } from "state/user/actions";
 import { requestDeleteCard } from "state/cards/actions";
 
@@ -17,7 +21,8 @@ import { DeleteCardSelector } from "state/cards/selectors";
 
 import useAuth from "hooks/useAuth";
 
-const CardDetailsView = ({ history }) => {
+const CardDetailsView = () => {
+	const [isILiked, setILiked] = useState(false);
 	const dispatch = useDispatch();
 	const { cardId } = useParams();
 	const { token } = useAuth();
@@ -26,6 +31,8 @@ const CardDetailsView = ({ history }) => {
 		data: cardData,
 		loading: cardLoading,
 		error: cardError,
+		likesCount,
+		isLikedByMe,
 	} = useSelector((state) => GetCardSelector(state));
 
 	const { data: userData } = useSelector((state) => UserSelector(state));
@@ -34,7 +41,11 @@ const CardDetailsView = ({ history }) => {
 	useEffect(() => {
 		if (!cardData || cardData.id !== +cardId) dispatch(requestGetCard({ cardId }));
 		if (!userData) dispatch(getUserRequest({ token }));
-	}, [dispatch, cardData]); //eslint-disable-line
+
+		if (userData && isLikedByMe !== undefined) {
+			setILiked(isLikedByMe(userData.user.id));
+		}
+	}, [dispatch, cardData, userData]); //eslint-disable-line
 
 	function isYourCard() {
 		if (cardData && userData) {
@@ -42,15 +53,19 @@ const CardDetailsView = ({ history }) => {
 		}
 	}
 
-	function isLikedByMe() {
-		if (cardData && userData) {
-			return cardData.likesBy.some((like) => userData.user.id === like.id);
-		}
-	}
-
 	function deleteCard() {
 		dispatch(requestDeleteCard({ cardId, token }));
 	}
+
+	const iLiked = () => {
+		dispatch(requestLikedCards({ idCard: cardId, token }));
+		setILiked(true);
+	};
+
+	const disLiked = () => {
+		dispatch(requestDislikedCards({ idCard: cardId, token }));
+		setILiked(false);
+	};
 
 	return (
 		<div>
@@ -61,12 +76,16 @@ const CardDetailsView = ({ history }) => {
 					No se pudo elimar!, Intentelo mas tarde
 				</Alert>
 			)}
+
 			{cardData && (
 				<Card
 					data={cardData}
 					isYourCard={isYourCard}
 					deleteCard={deleteCard}
-					isLikedByMe={isLikedByMe}
+					isILiked={isILiked}
+					likesCount={likesCount}
+					iLiked={iLiked}
+					disLiked={disLiked}
 				/>
 			)}
 		</div>
