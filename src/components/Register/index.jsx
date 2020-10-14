@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // Hooks
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
@@ -135,6 +136,9 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 			<Button className="button__register" fullWidth>
 				{loading ? <Loader /> : "Registrarme"}
 			</Button>
+			<Link to="/login" className="link">
+				Iniciar Sesion
+			</Link>
 		</form>
 	);
 };
