@@ -36,3 +36,8 @@ export const DislikedCardsSelector = createSelector(
 	[reducer],
 	(Card) => Card?.deslikedCard,
 );
+
+export const FilterByUserCreator = createSelector(
+	[reducer],
+	(Cards) => Cards?.filterByUserCreator,
+);

@@ -1,6 +1,16 @@
 import cardsDuck from ".";
 import * as types from "./types";
 
+export const requestCardsByUserCreator = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_USERCREATOR_REQUEST,
+);
+export const successCardsByUserCreator = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_USERCREATOR_SUCCESS,
+);
+export const failureCardsByUserCreator = cardsDuck.createAction(
+	types.FILTER_CARDS_BY_USERCREATOR_FAIULRE,
+);
+
 export const requestGetCard = cardsDuck.createAction(types.GET_CARD_REQUEST);
 export const successGetCard = cardsDuck.createAction(types.GET_CARD_SUCCESS);
 export const failureGetCard = cardsDuck.createAction(types.GET_CARD_FAIULRE);

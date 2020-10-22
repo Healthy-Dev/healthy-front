@@ -30,3 +30,6 @@ export const filterCardsByCategory = ({ payload: categoryId }) =>
 
 export const getCardsCategories = () =>
 	fakeHttpModule.get("v1/cards/categories", undefined, undefined, TYPES.json);
+
+export const filterCardsByUserCreator = ({ payload: { creatorId } }) =>
+	fakeHttpModule.get(`v1/cards?creatorId=${creatorId}`, undefined, undefined, TYPES.json);

@@ -8,12 +8,12 @@
 	background-color: $dark-blue;
 	padding: $s0;
 	padding-bottom: 5rem;
+	grid-template-rows: masonry !important;
 
 	@include tablet {
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: $s2;
 		padding: $s2 0;
-
 	}
 
 	@include desktop {

@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import "./index.scss";
 
 import Layout from "components/_shared/Layout";
-import Carrousel from "components/Profile/Carrousel";
+import CardsUser from "components/Profile/Carrousel";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestGetCards } from "state/cards/actions";
+import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
 import { getUserRequest } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
-import { GetCardsSelector } from "state/cards/selectors";
+import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
+import {} from "state/cards/services";
 
 const Profile = ({ history }) => {
 	const { token, closeSession } = useAuth();
@@ -30,10 +31,18 @@ const Profile = ({ history }) => {
 	);
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
+	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
 		if (!dataUser) dispatch(getUserRequest({ token }));
 	}, [dispatch, token]); //eslint-disable-line
+
+	useEffect(() => {
+		if (dataUser && dataUser.user && !dataFilterCards) {
+			dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
+		}
+	}, [dataUser, dataFilterCards, dispatch]);
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
@@ -57,15 +66,7 @@ const Profile = ({ history }) => {
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
 				{loadingCards && <Loading />}
-				{dataCards && (
-					// TODO: [Crear funcionalidad para filtrar datos por categoria y enviar]
-					<>
-						<Carrousel data={dataCards} />
-						<Carrousel data={dataCards} />
-						<Carrousel data={dataCards} />
-						<Carrousel data={dataCards} />
-					</>
-				)}
+				{dataFilterCards && <CardsUser data={dataCards} />}
 			</div>
 		</Layout>
 	);

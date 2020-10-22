@@ -1,5 +1,15 @@
 import cardsDuck from ".";
 
+export const FILTER_CARDS_BY_USERCREATOR_REQUEST = cardsDuck.defineType(
+	"FILTER_CARDS_BY_USERCREATOR_REQUEST",
+);
+export const FILTER_CARDS_BY_USERCREATOR_SUCCESS = cardsDuck.defineType(
+	"FILTER_CARDS_BY_USERCREATOR_SUCCESS",
+);
+export const FILTER_CARDS_BY_USERCREATOR_FAIULRE = cardsDuck.defineType(
+	"ILTER_CARDS_BY_USERCREATOR_FAIULRE",
+);
+
 export const GET_CARD_REQUEST = cardsDuck.defineType("GET_CARD_REQUEST");
 export const GET_CARD_SUCCESS = cardsDuck.defineType("GET_CARD_SUCCESS");
 export const GET_CARD_FAIULRE = cardsDuck.defineType("GET_CARD_FAIULRE");

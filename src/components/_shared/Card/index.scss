@@ -6,10 +6,11 @@ a {
 
 .card {
 	min-width: 150px;
-	height: 175px;
+	height: 200px;
 	min-height: 200px;
 	padding: 0;
 	position: relative;
+	box-shadow: 0 0 10px rgba(3, 17, 31, 0.685);
 
 	&::after {
 		content: "";
@@ -38,8 +39,14 @@ a {
 		width: 100%;
 		left: 0;
 		font-size: $s-1;
-		padding: $s-1;
+		padding: $s0 $s-1;
 		color: $ivory;
-		background-color: $darker-blue;
+		font-weight: 400;
+		letter-spacing: .5px;
+		background: $darker-blue;
+
+		@include desktop {
+			font-size: $s0;
+		}
 	}
 }

@@ -4,7 +4,7 @@
   display: grid;
   grid-template-areas: "aside aside aside",
     "main main main",
-    "navbar navbar avbar";
+    "navbar navbar navbar";
 }
 
 .aside {
@@ -56,12 +56,13 @@
 
 @include desktop {
   .layout {
-    grid-template-areas: "navbar main aside";
+    grid-template-areas: "navbar main main";
     // "navbar main aside",
     // "navbar main aside";
   }
 
   .aside {
+    display: none;
     grid-area: aside;
     width: 300px;
     height: 100vh;
@@ -71,7 +72,7 @@
   }
 
   .main {
-    width: 70%;
+    width: 90%;
     grid-area: main;
     position: absolute;
     left: 80px;

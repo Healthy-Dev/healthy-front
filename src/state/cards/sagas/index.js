@@ -8,6 +8,7 @@ import likedCardsSagas from "./postLikes.sagas";
 import deleteLikesSagas from "./deleteLikes.sagas";
 import getcardsCategoriesSagas from "./cardsCategories.sagas";
 import filterCardsByCategorySagas from "./filterCardsByCategory.sagas";
+import filterCardsByUserCreatorSagas from "./filterCardsByUserCreator.sagas";
 
 export const sagas = [
 	...cardGetSagas,
@@ -20,4 +21,5 @@ export const sagas = [
 	...deleteLikesSagas,
 	...getcardsCategoriesSagas,
 	...filterCardsByCategorySagas,
+	...filterCardsByUserCreatorSagas,
 ];

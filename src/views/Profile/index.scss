@@ -1,9 +1,8 @@
 @import "theme";
 
 .profile {
-  padding: $s1 0 $s3 $s0;
+  padding: $s1 0 $s3 0;
   min-height: 100vh;
-  width: 95vw;
   margin: auto;
   position: relative;
 
@@ -33,7 +32,7 @@
     height: 85%;
     position: absolute;
     left: 0;
-    top: 10%;
+    top: 7%;
     background: linear-gradient(180deg, #06966669 0%, rgba(4, 26, 47, 0.658) 75.56%);
     border-radius: $radius1 $radius1 0px 0px;
     z-index: 1;

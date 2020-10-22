@@ -1,15 +1,7 @@
 @import "theme";
 
 .search__tags {
-  margin: 1.5rem 0 2rem 0;
-  width: 100%;
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  margin: 1.5rem 0 0 0;
 
   &--tag {
     width: auto;
@@ -19,7 +11,7 @@
     color: $yellow;
     font-size: $s-1 * 1.085;
     padding: .5rem 1rem;
-    margin-right: .8rem;
+    margin: 0 .8rem .5rem 0;
     outline: none;
   }
 }
