@@ -3,11 +3,31 @@
 .card__content {
   position: relative;
   z-index: 11;
-  margin-top: -50px;
+  transform: translateY(-50px);
+  // margin-top: -50px;
   padding: $s1;
   background-color: $dark-blue;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 5px rgb(17, 18, 51);
+
+  @include desktop {
+    min-width: 450px;
+    height: 100%;
+    margin-top: 0;
+    box-shadow: 0 0 10px rgb(17, 18, 51);
+    transform: translateY(0);
+    border-radius: 10px;
+    margin-left: -5%;
+  }
+
+  @include tablet {
+    height: 100%;
+    margin-top: 0;
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgb(17, 18, 51);
+    border-radius: 10px;
+    margin-left: -5%;
+  }
 
   &--more {
     width: 100%;

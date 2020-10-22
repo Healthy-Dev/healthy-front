@@ -32,7 +32,7 @@ const CardImage = ({
 				/>
 			</div>
 			<section className="card__header--title">
-				<button className="card__btn">{category}</button>
+				<span className="card__btn">{category}</span>
 				<h1 className="card__title">{title}</h1>
 			</section>
 		</section>

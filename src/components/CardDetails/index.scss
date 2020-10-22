@@ -5,6 +5,32 @@
   min-height: 100vh;
   background-color: $dark-blue;
   overflow: hidden;
+
+  @include desktop {
+    display: flex;
+    min-height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    &>div {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+
+  @include tablet {
+    display: flex;
+    min-height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    &>div {
+      width: 100%;
+      min-height: auto;
+    }
+  }
 }
 
 .alert-delete-card {

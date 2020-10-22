@@ -7,7 +7,7 @@ import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { ReactComponent as LogoIcon } from "assets/icons/logo-simple.svg";
 import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
 
-const NavBar = () => {
+const NavBar = ({ onClick }) => {
 	const location = useLocation();
 
 	let isLocation = location.pathname;
@@ -22,7 +22,7 @@ const NavBar = () => {
 	const Icons = ({ Icon, ...arg }) => <Icon {...arg} />;
 
 	return (
-		<nav className="navbar">
+		<nav className="navbar" onClick={onClick}>
 			{links.map((link) => (
 				<button className="nav-bar-button" key={link.id}>
 					<Link to={link.path}>

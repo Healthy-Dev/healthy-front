@@ -17,27 +17,30 @@ import ErrorPage from "containers/ErrorPage";
 import EditProfile from "containers/EditProfile";
 import UserCreated from "containers/UserCreated";
 
+import ModalContext from "hooks/useModal";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 const store = makeStore();
 
 const App = () => (
 	<Provider store={store}>
-		<ConnectedRouter history={history}>
-			<BrowserRouter>
-				<Search />
-				<Profile />
-				<EditProfile />
-				<HomeView />
-				<CardDetails />
-				<EditCard />
-				<CreateCardView />
-				<RegisterView />
-				<Login />
-				<ErrorPage />
-				<UserCreated />
-			</BrowserRouter>
-		</ConnectedRouter>
+		<ModalContext>
+			<ConnectedRouter history={history}>
+				<BrowserRouter>
+					<Search />
+					<Profile />
+					<EditProfile />
+					<HomeView />
+					<CardDetails />
+					<EditCard />
+					<CreateCardView />
+					<RegisterView />
+					<Login />
+					<ErrorPage />
+					<UserCreated />
+				</BrowserRouter>
+			</ConnectedRouter>
+		</ModalContext>
 	</Provider>
 );
 

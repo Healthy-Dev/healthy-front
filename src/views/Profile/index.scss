@@ -6,19 +6,9 @@
   margin: auto;
   position: relative;
 
-  .slick-arrow,
-  .slick-left {
-    display: none !important;
-  }
-
   @include desktop {
-    width: 100%;
     padding: $s3;
-
-    .slick-arrow,
-    .slick-left {
-      display: inline-block !important;
-    }
+    width: 100%;
   }
 
   @include tablet {
@@ -35,7 +25,29 @@
     top: 7%;
     background: linear-gradient(180deg, #06966669 0%, rgba(4, 26, 47, 0.658) 75.56%);
     border-radius: $radius1 $radius1 0px 0px;
+  }
+
+  .subtitle {
+    position: relative;
+    color: $ivory;
+    font-size: $s1;
+    margin: $s0;
+    margin-top: 2rem;
     z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: 0;
+      width: 80px;
+      height: 4px;
+      opacity: .65;
+      background-color: $yellow;
+      z-index: -1;
+    }
   }
 
   &__header {
@@ -47,7 +59,7 @@
     padding: 0 $s1;
     padding-top: $s1;
     position: relative;
-    z-index: 100;
+    z-index: 1;
 
     &--img {
       width: $s6;

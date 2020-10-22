@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Card from "components/CardDetails";
@@ -20,12 +20,14 @@ import { UserSelector } from "state/user/selectors";
 import { DeleteCardSelector } from "state/cards/selectors";
 
 import useAuth from "hooks/useAuth";
+import { ContextModal } from "hooks/useModal";
 
 const CardDetailsView = () => {
 	const [isILiked, setILiked] = useState(false);
 	const dispatch = useDispatch();
-	const { cardId } = useParams();
+	// const { cardId } = useParams();
 	const { token } = useAuth();
+	const { id: cardId } = useContext(ContextModal);
 
 	const {
 		data: cardData,

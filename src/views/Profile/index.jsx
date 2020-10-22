@@ -66,7 +66,8 @@ const Profile = ({ history }) => {
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
 				{loadingCards && <Loading />}
-				{dataFilterCards && <CardsUser data={dataCards} />}
+				<h2 className="subtitle">Mis Tarjetas</h2>
+				{dataFilterCards && <CardsUser data={dataFilterCards} />}
 			</div>
 		</Layout>
 	);
