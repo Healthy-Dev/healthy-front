@@ -5,7 +5,15 @@ import { useHistory } from "react-router-dom";
 
 import CountLikes from "../LikesCount";
 
-const CardImage = ({ photo, title, likesCount, isILiked, iLiked, disLiked }) => {
+const CardImage = ({
+	photo,
+	title,
+	likesCount,
+	isILiked,
+	iLiked,
+	disLiked,
+	category,
+}) => {
 	const history = useHistory();
 	return (
 		<section className="card__header">
@@ -23,6 +31,10 @@ const CardImage = ({ photo, title, likesCount, isILiked, iLiked, disLiked }) => 
 					disLiked={disLiked}
 				/>
 			</div>
+			<section className="card__header--title">
+				<button className="card__btn">{category}</button>
+				<h1 className="card__title">{title}</h1>
+			</section>
 		</section>
 	);
 };

@@ -30,6 +30,7 @@ const Card = ({
 				photo={data.photo}
 				title={data.title}
 				id={data.id}
+				category={data.category.name}
 				likesCount={likesCount}
 				isILiked={isILiked}
 				iLiked={iLiked}

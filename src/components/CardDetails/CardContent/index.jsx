@@ -36,9 +36,13 @@ const CardContent = ({
 
 	let optionsModalDefault = [{ title: "Reportar", fn: () => console.log("report") }];
 
+	function formatDate(createdAT) {
+		const date = new Date(createdAT);
+		return date.toDateString();
+	}
+
 	return (
 		<div className="card__content">
-			<h4 className="card__content--title">{title}</h4>
 			<section className="card__content--more">
 				<div className="card__content--more-img">
 					<img src={creatorInfo.profilePhoto} alt="profile" />
@@ -51,8 +55,13 @@ const CardContent = ({
 					/>
 				</div>
 			</section>
-			<p className="card__content--date">{createdAt}</p>
-			<p className="card__content--description">{description}</p>
+			<p className="card__content--date">{formatDate(createdAt)}</p>
+			<p className="card__content--description">
+				{description}{" "}
+				<a href={externalUrl} target="_blank" rel="noreferrer noopener">
+					Seguir leyendo.
+				</a>
+			</p>
 		</div>
 	);
 };
