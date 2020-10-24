@@ -6,8 +6,8 @@
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	gap: $s1 $s0;
 	background-color: $dark-blue;
-	padding: $s0;
-	padding-bottom: 5rem;
+	padding: $s2 $s0;
+	padding-bottom: 6rem;
 	grid-template-rows: masonry !important;
 
 	@include tablet {

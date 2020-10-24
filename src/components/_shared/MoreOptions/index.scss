@@ -2,7 +2,7 @@
 
 .more {
   position: relative;
-  
+
   &__icon {
     path {
       stroke: $yellow;
@@ -17,9 +17,9 @@
     right: 0;
     top: 0;
     margin-right: 8px;
-    width: 130px;
+    width: 150px;
     text-align: center;
-    
+
     li {
       padding: .5rem 1rem .3rem 1rem;
       color: $ivory;
