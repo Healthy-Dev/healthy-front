@@ -1,7 +1,6 @@
 @import "theme";
 
 .search {
-	min-height: 100vh;
 	padding: $s0;
 	width: 96vw;
 	margin: auto;
@@ -33,7 +32,8 @@
 		gap: $s0;
 
 		@include desktop {
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: $s1;
 		}
 	}
 }

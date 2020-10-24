@@ -24,11 +24,11 @@
 
 .loading {
   width: 100%;
-  background: $dark_blue;
+  height: auto;
 
   &__loader {
-    width: 90%;
-    padding-top: 60%;
+    width: 100%;
+    padding-top: 45vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@
       margin: .2rem;
       border-radius: 50px;
       height: 5px;
-      width: 45px;
+      width: 35px;
 
       &:first-child {
         width: 45px;
@@ -63,7 +63,7 @@
   }
 
   &__title {
-    margin-top: 50%;
+    margin-top: 5rem;
     text-align: center;
     font-size: 2em;
     color: $ivory;

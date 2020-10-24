@@ -2,26 +2,41 @@
 
 .card__detail {
   width: 100%;
+  max-width: 100vw;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 11111100;
+  // overflow: hidden;
   min-height: 100vh;
-  background-color: $dark-blue;
-  overflow: hidden;
+
 
   @include desktop {
-    display: flex;
     min-height: auto;
+    margin-top: 2rem;
+    padding: 4rem 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
+    background-color: $darker-blue;
+    position: relative;
+    display: flex;
+    max-width: 1366px;
+    gap: 1rem;
     justify-content: center;
-    align-items: center;
-    background-color: transparent;
 
-    &>div {
-      width: 100%;
+    &>div,
+    &>section {
+      width: 50%;
       min-height: auto;
     }
   }
 
   @include tablet {
+    position: relative;
     display: flex;
-    min-height: auto;
+    gap: 2rem;
     justify-content: center;
     align-items: center;
     background-color: transparent;

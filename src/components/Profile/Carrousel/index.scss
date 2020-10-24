@@ -9,7 +9,7 @@
   padding: $s0;
 
   &__cards {
-    min-height: 100vh;
+    // min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: $s1 $s0;

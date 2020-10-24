@@ -1,24 +1,20 @@
 import React from "react";
 import "./index.scss";
-import { ContextModal } from "hooks/useModal";
-import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 const Card = ({ img, title, id }) => {
-	const { showModal, setID, showComponent } = useContext(ContextModal);
+	const history = useHistory();
 
 	function handleClick() {
-		showModal();
-		setID(id);
-		showComponent("card");
-		// history.push(`/details/${id}`);
-		// console.log("boo");
+		history.push(`/details/${id}`);
 	}
+
 	return (
 		<div className="card" onClick={handleClick}>
-			<img src={img} alt="card" />
 			<div>
-				<h2>{title}</h2>
+				<img src={img} alt="card" />
 			</div>
+			<h2>{title}</h2>
 		</div>
 	);
 };

@@ -18,7 +18,7 @@ const Card = ({
 	const [modalConfirm, setModalConfirm] = useState(false);
 
 	return (
-		<div className="card__detail">
+		<>
 			{modalConfirm && (
 				<ModalConfirmDelete
 					toggleModalConfirm={() => changeState(setModalConfirm)}
@@ -48,7 +48,7 @@ const Card = ({
 				toggleModalConfirm={() => changeState(setModalConfirm)}
 				isYourCard={isYourCard}
 			/>
-		</div>
+		</>
 	);
 };
 

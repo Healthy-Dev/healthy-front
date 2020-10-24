@@ -4,24 +4,20 @@
   position: relative;
   z-index: 11;
   transform: translateY(-50px);
-  // margin-top: -50px;
-  padding: $s1;
-  background-color: $dark-blue;
+  padding: $s2;
+  background-color: $darker-blue;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 5px rgb(17, 18, 51);
 
   @include desktop {
-    min-width: 450px;
-    height: 100%;
+    max-width: 450px;
     margin-top: 0;
-    box-shadow: 0 0 10px rgb(17, 18, 51);
+    box-shadow: none;
     transform: translateY(0);
-    border-radius: 10px;
-    margin-left: -5%;
+    // border-radius: 10px;
   }
 
   @include tablet {
-    height: 100%;
     margin-top: 0;
     transform: translateY(0);
     box-shadow: 0 0 10px rgb(17, 18, 51);

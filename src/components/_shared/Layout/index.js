@@ -5,12 +5,17 @@ import Title from "components/_shared/Title";
 import "./styles.scss";
 import { ContextModal } from "hooks/useModal";
 import EditCard from "views/EditCard";
-import CardDetailsView from "views/CardDetails";
+import EditProfile from "views/EditProfile";
 
 const Layout = ({ children, title }) => {
 	const { isModalOpen, hiddenModal, id, component } = useContext(ContextModal);
 
-	console.log(id);
+	const renderComponet = {
+		"edit-card": () => <EditCard id={id} />,
+		"add-card": () => <EditCard id={id} />,
+		"edit-profile": () => <EditProfile id={id} />,
+	};
+
 	return (
 		<div className="layout">
 			<section className="aside">
@@ -23,10 +28,7 @@ const Layout = ({ children, title }) => {
 			<NavBar onClick={hiddenModal} />
 			{isModalOpen && (
 				<div className="modals">
-					<div className="modals__content">
-						{component === "edit-card" && <EditCard />}
-						{component === "card" && <CardDetailsView />}
-					</div>
+					<div className="modals__content">{renderComponet[component]}</div>
 				</div>
 			)}
 		</div>
