@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
+import { ContextModal } from "hooks/useModal";
 
 const TopNavBar = ({ title }) => {
-	const history = useHistory();
+	const { hiddenModal } = useContext(ContextModal);
 
 	function goBack() {
-		history.goBack();
+		hiddenModal();
 	}
 
 	return (

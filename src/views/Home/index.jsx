@@ -6,6 +6,7 @@ import Card from "components/_shared/Card";
 import Loading from "components/_shared/Loading";
 import Onboarding from "views/Onboarding";
 import Layout from "components/_shared/Layout";
+import IconPlus from "components/ButtonAdd";
 
 import useAuth from "hooks/useAuth";
 // Redux
@@ -47,6 +48,7 @@ const HomeView = () => {
 					)}
 				</Layout>
 			)}
+			<IconPlus />
 		</>
 	);
 };

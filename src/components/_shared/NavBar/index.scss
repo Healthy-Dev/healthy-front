@@ -15,58 +15,23 @@
 	.logo-simple {
 		width: 25px;
 	}
+}
 
-	.home-button {
-		width: 50px;
-		height: 50px;
-		position: fixed;
-		bottom: 15%;
-		right: 10%;
-		background-color: $yellow;
-		border-radius: 50%;
-		z-index: 10;
-		cursor: pointer;
-		padding: .5rem;
+.nav-bar-button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 
-		@include desktop {
-			display: block;
-			left: 1rem;
-			top: 30%;
-			background: transparent;
-
-			path {
-				stroke: white;
-			}
+	a {
+		.nav-bar-icons {
+			color: #ffff;
+			width: 25px;
+			height: 25px;
 		}
 
-		@include tablet {
-			display: block;
-			left: 1rem;
-			top: 30%;
-			background: transparent;
-
-			path {
-				stroke: white;
-			}
-		}
-	}
-
-	.nav-bar-button {
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-
-		a {
-			.nav-bar-icons {
-				color: #ffff;
-				width: 25px;
-				height: 25px;
-			}
-
-			.fill-yellow {
-				color: #f4dd27;
-				stroke-width: 3;
-			}
+		.fill-yellow {
+			color: #f4dd27;
+			stroke-width: 3;
 		}
 	}
 }

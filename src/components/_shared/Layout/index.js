@@ -4,18 +4,21 @@ import NavBar from "components/_shared/NavBar";
 import Title from "components/_shared/Title";
 import "./styles.scss";
 import { ContextModal } from "hooks/useModal";
+
 import EditCard from "views/EditCard";
 import EditProfile from "views/EditProfile";
+import CreateCard from "views/CreateCard";
 
 const Layout = ({ children, title }) => {
 	const { isModalOpen, hiddenModal, id, component } = useContext(ContextModal);
 
-	const renderComponet = {
-		"edit-card": () => <EditCard id={id} />,
-		"add-card": () => <EditCard id={id} />,
-		"edit-profile": () => <EditProfile id={id} />,
-	};
+	// const renderComponet = {
+	// 	editCard: () => <EditCard id={id} />,
+	// 	addCard: () => <CreateCard id={null} />,
+	// 	editProfile: () => <EditProfile id={id} />,
+	// };
 
+	console.log(component, isModalOpen);
 	return (
 		<div className="layout">
 			<section className="aside">
@@ -28,7 +31,11 @@ const Layout = ({ children, title }) => {
 			<NavBar onClick={hiddenModal} />
 			{isModalOpen && (
 				<div className="modals">
-					<div className="modals__content">{renderComponet[component]}</div>
+					<div className="modals__content">
+						{component === "add-card" && <CreateCard />}
+						{component === "edit-card" && <EditCard id={id} />}
+						{component === "edit-profile" && <EditProfile id={id} />}
+					</div>
 				</div>
 			)}
 		</div>

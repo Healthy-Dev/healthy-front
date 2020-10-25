@@ -1,12 +1,20 @@
-@import "../../theme/index.scss";
+@import "theme";
 
 .create-card-container {
-  min-height: 100vh;
   width: 100%;
+  box-shadow: 0 0 10px rgba(7, 22, 65, 0.842);
   padding: $s1;
   font-family: $font-plain;
   background-color: $dark-blue;
   color: $ivory;
+
+  @include desktop {
+    padding: $s1 $s2;
+  }
+
+  @include tablet {
+    padding: $s1 $s2;
+  }
 
   h1 {
     font-size: $s1;
