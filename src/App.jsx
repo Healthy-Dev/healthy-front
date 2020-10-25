@@ -8,8 +8,8 @@ import { ConnectedRouter } from "connected-react-router";
 import ModalContext from "hooks/useModal";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
-import Application from "containers/app";
-// import Routes from "containers";
+// import Application from "containers/app";
+import Routes from "containers";
 
 const store = makeStore();
 
@@ -18,8 +18,8 @@ const App = () => (
 		<ModalContext>
 			<ConnectedRouter history={history}>
 				<BrowserRouter>
-					<Application />
-					{/* <Routes /> */}
+					{/* <Application /> */}
+					<Routes />
 				</BrowserRouter>
 			</ConnectedRouter>
 		</ModalContext>

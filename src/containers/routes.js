@@ -55,7 +55,7 @@ export default [
 		exact: true,
 	},
 	{
-		path: "/refister",
+		path: "/register",
 		component: Register,
 		exact: true,
 	},

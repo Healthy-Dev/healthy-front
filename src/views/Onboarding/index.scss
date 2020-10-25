@@ -45,7 +45,8 @@
 
   &__images {
     padding-top: 3rem;
-    // :first-child {
+
+    // :nth-child(1) {
     //   animation: matrix 7.4s cubic-bezier(0.4, 0, 1, 1) infinite;
     // }
 
@@ -66,6 +67,11 @@
       justify-content: center;
       margin-bottom: 1rem;
       margin-left: -1rem;
+
+      @include desktop {
+        width: -100vw !important;
+        margin-left: $s1;
+      }
 
       div {
         img {
@@ -88,6 +94,14 @@
     left: 5%;
     z-index: 100;
 
+    @include desktop {
+      width: 30%;
+      left: auto;
+      top: auto;
+      right: $s2 + $s2;
+      bottom: $s2;
+    }
+
     &--button {
       position: absolute;
       width: 100%;
@@ -101,6 +115,10 @@
       font-weight: 500;
       text-align: end;
       animation: down 1.5s ease;
+
+      @include desktop {
+        margin-top: 30%;
+      }
     }
 
     &--logo {
@@ -110,6 +128,10 @@
       width: 60%;
       bottom: 15%;
       left: 5%;
+
+      @include desktop {
+        width: 30%;
+      }
     }
   }
 }
