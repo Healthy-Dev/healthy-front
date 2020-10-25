@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
 import MoreOptions from "components/_shared/MoreOptions";
+import { ContextModal } from "hooks/useModal";
 
 const CardContent = ({
 	photo,
@@ -16,8 +16,7 @@ const CardContent = ({
 	toggleModalConfirm,
 	isYourCard,
 }) => {
-	const history = useHistory();
-
+	const { showComponent, showModal, setID, setExtra } = useContext(ContextModal);
 	// Todo: [Crear una funcionalidad para reportar la tarjeta]
 	const editData = {
 		photo,
@@ -29,7 +28,15 @@ const CardContent = ({
 	};
 
 	let optionsModalCreator = [
-		{ title: "Editar", fn: () => history.push(`/edit-card/${id}`, editData) },
+		{
+			title: "Editar",
+			fn: () => {
+				showModal();
+				showComponent("edit-card");
+				setID(id);
+				setExtra(editData);
+			},
+		},
 		{ title: "Elimar", fn: () => toggleModalConfirm() },
 		{ title: "Reportar", fn: () => console.log("report") },
 	];

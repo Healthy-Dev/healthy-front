@@ -1,7 +1,10 @@
+@import "theme";
+
 @keyframes downModal {
   from {
     margin-top: -100%;
   }
+
   to {
     margin-top: 0;
   }
@@ -13,16 +16,25 @@
   left: 0;
   width: 100%;
   padding: 24px;
-  background: #071b35b6;
-  border-radius: 0 0 15px 15px;
+  background: #0a2d5cb6;
+  border-radius: 0 0 20px 20px;
   z-index: 10000000;
   animation: downModal .3s ease;
+
+  @include desktop {
+    width: 100%;
+    left: 25%;
+  }
+
+  .alert {
+    position: relative;
+  }
 
   &--buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     button {
       width: 48%;
@@ -30,10 +42,11 @@
       color: white;
       border: none;
       border-radius: 6px;
-      
+
       &:nth-child(1) {
         background: #ED254E;
       }
+
       &:nth-child(2) {
         background: #041A2F;
       }

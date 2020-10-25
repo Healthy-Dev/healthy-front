@@ -7,15 +7,24 @@
   background: $dark-blue;
   position: relative;
 
+  @include desktop {
+    min-height: auto;
+    padding: $s3 $s2;
+  }
+
   &::before {
     content: "";
     width: 100%;
-    height: 70%;
+    height: 80%;
     position: absolute;
     left: 0;
-    top: 30%;
+    top: 20%;
     background: linear-gradient(180deg, #06966669 0%, rgba(4, 26, 47, 0.658) 75.56%);
-    border-radius: $radius1 $radius1 0px 0px;
+    border-radius: 20px 20px 0px 0px;
     z-index: 1;
+  }
+
+  @include desktop {
+    top: 25%;
   }
 }

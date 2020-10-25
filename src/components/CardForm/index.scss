@@ -25,6 +25,10 @@
 			padding: $s-1;
 			margin-top: $s-2;
 
+			@include desktop {
+				font-size: .85em;
+			}
+
 			&::placeholder {
 				color: $light-grey;
 			}

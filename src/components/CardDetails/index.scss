@@ -16,14 +16,13 @@
 
   @include desktop {
     min-height: auto;
+    max-width: 1366px;
     margin-top: 2rem;
     padding: 4rem 0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
-    background-color: $darker-blue;
     position: relative;
     display: flex;
-    max-width: 1366px;
     gap: 1rem;
     justify-content: center;
 
@@ -35,23 +34,21 @@
   }
 
   @include tablet {
+    min-height: auto;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
     position: relative;
     display: flex;
-    gap: 2rem;
     justify-content: center;
-    align-items: center;
-    background-color: transparent;
+    max-width: 1200px;
+    gap: 1rem;
 
-    &>div {
-      width: 100%;
+    &>div,
+    &>section {
+      width: 50%;
       min-height: auto;
     }
   }
-}
-
-.alert-delete-card {
-  position: absolute !important;
-  margin: 1rem;
-  z-index: 110;
-  width: 90% !important;
 }

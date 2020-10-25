@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./index.scss";
 
 import Layout from "components/_shared/Layout";
@@ -15,9 +15,10 @@ import { userLogout } from "state/auth/actions";
 import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
-import {} from "state/cards/services";
+import { ContextModal } from "hooks/useModal";
 
-const Profile = ({ history }) => {
+const Profile = () => {
+	const { showComponent, showModal } = useContext(ContextModal);
 	const { token, closeSession } = useAuth();
 
 	const deleteDataUser = () => {
@@ -45,7 +46,13 @@ const Profile = ({ history }) => {
 	}, [dataUser, dataFilterCards, dispatch]);
 
 	let optionsModal = [
-		{ title: "Editar perfil", fn: () => history.push("/edit-profile") },
+		{
+			title: "Editar perfil",
+			fn: () => {
+				showModal();
+				showComponent("edit-profile");
+			},
+		},
 		{ title: "Cerrar Sesion", fn: () => deleteDataUser() },
 	];
 
