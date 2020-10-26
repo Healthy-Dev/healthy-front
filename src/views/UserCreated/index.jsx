@@ -15,14 +15,10 @@ const UserCreated = () => {
 	const { startSession } = useAuth();
 
 	const dispatch = useDispatch();
-	const { errorMessage, messageWarning, warning, data, error } = useSelector((state) =>
-		VerifySelector(state),
-	);
+	const { errorMessage, data, error } = useSelector((state) => VerifySelector(state));
 
 	const {
 		data: dataResendVerification,
-		warning: warningResendVerification,
-		messageWarning: messageWarningResendVerification,
 		error: errorResendVerification,
 		errorMessage: messageErrorWarningResendVerification,
 	} = useSelector((state) => ResendVerificationSelector(state));
@@ -61,10 +57,8 @@ const UserCreated = () => {
 	}
 
 	function start() {
-		history.replace("/");
+		history.push("/");
 	}
-
-	console.log(dataResendVerification);
 
 	return (
 		<div className="user-created-container">
@@ -74,8 +68,6 @@ const UserCreated = () => {
 					<p>
 						{dataResendVerification
 							? dataResendVerification?.message
-							: warningResendVerification
-							? messageWarningResendVerification
 							: errorResendVerification
 							? messageErrorWarningResendVerification
 							: "Confirma tu cuenta desde tu email"}
@@ -83,30 +75,20 @@ const UserCreated = () => {
 				) : (
 					error && errorMessage
 				)}
-				{warning ? (
-					<>
-						<p>{messageWarning}</p>
-						<Button onClick={() => history.push("/login")}>Iniciar Sesion</Button>
-					</>
-				) : warningResendVerification ? (
-					<>
-						<Button onClick={() => history.push("/login")}>Iniciar Sesion</Button>
-					</>
-				) : (
-					!data && (
-						<section>
-							<input
-								type="email"
-								required
-								name="email"
-								placeholder="Ingrese su email"
-								onChange={handleChange}
-								value={email.value}
-							/>
-							{email.error && <p className="error">{email?.error}</p>}
-							<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
-						</section>
-					)
+
+				{!data && (
+					<section>
+						<input
+							type="email"
+							required
+							name="email"
+							placeholder="Ingrese su email"
+							onChange={handleChange}
+							value={email.value}
+						/>
+						{email.error && <p className="error">{email?.error}</p>}
+						<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
+					</section>
 				)}
 			</div>
 			{data && <Button onClick={start}>Continuar</Button>}

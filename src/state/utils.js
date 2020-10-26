@@ -63,7 +63,7 @@ export const makeWorker = (service, actions) => {
 				} else yield put(actions.fail({ data: data, response: response }));
 				break;
 			case 409:
-				yield put(actions.warning({ data: data, response: response }));
+				yield put(actions.fail({ data: data, response: response }));
 				break;
 			default:
 				yield put(actions.fail({ data: data, reponse: response }));
