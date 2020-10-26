@@ -35,7 +35,6 @@ const RegisterView = ({ history }) => {
 
 	useEffect(() => {
 		if (data) {
-			console.log(data);
 			setTimeout(() => history.replace("/activate"), 2500);
 		}
 	}, [data]); //eslint-disable-line
