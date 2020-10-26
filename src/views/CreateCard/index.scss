@@ -2,6 +2,7 @@
 
 .create-card-container {
   width: 100%;
+  min-height: 100vh;
   box-shadow: 0 0 10px rgba(7, 22, 65, 0.842);
   padding: $s1;
   font-family: $font-plain;
@@ -10,10 +11,12 @@
 
   @include desktop {
     padding: $s1 $s2;
+    min-height: auto;
   }
 
   @include tablet {
     padding: $s1 $s2;
+    min-height: auto;
   }
 
   h1 {
