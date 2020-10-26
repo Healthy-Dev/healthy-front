@@ -73,7 +73,9 @@ const Profile = () => {
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
 				{loadingCards && <Loading />}
-				<h2 className="subtitle">Mis Tarjetas</h2>
+				<h2 className="subtitle">
+					{!dataFilterCards?.lenght ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
+				</h2>
 				{dataFilterCards && <CardsUser data={dataFilterCards} />}
 			</div>
 		</Layout>
