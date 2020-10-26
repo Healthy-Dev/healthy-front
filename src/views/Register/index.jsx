@@ -15,19 +15,30 @@ import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
 	const { isAuth } = useAuth();
-	const { loading, errorMessage, error } = useSelector((state) =>
-		RegisterSelector(state),
-	);
+	const {
+		loading,
+		errorMessage,
+		error,
+		data,
+		warning,
+		messageWarning,
+	} = useSelector((state) => RegisterSelector(state));
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (isAuth) history.replace("/");
 	}, [isAuth]); //eslint-disable-line
 
-	function sendFormRegister(data) {
-		dispatch(requestRegister(data));
-		setTimeout(() => history.replace("/activate"), 2500);
+	function sendFormRegister(dataUser) {
+		dispatch(requestRegister(dataUser));
 	}
+
+	useEffect(() => {
+		if (data) {
+			console.log(data);
+			setTimeout(() => history.replace("/activate"), 2500);
+		}
+	}, [data]); //eslint-disable-line
 
 	return (
 		<div className="register-container">
@@ -35,6 +46,11 @@ const RegisterView = ({ history }) => {
 				{error && errorMessage && (
 					<Alert showButtonClose error>
 						{errorMessage && errorMessage}
+					</Alert>
+				)}
+				{warning && messageWarning && (
+					<Alert showButtonClose error>
+						{messageWarning && messageWarning}
 					</Alert>
 				)}
 				<div className="desktop-title-wrapper">

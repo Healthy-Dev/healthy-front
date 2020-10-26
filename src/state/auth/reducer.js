@@ -66,7 +66,16 @@ const reducer = generalStatus.createReducer(
 				errorMessage: payload.data.message,
 			},
 		}),
-
+		[types.REGISTER_WARNING]: (state, { payload }) => ({
+			...state,
+			register: {
+				loading: false,
+				error: true,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
+			},
+		}),
 		[types.VERIFY_REQUEST]: (state) => ({
 			...state,
 			verify: {
