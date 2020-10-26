@@ -37,7 +37,7 @@ const UserCreated = () => {
 		}
 
 		if (dataResendVerification || data) {
-			setEmail({ value: "" });
+			setEmail({ email: "" });
 		}
 		// eslint-disable-next-line
 	}, [isTokenFromEmail, token, dispatch, dataResendVerification]);
@@ -48,7 +48,7 @@ const UserCreated = () => {
 	function reSendVeirfy() {
 		history.replace("/activate");
 		if (!email?.error) {
-			dispatch(requestResendVerification({ email: email.value }));
+			dispatch(requestResendVerification({ email: email.email }));
 		}
 	}
 
@@ -56,7 +56,7 @@ const UserCreated = () => {
 		if (!EMAIL_FORMAT.test(e.target.value)) {
 			setEmail({ error: "Ingrese un email valido" });
 		} else {
-			setEmail({ value: e.target.value });
+			setEmail({ [e.target.name]: e.target.value });
 		}
 	}
 
@@ -93,17 +93,20 @@ const UserCreated = () => {
 						<Button onClick={() => history.push("/login")}>Iniciar Sesion</Button>
 					</>
 				) : (
-					<section>
-						<input
-							type="email"
-							required
-							placeholder="Ingrese su email"
-							onChange={handleChange}
-							value={email.value}
-						/>
-						{email.error && <p className="error">{email?.error}</p>}
-						<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
-					</section>
+					!data && (
+						<section>
+							<input
+								type="email"
+								required
+								name="email"
+								placeholder="Ingrese su email"
+								onChange={handleChange}
+								value={email.value}
+							/>
+							{email.error && <p className="error">{email?.error}</p>}
+							<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
+						</section>
+					)
 				)}
 			</div>
 			{data && <Button onClick={start}>Continuar</Button>}
