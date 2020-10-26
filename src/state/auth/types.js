@@ -14,3 +14,7 @@ export const VERIFY_REQUEST = authDuck.defineType("VERIFY_REQUEST");
 export const VERIFY_SUCCESS = authDuck.defineType("VERIFY_SUCCESS");
 export const VERIFY_FAILURE = authDuck.defineType("VERIFY_FAILURE");
 export const VERIFY_WARNING = authDuck.defineType("VERIFY_WARNING");
+
+export const RESEND_VERIFY_REQUEST = authDuck.defineType("RESEND_VERIFY_REQUEST");
+export const RESEND_VERIFY_SUCCESS = authDuck.defineType("RESEND_VERIFY_SUCCESS");
+export const RESEND_VERIFY_FAILURE = authDuck.defineType("RESEND_VERIFY_FAILURE");

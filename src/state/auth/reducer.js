@@ -6,6 +6,7 @@ export const initialState = {
 	...makeReducer("login"),
 	...makeReducer("register"),
 	...makeReducer("verify"),
+	...makeReducer("resendVerification"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -98,6 +99,31 @@ const reducer = generalStatus.createReducer(
 				warning: true,
 				data: null,
 				messageWarning: payload.data?.message,
+			},
+		}),
+
+		[types.RESEND_VERIFY_REQUEST]: (state) => ({
+			...state,
+			resendVerification: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.RESEND_VERIFY_SUCCESS]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.RESEND_VERIFY_FAILURE]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMessage: payload.data?.message,
 			},
 		}),
 	},
