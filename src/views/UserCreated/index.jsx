@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // Styles
 import "./index.scss";
 import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { VerifySelector } from "state/auth/selectors";
-import { requestVerify } from "state/auth/actions";
+import { ResendVerificationSelector, VerifySelector } from "state/auth/selectors";
+import { requestResendVerification, requestVerify } from "state/auth/actions";
 
 import Button from "components/_shared/Button";
 import useAuth from "hooks/useAuth";
@@ -19,35 +19,62 @@ const UserCreated = () => {
 		VerifySelector(state),
 	);
 
-	const isActiveAccount = search.includes("token");
+	const { data: dataResendVerification } = useSelector((state) =>
+		ResendVerificationSelector(state),
+	);
+
+	const isTokenFromEmail = search.includes("token");
 	const token = search.replace("?token=", "");
 
 	useEffect(() => {
-		if (isActiveAccount) {
+		if (isTokenFromEmail) {
 			dispatch(requestVerify({ token }));
 			if (data) startSession(token);
-			//verificar cuenta
 		}
-		//eslint-disable-next-line
-	}, [isActiveAccount, token, dispatch]);
+		// eslint-disable-next-line
+	}, [isTokenFromEmail, token, dispatch]);
+
+	const [email, setEmail] = useState({});
+	const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
 	function reSendVeirfy() {
-		//todo reenviar verificacion
-		console.log("volver a enviar verificacion");
+		if (!email?.error) {
+			const sendEmail = { email: email.value };
+			dispatch(requestResendVerification({ email: sendEmail }));
+		}
+	}
+
+	function handleChange(e) {
+		if (!EMAIL_FORMAT.test(e.target.value)) {
+			setEmail({ error: "Ingrese un email valido" });
+		} else {
+			setEmail({ value: e.target.value });
+		}
 	}
 
 	function start() {
 		history.replace("/");
 	}
 
+	console.log(dataResendVerification);
+
 	return (
 		<div className="user-created-container">
 			<p className="user-created">¡Tu usuario ya fue creado!</p>
 			<div className="user-created-confirm">
-				{!isActiveAccount && <p>Confirma tu cuenta desde tu email</p>}
+				{!isTokenFromEmail && <p>Confirma tu cuenta desde tu email</p>}
 				{error && (
 					<>
 						<p>{errorMessage}</p>
+						<section>
+							<input
+								type="email"
+								required
+								placeholder="Ingrese su email"
+								onChange={handleChange}
+							/>
+							{email.error && <p className="error">{email?.error}</p>}
+						</section>
 						<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
 					</>
 				)}

@@ -3,7 +3,7 @@
 .user-created-container {
 	position: relative;
 	display: flex;
-	min-height: 100vh;
+	height: 100vh;
 	width: 100vw;
 	flex-direction: column;
 	align-items: center;
@@ -15,34 +15,61 @@
 	background-image: linear-gradient(to bottom,
 			rgba(4, 26, 47, 0),
 			rgba(4, 26, 47, 0),
-			rgba(4, 26, 47, 0.4),
-			rgba(4, 26, 47, 0.815),
+			rgba(4, 26, 47, 0.548),
+			rgba(4, 26, 47, 0.76),
+			rgba(4, 26, 47, 0.897),
 			rgb(4, 26, 47)),
 		url("../../assets/img/success.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 
-	button {
-		max-width: 300px;
+	button,
+	section {
+		max-width: 350px;
+		margin: $s-1 auto;
 	}
 
 	.user-created {
 		font-weight: 700;
-		font-size: $s1 + 5;
-		margin-top: 250px;
-		margin-bottom: $s1;
+		margin-top: 150px;
+		margin-bottom: $s0;
+		font-size: $s1;
+
+		@include desktop {
+			font-size: $s3;
+		}
+
+		@include tablet {
+			font-size: $s1;
+		}
 	}
 
 	.user-created-confirm {
 		font-weight: 400;
 		font-size: $s0;
 		text-align: center;
-		padding: 0 2rem;
+		max-width: 500px;
 
 		p {
 			color: #e2e2e2;
-			margin-bottom: 1rem;
+			margin-bottom: 50px;
+		}
+
+		input {
+			width: 100%;
+			border-radius: $radius-1;
+			font-size: $s0;
+			background-color: $medium-grey;
+			border: 2px solid #807f7f;
+			color: $ivory;
+			padding: $s0;
+			text-align: center;
+		}
+
+		.error {
+			color: $red;
+			margin-top: $s-1;
 		}
 	}
 

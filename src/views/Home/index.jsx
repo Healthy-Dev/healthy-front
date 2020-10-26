@@ -46,9 +46,9 @@ const HomeView = () => {
 							</div>
 						</>
 					)}
+					<IconPlus />
 				</Layout>
 			)}
-			<IconPlus />
 		</>
 	);
 };
