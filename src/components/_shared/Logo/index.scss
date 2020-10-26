@@ -9,6 +9,10 @@
 	background-color: #03111f;
 	box-shadow: 0 2px 7px rgba(7, 5, 37, 0.986);
 
+	img {
+		width: 200px;
+	}
+
 	@include desktop {
 		border-bottom-left-radius: 20px;
 		height: 55px;

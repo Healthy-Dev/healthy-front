@@ -35,13 +35,15 @@ const HomeView = () => {
 						<Loading />
 					) : (
 						<>
-							<div className="logo-home">
-								<NavHome />
-							</div>
 							<div className="presentation">
 								<img src={Imagen} alt="presentation" />
 								<h2>Solo diviertete!</h2>
 							</div>
+
+							<div className="logo-home">
+								<NavHome />
+							</div>
+
 							<div className="content">
 								{data &&
 									data.map(({ photo, title, id }) => (

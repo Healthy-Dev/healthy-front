@@ -1,14 +1,23 @@
 @import "theme";
 
 .logo-home {
+	width: 100%;
+	height: 75px;
+	background: $darker-blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		width: 200px;
+	}
+
 	@include desktop {
 		display: none;
-		border: 1px solid red;
 	}
 
 	@include tablet {
 		display: none;
-		border: 1px solid red;
 	}
 }
 
