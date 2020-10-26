@@ -5,6 +5,7 @@ import { makeReducer } from "../utils";
 export const initialState = {
 	...makeReducer("login"),
 	...makeReducer("register"),
+	...makeReducer("verify"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -62,6 +63,41 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 				errorMessage: payload.data.message,
+			},
+		}),
+
+		[types.VERIFY_REQUEST]: (state) => ({
+			...state,
+			verify: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.VERIFY_SUCCESS]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.VERIFY_FAILURE]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMessage: payload.data?.message,
+			},
+		}),
+		[types.VERIFY_WARNING]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: false,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
 			},
 		}),
 	},

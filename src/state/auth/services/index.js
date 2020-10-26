@@ -5,3 +5,6 @@ export const postLogin = ({ payload }) =>
 
 export const postRegister = ({ payload }) =>
 	fakeHttpModule.post("v1/auth/signup", null, payload, TYPES.json);
+
+export const verify = ({ payload: { token } }) =>
+	fakeHttpModule.post(`v1/auth/verify/?token=${token}`, undefined, undefined, TYPES.json);

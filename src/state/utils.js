@@ -60,7 +60,10 @@ export const makeWorker = (service, actions) => {
 					yield put(
 						actions.retry({ ...payload, retry: payload?.retry ? payload.retry + 1 : 1 }),
 					);
-				} else yield put(actions.fail({ data: "token caducado" }));
+				} else yield put(actions.fail({ data: data, response: response }));
+				break;
+			case 409:
+				yield put(actions.warning({ data: data, response: response }));
 				break;
 			default:
 				yield put(actions.fail({ data: data, reponse: response }));

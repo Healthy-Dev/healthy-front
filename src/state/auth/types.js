@@ -9,3 +9,8 @@ export const LOGIN_FAILURE = authDuck.defineType("LOGIN_FAILURE");
 export const REGISTER_REQUEST = authDuck.defineType("REGISTER_REQUEST");
 export const REGISTER_SUCCESS = authDuck.defineType("REGISTER_SUCCESS");
 export const REGISTER_FAILURE = authDuck.defineType("REGISTER_FAILURE");
+
+export const VERIFY_REQUEST = authDuck.defineType("VERIFY_REQUEST");
+export const VERIFY_SUCCESS = authDuck.defineType("VERIFY_SUCCESS");
+export const VERIFY_FAILURE = authDuck.defineType("VERIFY_FAILURE");
+export const VERIFY_WARNING = authDuck.defineType("VERIFY_WARNING");
