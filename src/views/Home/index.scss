@@ -1,5 +1,17 @@
 @import "theme";
 
+.logo-home {
+	@include desktop {
+		display: none;
+		border: 1px solid red;
+	}
+
+	@include tablet {
+		display: none;
+		border: 1px solid red;
+	}
+}
+
 .content {
 	min-height: 100vh;
 	display: grid;

@@ -2,18 +2,20 @@
 
 .nav {
 	width: 100%;
-	min-height: 60px;
+	height: 75px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: #03111f;
-	box-shadow: 0 2px 7px rgba(0, 0, 0, .7);
+	box-shadow: 0 2px 7px rgba(7, 5, 37, 0.986);
 
 	@include desktop {
-		border-bottom-left-radius: 35px;
+		border-bottom-left-radius: 20px;
+		height: 55px;
 	}
 
 	@include tablet {
-		border-bottom-left-radius: 35px;
+		height: 55px;
+		border-bottom-left-radius: 20px;
 	}
 }

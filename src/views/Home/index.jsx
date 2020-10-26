@@ -7,6 +7,7 @@ import Loading from "components/_shared/Loading";
 import Onboarding from "views/Onboarding";
 import Layout from "components/_shared/Layout";
 import IconPlus from "components/ButtonAdd";
+import NavHome from "components/_shared/Logo";
 
 import useAuth from "hooks/useAuth";
 // Redux
@@ -34,6 +35,9 @@ const HomeView = () => {
 						<Loading />
 					) : (
 						<>
+							<div className="logo-home">
+								<NavHome />
+							</div>
 							<div className="presentation">
 								<img src={Imagen} alt="presentation" />
 								<h2>Solo diviertete!</h2>

@@ -67,6 +67,7 @@
 
 .aside {
   width: 100%;
+  display: none;
 }
 
 .main {
@@ -118,6 +119,7 @@
   }
 
   .aside {
+    display: block;
     position: absolute;
     grid-area: aside;
     width: 300px;
@@ -149,12 +151,7 @@
     padding-top: 2rem;
     gap: 3.5rem;
 
-    button:nth-child(4) {
-      position: absolute;
-      bottom: 15%;
-    }
-
-    .logo-simple {
+    button:nth-child(3) {
       position: absolute;
       bottom: 5%;
     }
@@ -166,6 +163,7 @@
 
 @include tablet {
   .aside {
+    display: block;
     width: 200px;
     height: 100vh;
     position: absolute;
@@ -200,12 +198,7 @@
     padding-top: 2rem;
     gap: 3.5rem;
 
-    button:nth-child(4) {
-      position: absolute;
-      bottom: 15%;
-    }
-
-    .logo-simple {
+    button:nth-child(3) {
       position: absolute;
       bottom: 5%;
     }

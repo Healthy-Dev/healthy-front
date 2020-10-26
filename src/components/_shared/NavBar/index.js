@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as HomeHeart } from "assets/icons/home.svg";
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
-import { ReactComponent as LogoIcon } from "assets/icons/logo-simple.svg";
 // import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
 
 const NavBar = ({ onClick }) => {
@@ -33,7 +32,6 @@ const NavBar = ({ onClick }) => {
 					</Link>
 				</button>
 			))}
-			<LogoIcon className="logo-simple nav-bar-button nav-bar-icons" />
 		</nav>
 	);
 };
