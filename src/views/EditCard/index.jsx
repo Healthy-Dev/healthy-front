@@ -14,8 +14,8 @@ import useAuth from "hooks/useAuth";
 import { useContext } from "react";
 import { ContextModal } from "hooks/useModal";
 
-const EditCard = ({ history }) => {
-	const { id, extra: state } = useContext(ContextModal);
+const EditCard = () => {
+	const { id, extra: state, hiddenModal } = useContext(ContextModal);
 	const { token } = useAuth();
 	const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const EditCard = ({ history }) => {
 	function updateCard(payload) {
 		dispatch(requestEditCard({ cardId: id, token, payload }));
 		setTimeout(() => {
-			history.replace("/");
+			hiddenModal();
 		}, 3000);
 	}
 

@@ -78,7 +78,7 @@
     height: 300px;
     width: 100%;
     position: relative;
-    margin: $s1 0;
+    margin: $s2 0;
 
     &::after {
       content: "";
@@ -95,9 +95,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.644);
+      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.89);
       border-radius: $radius-1;
-      border-bottom-right-radius: 150px;
+      // border-bottom-right-radius: 150px;
     }
 
     h2 {

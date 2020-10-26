@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./index.scss";
 import useAuth from "hooks/useAuth";
 
@@ -11,10 +11,13 @@ import Loading from "components/_shared/Loading";
 import Alert from "components/_shared/Alert";
 import TopNavbar from "components/_shared/TopNavbar";
 
-const EditProfile = ({ history }) => {
+import { ContextModal } from "hooks/useModal";
+
+const EditProfile = () => {
+	const { hiddenModal } = useContext(ContextModal);
 	const { token } = useAuth();
 	const dispatch = useDispatch();
-	const { data, loading, error } = useSelector((state) => UserSelector(state));
+	const { data, loading } = useSelector((state) => UserSelector(state));
 	const {
 		data: updateUserData,
 		loading: updateUserLoading,
@@ -27,19 +30,16 @@ const EditProfile = ({ history }) => {
 
 	function sendEditProfile(data) {
 		dispatch(updateUserRequest({ token, data }));
-		setTimeout(() => {
-			if (!error) history.replace("/profile");
-		}, 2000);
+		setTimeout(() => hiddenModal(), 2000);
 	}
-
-	console.log(updateUserData, updateUserLoading, updateUserError);
 
 	return (
 		<>
 			<TopNavbar title="Editar Perfil" />
 			<div className="editProfile">
-				{loading && <Loading />}
 				{updateUserData && <Alert success>{updateUserData.message}</Alert>}
+				{updateUserError && <Alert error>No se pudo actualizar tus datos</Alert>}
+				{loading && <Loading />}
 				{data && (
 					<EditProfileForm
 						loading={updateUserLoading}
