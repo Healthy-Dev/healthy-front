@@ -9,6 +9,10 @@ export const postRegister = ({ payload }) =>
 export const verify = ({ payload: { token } }) =>
 	fakeHttpModule.post(`v1/auth/verify/?token=${token}`, undefined, undefined, TYPES.json);
 
-export const resendVerification = ({ payload: { email } }) => {
-	return fakeHttpModule.get("v1/auth/resend-verification", undefined, email, TYPES.json);
-};
+export const resendVerification = ({ payload: { email } }) =>
+	fakeHttpModule.get(
+		`v1/auth/resend-verification/${email}`,
+		undefined,
+		undefined,
+		TYPES.json,
+	);

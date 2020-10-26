@@ -26,3 +26,7 @@ export const successResendVerification = authDuck.createAction(
 export const failureResendVerification = authDuck.createAction(
 	types.RESEND_VERIFY_FAILURE,
 );
+
+export const warningResendVerification = authDuck.createAction(
+	types.RESEND_VERIFY_WARNING,
+);

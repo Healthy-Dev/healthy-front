@@ -9,6 +9,7 @@ function* watchResendVerification() {
 		success: actions.successResendVerification,
 		fail: actions.failureResendVerification,
 		retry: actions.requestResendVerification,
+		warning: actions.warningResendVerification,
 	});
 	yield takeLatest(types.RESEND_VERIFY_REQUEST, workerResendVerification);
 }

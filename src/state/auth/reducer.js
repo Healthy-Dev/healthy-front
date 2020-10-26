@@ -110,7 +110,6 @@ const reducer = generalStatus.createReducer(
 				messageWarning: payload.data?.message,
 			},
 		}),
-
 		[types.RESEND_VERIFY_REQUEST]: (state) => ({
 			...state,
 			resendVerification: {
@@ -133,6 +132,16 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 				errorMessage: payload.data?.message,
+			},
+		}),
+		[types.RESEND_VERIFY_WARNING]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: false,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
 			},
 		}),
 	},

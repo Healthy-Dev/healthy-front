@@ -19,9 +19,13 @@ const UserCreated = () => {
 		VerifySelector(state),
 	);
 
-	const { data: dataResendVerification } = useSelector((state) =>
-		ResendVerificationSelector(state),
-	);
+	const {
+		data: dataResendVerification,
+		warning: warningResendVerification,
+		messageWarning: messageWarningResendVerification,
+		error: errorResendVerification,
+		errorMessage: messageErrorWarningResendVerification,
+	} = useSelector((state) => ResendVerificationSelector(state));
 
 	const isTokenFromEmail = search.includes("token");
 	const token = search.replace("?token=", "");
@@ -31,16 +35,20 @@ const UserCreated = () => {
 			dispatch(requestVerify({ token }));
 			if (data) startSession(token);
 		}
+
+		if (dataResendVerification || data) {
+			setEmail({ value: "" });
+		}
 		// eslint-disable-next-line
-	}, [isTokenFromEmail, token, dispatch]);
+	}, [isTokenFromEmail, token, dispatch, dataResendVerification]);
 
 	const [email, setEmail] = useState({});
 	const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
 	function reSendVeirfy() {
+		history.replace("/activate");
 		if (!email?.error) {
-			const sendEmail = { email: email.value };
-			dispatch(requestResendVerification({ email: sendEmail }));
+			dispatch(requestResendVerification({ email: email.value }));
 		}
 	}
 
@@ -62,27 +70,40 @@ const UserCreated = () => {
 		<div className="user-created-container">
 			<p className="user-created">¡Tu usuario ya fue creado!</p>
 			<div className="user-created-confirm">
-				{!isTokenFromEmail && <p>Confirma tu cuenta desde tu email</p>}
-				{error && (
-					<>
-						<p>{errorMessage}</p>
-						<section>
-							<input
-								type="email"
-								required
-								placeholder="Ingrese su email"
-								onChange={handleChange}
-							/>
-							{email.error && <p className="error">{email?.error}</p>}
-						</section>
-						<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
-					</>
+				{!isTokenFromEmail ? (
+					<p>
+						{dataResendVerification
+							? dataResendVerification?.message
+							: warningResendVerification
+							? messageWarningResendVerification
+							: errorResendVerification
+							? messageErrorWarningResendVerification
+							: "Confirma tu cuenta desde tu email"}
+					</p>
+				) : (
+					error && errorMessage
 				)}
-				{warning && (
+				{warning ? (
 					<>
 						<p>{messageWarning}</p>
-						<Button onClick={start}>Continuar</Button>
+						<Button onClick={() => history.push("/login")}>Iniciar Sesion</Button>
 					</>
+				) : warningResendVerification ? (
+					<>
+						<Button onClick={() => history.push("/login")}>Iniciar Sesion</Button>
+					</>
+				) : (
+					<section>
+						<input
+							type="email"
+							required
+							placeholder="Ingrese su email"
+							onChange={handleChange}
+							value={email.value}
+						/>
+						{email.error && <p className="error">{email?.error}</p>}
+						<Button onClick={reSendVeirfy}>Reenviar Verificación</Button>
+					</section>
 				)}
 			</div>
 			{data && <Button onClick={start}>Continuar</Button>}
