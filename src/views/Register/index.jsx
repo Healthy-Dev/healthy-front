@@ -14,22 +14,19 @@ import "./index.scss";
 import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
-	const { startSession, isAuth } = useAuth();
-	const { data, loading, errorMessage, error } = useSelector((state) =>
+	const { isAuth } = useAuth();
+	const { loading, errorMessage, error } = useSelector((state) =>
 		RegisterSelector(state),
 	);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (data) {
-			startSession(data.accessToken);
-			history.replace("/");
-		}
 		if (isAuth) history.replace("/");
-	}, [data, isAuth]); //eslint-disable-line
+	}, [isAuth]); //eslint-disable-line
 
 	function sendFormRegister(data) {
 		dispatch(requestRegister(data));
+		setTimeout(() => history.replace("/activate"), 2500);
 	}
 
 	return (

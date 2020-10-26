@@ -12,13 +12,6 @@ import CreateCard from "views/CreateCard";
 const Layout = ({ children, title }) => {
 	const { isModalOpen, hiddenModal, id, component } = useContext(ContextModal);
 
-	// const renderComponet = {
-	// 	editCard: () => <EditCard id={id} />,
-	// 	addCard: () => <CreateCard id={null} />,
-	// 	editProfile: () => <EditProfile id={id} />,
-	// };
-
-	console.log(component, isModalOpen);
 	return (
 		<div className="layout">
 			<section className="aside">

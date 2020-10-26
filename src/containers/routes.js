@@ -20,7 +20,7 @@ export default [
 		auth: false,
 	},
 	{
-		path: "/usercreated",
+		path: "/activate",
 		component: UserCreated,
 		exact: true,
 	},
