@@ -1,5 +1,4 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestCreateCard } from "state/cards/actions";
@@ -11,16 +10,17 @@ import TopNavbar from "components/_shared/TopNavbar";
 // Styles
 import "./index.scss";
 import useAuth from "hooks/useAuth";
+import { ContextModal } from "hooks/useModal";
 
 const CreateCardView = () => {
-	const history = useHistory();
+	const { hiddenModal } = useContext(ContextModal);
 	const dispatch = useDispatch();
-	const { error, loading } = useSelector((state) => CreateCardSelector(state));
+	const { data, error, loading } = useSelector((state) => CreateCardSelector(state));
 	const { token } = useAuth();
 
 	function createCard(data) {
 		dispatch(requestCreateCard({ token, data }));
-		setTimeout(() => history.replace("/"), 3500);
+		setTimeout(() => hiddenModal(), 3500);
 	}
 
 	return (
@@ -29,7 +29,12 @@ const CreateCardView = () => {
 			<div className="create-card-container">
 				{error && (
 					<Alert showButtonClose error>
-						No se pudo crear su tarjeta, Vulve a intentelo mas tarde!
+						No se pudo crear su tarjeta, Vuelve a intentelo mas tarde!
+					</Alert>
+				)}
+				{data && (
+					<Alert showButtonClose success>
+						Se creo tu tarjeta correctamente!
 					</Alert>
 				)}
 

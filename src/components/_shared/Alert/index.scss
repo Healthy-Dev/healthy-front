@@ -1,6 +1,6 @@
 @import "theme";
 
-@keyframes down-alert {
+@keyframes downAlert {
   from {
     margin-top: -100%;
   }
@@ -12,14 +12,15 @@
 
 .alert {
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 1.5rem;
   font-size: $s0;
   border-radius: $radius0;
   text-align: center;
   position: absolute;
-  top: 1rem;
-  width: 90%;
-  animation: down-alert .5s ease;
+  top: 0;
+  left: 0;
+  z-index: 111;
+  animation: downAlert .5s ease;
 
   &__close {
     position: absolute;

@@ -5,6 +5,8 @@ import { makeReducer } from "../utils";
 export const initialState = {
 	...makeReducer("login"),
 	...makeReducer("register"),
+	...makeReducer("verify"),
+	...makeReducer("resendVerification"),
 };
 
 const reducer = generalStatus.createReducer(
@@ -62,6 +64,84 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 				errorMessage: payload.data.message,
+			},
+		}),
+		[types.REGISTER_WARNING]: (state, { payload }) => ({
+			...state,
+			register: {
+				loading: false,
+				error: true,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
+			},
+		}),
+		[types.VERIFY_REQUEST]: (state) => ({
+			...state,
+			verify: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.VERIFY_SUCCESS]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.VERIFY_FAILURE]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMessage: payload.data?.message,
+			},
+		}),
+		[types.VERIFY_WARNING]: (state, { payload }) => ({
+			...state,
+			verify: {
+				loading: false,
+				error: false,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
+			},
+		}),
+		[types.RESEND_VERIFY_REQUEST]: (state) => ({
+			...state,
+			resendVerification: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.RESEND_VERIFY_SUCCESS]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.RESEND_VERIFY_FAILURE]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMessage: payload.data?.message,
+			},
+		}),
+		[types.RESEND_VERIFY_WARNING]: (state, { payload }) => ({
+			...state,
+			resendVerification: {
+				loading: false,
+				error: false,
+				warning: true,
+				data: null,
+				messageWarning: payload.data?.message,
 			},
 		}),
 	},

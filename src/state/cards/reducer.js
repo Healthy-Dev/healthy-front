@@ -13,10 +13,27 @@ export const initialState = {
 	...makeReducer("deslikedCard"),
 	...makeReducer("filterCardsByCategory"),
 	...makeReducer("cardCategories"),
+	...makeReducer("filterByUserCreator"),
 };
 
 const reducer = generalStatus.createReducer(
 	{
+		[types.FILTER_CARDS_BY_USERCREATOR_REQUEST]: (state) => ({
+			...state,
+			filterByUserCreator: { loading: true, error: false },
+		}),
+		[types.FILTER_CARDS_BY_USERCREATOR_SUCCESS]: (state, { payload }) => ({
+			...state,
+			filterByUserCreator: {
+				loading: false,
+				error: false,
+				data: payload,
+			},
+		}),
+		[types.FILTER_CARDS_BY_USERCREATOR_FAIULRE]: (state) => ({
+			...state,
+			filterByUserCreator: { loading: false, error: true, data: null },
+		}),
 		[types.GET_CARD_REQUEST]: (state) => ({
 			...state,
 			getCard: { loading: true, error: false },

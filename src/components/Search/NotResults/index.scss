@@ -2,35 +2,34 @@
 
 .notresults {
   width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 0;
+  margin-top: 2rem;
   text-align: center;
 
   &__grid {
-    width: 120px;
-    height: 120px;
+    width: 150px;
     display: grid;
     margin: auto;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     justify-content: center;
     gap: $s0;
-    transform: translateY(-50%);
-    
+
     div {
       width: $s3;
       opacity: .3;
       height: $s3;
       background: $blue-300;
     }
+
     :nth-child(5) {
-      background : $green;
+      background: $green;
     }
   }
 
   &__text {
     color: $ivory;
+    width: 100%;
     font-size: $s0;
+    margin-top: 2rem;
   }
 }

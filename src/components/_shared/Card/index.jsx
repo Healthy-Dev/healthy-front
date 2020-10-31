@@ -1,17 +1,21 @@
 import React from "react";
 import "./index.scss";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Card = ({ img, title, id }) => {
+	const history = useHistory();
+
+	function handleClick() {
+		history.push(`/details/${id}`);
+	}
+
 	return (
-		<Link to={`/details/${id}`}>
-			<div className="card">
+		<div className="card" onClick={handleClick}>
+			<div>
 				<img src={img} alt="card" />
-				<div>
-					<h2>{title}</h2>
-				</div>
 			</div>
-		</Link>
+			<h2>{title}</h2>
+		</div>
 	);
 };
 

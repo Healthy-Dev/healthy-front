@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
 import MoreOptions from "components/_shared/MoreOptions";
+import { ContextModal } from "hooks/useModal";
 
 const CardContent = ({
 	photo,
@@ -16,8 +16,7 @@ const CardContent = ({
 	toggleModalConfirm,
 	isYourCard,
 }) => {
-	const history = useHistory();
-
+	const { showComponent, showModal, setID, setExtra } = useContext(ContextModal);
 	// Todo: [Crear una funcionalidad para reportar la tarjeta]
 	const editData = {
 		photo,
@@ -29,16 +28,28 @@ const CardContent = ({
 	};
 
 	let optionsModalCreator = [
-		{ title: "Editar", fn: () => history.push(`/edit-card/${id}`, editData) },
+		{
+			title: "Editar",
+			fn: () => {
+				showModal();
+				showComponent("edit-card");
+				setID(id);
+				setExtra(editData);
+			},
+		},
 		{ title: "Elimar", fn: () => toggleModalConfirm() },
 		{ title: "Reportar", fn: () => console.log("report") },
 	];
 
 	let optionsModalDefault = [{ title: "Reportar", fn: () => console.log("report") }];
 
+	function formatDate(createdAT) {
+		const date = new Date(createdAT);
+		return date.toDateString();
+	}
+
 	return (
 		<div className="card__content">
-			<h4 className="card__content--title">{title}</h4>
 			<section className="card__content--more">
 				<div className="card__content--more-img">
 					<img src={creatorInfo.profilePhoto} alt="profile" />
@@ -51,8 +62,13 @@ const CardContent = ({
 					/>
 				</div>
 			</section>
-			<p className="card__content--date">{createdAt}</p>
-			<p className="card__content--description">{description}</p>
+			<p className="card__content--date">{formatDate(createdAt)}</p>
+			<p className="card__content--description">
+				{description}{" "}
+				<a href={externalUrl} target="_blank" rel="noreferrer noopener">
+					Seguir leyendo.
+				</a>
+			</p>
 		</div>
 	);
 };

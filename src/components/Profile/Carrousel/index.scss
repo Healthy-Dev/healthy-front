@@ -3,28 +3,25 @@
 .carrousel {
   width: 100%;
   margin-top: $s1;
-  margin-bottom: $s2;
+  margin-bottom: $s0;
   position: relative;
   z-index: 10;
+  padding: $s0;
 
-  .card {
-    margin: 0 $s-1;
-    // width: 300px
-  }
+  &__cards {
+    // min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: $s2;
+    padding-bottom: $s1;
+    align-items: center;
 
-  &__scroll {
-    // display: flex;
-    // width: 100%;
-    // overflow: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
     }
-  }
 
-  h4 {
-    font-size: $s1 !important;
-    margin-bottom: $s-1;
-    color: $ivory;
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }

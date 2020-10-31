@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
+import { useParams } from "react-router-dom";
 import Card from "components/CardDetails";
 import Loading from "components/_shared/Loading";
 import Alert from "components/_shared/Alert";
@@ -20,12 +20,13 @@ import { UserSelector } from "state/user/selectors";
 import { DeleteCardSelector } from "state/cards/selectors";
 
 import useAuth from "hooks/useAuth";
+import Layout from "components/_shared/Layout";
 
 const CardDetailsView = () => {
 	const [isILiked, setILiked] = useState(false);
 	const dispatch = useDispatch();
-	const { cardId } = useParams();
 	const { token } = useAuth();
+	const { cardId } = useParams();
 
 	const {
 		data: cardData,
@@ -68,27 +69,29 @@ const CardDetailsView = () => {
 	};
 
 	return (
-		<div>
-			{cardError && <NotFound />}
-			{cardLoading && <Loading />}
-			{deleteCardError && (
-				<Alert error showButtonClose className="alert-delete-card">
-					No se pudo elimar!, Intentelo mas tarde
-				</Alert>
-			)}
+		<Layout title="Detalle de tarjeta">
+			<div className="card__detail">
+				{cardError && <NotFound />}
+				{cardLoading && <Loading />}
+				{deleteCardError && (
+					<Alert error showButtonClose className="alert-delete-card">
+						No se pudo elimar!, Intentelo mas tarde
+					</Alert>
+				)}
 
-			{cardData && (
-				<Card
-					data={cardData}
-					isYourCard={isYourCard}
-					deleteCard={deleteCard}
-					isILiked={isILiked}
-					likesCount={likesCount}
-					iLiked={iLiked}
-					disLiked={disLiked}
-				/>
-			)}
-		</div>
+				{cardData && (
+					<Card
+						data={cardData}
+						isYourCard={isYourCard}
+						deleteCard={deleteCard}
+						isILiked={isILiked}
+						likesCount={likesCount}
+						iLiked={iLiked}
+						disLiked={disLiked}
+					/>
+				)}
+			</div>
+		</Layout>
 	);
 };
 

@@ -2,17 +2,19 @@
 
 .CreateCardForm {
 	width: 100%;
-		
+
 	.input {
-		margin: $s0 0;
+		margin: $s1 0;
 		width: 100%;
-		
+
 		label {
 			font-size: $s0;
 			color: $ivory;
 		}
-	
-		input, textarea, .select  {
+
+		input,
+		textarea,
+		.select {
 			width: 100%;
 			border-radius: $radius-1;
 			font-family: $font-plain;
@@ -22,12 +24,16 @@
 			color: $ivory;
 			padding: $s-1;
 			margin-top: $s-2;
-			
-			&::placeholder { 
+
+			@include desktop {
+				font-size: .85em;
+			}
+
+			&::placeholder {
 				color: $light-grey;
 			}
 		}
-	
+
 		.tooltip {
 			display: inline-block;
 			position: relative;
@@ -37,7 +43,6 @@
 	}
 
 	.upload-form-container {
-		margin-top: $s1;
-		margin-bottom: $s2;
+		margin-bottom: $s1;
 	}
 }

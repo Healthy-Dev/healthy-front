@@ -8,15 +8,15 @@ const CardsSearch = ({ data, query }) => {
 			<h2 className="search__title">
 				Buscar: <span>{query}</span>
 			</h2>
-			<div className="search__cards">
-				{data.length === 0 ? (
-					<NotResults />
-				) : (
-					data.map(({ photo, title, id }) => (
+			{data.length === 0 ? (
+				<NotResults />
+			) : (
+				<div className="search__cards">
+					{data.map(({ photo, title, id }) => (
 						<Card img={photo} title={title} key={id} id={id} />
-					))
-				)}
-			</div>
+					))}
+				</div>
+			)}
 		</>
 	);
 };

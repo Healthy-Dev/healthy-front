@@ -18,7 +18,7 @@ const Card = ({
 	const [modalConfirm, setModalConfirm] = useState(false);
 
 	return (
-		<div className="card__detail">
+		<>
 			{modalConfirm && (
 				<ModalConfirmDelete
 					toggleModalConfirm={() => changeState(setModalConfirm)}
@@ -30,6 +30,7 @@ const Card = ({
 				photo={data.photo}
 				title={data.title}
 				id={data.id}
+				category={data.category.name}
 				likesCount={likesCount}
 				isILiked={isILiked}
 				iLiked={iLiked}
@@ -47,7 +48,7 @@ const Card = ({
 				toggleModalConfirm={() => changeState(setModalConfirm)}
 				isYourCard={isYourCard}
 			/>
-		</div>
+		</>
 	);
 };
 

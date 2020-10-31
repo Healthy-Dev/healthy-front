@@ -1,19 +1,40 @@
 @import "theme";
 
+.logo-home {
+	width: 100%;
+	height: 75px;
+	background: $darker-blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		width: 200px;
+	}
+
+	@include desktop {
+		display: none;
+	}
+
+	@include tablet {
+		display: none;
+	}
+}
+
 .content {
 	min-height: 100vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	gap: $s1 $s0;
 	background-color: $dark-blue;
-	padding: $s0;
-	padding-bottom: 5rem;
+	padding: $s2 $s0;
+	padding-bottom: 6rem;
+	grid-template-rows: masonry !important;
 
 	@include tablet {
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: $s2;
 		padding: $s2 0;
-
 	}
 
 	@include desktop {

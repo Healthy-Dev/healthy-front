@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.scss";
-import { useParams } from "react-router-dom";
 //import { useUserSession } from "hooks/useUserSession";
 
 import TopNavbar from "components/_shared/TopNavbar";
@@ -12,10 +11,11 @@ import { EditCardSelector } from "state/cards/selectors";
 import CardForm from "components/CardForm/";
 import Alert from "components/_shared/Alert";
 import useAuth from "hooks/useAuth";
+import { useContext } from "react";
+import { ContextModal } from "hooks/useModal";
 
-const EditCard = ({ history }) => {
-	const { state } = history.location;
-	const { id } = useParams();
+const EditCard = () => {
+	const { id, extra: state, hiddenModal } = useContext(ContextModal);
 	const { token } = useAuth();
 	const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const EditCard = ({ history }) => {
 	function updateCard(payload) {
 		dispatch(requestEditCard({ cardId: id, token, payload }));
 		setTimeout(() => {
-			history.replace("/");
+			hiddenModal();
 		}, 3000);
 	}
 

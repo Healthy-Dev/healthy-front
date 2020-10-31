@@ -7,11 +7,11 @@ const CountLikes = ({ likesCount, isILiked, iLiked, disLiked }) => {
 	const { animate, ref } = useAnimation();
 
 	function clickLike() {
-		animate();
 		if (isILiked) {
 			disLiked();
 		} else {
 			iLiked();
+			animate();
 		}
 	}
 

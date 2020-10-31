@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import { Switch } from "react-router-dom";
 import routes from "./routes";
-import Loading from "components/_shared/Loading";
-// Components
-import MultipleRoutes from "components/_shared/MultipleRoutes";
 
-const Search = () => (
+import MultipleRoutes from "components/_shared/MultipleRoutes";
+import Loading from "components/_shared/Loading";
+
+const User = () => (
 	<Suspense fallback={<Loading />}>
 		<Switch>
 			{routes.map((route, i) => (
@@ -15,4 +15,4 @@ const Search = () => (
 	</Suspense>
 );
 
-export default Search;
+export default User;

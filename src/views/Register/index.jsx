@@ -14,23 +14,30 @@ import "./index.scss";
 import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
-	const { startSession, isAuth } = useAuth();
-	const { data, loading, errorMessage, error } = useSelector((state) =>
-		RegisterSelector(state),
-	);
+	const { isAuth } = useAuth();
+	const {
+		loading,
+		errorMessage,
+		error,
+		data,
+		warning,
+		messageWarning,
+	} = useSelector((state) => RegisterSelector(state));
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (data) {
-			startSession(data.accessToken);
-			history.replace("/");
-		}
 		if (isAuth) history.replace("/");
-	}, [data, isAuth]); //eslint-disable-line
+	}, [isAuth]); //eslint-disable-line
 
-	function sendFormRegister(data) {
-		dispatch(requestRegister(data));
+	function sendFormRegister(dataUser) {
+		dispatch(requestRegister(dataUser));
 	}
+
+	useEffect(() => {
+		if (data) {
+			setTimeout(() => history.replace("/activate"), 2500);
+		}
+	}, [data]); //eslint-disable-line
 
 	return (
 		<div className="register-container">
@@ -38,6 +45,11 @@ const RegisterView = ({ history }) => {
 				{error && errorMessage && (
 					<Alert showButtonClose error>
 						{errorMessage && errorMessage}
+					</Alert>
+				)}
+				{warning && messageWarning && (
+					<Alert showButtonClose error>
+						{messageWarning && messageWarning}
 					</Alert>
 				)}
 				<div className="desktop-title-wrapper">

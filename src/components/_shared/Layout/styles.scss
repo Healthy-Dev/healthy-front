@@ -1,14 +1,73 @@
 @import "theme";
 
+@keyframes downModal {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translatey(0);
+  }
+}
+
 .layout {
   display: grid;
   grid-template-areas: "aside aside aside",
     "main main main",
-    "navbar navbar avbar";
+    "navbar navbar navbar";
+}
+
+.modals {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  background: #000000b6;
+  padding: 0;
+  top: 0;
+  left: 0;
+  z-index: 111111011;
+
+  @include desktop {
+    height: auto;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    overflow: hidden;
+  }
+
+  @include tablet {
+    height: auto;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    overflow: hidden;
+  }
+
+  &__content {
+    // min-height: 100vh;
+    width: 100%;
+    animation: downModal .33s ease;
+    background: $dark-blue;
+
+    @include desktop {
+      padding-bottom: 0;
+      max-width: 450px;
+    }
+
+    @include tablet {
+      padding-bottom: 0;
+      max-width: 400px;
+    }
+  }
 }
 
 .aside {
   width: 100%;
+  display: none;
 }
 
 .main {
@@ -20,7 +79,7 @@
     height: 300px;
     width: 100%;
     position: relative;
-    margin: $s1 0;
+    margin: $s2 0;
 
     &::after {
       content: "";
@@ -37,15 +96,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.644);
+      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.89);
       border-radius: $radius-1;
-      border-bottom-right-radius: 150px;
+      // border-bottom-right-radius: 150px;
     }
 
     h2 {
       position: absolute;
       width: 80%;
-      z-index: 6;
+      z-index: 2;
       bottom: 8%;
       left: 4%;
       color: $ivory;
@@ -56,26 +115,22 @@
 
 @include desktop {
   .layout {
-    grid-template-areas: "navbar main aside";
-    // "navbar main aside",
-    // "navbar main aside";
+    grid-template-areas: "navbar main main";
   }
 
   .aside {
+    display: block;
+    position: absolute;
     grid-area: aside;
     width: 300px;
-    height: 100vh;
-    position: fixed;
     top: 0;
     right: 0;
   }
 
   .main {
-    width: 70%;
+    width: 90vw;
     grid-area: main;
-    position: absolute;
-    left: 80px;
-    right: 300px;
+    margin-left: 80px;
     padding: $s1 $s3;
 
     .presentation {
@@ -96,12 +151,7 @@
     padding-top: 2rem;
     gap: 3.5rem;
 
-    button:nth-child(4) {
-      position: absolute;
-      bottom: 15%;
-    }
-
-    .logo-simple {
+    button:nth-child(3) {
       position: absolute;
       bottom: 5%;
     }
@@ -113,18 +163,17 @@
 
 @include tablet {
   .aside {
+    display: block;
     width: 200px;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
   }
 
   .main {
-    width: 75%;
-    position: absolute;
-    left: 80px;
-    right: 200px;
+    width: 90vw;
+    margin-left: 80px;
     padding: $s1 $s2;
 
     .presentation {
@@ -149,12 +198,7 @@
     padding-top: 2rem;
     gap: 3.5rem;
 
-    button:nth-child(4) {
-      position: absolute;
-      bottom: 15%;
-    }
-
-    .logo-simple {
+    button:nth-child(3) {
       position: absolute;
       bottom: 5%;
     }

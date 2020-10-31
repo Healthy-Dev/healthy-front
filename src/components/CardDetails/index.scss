@@ -2,14 +2,53 @@
 
 .card__detail {
   width: 100%;
-  min-height: 100vh;
-  background-color: $dark-blue;
-  overflow: hidden;
-}
+  max-width: 100vw;
 
-.alert-delete-card {
-  position: absolute !important;
-  margin: 1rem;
-  z-index: 110;
-  width: 90% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 11111100;
+  // overflow: hidden;
+  min-height: 100vh;
+  background-color: $darker-blue;
+
+
+  @include desktop {
+    min-height: auto;
+    max-width: 1366px;
+    margin-top: 2rem;
+    padding: 4rem 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    &>div,
+    &>section {
+      width: 50%;
+      min-height: auto;
+    }
+  }
+
+  @include tablet {
+    min-height: auto;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    gap: 1rem;
+
+    &>div,
+    &>section {
+      width: 50%;
+      min-height: auto;
+    }
+  }
 }

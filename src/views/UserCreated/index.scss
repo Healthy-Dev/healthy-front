@@ -1,56 +1,90 @@
 @import "theme";
 
 .user-created-container {
-  position: relative;
+	position: relative;
 	display: flex;
-	min-height: 100vh;
+	height: 100vh;
 	width: 100vw;
 	flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 	padding: $s0;
 	font-family: $font-plain;
 	background-color: $dark-blue;
 	color: $ivory;
-  background-image: linear-gradient(
-			to bottom,
+	background-image: linear-gradient(to bottom,
 			rgba(4, 26, 47, 0),
-      rgba(4, 26, 47, 0),
-      rgba(4, 26, 47, 0.4),
-			rgba(4, 26, 47, 0.5),
-			rgba(4, 26, 47, 0.75),
-			rgba(4, 26, 47, 0.99),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-      rgba(4, 26, 47, 1),
-      rgba(4, 26, 47, 1),
-      rgba(4, 26, 47, 1),
-      rgba(4, 26, 47, 1)
-		),
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0.548),
+			rgba(4, 26, 47, 0.76),
+			rgba(4, 26, 47, 0.897),
+			rgb(4, 26, 47)),
 		url("../../assets/img/success.png");
 	background-repeat: no-repeat;
-  background-size: contain;
-  
-  .user-created {
-    font-weight: 500;
-    font-size: $s1;
-    margin-top: 300px;
-    margin-bottom: $s-1;
-  }
-  .user-created-confirm {
-    font-weight: 400;
-    font-size: $s0;
-  }
-  h1 {
-    margin-top: $s4;
+	background-size: cover;
+	background-position: center;
+
+	button,
+	section {
+		max-width: 350px;
+		margin: $s-1 auto;
+	}
+
+	.user-created {
+		font-weight: 700;
+		margin-top: 150px;
+		margin-bottom: $s0;
+		font-size: $s1;
+
+		@include desktop {
+			font-size: $s3;
+		}
+
+		@include tablet {
+			font-size: $s1;
+		}
+	}
+
+	.user-created-confirm {
+		font-weight: 400;
+		font-size: $s0;
+		text-align: center;
+		max-width: 500px;
+
+		p {
+			color: #e2e2e2;
+			margin-bottom: 50px;
+		}
+
+		input {
+			width: 100%;
+			border-radius: $radius-1;
+			font-size: $s0;
+			background-color: $medium-grey;
+			border: 2px solid #807f7f;
+			color: $ivory;
+			padding: $s0;
+			text-align: center;
+		}
+
+		.error {
+			color: $red;
+			margin-top: $s-1;
+		}
+	}
+
+	h1 {
+		margin-top: $s4;
 		font-family: $font-title;
 		text-transform: uppercase;
-    text-shadow: 0px 0px 15px black;
-    font-size: $s1;
+		text-shadow: 0px 0px 15px black;
+		font-size: $s1;
+
 		.healthy {
 			font-weight: 700;
 			color: $title-green;
 		}
+
 		.dev {
 			font-weight: 400;
 		}

@@ -6,10 +6,24 @@ a {
 
 .card {
 	min-width: 150px;
-	height: 175px;
 	min-height: 200px;
-	padding: 0;
+	height: 230px;
 	position: relative;
+	box-shadow: 0 0 4px rgba(3, 17, 31, 0.685);
+
+	@include desktop {
+		height: 300px;
+		width: 250px;
+
+		&:hover img {
+			transform: scale(1.05);
+			transition: transform .5s ease;
+		}
+	}
+
+	@include tablet {
+		height: 275px;
+	}
 
 	&::after {
 		content: "";
@@ -20,26 +34,42 @@ a {
 		left: 0;
 		right: 0;
 		z-index: 5;
-		background: linear-gradient(to bottom, rgba(3, 17, 31, 0.685), transparent);
+		background: linear-gradient(to top, rgba(3, 17, 31, 0.719), transparent), linear-gradient(to top, rgba(3, 17, 31, 0.849), transparent);
 	}
 
-	img {
-		width: 100%;
+	&>div {
 		height: 100%;
-		object-fit: cover;
+		overflow: hidden;
 		border-radius: $radius-1;
+
+		img {
+			width: 100%;
+			overflow: hidden;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	h2 {
 		border-bottom-left-radius: $radius-1 - 2px;
 		border-bottom-right-radius: $radius-1 - 2px;
 		position: absolute;
+		z-index: 10;
 		bottom: 0;
-		width: 100%;
 		left: 0;
+		width: 100%;
 		font-size: $s-1;
-		padding: $s-1;
+		padding: $s0 $s-1;
 		color: $ivory;
-		background-color: $darker-blue;
+		font-weight: 400;
+		letter-spacing: .5px;
+
+		@include desktop {
+			font-size: $s0 - 1;
+		}
+
+		@include tablet {
+			font-size: $s-1;
+		}
 	}
 }

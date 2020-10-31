@@ -2,19 +2,30 @@
 
 .card__content {
   position: relative;
-  z-index: 50000;
-  margin-top: -105px;
-  padding: $s1;
+  z-index: 11;
+  transform: translateY(-50px);
+  padding: $s2;
+  background-color: $darker-blue;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 5px rgb(17, 18, 51);
 
-  &--title {
-    color: $ivory;
-    font-size: $s1;
-    letter-spacing: .4px;
-    font-weight: 500;
+  @include desktop {
+    max-width: 450px;
+    margin-top: 0;
+    box-shadow: none;
+    transform: translateY(0);
+    padding: $s1;
+  }
+
+  @include tablet {
+    margin-top: 0;
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgb(17, 18, 51);
+    border-radius: 10px;
+    margin-left: -5%;
   }
 
   &--more {
-    margin: $s0 0;
     width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -22,6 +33,7 @@
     grid-template-areas: "img user options"
       "img button options";
     align-items: center;
+    margin-bottom: 1rem;
 
     &-img {
       grid-area: img;
@@ -73,7 +85,11 @@
   &--description {
     margin-top: $s2;
     color: $ivory;
-    line-height: 1.35;
+    line-height: 1.50;
     letter-spacing: .5px;
+
+    a {
+      color: $green;
+    }
   }
 }
