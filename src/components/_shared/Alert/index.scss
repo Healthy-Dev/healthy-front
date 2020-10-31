@@ -1,12 +1,25 @@
 @import "theme";
 
+@keyframes down-alert {
+  from {
+    margin-top: -100%;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
 .alert {
   width: 100%;
   padding: 1rem 1.5rem;
   font-size: $s0;
   border-radius: $radius0;
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: 1rem;
+  width: 90%;
+  animation: down-alert .5s ease;
 
   &__close {
     position: absolute;

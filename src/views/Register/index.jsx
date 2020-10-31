@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import registerBackground from "assets/img/bg-register.png";
+import logoHealthy from "assets/icons/Logo-heatlhy.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,19 +34,23 @@ const RegisterView = ({ history }) => {
 
 	return (
 		<div className="register-container">
-			{error && errorMessage && (
-				<Alert showButtonClose error>
-					{errorMessage && errorMessage}
-				</Alert>
-			)}
-			<h1>
-				<span className="healthy">Healthy</span> <span className="dev">Dev</span>
-			</h1>
-			<h2 className="register-title">Registrate</h2>
-			<Register sendFormRegister={sendFormRegister} loading={loading} />
-			<Link to="/login" className="link">
-				Iniciar Sesion
-			</Link>
+			<div className="register-form">
+				{error && errorMessage && (
+					<Alert showButtonClose error>
+						{errorMessage && errorMessage}
+					</Alert>
+				)}
+				<div className="desktop-title-wrapper">
+					<h2 className="desktop-title">REGISTRO</h2>
+					<img className="desktop-logo" alt="logo" src={logoHealthy} />
+				</div>
+				<h1 className="title">
+					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
+				</h1>
+				<h2 className="register-title">Registrate</h2>
+				<Register sendFormRegister={sendFormRegister} loading={loading} />
+			</div>
+			<img src={registerBackground} className="register-img" alt="fondo" />
 		</div>
 	);
 };
