@@ -29,6 +29,10 @@ export const requestLikedCards = cardsDuck.createAction(types.LIKED_CARDS_REQUES
 export const successLikedCards = cardsDuck.createAction(types.LIKED_CARDS_SUCCESS);
 export const failureLikedCards = cardsDuck.createAction(types.LIKED_CARDS_FAILURE);
 
+export const requestDislikedCards = cardsDuck.createAction(types.DISLIKED_CARDS_REQUEST);
+export const successDislikedCards = cardsDuck.createAction(types.DISLIKED_CARDS_SUCCESS);
+export const failureDislikedCards = cardsDuck.createAction(types.DISLIKED_CARDS_FAILURE);
+
 export const requestCardsByCategory = cardsDuck.createAction(
 	types.FILTER_CARDS_BY_CATEGORY_REQUEST,
 );

@@ -19,8 +19,11 @@ export const getCardsSearch = ({ payload: query }) =>
 	fakeHttpModule.get(`v1/cards?search=${query}`, undefined);
 
 export const postlikes = ({ payload: { idCard, token } }) => {
-	return fakeHttpModule.post(`v1/cards/${idCard}/like`, token, undefined)
-}
+	return fakeHttpModule.post(`v1/cards/${idCard}/like`, token, undefined);
+};
+
+export const deleteLike = ({ payload: { idCard, token } }) =>
+	fakeHttpModule.delete(`v1/cards/${idCard}/like`, token);
 
 export const filterCardsByCategory = ({ payload: categoryId }) =>
 	fakeHttpModule.get(`v1/cards?categoryId=${categoryId}`, undefined);

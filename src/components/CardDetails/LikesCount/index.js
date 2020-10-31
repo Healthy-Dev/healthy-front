@@ -1,28 +1,26 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import "./index.scss";
-import { ReactComponent as IconLike } from "assets/icons/likes-heart.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { LikedCardsSelector } from "state/cards/selectors"
-import { requestLikedCards } from "state/cards/actions"
-import useAuth from "hooks/useAuth"
+import { ReactComponent as IconLike } from "assets/icons/heart.svg";
+import { useAnimation } from "./useAnimation";
 
-const CountLikes = ({ likesCount, id }) => {
-	const dispatch = useDispatch();
-	const { token } = useAuth();
-	const { data, loading, error } = useSelector((state) => LikedCardsSelector(state));
-	const [like, setLike] = useState(false);
+const CountLikes = ({ likesCount, isILiked, iLiked, disLiked }) => {
+	const { animate, ref } = useAnimation();
 
-	// TODO functionality likes
-	const liked = useCallback((idCard) => {
-		dispatch(requestLikedCards({ idCard: id, token }))
-
-		setLike((like) => !like);
-	}, [like]);
+	function clickLike() {
+		animate();
+		if (isILiked) {
+			disLiked();
+		} else {
+			iLiked();
+		}
+	}
 
 	return (
 		<div className="like">
-			<IconLike className={`like--icon ${like && "liked"}`} onClick={liked} />
-			<span className="like--count">{!like ? likesCount : ++likesCount}</span>
+			<span className="like--count">{likesCount}</span>
+			<div className="btn-like" onClick={clickLike} ref={ref}>
+				<IconLike className={`like--icon ${isILiked && "liked"}`} />
+			</div>
 		</div>
 	);
 };

@@ -11,8 +11,8 @@ import Alert from "components/_shared/Alert";
 import useAuth from "hooks/useAuth";
 // Styles
 import "./index.scss";
-import loginBackground from 'assets/img/desktopLoginBg.png'
-import logoHealthy from 'assets/icons/Logo-heatlhy.svg'
+import loginBackground from "assets/img/desktopLoginBg.png";
+import logoHealthy from "assets/icons/Logo-heatlhy.svg";
 
 const LoginView = () => {
 	const history = useHistory();
@@ -35,7 +35,7 @@ const LoginView = () => {
 	}, [data]); //eslint-disable-line
 
 	return (
-		<div className='login-wrapper'>
+		<div className="login-wrapper">
 			<div className="login-container">
 				{error ? (
 					<Alert showButtonClose error>
@@ -45,14 +45,14 @@ const LoginView = () => {
 						</a>
 					</Alert>
 				) : null}
-				<div className='desktop-title-wrapper'>
-					<h2 className='desktop-title'>INICIAR SESION</h2>
-					<img className='desktop-logo' src={logoHealthy} />
+				<div className="desktop-title-wrapper">
+					<h2 className="desktop-title">INICIAR SESION</h2>
+					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
 				<h1>
 					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
 				</h1>
-				<div className='login-footer'>
+				<div className="login-footer">
 					<Login sendLogin={loginUser} loading={loading} />
 					<footer>
 						<p>¿Todavía no tenés una cuenta?</p>
@@ -66,7 +66,7 @@ const LoginView = () => {
 					</footer>
 				</div>
 			</div>
-			<img className='login-img' src={loginBackground} />
+			<img className="login-img" alt="portada" src={loginBackground} />
 		</div>
 	);
 };

@@ -4,8 +4,8 @@ import * as types from "../types";
 import * as services from "../services";
 import { makeWorker } from "../../utils";
 
-const SuccessDeleteCard = (payload) => {
-	console.log("se esta eliminando: ", payload?.payload);
+const SuccessDeleteCard = () => {
+	window.history.back();
 };
 
 function* watchDeleteCard() {
@@ -13,7 +13,7 @@ function* watchDeleteCard() {
 		success: actions.successDeleteCard,
 		fail: actions.failureDeleteCard,
 		retry: actions.requestDeleteCard,
-		hooks: { 200: SuccessDeleteCard},
+		hooks: { 200: SuccessDeleteCard },
 	});
 
 	yield takeLatest(types.DELETE_CARD_REQUEST, workerDeleteCard);

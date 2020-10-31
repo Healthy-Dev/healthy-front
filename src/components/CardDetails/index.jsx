@@ -6,7 +6,15 @@ import Content from "./CardContent";
 import ModalConfirmDelete from "./ModalConfirmDelete";
 import { changeState } from "libs/changeState";
 
-const Card = ({ data, isYourCard, deleteCard }) => {
+const Card = ({
+	data,
+	isYourCard,
+	deleteCard,
+	isILiked,
+	likesCount,
+	iLiked,
+	disLiked,
+}) => {
 	const [modalConfirm, setModalConfirm] = useState(false);
 
 	return (
@@ -18,7 +26,15 @@ const Card = ({ data, isYourCard, deleteCard }) => {
 					id={data.id}
 				/>
 			)}
-			<Image photo={data.photo} title={data.title} likesCount={data.likesCount} id={data.id} />
+			<Image
+				photo={data.photo}
+				title={data.title}
+				id={data.id}
+				likesCount={likesCount}
+				isILiked={isILiked}
+				iLiked={iLiked}
+				disLiked={disLiked}
+			/>
 			<Content
 				photo={data.photo}
 				externalUrl={data.externalUrl}
