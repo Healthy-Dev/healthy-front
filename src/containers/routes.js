@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 // Containers
-const UserCreated = lazy(() => import("views/UserCreated/"));
+const UserCreated = lazy(() => import("views/ActivateUser"));
 const CardDetails = lazy(() => import("views/CardDetails/"));
 const CreateCard = lazy(() => import("views/CreateCard/"));
 const EditCard = lazy(() => import("views/EditCard/"));
