@@ -1,7 +1,8 @@
 import { lazy } from "react";
 
 // Containers
-const UserCreated = lazy(() => import("views/ActivateUser"));
+const UserCreated = lazy(() => import("views/UserCreated"));
+const ActivateUser = lazy(() => import("views/ActivateUser"));
 const CardDetails = lazy(() => import("views/CardDetails/"));
 const CreateCard = lazy(() => import("views/CreateCard/"));
 const EditCard = lazy(() => import("views/EditCard/"));
@@ -17,11 +18,15 @@ export default [
 		path: "/",
 		component: Home,
 		exact: true,
-		auth: false,
+	},
+	{
+		path: "/user-created",
+		component: UserCreated,
+		exact: true,
 	},
 	{
 		path: "/activate",
-		component: UserCreated,
+		component: ActivateUser,
 		exact: true,
 	},
 	{

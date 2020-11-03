@@ -1,6 +1,6 @@
 @import "theme";
 
-.user-created-container {
+.activate {
 	position: relative;
 	display: flex;
 	height: 100vh;
@@ -23,14 +23,18 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	text-align: center;
 
-	button,
 	section {
-		max-width: 350px;
-		margin: $s-1 auto;
+		margin: 1rem 0;
+		max-width: 450px;
+
+		button {
+			margin: 1.5rem 0;
+		}
 	}
 
-	.user-created {
+	&__title {
 		font-weight: 700;
 		margin-top: 150px;
 		margin-bottom: $s0;
@@ -42,51 +46,6 @@
 
 		@include tablet {
 			font-size: $s1;
-		}
-	}
-
-	.user-created-confirm {
-		font-weight: 400;
-		font-size: $s0;
-		text-align: center;
-		max-width: 500px;
-
-		p {
-			color: #e2e2e2;
-			margin-bottom: 50px;
-		}
-
-		input {
-			width: 100%;
-			border-radius: $radius-1;
-			font-size: $s0;
-			background-color: $medium-grey;
-			border: 2px solid #807f7f;
-			color: $ivory;
-			padding: $s0;
-			text-align: center;
-		}
-
-		.error {
-			color: $red;
-			margin-top: $s-1;
-		}
-	}
-
-	h1 {
-		margin-top: $s4;
-		font-family: $font-title;
-		text-transform: uppercase;
-		text-shadow: 0px 0px 15px black;
-		font-size: $s1;
-
-		.healthy {
-			font-weight: 700;
-			color: $title-green;
-		}
-
-		.dev {
-			font-weight: 400;
 		}
 	}
 }
