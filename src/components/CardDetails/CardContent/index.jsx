@@ -37,7 +37,7 @@ const CardContent = ({
 				setExtra(editData);
 			},
 		},
-		{ title: "Elimar", fn: () => toggleModalConfirm() },
+		{ title: "Eliminar", fn: () => toggleModalConfirm() },
 		{ title: "Reportar", fn: () => console.log("report") },
 	];
 
