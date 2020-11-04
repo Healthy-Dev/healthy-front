@@ -26,6 +26,12 @@
 		top: 5%;
 	}
 
+	&__loader {
+		position: absolute;
+		right: 5%;
+		top: 5%;
+	}
+
 	&__error {
 		font-size: $s-1;
 		color: $red;

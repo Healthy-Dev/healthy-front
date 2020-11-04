@@ -51,19 +51,6 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 
 	return (
 		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-			<div className="upload-form-container">
-				<UploadImage
-					photo={photo}
-					changePhoto={data.photo}
-					setPhoto={setPhoto}
-					setSizeImg={setSizeImg}
-					refForm={register}
-				/>
-				{photo && isImgTooBig && (
-					<MessageError message="La imagen no puede pesar mas de 15Mb" />
-				)}
-			</div>
-
 			<section className="input">
 				<label>Título</label>
 				<input
@@ -130,10 +117,21 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					<MessageError message="Ingrese una Url válida" />
 				)}
 			</section>
-
-			<Button type="submit">
-				{loading ? <Loader /> : data ? "Editar articulo" : "Agregar articulo"}
-			</Button>
+			<section className="upload-form-container">
+				<UploadImage
+					photo={photo}
+					changePhoto={data.photo}
+					setPhoto={setPhoto}
+					setSizeImg={setSizeImg}
+					refForm={register}
+				/>
+				{photo && isImgTooBig && (
+					<MessageError message="La imagen no puede pesar más de 15Mb" />
+				)}
+				<Button type="submit">
+					{loading ? <Loader /> : data ? "Editar articulo" : "Agregar articulo"}
+				</Button>
+			</section>
 		</form>
 	);
 };

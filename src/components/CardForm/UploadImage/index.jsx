@@ -1,14 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 // Styles
 import "./index.scss";
 // icons
 import { ReactComponent as CancelIcon } from "assets/icons/x.svg";
+import Loader from "components/_shared/Loader";
 
 const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 	const img = useRef(null);
+	const [isUploading, setUploading] = useState(false);
 
 	const updateImg = (event) => {
 		const [file] = event.target.files;
+		setUploading(true);
 
 		if (!file) return;
 
@@ -21,6 +24,7 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 
 		reader.onload = (event) => {
 			setPhoto(event.target.result);
+			setUploading(false);
 		};
 		// TODO: hay que guardar `e.target.result` en el estado de la app para
 		// conservar el data src de la imagen
@@ -40,6 +44,7 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 					alt="card"
 					ref={img}
 				/>
+				{isUploading && <Loader className="UploadImage__loader" />}
 			</label>
 			{photo && (
 				<CancelIcon className="UploadImage__cancel" onClick={() => setPhoto(undefined)} />

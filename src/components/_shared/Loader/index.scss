@@ -1,14 +1,14 @@
 .loader-icon {
   font-size: 24px;
-  animation: loaderRotate 1.5s infinite;
+  animation: loaderRotate 2s infinite;
 }
 
 @keyframes loaderRotate {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg) scale(1.2);
   }
 
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg) scale(1);
   }
 }
