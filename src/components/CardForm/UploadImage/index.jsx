@@ -1,14 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 // Styles
 import "./index.scss";
 // icons
-import { ReactComponent as UploadIcon } from "assets/icons/upload.svg";
-import { ReactComponent as CancelIcon } from "assets/icons/cancel-icon.svg";
-import { ReactComponent as OkIcon } from "assets/icons/ok.svg";
+import { ReactComponent as CancelIcon } from "assets/icons/x.svg";
 
 const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 	const img = useRef(null);
-	const [isUploading, setIsUploading] = useState(false);
 
 	const updateImg = (event) => {
 		const [file] = event.target.files;
@@ -24,7 +21,6 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 
 		reader.onload = (event) => {
 			setPhoto(event.target.result);
-			setIsUploading(false);
 		};
 		// TODO: hay que guardar `e.target.result` en el estado de la app para
 		// conservar el data src de la imagen
@@ -34,35 +30,20 @@ const UploadImage = ({ photo, setPhoto, setSizeImg, changePhoto, refForm }) => {
 
 	return (
 		<div className="UploadImage">
-			<div className="UploadImage__img">
+			<label htmlFor="img" className="UploadImage__img">
 				<img
-					src={photo ? photo : changePhoto || "http://via.placeholder.com/80x80"}
+					src={
+						photo ||
+						changePhoto ||
+						"https://www.minasjr.com.br/wp-content/themes/minasjr/images/placeholders/placeholder_large_dark.jpg"
+					}
 					alt="card"
 					ref={img}
 				/>
-			</div>
-
-			<p>Elegí una imagen de portada</p>
-
-			<div className="UploadImage__button">
-				<label htmlFor="img" className={`upload-btn ${photo && "success"}`}>
-					{isUploading && "Subiendo..."}
-					{photo ? (
-						<OkIcon />
-					) : (
-						<span>
-							{" "}
-							Subir Imagen <UploadIcon className="upload-icon" />
-						</span>
-					)}
-				</label>
-				{photo && (
-					<CancelIcon
-						className="UploadImage__button--cancel"
-						onClick={() => setPhoto(null)}
-					/>
-				)}
-			</div>
+			</label>
+			{photo && (
+				<CancelIcon className="UploadImage__cancel" onClick={() => setPhoto(undefined)} />
+			)}
 			<input
 				id="img"
 				name="img"

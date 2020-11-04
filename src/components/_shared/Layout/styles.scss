@@ -1,8 +1,8 @@
 @import "theme";
 
-@keyframes downModal {
+@keyframes upModal {
   from {
-    transform: translateY(-100%);
+    transform: translateY(100%);
   }
 
   to {
@@ -50,7 +50,7 @@
   &__content {
     // min-height: 100vh;
     width: 100%;
-    animation: downModal .33s ease;
+    animation: upModal .33s ease;
     background: $dark-blue;
 
     @include desktop {
