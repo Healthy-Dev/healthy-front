@@ -27,17 +27,16 @@ const CardContent = ({
 		category,
 	};
 
+	function editar() {
+		showModal();
+		showComponent("edit-card");
+		setID(id);
+		setExtra(editData);
+	}
+
 	let optionsModalCreator = [
-		{
-			title: "Editar",
-			fn: () => {
-				showModal();
-				showComponent("edit-card");
-				setID(id);
-				setExtra(editData);
-			},
-		},
-		{ title: "Eliminar", fn: () => toggleModalConfirm() },
+		{ title: "Editar", fn: editar },
+		{ title: "Eliminar", fn: toggleModalConfirm },
 		{ title: "Reportar", fn: () => console.log("report") },
 	];
 
