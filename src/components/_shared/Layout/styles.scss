@@ -48,7 +48,7 @@
   }
 
   &__content {
-    // min-height: 100vh;
+    min-height: 100vh;
     width: 100%;
     animation: upModal .33s ease;
     background: $dark-blue;
@@ -56,11 +56,15 @@
     @include desktop {
       padding-bottom: 0;
       max-width: 450px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
     }
 
     @include tablet {
       padding-bottom: 0;
       max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
     }
   }
 }

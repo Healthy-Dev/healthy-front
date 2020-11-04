@@ -3,29 +3,22 @@
 .create-card-container {
   width: 100%;
   min-height: 100vh;
-  box-shadow: 0 0 10px rgba(7, 22, 65, 0.842);
-  padding: $s1;
   font-family: $font-plain;
   background-color: $dark-blue;
   color: $ivory;
 
   @include desktop {
-    padding: $s1 $s2;
     min-height: auto;
+    border-radius: 10px;
   }
 
   @include tablet {
-    padding: $s1 $s2;
     min-height: auto;
+    border-radius: 10px;
   }
 
   h1 {
     font-size: $s1;
     color: $ivory;
-  }
-
-  .img {
-    width: 80px;
-    height: 80px;
   }
 }

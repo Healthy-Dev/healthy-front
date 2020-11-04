@@ -117,7 +117,7 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					<MessageError message="Ingrese una Url válida" />
 				)}
 			</section>
-			<section className="upload-form-container">
+			<section className="form__bottom">
 				<UploadImage
 					photo={photo}
 					changePhoto={data.photo}

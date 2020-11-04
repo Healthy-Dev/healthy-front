@@ -24,23 +24,21 @@ const CreateCardView = () => {
 	}
 
 	return (
-		<>
+		<div className="create-card-container">
 			<TopNavbar title="Agregar Articulo" />
-			<div className="create-card-container">
-				{error && (
-					<Alert showButtonClose error>
-						No se pudo crear su tarjeta, Vuelve a intentelo mas tarde!
-					</Alert>
-				)}
-				{data && (
-					<Alert showButtonClose success>
-						Se creo tu tarjeta correctamente!
-					</Alert>
-				)}
+			{error && (
+				<Alert showButtonClose error>
+					No se pudo crear su tarjeta, Vuelve a intentelo mas tarde!
+				</Alert>
+			)}
+			{data && (
+				<Alert showButtonClose success>
+					Se creo tu tarjeta correctamente!
+				</Alert>
+			)}
 
-				<CardForm sendForm={createCard} loading={loading} data={""} />
-			</div>
-		</>
+			<CardForm sendForm={createCard} loading={loading} data={""} />
+		</div>
 	);
 };
 

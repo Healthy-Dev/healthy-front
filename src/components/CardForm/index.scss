@@ -2,14 +2,15 @@
 
 .CreateCardForm {
 	width: 100%;
+	padding: $s1;
 
 	.input {
-		margin: $s1 0;
+		margin-bottom: $s1;
 		width: 100%;
 
 		label {
 			font-size: $s0;
-			color: $ivory;
+			color: $light-grey;
 		}
 
 		input,
@@ -18,20 +19,28 @@
 			width: 100%;
 			border-radius: $radius-1;
 			font-family: $font-plain;
-			border: none;
 			font-size: $s-1;
-			background-color: $medium-grey;
+			border: 2px solid $medium-grey;
+			background: transparent;
 			color: $ivory;
 			padding: $s-1;
-			margin-top: $s-2;
+			margin-top: $s-1;
 
 			@include desktop {
-				font-size: .85em;
+				font-size: $s1;
+			}
+
+			@include desktop {
+				font-size: $s0;
 			}
 
 			&::placeholder {
-				color: $light-grey;
+				color: rgb(94, 94, 94);
 			}
+		}
+
+		.select {
+			background: $darker-blue !important;
 		}
 
 		.tooltip {
@@ -42,7 +51,17 @@
 		}
 	}
 
-	.upload-form-container {
-		margin-bottom: $s1;
+	.form__bottom {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-end;
+
+		.UploadImage {
+			flex: 1;
+		}
+
+		button {
+			flex: 3;
+		}
 	}
 }
