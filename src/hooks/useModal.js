@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 
 export const ContextModal = createContext(undefined);
@@ -11,6 +11,14 @@ const ModalContext = (props) => {
 	const showModal = () => {
 		setModalOpen(true);
 	};
+
+	useEffect(() => {
+		function handlePopstate() {
+			setModalOpen(false);
+		}
+		window.addEventListener("popstate", handlePopstate);
+		return () => window.removeEventListener("popstate", handlePopstate);
+	}, []);
 
 	return (
 		<ContextModal.Provider
