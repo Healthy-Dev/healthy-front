@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function useLocalStorage(key, initialValue) {
 	if (!window.localStorage) {
-		throw "LocalStorage of HealthyDev is not supported ..";
+		throw new Error("LocalStorage of HealthyDev is not supported ..");
 	}
 	// State to store our value
 	// Pass initial state function to useState so logic is only executed once

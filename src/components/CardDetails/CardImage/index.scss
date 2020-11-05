@@ -2,8 +2,18 @@
 
 .card__header {
   width: 100%;
-  height: 65vh;
-  position: relative;
+  height: 60vh;
+  position: fixed;
+
+  @include desktop {
+    position: relative;
+    max-width: 500px;
+  }
+
+  @include tablet {
+    position: relative;
+    max-width: 450px;
+  }
 
   &::before {
     content: "";

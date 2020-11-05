@@ -2,14 +2,13 @@
 
 .card__detail {
   width: 100%;
+  margin: 0 auto;
   max-width: 100vw;
-
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: 11111100;
-  // overflow: hidden;
   min-height: 100vh;
   background-color: $darker-blue;
 
@@ -17,10 +16,11 @@
   @include desktop {
     min-height: auto;
     max-width: 1366px;
-    margin-top: 2rem;
-    padding: 4rem 0;
+    width: 90%;
+    margin-top: 3rem;
+    padding: 3rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
+    box-shadow: 0 0 5px rgba(6, 6, 51, 0.507);
     position: relative;
     display: flex;
     gap: 1rem;
@@ -36,6 +36,7 @@
   @include tablet {
     min-height: auto;
     margin-top: 2rem;
+    width: 90%;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
