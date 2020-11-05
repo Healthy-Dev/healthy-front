@@ -19,7 +19,7 @@ import { ContextModal } from "hooks/useModal";
 
 const Profile = () => {
 	const { showComponent, showModal } = useContext(ContextModal);
-	const { getToken, closeSession } = useAuth();
+	const { token, closeSession } = useAuth();
 
 	const deleteDataUser = () => {
 		dispatch(userLogout());
@@ -36,7 +36,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
-		if (!dataUser) dispatch(getUserRequest({ token: getToken() }));
+		if (!dataUser) dispatch(getUserRequest({ token }));
 	}, [dispatch]); //eslint-disable-line
 
 	useEffect(() => {

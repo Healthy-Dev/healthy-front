@@ -3,16 +3,16 @@ import useLocalStorage from "hooks/useLocalStorage";
 
 export default function useAuth() {
 	const key = "HEALTHY__DEV__TOKEN";
-	const [token, setToken] = useLocalStorage(key, "");
-	const [isAuth, setAuth] = useState(token ? true : false);
+	const [healthyToken, setToken] = useLocalStorage(key, "");
+	const [isAuth, setAuth] = useState(healthyToken ? true : false);
 
 	function getToken() {
-		if (!token.expire) {
-			return token.value;
+		if (!healthyToken.expire) {
+			return healthyToken.value;
 		}
 
-		if (token.expire >= new Date().getTime()) {
-			return token.value;
+		if (healthyToken.expire >= new Date().getTime()) {
+			return healthyToken.value;
 		}
 
 		localStorage.removeItem(key);
@@ -47,5 +47,7 @@ export default function useAuth() {
 		setAuth(false);
 	}
 
-	return { isAuth, startSession, closeSession, getToken };
+	const token = getToken();
+
+	return { isAuth, startSession, closeSession, token };
 }
