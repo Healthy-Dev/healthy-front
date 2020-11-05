@@ -1,13 +1,10 @@
 import React from "react";
-import "./index.scss";
-//import { useUserSession } from "hooks/useUserSession";
-
-import TopNavbar from "components/_shared/TopNavbar";
 
 import { useDispatch, useSelector } from "react-redux";
 import { requestEditCard } from "state/cards/actions";
 import { EditCardSelector } from "state/cards/selectors";
 
+import TopNavbar from "components/_shared/TopNavbar";
 import CardForm from "components/CardForm/";
 import Alert from "components/_shared/Alert";
 import useAuth from "hooks/useAuth";

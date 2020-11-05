@@ -7,8 +7,7 @@ import { CreateCardSelector } from "state/cards/selectors";
 import CardForm from "components/CardForm";
 import Alert from "components/_shared/Alert";
 import TopNavbar from "components/_shared/TopNavbar";
-// Styles
-import "./index.scss";
+
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
 

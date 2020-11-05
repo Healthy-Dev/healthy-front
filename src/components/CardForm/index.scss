@@ -24,11 +24,11 @@
 			font-size: $s-1;
 			border: 1px solid #0d263f;
 			background: #021527;
-			color: $ivory;
+			color: #c9c9c9;
 			padding: $s-1;
 
 			@include desktop {
-				font-size: $s-1 + 3;
+				font-size: $s-1 + 2;
 			}
 
 			@include tablet {
@@ -40,15 +40,34 @@
 			}
 		}
 
+		textarea {
+			resize: none;
 
+			&::-webkit-scrollbar {
+				width: 5px;
+				background-color: $darker-blue;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				border-radius: 10px;
+				box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+				-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+				background-color: #464646;
+			}
+		}
 	}
+
 
 	.select {
 		position: relative !important;
 
 		select {
 			-webkit-appearance: none;
-			color: rgb(94, 94, 94);
+			// color: rgb(94, 94, 94);
+
+			option {
+				color: white;
+			}
 		}
 
 		&__icon {
