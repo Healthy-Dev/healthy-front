@@ -30,7 +30,7 @@ const LoginView = () => {
 
 	useEffect(() => {
 		if (data) {
-			startSession(data.accessToken);
+			startSession(data.accessToken, 2);
 		}
 	}, [data]); //eslint-disable-line
 
