@@ -22,7 +22,7 @@
   width: 100%;
   min-height: 100vh;
   background: #000000b6;
-  padding: 0;
+  padding: 1rem;
   top: 0;
   left: 0;
   z-index: 111111011;
@@ -48,23 +48,21 @@
   }
 
   &__content {
-    min-height: 100vh;
+    height: auto;
     width: 100%;
     animation: upModal .33s ease;
     background: $dark-blue;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
 
     @include desktop {
       padding-bottom: 0;
-      max-width: 450px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
+      max-width: 500px;
     }
 
     @include tablet {
       padding-bottom: 0;
-      max-width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
+      max-width: 500px;
     }
   }
 }

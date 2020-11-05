@@ -21,14 +21,15 @@
 		border-radius: 4px;
 		color: $yellow;
 		padding: .2rem;
-		right: 5%;
+		left: 5%;
 		top: 5%;
 	}
 
 	&__loader {
 		position: absolute;
-		right: 5%;
+		left: 5%;
 		top: 5%;
+		color: $yellow;
 	}
 
 	&__error {

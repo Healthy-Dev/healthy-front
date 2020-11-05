@@ -2,23 +2,8 @@
 
 .create-card-container {
   width: 100%;
-  min-height: 100vh;
   font-family: $font-plain;
   background-color: $dark-blue;
   color: $ivory;
-
-  @include desktop {
-    min-height: auto;
-    border-radius: 10px;
-  }
-
-  @include tablet {
-    min-height: auto;
-    border-radius: 10px;
-  }
-
-  h1 {
-    font-size: $s1;
-    color: $ivory;
-  }
+  border-radius: 10px;
 }
