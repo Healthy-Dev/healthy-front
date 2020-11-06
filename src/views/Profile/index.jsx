@@ -33,6 +33,7 @@ const Profile = () => {
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+	console.log(dataFilterCards);
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());

@@ -21,7 +21,7 @@ const reducer = generalStatus.createReducer(
 			get_user: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.GET_USER_FAILURE]: (state) => ({
@@ -44,7 +44,7 @@ const reducer = generalStatus.createReducer(
 			update_user: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.UPDATE_USER_FAILURE]: (state) => ({

@@ -22,14 +22,16 @@ const reducer = generalStatus.createReducer(
 			...state,
 			filterByUserCreator: { loading: true, error: false },
 		}),
-		[types.FILTER_CARDS_BY_USERCREATOR_SUCCESS]: (state, { payload }) => ({
-			...state,
-			filterByUserCreator: {
-				loading: false,
-				error: false,
-				data: payload,
-			},
-		}),
+		[types.FILTER_CARDS_BY_USERCREATOR_SUCCESS]: (state, { payload }) => {
+			return {
+				...state,
+				filterByUserCreator: {
+					loading: false,
+					error: false,
+					data: payload.data,
+				},
+			};
+		},
 		[types.FILTER_CARDS_BY_USERCREATOR_FAIULRE]: (state) => ({
 			...state,
 			filterByUserCreator: { loading: false, error: true, data: null },
@@ -38,16 +40,18 @@ const reducer = generalStatus.createReducer(
 			...state,
 			getCard: { loading: true, error: false },
 		}),
-		[types.GET_CARD_SUCCESS]: (state, { payload }) => ({
-			...state,
-			getCard: {
-				loading: false,
-				error: false,
-				data: payload,
-				likesCount: payload.likesCount,
-				isLikedByMe: (me) => payload.likesBy.some((user) => user.id === me),
-			},
-		}),
+		[types.GET_CARD_SUCCESS]: (state, { payload }) => {
+			return {
+				...state,
+				getCard: {
+					loading: false,
+					error: false,
+					data: payload.data,
+					likesCount: payload.data.likesCount,
+					isLikedByMe: (me) => payload.data.likesBy.some((user) => user.id === me),
+				},
+			};
+		},
 		[types.GET_CARD_FAIULRE]: (state) => ({
 			...state,
 			getCard: { loading: false, error: true, data: null },
@@ -68,18 +72,15 @@ const reducer = generalStatus.createReducer(
 			...state,
 			deleteCard: { loading: true, error: false },
 		}),
-		[types.DELETE_CARD_SUCCESS]: (state, reqData) => {
-			console.log(reqData);
+		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => {
 			return {
 				...state,
-				deleteCard: { loading: false, error: false, data: reqData.payload },
+				deleteCard: { loading: false, error: false, data: payload.data },
 				getCards: {
 					...state.getCards,
-					data: state.getCards.data.filter((card) => {
-						console.log(card);
-						console.log(reqData.payload.reqData.cardId);
-						return card.id !== Number(reqData.payload.reqData.cardId);
-					}),
+					data: state.getCards.data.filter(
+						(card) => card.id !== Number(payload.reqData.cardId),
+					),
 				},
 			};
 		},
@@ -93,10 +94,9 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => {
 			const data = JSON.parse(payload.reqData.payload);
-
 			const fakeUpdateData = {
-				id: payload.id,
-				likesCount: payload.likesCount,
+				id: payload.data.id,
+				likesCount: payload.data.likesCount,
 				title: data.title,
 				photo: data.photo
 					? "data:image/jpeg;base64," + data.photo
@@ -105,7 +105,7 @@ const reducer = generalStatus.createReducer(
 
 			return {
 				...state,
-				editCard: { loading: false, error: false, data: payload },
+				editCard: { loading: false, error: false, data: payload.data },
 				getCards: {
 					...state.getCards,
 					data:
@@ -116,7 +116,7 @@ const reducer = generalStatus.createReducer(
 				},
 				getCard: {
 					...state.getCard,
-					data: { ...payload, ...fakeUpdateData },
+					data: { ...payload.data, ...fakeUpdateData },
 				},
 			};
 		},
@@ -134,7 +134,7 @@ const reducer = generalStatus.createReducer(
 		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => {
 			const data = JSON.parse(payload.reqData.data);
 			let fakeCard = {
-				id: payload.id,
+				id: payload.data.data.id,
 				likesCount: 0,
 				photo: "data:image/jpeg;base64," + data.photo,
 				title: data.title,
@@ -142,7 +142,7 @@ const reducer = generalStatus.createReducer(
 
 			return {
 				...state,
-				createdCard: { loading: false, error: false, data: payload },
+				createdCard: { loading: false, error: false, data: payload.data },
 				getCards: {
 					...state.getCards,
 					data: [fakeCard, ...state.getCards.data],
@@ -165,7 +165,7 @@ const reducer = generalStatus.createReducer(
 			searchCards: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.SEARCH_CARDS_FAILURE]: (state) => ({
@@ -188,7 +188,7 @@ const reducer = generalStatus.createReducer(
 			filterCardsByCategory: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.FILTER_CARDS_BY_CATEGORY_FAILURE]: (state) => ({
@@ -210,7 +210,7 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.LIKED_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
-			likedCard: { loading: false, error: false, data: payload },
+			likedCard: { loading: false, error: false, data: payload.data },
 		}),
 		[types.LIKED_CARDS_FAILURE]: (state) => ({
 			...state,
@@ -232,7 +232,7 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.DISLIKED_CARDS_SUCCESS]: (state, { payload }) => ({
 			...state,
-			deslikedCard: { loading: false, error: false, data: payload },
+			deslikedCard: { loading: false, error: false, data: payload.data },
 		}),
 		[types.DISLIKED_CARDS_FAILURE]: (state) => ({
 			...state,
