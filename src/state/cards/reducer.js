@@ -68,10 +68,21 @@ const reducer = generalStatus.createReducer(
 			...state,
 			deleteCard: { loading: true, error: false },
 		}),
-		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => ({
-			...state,
-			deleteCard: { loading: false, error: false, data: payload },
-		}),
+		[types.DELETE_CARD_SUCCESS]: (state, reqData) => {
+			console.log(reqData);
+			return {
+				...state,
+				deleteCard: { loading: false, error: false, data: reqData.payload },
+				getCards: {
+					...state.getCards,
+					data: state.getCards.data.filter((card) => {
+						console.log(card);
+						console.log(reqData.payload.reqData.cardId);
+						return card.id !== Number(reqData.payload.reqData.cardId);
+					}),
+				},
+			};
+		},
 		[types.DELETE_CARD_FAIULRE]: (state) => ({
 			...state,
 			deleteCard: { loading: false, error: true, data: null },
@@ -80,22 +91,64 @@ const reducer = generalStatus.createReducer(
 			...state,
 			editCard: { loading: true, error: false },
 		}),
-		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => ({
-			...state,
-			editCard: { loading: false, error: false, data: payload },
-		}),
+		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => {
+			const data = JSON.parse(payload.reqData.payload);
+
+			const fakeUpdateData = {
+				id: payload.id,
+				likesCount: payload.likesCount,
+				title: data.title,
+				photo: data.photo
+					? "data:image/jpeg;base64," + data.photo
+					: state.getCard.data.photo,
+			};
+
+			return {
+				...state,
+				editCard: { loading: false, error: false, data: payload },
+				getCards: {
+					...state.getCards,
+					data:
+						state.getCards.data &&
+						state.getCards.data.map((card) =>
+							card.id === payload.reqData.cardId ? fakeUpdateData : card,
+						),
+				},
+				getCard: {
+					...state.getCard,
+					data: { ...payload, ...fakeUpdateData },
+				},
+			};
+		},
 		[types.EDIT_CARD_FAIULRE]: (state) => ({
 			...state,
 			editCard: { loading: false, error: true, data: null },
 		}),
 		[types.CREATE_CARD_REQUEST]: (state) => ({
 			...state,
-			createdCard: { loading: true, error: false },
+			createdCard: {
+				loading: true,
+				error: false,
+			},
 		}),
-		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => ({
-			...state,
-			createdCard: { loading: false, error: false, data: payload },
-		}),
+		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => {
+			const data = JSON.parse(payload.reqData.data);
+			let fakeCard = {
+				id: payload.id,
+				likesCount: 0,
+				photo: "data:image/jpeg;base64," + data.photo,
+				title: data.title,
+			};
+
+			return {
+				...state,
+				createdCard: { loading: false, error: false, data: payload },
+				getCards: {
+					...state.getCards,
+					data: [fakeCard, ...state.getCards.data],
+				},
+			};
+		},
 		[types.CREATE_CARD_FAILURE]: (state) => ({
 			...state,
 			createdCard: { loading: false, error: true, data: null },

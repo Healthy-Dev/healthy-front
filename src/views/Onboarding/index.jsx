@@ -11,9 +11,9 @@ function generateRandom(min, max) {
 
 function stylesImg() {
 	return {
-		minWidth: `${generateRandom(120, 250)}px`,
+		minWidth: `${generateRandom(200, 250)}px`,
 		minHeight: `${generateRandom(120, 150)}px`,
-		margin: `${generateRandom(0.8, 1.2)}rem`,
+		margin: `${generateRandom(1, 1.5)}rem`,
 	};
 }
 
