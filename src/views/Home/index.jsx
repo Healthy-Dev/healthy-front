@@ -35,6 +35,7 @@ const HomeView = () => {
 						<Loading />
 					) : (
 						<>
+							<div className="line"></div>
 							<div className="presentation">
 								<img src={Imagen} alt="presentation" />
 								<h2>Solo diviertete!</h2>

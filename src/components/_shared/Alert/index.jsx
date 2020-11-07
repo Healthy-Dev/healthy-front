@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./index.scss";
 import PropTypes from "prop-types";
-import { changeState } from "libs/changeState";
 import { ReactComponent as IconClose } from "assets/icons/x.svg";
 
 const Alert = ({
@@ -18,17 +17,24 @@ const Alert = ({
 	confirm && (finalClassName += "alert__confirm ");
 	finalClassName += className;
 
+	const [content, setContent] = useState(children);
 	const [showAlert, setShowAlert] = useState(true);
+
+	function handleClick() {
+		setContent("");
+		setShowAlert(false);
+	}
+
 	return (
 		<>
 			{showAlert && (
 				<div className={finalClassName}>
 					{showButtonClose && (
-						<span className="alert__close" onClick={() => changeState(setShowAlert)}>
+						<span className="alert__close" onClick={handleClick}>
 							<IconClose />
 						</span>
 					)}
-					{children}
+					{content}
 				</div>
 			)}
 		</>
