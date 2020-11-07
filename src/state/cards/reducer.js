@@ -134,7 +134,7 @@ const reducer = generalStatus.createReducer(
 		[types.CREATE_CARD_SUCCESS]: (state, { payload }) => {
 			const data = JSON.parse(payload.reqData.data);
 			let fakeCard = {
-				id: payload.data.data.id,
+				id: payload.data.id,
 				likesCount: 0,
 				photo: "data:image/jpeg;base64," + data.photo,
 				title: data.title,
