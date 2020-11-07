@@ -2,22 +2,19 @@
 
 .carrousel {
   width: 100%;
-  margin-top: $s1;
-  margin-bottom: $s0;
-  position: relative;
-  z-index: 10;
-  padding: $s0;
+  margin: $s1 0;
+
+  @include desktop {
+    margin: 0;
+  }
 
   &__cards {
-    // min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: $s2;
-    padding-bottom: $s1;
-    align-items: center;
+    gap: 1rem;
 
     @include desktop {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @include tablet {

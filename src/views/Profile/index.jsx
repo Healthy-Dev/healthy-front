@@ -6,6 +6,9 @@ import CardsUser from "components/Profile/Carrousel";
 import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
 
+import { ReactComponent as TwitterIcon } from "assets/icons/twitter.svg";
+import { ReactComponent as InstagramIcon } from "assets/icons/instagram.svg";
+
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
@@ -68,14 +71,35 @@ const Profile = () => {
 							alt="profile"
 						/>
 					</div>
-					<h2>{dataUser && dataUser.user.name}</h2>
+					<section className="profile__header--user">
+						<h2>{dataUser?.user.name}</h2>
+						<h3>@{dataUser?.user.username}</h3>
+						<section className="social">
+							<p>
+								<span>{dataFilterCards?.length}</span> Tarjetas
+							</p>
+							/
+							{(dataUser?.user.instagram || dataUser?.user.twitter) && (
+								<>
+									<a href={dataUser?.user.instagram} target="_blank noopener noreferrer">
+										<InstagramIcon />
+									</a>
+									<a href={dataUser?.user.twitter} target="_blank noopener noreferrer">
+										<TwitterIcon />
+									</a>
+								</>
+							)}
+						</section>
+					</section>
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
 				{loadingCards && <Loading />}
-				<h2 className="subtitle">
-					{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
-				</h2>
-				{dataFilterCards && <CardsUser data={dataFilterCards} />}
+				<section>
+					{/* <h2 className="subtitle">
+						{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
+					</h2> */}
+					{dataFilterCards && <CardsUser data={dataFilterCards} />}
+				</section>
 			</div>
 		</Layout>
 	);

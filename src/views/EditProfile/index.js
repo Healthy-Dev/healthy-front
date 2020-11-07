@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from "react";
-import "./index.scss";
 import useAuth from "hooks/useAuth";
 
 import { useDispatch, useSelector } from "react-redux";

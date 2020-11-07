@@ -6,8 +6,15 @@
   justify-content: space-between;
   align-items: center;
   padding: $s1 $s0;
-
   border-bottom: 1px solid rgb(39, 39, 39);
+
+  @include desktop {
+    padding: $s1;
+  }
+
+  @include tablet {
+    padding: $s1;
+  }
 
   h2 {
     color: $ivory;

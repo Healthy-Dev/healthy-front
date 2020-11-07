@@ -5,28 +5,25 @@
   top: 60vh;
   z-index: 11;
   transform: translateY(-50px);
-  padding: $s2;
+  padding: $s1;
   background-color: $dark-blue;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 5px rgb(17, 18, 51);
 
   @include desktop {
     max-width: 450px;
-    margin-top: 0;
     top: 0;
     box-shadow: none;
+    background: transparent;
     transform: translateY(0);
-    padding: $s1;
     padding-top: 0;
   }
 
   @include tablet {
-    margin-top: 0;
+    background: transparent;
     top: 0;
     transform: translateY(0);
     box-shadow: none;
-    border-radius: 10px;
-    padding: $s1;
     padding-top: 0;
   }
 

@@ -46,8 +46,14 @@ const HomeView = () => {
 
 							<div className="content">
 								{data &&
-									data.map(({ photo, title, id }) => (
-										<Card img={photo} title={title} key={id} id={id} />
+									data.map(({ photo, title, id, likesCount }) => (
+										<Card
+											img={photo}
+											title={title}
+											key={id}
+											id={id}
+											likesCount={likesCount}
+										/>
 									))}
 							</div>
 						</>
