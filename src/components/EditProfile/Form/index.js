@@ -47,28 +47,29 @@ const EditCardForm = ({ dataUser, sendForm, loading }) => {
 	return (
 		<>
 			<form className="editProfile__form" onSubmit={handleSubmit(onSubmit)}>
-				<section className="editProfile__form--input">
-					<label htmlFor="photo" className="img">
-						<img src={profilePhoto || dataUser.user.profilePhoto} alt="profile" />
-						<IconUploadedImg className="icon" />
-					</label>
-					<input type="file" id="photo" name="photo" onChange={handleChange} />
-				</section>
+				<div className="flex-img">
+					<section className="editProfile__form--input">
+						<label htmlFor="photo" className="img">
+							<img src={profilePhoto || dataUser.user.profilePhoto} alt="profile" />
+							<IconUploadedImg className="icon" />
+						</label>
+						<input type="file" id="photo" name="photo" onChange={handleChange} />
+					</section>
+					<section className="editProfile__form--input">
+						{/* <label htmlFor="name">Nombre: </label> */}
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Nombre"
+							ref={register({ required: true })}
+						/>
+						{errors.name && <MessageError message="Ingrese su Nombre" />}
+					</section>
+				</div>
 
 				<section className="editProfile__form--input">
-					<label htmlFor="name">Nombre: </label>
-					<input
-						type="text"
-						id="name"
-						name="name"
-						placeholder="Nombre"
-						ref={register({ required: true })}
-					/>
-					{errors.name && <MessageError message="Ingrese su Nombre" />}
-				</section>
-
-				<section className="editProfile__form--input">
-					<label htmlFor="twitter">Twitter: </label>
+					{/* <label htmlFor="twitter">Twitter: </label> */}
 					<input
 						type="text"
 						id="twitter"
@@ -80,7 +81,7 @@ const EditCardForm = ({ dataUser, sendForm, loading }) => {
 				</section>
 
 				<section className="editProfile__form--input">
-					<label htmlFor="instagram">Instagram: </label>
+					{/* <label htmlFor="instagram">Instagram: </label> */}
 					<input
 						type="text"
 						id="instagram"
