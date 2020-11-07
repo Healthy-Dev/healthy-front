@@ -23,7 +23,7 @@ const reducer = generalStatus.createReducer(
 			login: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.LOGIN_FAILURE]: (state) => ({
@@ -54,7 +54,7 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.REGISTER_FAILURE]: (state, { payload }) => ({
@@ -122,7 +122,7 @@ const reducer = generalStatus.createReducer(
 			resendVerification: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
 		[types.RESEND_VERIFY_FAILURE]: (state, { payload }) => ({

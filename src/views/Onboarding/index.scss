@@ -86,7 +86,7 @@
   }
 
   &__content {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     height: 100%;
     position: absolute;
@@ -95,6 +95,14 @@
     z-index: 100;
 
     @include desktop {
+      width: 30%;
+      left: auto;
+      top: auto;
+      right: $s2 + $s2;
+      bottom: $s2;
+    }
+
+    @include tablet {
       width: 30%;
       left: auto;
       top: auto;

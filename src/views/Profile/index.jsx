@@ -33,7 +33,6 @@ const Profile = () => {
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
 	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
-	console.log(dataFilterCards);
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
@@ -46,15 +45,14 @@ const Profile = () => {
 		}
 	}, [dataUser, dataFilterCards, dispatch]);
 
+	function editProfile() {
+		showModal();
+		showComponent("edit-profile");
+	}
+
 	let optionsModal = [
-		{
-			title: "Editar perfil",
-			fn: () => {
-				showModal();
-				showComponent("edit-profile");
-			},
-		},
-		{ title: "Cerrar Sesion", fn: () => deleteDataUser() },
+		{ title: "Editar perfil", fn: editProfile },
+		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 
 	return (
@@ -75,7 +73,7 @@ const Profile = () => {
 				</div>
 				{loadingCards && <Loading />}
 				<h2 className="subtitle">
-					{!dataFilterCards?.lenght ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
+					{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
 				</h2>
 				{dataFilterCards && <CardsUser data={dataFilterCards} />}
 			</div>
