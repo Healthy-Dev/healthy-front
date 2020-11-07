@@ -45,6 +45,8 @@
       width: 70px;
       height: 70px;
       margin-right: $s0;
+      background-color: white;
+      border-radius: $radius-1;
 
       img {
         border-radius: $radius-1;
@@ -65,13 +67,13 @@
 
     &-button {
       grid-area: button;
-      background: $yellow;
       width: $s4;
-      padding: .2rem .5rem;
+      background: $yellow;
       border: none;
-      font-size: $s-1;
       border-radius: $radius-1;
-      box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
+      color: #1d1d1d;
+      font-size: $s-1;
+      padding: .2rem .5rem;
     }
 
     &-options {
