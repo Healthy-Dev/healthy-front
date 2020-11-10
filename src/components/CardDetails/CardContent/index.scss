@@ -97,3 +97,27 @@
     }
   }
 }
+
+.similar {
+  background: $dark-blue;
+  position: relative;
+  z-index: 111000;
+  margin-top: 2rem;
+
+  h3 {
+    color: white;
+    margin: 1rem 0;
+    font-size: 1.5em;
+
+    span {
+      color: $yellow;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

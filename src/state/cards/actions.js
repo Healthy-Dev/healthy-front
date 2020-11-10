@@ -1,6 +1,9 @@
 import cardsDuck from ".";
 import * as types from "./types";
 
+export const showMsgAlert = cardsDuck.createAction(types.SHOW_MSG_ALERT);
+export const hiddenMsgAlert = cardsDuck.createAction(types.HIDDEN_MSG_ALERT);
+
 export const requestCardsByUserCreator = cardsDuck.createAction(
 	types.FILTER_CARDS_BY_USERCREATOR_REQUEST,
 );

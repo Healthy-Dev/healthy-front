@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import makeStore, { history } from "state";
 import { ConnectedRouter } from "connected-react-router";
 
-import ModalContext from "hooks/useModal";
 /* import ThemeProvider from "components/_utils/ThemeProvider"; */
 
 // import Application from "containers/app";
 import Routes from "containers";
+import ModalContext from "hooks/useModal";
 
 const store = makeStore();
 

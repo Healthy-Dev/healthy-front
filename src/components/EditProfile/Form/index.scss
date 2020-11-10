@@ -42,7 +42,6 @@
         border-radius: $radius-1;
       }
 
-
       img {
         width: 100%;
         height: 100%;
@@ -72,7 +71,7 @@
       width: 100%;
       border-radius: $radius-1;
       font-family: $font-plain;
-      font-size: $s-1;
+      font-size: $s-1 + 2;
       border: 1px solid #0d263f;
       background: #021527;
       color: #c9c9c9;

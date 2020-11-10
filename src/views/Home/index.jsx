@@ -12,18 +12,26 @@ import NavHome from "components/_shared/Logo";
 import useAuth from "hooks/useAuth";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestGetCards } from "state/cards/actions";
+import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
 // Selectores
-import { GetCardsSelector } from "state/cards/selectors";
+import { GetCardsSelector, hiddenMesgSelector } from "state/cards/selectors";
+import Alert from "components/_shared/Alert";
 
 const HomeView = () => {
 	const dispatch = useDispatch();
 	const { isAuth } = useAuth();
 	const { data, loading } = useSelector((state) => GetCardsSelector(state));
+	const { data: msg, error: errorMsg } = useSelector((state) =>
+		hiddenMesgSelector(state),
+	);
 
 	useEffect(() => {
 		if (!data) dispatch(requestGetCards());
-	}, [dispatch]); //eslint-disable-line
+	}, [dispatch, data, msg]); //eslint-disable-line
+
+	function deleteMsg() {
+		dispatch(hiddenMsgAlert());
+	}
 
 	return (
 		<>
@@ -35,11 +43,23 @@ const HomeView = () => {
 						<Loading />
 					) : (
 						<>
-							<div className="line"></div>
+							{msg && (
+								<Alert
+									click={deleteMsg}
+									error={errorMsg}
+									success={!errorMsg}
+									showButtonClose
+								>
+									{msg}
+								</Alert>
+							)}
+
 							<div className="presentation">
 								<img src={Imagen} alt="presentation" />
 								<h2>Solo diviertete!</h2>
 							</div>
+
+							<div className="line"></div>
 
 							<div className="logo-home">
 								<NavHome />

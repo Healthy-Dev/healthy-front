@@ -9,14 +9,8 @@ import InputSearch from "components/Search/InputSeach";
 import Loading from "components/_shared/Loading";
 import CardsSearch from "components/Search/Cards";
 
-import { requestSearchCards } from "state/cards/actions";
-import { SearchCardsSelector } from "state/cards/selectors";
-
-import { requestGetCardsCategories } from "state/cards/actions";
-import { GetCardsCategories } from "state/cards/selectors";
-
-import { requestCardsByCategory } from "state/cards/actions";
-import { filterCardsByCategory } from "state/cards/selectors";
+import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
+import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
 
 const Search = ({ history }) => {
 	let locationQuery = history.location.search.replace("?query=", "");
@@ -25,10 +19,6 @@ const Search = ({ history }) => {
 	const dispatch = useDispatch();
 	const { data: searchData, loading: searchLoading } = useSelector((state) =>
 		SearchCardsSelector(state),
-	);
-
-	const { data: categoriesData, loading: categoriesLoading } = useSelector((state) =>
-		GetCardsCategories(state),
 	);
 
 	const {
@@ -50,8 +40,6 @@ const Search = ({ history }) => {
 	}
 
 	useEffect(() => {
-		if (!categoriesData) dispatch(requestGetCardsCategories());
-
 		if (history.location.search.includes(`?query=`) && locationQuery) {
 			if (!searchData) searchCards();
 		}
@@ -61,12 +49,7 @@ const Search = ({ history }) => {
 		<Layout title="Buscar">
 			<div className="search">
 				<InputSearch getCards={searchCards} history={history} />
-
-				{categoriesLoading && <Tags categoriesLoading />}
-
-				{categoriesData && (
-					<Tags filterByCategories={filterByCategories} categories={categoriesData} />
-				)}
+				<Tags filterByCategories={filterByCategories} />
 
 				{(searchLoading || filterByCategoryLoading) && <Loading />}
 

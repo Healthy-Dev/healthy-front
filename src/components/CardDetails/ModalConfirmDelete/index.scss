@@ -11,23 +11,30 @@
 }
 
 .modal__confirm {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 24px;
-  background: #0a2d5cb6;
-  border-radius: 0 0 20px 20px;
+  background: #000000c2;
+  border-radius: 0 0 10px 10px;
   z-index: 10000000;
   animation: downModal .3s ease;
+  padding: $s1 $s0;
 
   @include desktop {
-    width: 100%;
+    max-width: 500px;
+    left: 30%;
+  }
+
+  @include tablet {
+    max-width: 500px;
     left: 25%;
   }
 
-  .alert {
-    position: relative;
+  p {
+    text-align: center;
+    font-size: 1.2em;
+    color: $ivory;
   }
 
   &--buttons {
@@ -44,11 +51,11 @@
       border-radius: 6px;
 
       &:nth-child(1) {
-        background: #ED254E;
+        background: #114575;
       }
 
       &:nth-child(2) {
-        background: #041A2F;
+        background: #e74162;
       }
     }
 

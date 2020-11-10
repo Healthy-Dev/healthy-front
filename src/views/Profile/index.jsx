@@ -30,12 +30,12 @@ const Profile = () => {
 	};
 
 	const dispatch = useDispatch();
-	const { data: dataCards, loading: loadingCards } = useSelector((state) =>
-		GetCardsSelector(state),
-	);
+	const { data: dataCards } = useSelector((state) => GetCardsSelector(state));
 	const { data: dataUser } = useSelector((state) => UserSelector(state));
 
-	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+	const { data: dataFilterCards, loading } = useSelector((state) =>
+		FilterByUserCreator(state),
+	);
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
@@ -93,11 +93,11 @@ const Profile = () => {
 					</section>
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
-				{loadingCards && <Loading />}
+				{loading && <Loading />}
 				<section>
-					{/* <h2 className="subtitle">
+					<h2 className="subtitle">
 						{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
-					</h2> */}
+					</h2>
 					{dataFilterCards && <CardsUser data={dataFilterCards} />}
 				</section>
 			</div>

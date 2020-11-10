@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
-import Card from "components/CardDetails";
-import Loading from "components/_shared/Loading";
+import CardDetail from "components/CardDetails";
 import Alert from "components/_shared/Alert";
-import NotFound from "views/ErrorPage";
+import Loading from "components/_shared/Loading";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
 	requestGetCard,
 	requestLikedCards,
 	requestDislikedCards,
+	hiddenMsgAlert,
 } from "state/cards/actions";
 import { getUserRequest } from "state/user/actions";
 import { requestDeleteCard } from "state/cards/actions";
 
-import { GetCardSelector } from "state/cards/selectors";
+import { GetCardSelector, hiddenMesgSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
-import { DeleteCardSelector } from "state/cards/selectors";
 
 import useAuth from "hooks/useAuth";
 import Layout from "components/_shared/Layout";
@@ -28,16 +27,22 @@ const CardDetailsView = () => {
 	const { token } = useAuth();
 	const { cardId } = useParams();
 
+	const { data: msg, error: errorMsg } = useSelector((state) =>
+		hiddenMesgSelector(state),
+	);
+
+	function deleteMsg() {
+		dispatch(hiddenMsgAlert());
+	}
+
 	const {
 		data: cardData,
 		loading: cardLoading,
-		error: cardError,
 		likesCount,
 		isLikedByMe,
 	} = useSelector((state) => GetCardSelector(state));
 
 	const { data: userData } = useSelector((state) => UserSelector(state));
-	const { error: deleteCardError } = useSelector((state) => DeleteCardSelector(state));
 
 	useEffect(() => {
 		if (!cardData || cardData.id !== +cardId) dispatch(requestGetCard({ cardId }));
@@ -71,16 +76,15 @@ const CardDetailsView = () => {
 	return (
 		<Layout title="Detalle de tarjeta">
 			<div className="card__detail">
-				{cardError && <NotFound />}
-				{cardLoading && <Loading />}
-				{deleteCardError && (
-					<Alert error showButtonClose className="alert-delete-card">
-						No se pudo elimar!, Intentelo mas tarde
+				{msg && (
+					<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
+						{msg}
 					</Alert>
 				)}
+				{cardLoading && <Loading />}
 
 				{cardData && (
-					<Card
+					<CardDetail
 						data={cardData}
 						isYourCard={isYourCard}
 						deleteCard={deleteCard}

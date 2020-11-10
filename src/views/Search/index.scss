@@ -5,6 +5,7 @@
 	padding-bottom: 6.5rem;
 	width: 96vw;
 	margin: auto;
+	overflow: hidden;
 
 	@include desktop {
 		width: 100%;
@@ -28,6 +29,7 @@
 	}
 
 	&__cards {
+		margin-top: 2.5rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: $s0;

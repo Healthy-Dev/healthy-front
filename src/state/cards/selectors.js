@@ -41,3 +41,8 @@ export const FilterByUserCreator = createSelector(
 	[reducer],
 	(Cards) => Cards?.filterByUserCreator,
 );
+
+export const hiddenMesgSelector = createSelector(
+	[reducer],
+	(Cards) => Cards?.messageCard,
+);

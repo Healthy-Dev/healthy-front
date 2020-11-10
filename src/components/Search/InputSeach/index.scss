@@ -13,6 +13,10 @@
   justify-content: flex-start;
   align-items: center;
 
+  @include desktop {
+    width: 50%;
+  }
+
   &--icon {
     margin-right: .5rem;
 

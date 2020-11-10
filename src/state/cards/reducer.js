@@ -14,10 +14,15 @@ export const initialState = {
 	...makeReducer("filterCardsByCategory"),
 	...makeReducer("cardCategories"),
 	...makeReducer("filterByUserCreator"),
+	...makeReducer("messageCard"),
 };
 
 const reducer = generalStatus.createReducer(
 	{
+		[types.HIDDEN_MSG_ALERT]: (state) => ({
+			...state,
+			messageCard: { data: null },
+		}),
 		[types.FILTER_CARDS_BY_USERCREATOR_REQUEST]: (state) => ({
 			...state,
 			filterByUserCreator: { loading: true, error: false },
@@ -75,7 +80,13 @@ const reducer = generalStatus.createReducer(
 		[types.DELETE_CARD_SUCCESS]: (state, { payload }) => {
 			return {
 				...state,
-				deleteCard: { loading: false, error: false, data: payload.data },
+				messageCard: { data: "Su tarjeta se elimino correctamente", error: false },
+				deleteCard: {
+					loading: false,
+					error: false,
+					data: payload.data,
+					message: "HOLA BICHO",
+				},
 				getCards: {
 					...state.getCards,
 					data: state.getCards.data.filter(
@@ -87,6 +98,7 @@ const reducer = generalStatus.createReducer(
 		[types.DELETE_CARD_FAIULRE]: (state) => ({
 			...state,
 			deleteCard: { loading: false, error: true, data: null },
+			messageCard: { data: "NO se pudo eliminar. Intentelo mas tarde!", error: true },
 		}),
 		[types.EDIT_CARD_REQUEST]: (state) => ({
 			...state,
@@ -105,7 +117,12 @@ const reducer = generalStatus.createReducer(
 
 			return {
 				...state,
-				editCard: { loading: false, error: false, data: payload.data },
+				messageCard: { data: "Se actualizo correctamente!", error: false },
+				editCard: {
+					loading: false,
+					error: false,
+					data: payload.data,
+				},
 				getCards: {
 					...state.getCards,
 					data:
@@ -122,7 +139,12 @@ const reducer = generalStatus.createReducer(
 		},
 		[types.EDIT_CARD_FAIULRE]: (state) => ({
 			...state,
-			editCard: { loading: false, error: true, data: null },
+			editCard: {
+				loading: false,
+				error: true,
+				data: null,
+			},
+			messageCard: { data: "No se pudo actualizar!", error: true },
 		}),
 		[types.CREATE_CARD_REQUEST]: (state) => ({
 			...state,
@@ -147,11 +169,16 @@ const reducer = generalStatus.createReducer(
 					...state.getCards,
 					data: [fakeCard, ...state.getCards.data],
 				},
+				messageCard: { data: "Se creo correctamente!", error: false },
 			};
 		},
 		[types.CREATE_CARD_FAILURE]: (state) => ({
 			...state,
 			createdCard: { loading: false, error: true, data: null },
+			messageCard: {
+				data: "No se pudo crear su tarjeta. Intentelo mas tarde",
+				error: true,
+			},
 		}),
 		[types.SEARCH_CARDS_REQUEST]: (state) => ({
 			...state,
