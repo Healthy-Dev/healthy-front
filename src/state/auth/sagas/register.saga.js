@@ -9,7 +9,7 @@ function* watchRegister() {
 		success: actions.successRegister,
 		fail: actions.failureRegister,
 		retry: actions.requestRegister,
-		warning: actions.warningRegister,
+		conflict: actions.warningRegister,
 	});
 	yield takeLatest(types.REGISTER_REQUEST, workerRegister);
 }

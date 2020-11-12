@@ -1,6 +1,7 @@
 import authDuck from ".";
 import * as types from "./types";
 
+export const hiddenMsgAlert = authDuck.createAction(types.HIDDEN_MSG_ALERT);
 export const userLogout = authDuck.createAction(types.USER_LOGOUT);
 
 export const requestLogin = authDuck.createAction(types.LOGIN_REQUEST);

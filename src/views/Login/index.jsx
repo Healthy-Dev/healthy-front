@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 
-import { requestLogin } from "state/auth/actions";
-import { LoginSelector } from "state/auth/selectors";
+import { requestLogin, hiddenMsgAlert } from "state/auth/actions";
+import { LoginSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
 import Login from "components/Login";
 import Alert from "components/_shared/Alert";
@@ -20,6 +20,8 @@ const LoginView = () => {
 	const { data, loading, error } = useSelector((state) => LoginSelector(state));
 	const { isAuth, startSession } = useAuth();
 
+	const { data: messageAuth } = useSelector((state) => hiddenMsgAuthSelector(state));
+
 	const loginUser = (payload) => {
 		dispatch(requestLogin(payload));
 	};
@@ -34,17 +36,18 @@ const LoginView = () => {
 		}
 	}, [data]); //eslint-disable-line
 
+	function hiddenAlert() {
+		dispatch(hiddenMsgAlert());
+	}
+
 	return (
 		<div className="login-wrapper">
+			{messageAuth && (
+				<Alert error={error} showButtonClose click={hiddenAlert}>
+					{messageAuth}
+				</Alert>
+			)}
 			<div className="login-container">
-				{error ? (
-					<Alert showButtonClose error>
-						Disculpa, no pudimos loguear tu usuario con esa información.{" "}
-						<a href="!#" onClick={() => history.push("/reset_password")}>
-							¿Necesitás resetear tu contraseña?
-						</a>
-					</Alert>
-				) : null}
 				<div className="desktop-title-wrapper">
 					<h2 className="desktop-title">INICIAR SESION</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
@@ -55,13 +58,9 @@ const LoginView = () => {
 				<div className="login-footer">
 					<Login sendLogin={loginUser} loading={loading} />
 					<footer>
-						<p>¿Todavía no tenés una cuenta?</p>
-						<p
-							role="button"
-							className="button__link"
-							onClick={() => history.push("/register")}
-						>
-							Registrate
+						<p role="button" className="button__link">
+							¿Todavía no tenés una cuenta?{" "}
+							<span onClick={() => history.push("/register")}>Registrate</span>
 						</p>
 					</footer>
 				</div>

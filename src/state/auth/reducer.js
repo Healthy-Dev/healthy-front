@@ -7,10 +7,15 @@ export const initialState = {
 	...makeReducer("register"),
 	...makeReducer("verify"),
 	...makeReducer("resendVerification"),
+	...makeReducer("messageAuth"),
 };
 
 const reducer = generalStatus.createReducer(
 	{
+		[types.HIDDEN_MSG_ALERT]: (state) => ({
+			...state,
+			messageAuth: { data: null },
+		}),
 		[types.LOGIN_REQUEST]: (state) => ({
 			...state,
 			login: {
@@ -26,20 +31,38 @@ const reducer = generalStatus.createReducer(
 				data: payload.data,
 			},
 		}),
-		[types.LOGIN_FAILURE]: (state) => ({
-			...state,
-			login: {
-				loading: false,
-				error: true,
-				data: null,
-			},
-		}),
+		[types.LOGIN_FAILURE]: (state) => {
+			return {
+				...state,
+				login: {
+					loading: false,
+					error: true,
+					data: null,
+				},
+				messageAuth: { data: "Verifique los datos ingresados" },
+			};
+		},
 		[types.USER_LOGOUT]: (state) => ({
 			...state,
 			login: {
 				loading: false,
 				error: false,
-				data: undefined,
+				data: null,
+			},
+			register: {
+				loading: false,
+				error: false,
+				data: null,
+			},
+			verify: {
+				loading: false,
+				error: false,
+				data: null,
+			},
+			resendVerification: {
+				loading: false,
+				error: false,
+				data: null,
 			},
 		}),
 		[types.REGISTER_REQUEST]: (state) => ({
@@ -47,6 +70,7 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: true,
 				error: false,
+				warning: false,
 			},
 		}),
 		[types.REGISTER_SUCCESS]: (state, { payload }) => ({
@@ -54,6 +78,7 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: false,
 				error: false,
+				warning: false,
 				data: payload.data,
 			},
 		}),
@@ -62,19 +87,20 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
-				errorMessage: payload.data.message,
 			},
+			messageAuth: { data: payload.data?.message },
 		}),
 		[types.REGISTER_WARNING]: (state, { payload }) => ({
 			...state,
 			register: {
 				loading: false,
-				error: true,
+				error: false,
 				warning: true,
 				data: null,
-				messageWarning: payload.data?.message,
 			},
+			messageAuth: { data: payload.data?.message },
 		}),
 		[types.VERIFY_REQUEST]: (state) => ({
 			...state,
@@ -88,6 +114,7 @@ const reducer = generalStatus.createReducer(
 			verify: {
 				loading: false,
 				error: false,
+				warning: false,
 				data: payload,
 			},
 		}),
@@ -96,6 +123,7 @@ const reducer = generalStatus.createReducer(
 			verify: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
 				errorMessage: payload.data?.message,
 			},
@@ -122,6 +150,7 @@ const reducer = generalStatus.createReducer(
 			resendVerification: {
 				loading: false,
 				error: false,
+				warning: false,
 				data: payload.data,
 			},
 		}),
@@ -130,6 +159,7 @@ const reducer = generalStatus.createReducer(
 			resendVerification: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
 				errorMessage: payload.data?.message,
 			},

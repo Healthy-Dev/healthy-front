@@ -1,5 +1,6 @@
 import authDuck from ".";
 
+export const HIDDEN_MSG_ALERT = authDuck.defineType("HIDDEN_MSG_ALERT");
 export const USER_LOGOUT = authDuck.defineType("USER_LOGOUT");
 
 export const LOGIN_REQUEST = authDuck.defineType("LOGIN_REQUEST");
