@@ -16,7 +16,7 @@ import useAuth from "hooks/useAuth";
 const Search = ({ history }) => {
 	const { isAuth } = useAuth();
 	useEffect(() => {
-		if (isAuth) history.replace("/login");
+		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
 	let locationQuery = history.location.search.replace("?query=", "");

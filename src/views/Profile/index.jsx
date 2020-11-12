@@ -47,7 +47,7 @@ const Profile = ({ history }) => {
 	}
 
 	useEffect(() => {
-		if (isAuth) history.replace("/login");
+		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
 	useEffect(() => {
