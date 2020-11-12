@@ -74,7 +74,7 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 			<p
 				role="button"
 				className="button__link--grey"
-				onClick={() => history.push("/reset_password")}
+				onClick={() => history.push("/recover_password")}
 			>
 				¿Olvidaste tu contraseña?
 			</p>

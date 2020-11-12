@@ -10,8 +10,9 @@
   }
 
   &__modal {
-    background: $medium-grey;
-    border-radius: $radius-1;
+    background: #0b2f52;
+    box-shadow: 0 0 2px rgba(10, 103, 126, 0.5);
+    border-radius: $radius-1 - 4;
     color: $ivory;
     position: absolute;
     right: 0;
@@ -23,6 +24,11 @@
     li {
       padding: .5rem 1rem .3rem 1rem;
       color: $ivory;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(207, 207, 207);
+      }
     }
   }
 }
