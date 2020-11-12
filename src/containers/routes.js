@@ -12,8 +12,14 @@ const Login = lazy(() => import("views/Login/"));
 const Profile = lazy(() => import("views/Profile/"));
 const Register = lazy(() => import("views/Register/"));
 const Search = lazy(() => import("views/Search/"));
+const ResetPassword = lazy(() => import("views/UserCreated"));
 
 export default [
+	{
+		path: "/reset_password",
+		component: ResetPassword,
+		exact: true,
+	},
 	{
 		path: "/",
 		component: Home,
