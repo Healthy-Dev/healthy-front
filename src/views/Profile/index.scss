@@ -32,6 +32,7 @@
     align-items: flex-start;
     gap: 1rem;
     position: relative;
+    margin-bottom: $s0;
 
     @include tablet {
       max-width: 100%;
@@ -112,6 +113,6 @@
   .subtitle {
     color: $ivory;
     font-size: $s0;
-    margin: $s1 0;
+    margin-bottom: $s1;
   }
 }

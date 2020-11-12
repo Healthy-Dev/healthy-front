@@ -5,10 +5,27 @@ import { makeReducer } from "../utils";
 export const initialState = {
 	...makeReducer("get_user"),
 	...makeReducer("update_user"),
+	...makeReducer("message_user"),
+};
+
+const resetState = {
+	loading: false,
+	error: false,
+	data: null,
 };
 
 const reducer = generalStatus.createReducer(
 	{
+		[types.HIDDEN_MSG_USER]: (state) => ({
+			...state,
+			message_user: { data: null },
+		}),
+		[types.DELETE_USER_DATA]: (state) => ({
+			...state,
+			get_user: resetState,
+			update_user: resetState,
+			message_user: resetState,
+		}),
 		[types.GET_USER_REQUEST]: (state) => ({
 			...state,
 			get_user: {
@@ -60,6 +77,7 @@ const reducer = generalStatus.createReducer(
 					...state.get_user,
 					data: { user: { ...state.get_user.data.user, ...fakeDataUpdate } },
 				},
+				message_user: { data: payload?.data.message },
 			};
 		},
 		[types.UPDATE_USER_FAILURE]: (state) => ({
@@ -69,6 +87,7 @@ const reducer = generalStatus.createReducer(
 				error: true,
 				data: null,
 			},
+			message_user: { data: "No se pudo actualizar tus datos!" },
 		}),
 	},
 	initialState,

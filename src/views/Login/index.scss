@@ -56,23 +56,12 @@
 			width: 55%;
 		}
 
-		h1 {
-			margin-top: $s1;
-			font-family: $font-title;
-			text-transform: uppercase;
-			text-shadow: 0px 0px 15px black;
+		.login-logo {
+			position: relative;
+			top: 5%;
 
 			@include desktop {
 				display: none;
-			}
-
-			.healthy {
-				font-weight: 700;
-				color: $title-green;
-			}
-
-			.dev {
-				font-weight: 400;
 			}
 		}
 

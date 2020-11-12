@@ -111,11 +111,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 						ref={register({
 							required: true,
 							validate: (value) =>
-								value === getValues("password") ? (
-									true
-								) : (
-									<MessageError message="Las contraseñas no coinciden." />
-								),
+								value === getValues("password") ? true : "Las contraseñas no coinciden",
 						})}
 					/>
 					<div

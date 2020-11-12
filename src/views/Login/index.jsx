@@ -13,12 +13,13 @@ import useAuth from "hooks/useAuth";
 import "./index.scss";
 import loginBackground from "assets/img/desktopLoginBg.png";
 import logoHealthy from "assets/icons/Logo-heatlhy.svg";
+import HealthyDev from "components/_shared/HealthyDev";
 
 const LoginView = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const { data, loading, error } = useSelector((state) => LoginSelector(state));
 	const { isAuth, startSession } = useAuth();
+	const { data, loading, error, warning } = useSelector((state) => LoginSelector(state));
 
 	const { data: messageAuth } = useSelector((state) => hiddenMsgAuthSelector(state));
 
@@ -26,24 +27,29 @@ const LoginView = () => {
 		dispatch(requestLogin(payload));
 	};
 
+	function hiddenAlert() {
+		dispatch(hiddenMsgAlert());
+	}
+
 	useEffect(() => {
 		if (isAuth) history.replace("/");
 	}, [isAuth]); //eslint-disable-line
 
 	useEffect(() => {
 		if (data) {
-			startSession(data.accessToken, 2);
+			startSession(data.accessToken);
 		}
 	}, [data]); //eslint-disable-line
-
-	function hiddenAlert() {
-		dispatch(hiddenMsgAlert());
-	}
 
 	return (
 		<div className="login-wrapper">
 			{messageAuth && (
-				<Alert error={error} showButtonClose click={hiddenAlert}>
+				<Alert
+					error={error || warning}
+					success={!error}
+					showButtonClose
+					click={hiddenAlert}
+				>
 					{messageAuth}
 				</Alert>
 			)}
@@ -52,9 +58,7 @@ const LoginView = () => {
 					<h2 className="desktop-title">INICIAR SESION</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
-				<h1>
-					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
-				</h1>
+				<HealthyDev className="login-logo" />
 				<div className="login-footer">
 					<Login sendLogin={loginUser} loading={loading} />
 					<footer>

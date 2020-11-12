@@ -1,7 +1,9 @@
 import { useState } from "react";
 import useLocalStorage from "hooks/useLocalStorage";
+import { useHistory } from "react-router-dom";
 
 export default function useAuth() {
+	const history = useHistory();
 	const key = "HEALTHY__DEV__TOKEN";
 	const [healthyToken, setToken] = useLocalStorage(key, "");
 	const [isAuth, setAuth] = useState(healthyToken ? true : false);
@@ -45,6 +47,7 @@ export default function useAuth() {
 	function closeSession() {
 		localStorage.removeItem(key);
 		setAuth(false);
+		history.push("/");
 	}
 
 	const token = getToken();

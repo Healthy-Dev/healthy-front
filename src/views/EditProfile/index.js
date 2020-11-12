@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import useAuth from "hooks/useAuth";
 
 import { useDispatch, useSelector } from "react-redux";
-import { UserSelector } from "state/user/selectors";
+import { UserSelector, UpdateUserSelector } from "state/user/selectors";
 import { updateUserRequest } from "state/user/actions";
 
 import EditProfileForm from "components/EditProfile/Form";
@@ -16,6 +16,9 @@ const EditProfile = () => {
 	const { token } = useAuth();
 	const dispatch = useDispatch();
 	const { data, loading } = useSelector((state) => UserSelector(state));
+
+	const { loading: updateLoading } = useSelector((state) => UpdateUserSelector(state));
+
 	function sendEditProfile(data) {
 		dispatch(updateUserRequest({ token, data }));
 		setTimeout(() => hiddenModal(), 2000);
@@ -26,7 +29,13 @@ const EditProfile = () => {
 			<TopNavbar title="Editar Perfil" />
 			<div className="editProfile">
 				{loading && <Loading />}
-				{data && <EditProfileForm dataUser={data} sendForm={sendEditProfile} />}
+				{data && (
+					<EditProfileForm
+						dataUser={data}
+						sendForm={sendEditProfile}
+						loading={updateLoading}
+					/>
+				)}
 			</div>
 		</>
 	);

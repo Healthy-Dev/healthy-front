@@ -1,5 +1,8 @@
 import userDuck from ".";
 
+export const DELETE_USER_DATA = userDuck.defineType("DELETE_USER_DATA");
+export const HIDDEN_MSG_USER = userDuck.defineType("HIDDEN_MSG_USER");
+
 export const GET_USER_REQUEST = userDuck.defineType("GET_USER_REQUEST");
 export const GET_USER_SUCCESS = userDuck.defineType("GET_USER_SUCCESS");
 export const GET_USER_FAILURE = userDuck.defineType("GET_USER_FAILURE");

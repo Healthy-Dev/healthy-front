@@ -10,6 +10,13 @@ export const initialState = {
 	...makeReducer("messageAuth"),
 };
 
+const resetState = {
+	loading: false,
+	error: false,
+	warning: false,
+	data: null,
+};
+
 const reducer = generalStatus.createReducer(
 	{
 		[types.HIDDEN_MSG_ALERT]: (state) => ({
@@ -44,26 +51,11 @@ const reducer = generalStatus.createReducer(
 		},
 		[types.USER_LOGOUT]: (state) => ({
 			...state,
-			login: {
-				loading: false,
-				error: false,
-				data: null,
-			},
-			register: {
-				loading: false,
-				error: false,
-				data: null,
-			},
-			verify: {
-				loading: false,
-				error: false,
-				data: null,
-			},
-			resendVerification: {
-				loading: false,
-				error: false,
-				data: null,
-			},
+			login: resetState,
+			register: resetState,
+			verify: resetState,
+			resendVerification: resetState,
+			messageAuth: resetState,
 		}),
 		[types.REGISTER_REQUEST]: (state) => ({
 			...state,
@@ -90,7 +82,9 @@ const reducer = generalStatus.createReducer(
 				warning: false,
 				data: null,
 			},
-			messageAuth: { data: payload.data?.message },
+			messageAuth: {
+				data: payload.data?.message[0].constraints.matches || payload.data?.message,
+			},
 		}),
 		[types.REGISTER_WARNING]: (state, { payload }) => ({
 			...state,

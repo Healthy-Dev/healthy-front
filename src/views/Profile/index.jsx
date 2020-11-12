@@ -12,30 +12,39 @@ import { ReactComponent as InstagramIcon } from "assets/icons/instagram.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
-import { getUserRequest } from "state/user/actions";
+import { getUserRequest, deleteUserData, hiddenMsgUser } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
 import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
-import { UserSelector } from "state/user/selectors";
+import { UserSelector, MessageUserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
+import Alert from "components/_shared/Alert";
 
 const Profile = () => {
 	const { showComponent, showModal } = useContext(ContextModal);
 	const { token, closeSession } = useAuth();
 
-	const deleteDataUser = () => {
-		dispatch(userLogout());
-		closeSession();
-	};
-
 	const dispatch = useDispatch();
 	const { data: dataCards } = useSelector((state) => GetCardsSelector(state));
-	const { data: dataUser } = useSelector((state) => UserSelector(state));
+	const { data: dataUser, error: errorUser } = useSelector((state) =>
+		UserSelector(state),
+	);
+	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
 	const { data: dataFilterCards, loading } = useSelector((state) =>
 		FilterByUserCreator(state),
 	);
+
+	function deleteDataUser() {
+		dispatch(userLogout());
+		dispatch(deleteUserData());
+		closeSession();
+	}
+
+	function hiddenAlert() {
+		dispatch(hiddenMsgUser());
+	}
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
@@ -60,6 +69,11 @@ const Profile = () => {
 
 	return (
 		<Layout title="Perfil">
+			{messageAlert && (
+				<Alert click={hiddenAlert} error={errorUser} showButtonClose success={!errorUser}>
+					{messageAlert}
+				</Alert>
+			)}
 			<div className="profile">
 				<div className="profile__header">
 					<div className="profile__header--img">

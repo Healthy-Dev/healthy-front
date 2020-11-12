@@ -4,8 +4,8 @@ import logoHealthy from "assets/icons/Logo-heatlhy.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 
-import { requestRegister } from "state/auth/actions";
-import { RegisterSelector } from "state/auth/selectors";
+import { requestRegister, hiddenMsgAlert } from "state/auth/actions";
+import { RegisterSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
 import Register from "components/Register";
 import Alert from "components/_shared/Alert";
@@ -15,15 +15,12 @@ import useAuth from "hooks/useAuth";
 
 const RegisterView = ({ history }) => {
 	const { isAuth } = useAuth();
-	const {
-		loading,
-		errorMessage,
-		error,
-		data,
-		warning,
-		messageWarning,
-	} = useSelector((state) => RegisterSelector(state));
+	const { loading, error, data, warning } = useSelector((state) =>
+		RegisterSelector(state),
+	);
 	const dispatch = useDispatch();
+
+	const { data: message } = useSelector((state) => hiddenMsgAuthSelector(state));
 
 	useEffect(() => {
 		if (isAuth) history.replace("/");
@@ -38,18 +35,23 @@ const RegisterView = ({ history }) => {
 			setTimeout(() => history.replace("/activate"), 2500);
 		}
 	}, [data]); //eslint-disable-line
+	console.log(data);
+
+	function hiddenAlert() {
+		dispatch(hiddenMsgAlert());
+	}
 
 	return (
 		<div className="register-container">
 			<div className="register-form">
-				{error && errorMessage && (
-					<Alert showButtonClose error>
-						{errorMessage && errorMessage}
-					</Alert>
-				)}
-				{warning && messageWarning && (
-					<Alert showButtonClose error>
-						{messageWarning && messageWarning}
+				{message && (
+					<Alert
+						showButtonClose
+						error={error || warning}
+						success={!error && !warning}
+						click={hiddenAlert}
+					>
+						{message}
 					</Alert>
 				)}
 				<div className="desktop-title-wrapper">
