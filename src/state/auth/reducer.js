@@ -109,7 +109,7 @@ const reducer = generalStatus.createReducer(
 				loading: false,
 				error: false,
 				warning: false,
-				data: payload,
+				data: payload.data?.message,
 			},
 		}),
 		[types.VERIFY_FAILURE]: (state, { payload }) => ({
