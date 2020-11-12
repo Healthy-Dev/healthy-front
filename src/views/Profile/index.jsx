@@ -21,9 +21,9 @@ import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
 import Alert from "components/_shared/Alert";
 
-const Profile = () => {
+const Profile = ({ history }) => {
 	const { showComponent, showModal } = useContext(ContextModal);
-	const { token, closeSession } = useAuth();
+	const { token, closeSession, isAuth } = useAuth();
 
 	const dispatch = useDispatch();
 	const { data: dataCards } = useSelector((state) => GetCardsSelector(state));
@@ -45,6 +45,10 @@ const Profile = () => {
 	function hiddenAlert() {
 		dispatch(hiddenMsgUser());
 	}
+
+	useEffect(() => {
+		if (isAuth) history.replace("/login");
+	}, [isAuth]); //eslint-disable-line
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());

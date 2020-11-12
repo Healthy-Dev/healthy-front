@@ -35,7 +35,6 @@ const RegisterView = ({ history }) => {
 			setTimeout(() => history.replace("/activate"), 2500);
 		}
 	}, [data]); //eslint-disable-line
-	console.log(data);
 
 	function hiddenAlert() {
 		dispatch(hiddenMsgAlert());

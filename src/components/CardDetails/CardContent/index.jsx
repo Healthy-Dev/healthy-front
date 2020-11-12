@@ -54,7 +54,7 @@ const CardContent = ({
 					<img src={creatorInfo.profilePhoto} alt="profile" />
 				</div>
 				<h3 className="card__content--more-user">{creatorInfo.name}</h3>
-				<button className="card__content--more-button">Seguir</button>
+				{/* <button className="card__content--more-button">Seguir</button> */}
 				<div className="card__content--more-options">
 					<MoreOptions
 						optionsModal={isYourCard() ? optionsModalCreator : optionsModalDefault}

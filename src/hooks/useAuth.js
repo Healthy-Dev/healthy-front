@@ -47,7 +47,7 @@ export default function useAuth() {
 	function closeSession() {
 		localStorage.removeItem(key);
 		setAuth(false);
-		history.push("/");
+		history.replace("/login");
 	}
 
 	const token = getToken();

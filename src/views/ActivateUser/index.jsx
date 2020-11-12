@@ -27,10 +27,10 @@ const UserCreated = () => {
 	useEffect(() => {
 		if (isTokenFromEmail) {
 			dispatch(requestVerify({ token }));
-			if (data) startSession(token);
 		}
 		// eslint-disable-next-line
-	}, [isTokenFromEmail, token, dispatch]);
+		if (data) startSession(token);
+	}, [isTokenFromEmail, token, dispatch, data]);
 
 	return (
 		<div className="activate">
@@ -42,7 +42,7 @@ const UserCreated = () => {
 						Reenviar Verificación
 					</Button>
 				)}
-				{data && toString(data)}
+				{data && data}
 				{data && <Button onClick={() => history.push("/")}>Continuar</Button>}
 				{warning && messageWarning}
 				{warning && (

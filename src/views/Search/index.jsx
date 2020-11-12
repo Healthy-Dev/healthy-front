@@ -11,8 +11,14 @@ import CardsSearch from "components/Search/Cards";
 
 import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
 import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
+import useAuth from "hooks/useAuth";
 
 const Search = ({ history }) => {
+	const { isAuth } = useAuth();
+	useEffect(() => {
+		if (isAuth) history.replace("/login");
+	}, [isAuth]); //eslint-disable-line
+
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
 
