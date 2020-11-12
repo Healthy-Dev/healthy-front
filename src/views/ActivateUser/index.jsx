@@ -11,9 +11,8 @@ import HealthyDev from "components/_shared/HealthyDev";
 
 import useAuth from "hooks/useAuth";
 
-const UserCreated = () => {
+const UserCreated = ({ history }) => {
 	const { search } = useLocation();
-	const history = useHistory();
 	const { startSession } = useAuth();
 
 	const dispatch = useDispatch();

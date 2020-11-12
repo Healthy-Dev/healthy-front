@@ -16,3 +16,11 @@ export const resendVerification = ({ payload: { email } }) =>
 		undefined,
 		TYPES.json,
 	);
+
+export const forgotPassword = ({ payload: { email } }) =>
+	fakeHttpModule.get(
+		`v1/auth/forgot-password/${email}`,
+		undefined,
+		undefined,
+		TYPES.json,
+	);

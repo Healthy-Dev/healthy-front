@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // Styles
 import "./index.scss";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "components/_shared/Button";
@@ -8,13 +9,16 @@ import HealthyDev from "components/_shared/HealthyDev";
 
 const ResetPassword = () => {
 	const dispatch = useDispatch();
+	const { search } = useLocation();
+	// const isTokenPassword = search.includes("token");
+	const token = search.replace("?token=", "");
 
 	const [password, setPassword] = useState({});
 
 	function sendRecoverPass() {
 		const existPassword = Object.entries(password).length > 0;
 		if (existPassword && !password?.error) {
-			// send recover password
+			// dispatch(requestResetPassword({ token }));
 		}
 	}
 

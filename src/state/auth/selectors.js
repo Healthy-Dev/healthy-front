@@ -13,4 +13,12 @@ export const ResendVerificationSelector = createSelector(
 	(Auth) => Auth?.resendVerification,
 );
 
-export const hiddenMsgAuthSelector = createSelector([reducer], (Auth) => Auth?.messageAuth);
+export const hiddenMsgAuthSelector = createSelector(
+	[reducer],
+	(Auth) => Auth?.messageAuth,
+);
+
+export const forgotPasswordSelector = createSelector(
+	[reducer],
+	(Auth) => Auth?.forgotPassword,
+);

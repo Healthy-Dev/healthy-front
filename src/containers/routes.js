@@ -17,7 +17,7 @@ const ResetPassword = lazy(() => import("views/ResetPassword"));
 
 export default [
 	{
-		path: "/reset_password",
+		path: "/reset-password",
 		component: ResetPassword,
 		exact: true,
 	},

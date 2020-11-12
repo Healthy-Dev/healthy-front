@@ -21,3 +21,7 @@ export const RESEND_VERIFY_REQUEST = authDuck.defineType("RESEND_VERIFY_REQUEST"
 export const RESEND_VERIFY_SUCCESS = authDuck.defineType("RESEND_VERIFY_SUCCESS");
 export const RESEND_VERIFY_FAILURE = authDuck.defineType("RESEND_VERIFY_FAILURE");
 export const RESEND_VERIFY_WARNING = authDuck.defineType("RESEND_VERIFY_WARNING");
+
+export const FORGOT_PASSWORD_REQUEST = authDuck.defineType("FORGOT_PASSWORD_REQUEST");
+export const FORGOT_PASSWORD_SUCCESS = authDuck.defineType("FORGOT_PASSWORD_SUCCESS");
+export const FORGOT_PASSWORD_FAILURE = authDuck.defineType("FORGOT_PASSWORD_FAILURE");
