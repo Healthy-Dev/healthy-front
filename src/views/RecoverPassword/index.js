@@ -23,8 +23,6 @@ const RecoverPassword = () => {
 		if (email.email && !email?.error) {
 			dispatch(requestForgotPassword({ email: email.email }));
 		}
-
-		setEmail({ email: "" });
 	}
 
 	function handleChange(e) {
@@ -32,10 +30,14 @@ const RecoverPassword = () => {
 			return setEmail({ error: "Ingrese un email valido" });
 		}
 
-		setEmail({ [e.target.name]: e.target.value });
+		setEmail({ email: e.target.value });
 	}
 
-	console.log(data);
+	function handlePress(e) {
+		if (e.keyCode === 13) {
+			sendRecoverPass();
+		}
+	}
 
 	function showInputEmail() {
 		return (
@@ -43,10 +45,9 @@ const RecoverPassword = () => {
 				<input
 					type="email"
 					required
-					name="email"
 					placeholder="Ingrese su email"
 					onChange={handleChange}
-					value={email.email}
+					onKeyDown={handlePress}
 				/>
 				{email.error && <p className="error">{email?.error}</p>}
 				<Button onClick={sendRecoverPass}>

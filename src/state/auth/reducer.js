@@ -9,6 +9,7 @@ export const initialState = {
 	...makeReducer("resendVerification"),
 	...makeReducer("messageAuth"),
 	...makeReducer("forgotPassword"),
+	...makeReducer("resetPassword"),
 };
 
 const resetState = {
@@ -187,6 +188,30 @@ const reducer = generalStatus.createReducer(
 		[types.FORGOT_PASSWORD_FAILURE]: (state, { payload }) => ({
 			...state,
 			forgotPassword: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMsg: payload.data?.message,
+			},
+		}),
+		[types.RESET_PASSWORD_REQUEST]: (state) => ({
+			...state,
+			resetPassword: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.RESET_PASSWORD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			resetPassword: {
+				loading: false,
+				error: false,
+				data: payload.data,
+			},
+		}),
+		[types.RESET_PASSWORD_FAILURE]: (state, { payload }) => ({
+			...state,
+			resetPassword: {
 				loading: false,
 				error: true,
 				data: null,

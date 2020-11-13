@@ -22,3 +22,8 @@ export const forgotPasswordSelector = createSelector(
 	[reducer],
 	(Auth) => Auth?.forgotPassword,
 );
+
+export const resetPasswordSelector = createSelector(
+	[reducer],
+	(Auth) => Auth?.resetPassword,
+);

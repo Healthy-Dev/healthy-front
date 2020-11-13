@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // Styles
 import "./index.scss";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { VerifySelector } from "state/auth/selectors";
 import { requestVerify } from "state/auth/actions";
@@ -27,8 +27,8 @@ const UserCreated = ({ history }) => {
 		if (isTokenFromEmail) {
 			dispatch(requestVerify({ token }));
 		}
-		// eslint-disable-next-line
 		if (data) startSession(token);
+		// eslint-disable-next-line
 	}, [isTokenFromEmail, token, dispatch, data]);
 
 	return (
