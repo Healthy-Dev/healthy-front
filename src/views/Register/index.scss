@@ -31,6 +31,7 @@
 
 	@include tablet {
 		background: $dark-blue;
+		padding: 0;
 	}
 
 	.register-form {
@@ -47,12 +48,12 @@
 		@include desktop {
 			padding: $s2 0 $s0 $s2;
 			margin-left: $s5;
-			width: 35%;
+			width: 40%;
 		}
 
 		@include tablet {
-			width: 50%;
-			margin-left: 2rem;
+			width: 55%;
+			margin-left: 1rem;
 			padding: $s2 0 $s1 $s2;
 		}
 
@@ -69,15 +70,6 @@
 			@include tablet {
 				display: none;
 			}
-
-			.healthy {
-				font-weight: 700;
-				color: $title-green;
-			}
-
-			.dev {
-				font-weight: 400;
-			}
 		}
 
 		.register-title {
@@ -92,10 +84,23 @@
 			}
 		}
 
+		.register-logo {
+			position: relative;
+			top: 5%;
+
+			@include desktop {
+				display: none;
+			}
+
+			@include tablet {
+				display: none;
+			}
+		}
+
 		.desktop-title-wrapper {
 			display: none;
 			width: 100%;
-			padding-bottom: $s3;
+			padding-bottom: $s2;
 
 			@include desktop {
 				display: flex;
@@ -116,13 +121,15 @@
 		}
 
 		.link {
-			display: inline-block;
-			width: 100%;
-			text-align: end;
-			display: inline-block;
+			width: fit-content;
 			color: $yellow;
 			text-decoration: none;
-			font-size: $s-1;
+			font-size: $s-1 +1;
+			margin: .5rem 0;
+
+			&:hover {
+				font-weight: 500;
+			}
 		}
 	}
 
@@ -139,7 +146,7 @@
 
 		@include tablet {
 			display: block;
-			width: 40%;
+			width: 44%;
 		}
 	}
 }

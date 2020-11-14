@@ -12,6 +12,7 @@ import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
 import useAuth from "hooks/useAuth";
+import HealthyDev from "components/_shared/HealthyDev";
 
 const RegisterView = ({ history }) => {
 	const { isAuth } = useAuth();
@@ -57,10 +58,7 @@ const RegisterView = ({ history }) => {
 					<h2 className="desktop-title">REGISTRO</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
-				<h1 className="title">
-					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
-				</h1>
-				<h2 className="register-title">Registrate</h2>
+				<HealthyDev className="register-logo" />
 				<Register sendFormRegister={sendFormRegister} loading={loading} />
 			</div>
 			<img src={registerBackground} className="register-img" alt="fondo" />

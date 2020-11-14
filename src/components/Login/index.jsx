@@ -32,14 +32,26 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 
 	return (
 		<form className="form__login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-			<Button className="blue" fullWidth>
-				<FacebookIcon />
-				Continuar con Facebook
-			</Button>
-			<Button className="red" fullWidth>
-				<GoogleIcon />
-				Continuar con Google
-			</Button>
+			<a
+				href="https://healthydev.herokuapp.com/v1/auth/facebook"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Button className="blue" type="button">
+					<FacebookIcon />
+					Continuar con Facebook
+				</Button>
+			</a>
+			<a
+				href="https://healthydev.herokuapp.com/v1/auth/google"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Button className="red" type="button">
+					<GoogleIcon />
+					Continuar con Google
+				</Button>
+			</a>
 
 			<label name="usernameOrEmail" htmlFor="user">
 				Email/Usuario
@@ -70,15 +82,15 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 					{isPasswordHidden ? <Eye /> : <EyeOff />}
 				</div>
 			</div>
+			{errors.password && <MessageError message="Ingrese su contraseña." />}
 
 			<p
 				role="button"
-				className="button__link--grey"
+				className="forgot-password"
 				onClick={() => history.push("/recover_password")}
 			>
 				¿Olvidaste tu contraseña?
 			</p>
-			{errors.password && <MessageError message="Ingrese su contraseña." />}
 
 			<Button
 				className="button__login"

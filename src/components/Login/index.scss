@@ -9,7 +9,16 @@
 	height: 100%;
 	width: 100%;
 
+	a {
+		text-decoration: none;
+	}
+
 	@include desktop {
+		justify-content: flex-start;
+		height: auto;
+	}
+
+	@include tablet {
 		justify-content: flex-start;
 		height: auto;
 	}
@@ -40,16 +49,25 @@
 				display: flex;
 				align-items: center;
 			}
+
+			@include tablet {
+				width: 10%;
+				display: flex;
+				align-items: center;
+			}
 		}
 	}
 
+	label {
+		margin-top: .5rem;
+	}
+
 	input {
-		font-family: $font-plain;
 		border: none;
 		font-size: $s0;
 		color: $ivory;
 		padding: $s-1;
-		margin-bottom: $s1;
+		margin-bottom: 0;
 		margin-top: $s-2;
 		border-radius: $radius-1;
 
@@ -74,29 +92,20 @@
 		margin-top: $s-2;
 	}
 
-	.tooltip {
-		display: inline-block;
-		position: relative;
-		border-bottom: 1px dotted #666;
-		text-align: left;
-	}
-
 	[role="button"] {
 		cursor: pointer;
 	}
 
 	button {
-		background-color: $yellow;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-family: $font-plain;
-		font-size: $s0;
-		box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
-		margin-bottom: $s1;
+		margin-bottom: $s0;
 
 		svg {
 			margin-right: 1rem;
+			width: 18px;
+			height: 18px;
 		}
 
 		&.blue {
@@ -117,7 +126,11 @@
 		}
 	}
 
-	.button__link--grey {
+	.forgot-password {
 		width: fit-content;
+
+		&:hover {
+			color: white;
+		}
 	}
 }
