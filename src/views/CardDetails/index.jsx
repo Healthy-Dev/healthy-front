@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CardDetail from "components/CardDetails";
 import Alert from "components/_shared/Alert";
-import Loading from "components/_shared/Loading";
+import Layout from "components/_shared/Layout";
+import Loader from "components/_shared/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +20,6 @@ import { GetCardSelector, hiddenMesgSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 
 import useAuth from "hooks/useAuth";
-import Layout from "components/_shared/Layout";
 
 const CardDetailsView = () => {
 	const [isILiked, setILiked] = useState(false);
@@ -81,7 +81,7 @@ const CardDetailsView = () => {
 						{msg}
 					</Alert>
 				)}
-				{cardLoading && <Loading />}
+				{cardLoading && <Loader center />}
 
 				{cardData && (
 					<CardDetail

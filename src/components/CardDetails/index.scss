@@ -21,34 +21,31 @@
     margin-top: 3rem;
     padding: 3rem;
     border-radius: 10px;
-    // box-shadow: 0 0 5px rgba(6, 6, 51, 0.507);
     position: relative;
     display: flex;
     gap: 1rem;
-    justify-content: center;
 
-    &>div,
-    &>section {
+    .card__header,
+    .card__content {
       width: 50%;
       min-height: auto;
     }
   }
 
   @include tablet {
+    border: 1px solid rgb(88, 88, 88);
     min-height: auto;
     margin-top: 2rem;
     width: 90%;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(6, 6, 51, 0.95);
     position: relative;
     display: flex;
-    justify-content: center;
     max-width: 1200px;
-    gap: 1rem;
+    gap: .5rem;
 
-    &>div,
-    &>section {
+    .card__header,
+    .card__content {
       width: 50%;
       min-height: auto;
     }

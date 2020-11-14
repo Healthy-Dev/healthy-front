@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
 import Layout from "components/_shared/Layout";
-import MoreOptions from "components/_shared/MoreOptions";
 import Alert from "components/_shared/Alert";
 import ListCards from "components/_shared/ListCards";
 import Loader from "components/_shared/Loader";
-
-import { ReactComponent as TwitterIcon } from "assets/icons/twitter.svg";
-import { ReactComponent as InstagramIcon } from "assets/icons/instagram.svg";
+import HeaderProfile from "components/Profile/Header";
 
 // Redux
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
@@ -67,9 +64,14 @@ const Profile = ({ history }) => {
 		showComponent("edit-profile");
 	}
 
+	function deleteUser() {
+		console.log("delete User");
+	}
+
 	let optionsModal = [
 		{ title: "Editar perfil", fn: editProfile },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
+		{ title: "Eliminar Cuenta", fn: deleteUser },
 	];
 
 	return (
@@ -80,41 +82,14 @@ const Profile = ({ history }) => {
 				</Alert>
 			)}
 			<div className="profile">
-				<div className="profile__header">
-					<div className="profile__header--img">
-						<img
-							src={
-								(dataUser && dataUser.user.profilePhoto) ||
-								"https://www.component-creator.com/images/testimonials/defaultuser.png"
-							}
-							alt="profile"
-						/>
-					</div>
-					<section className="profile__header--user">
-						<h2>{dataUser?.user.name}</h2>
-						<h3>@{dataUser?.user.username}</h3>
-						<section className="social">
-							<p>
-								<span>{dataFilterCards?.length}</span> Tarjetas
-							</p>
-							/
-							{(dataUser?.user.instagram || dataUser?.user.twitter) && (
-								<>
-									<a href={dataUser?.user.instagram} target="_blank noopener noreferrer">
-										<InstagramIcon />
-									</a>
-									<a href={dataUser?.user.twitter} target="_blank noopener noreferrer">
-										<TwitterIcon />
-									</a>
-								</>
-							)}
-						</section>
-					</section>
-					<MoreOptions optionsModal={optionsModal} />
-				</div>
+				<HeaderProfile
+					dataUser={dataUser}
+					dataFilterCards={dataFilterCards}
+					optionsModal={optionsModal}
+				/>
 				<section>
 					<h2 className="subtitle">
-						{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : ""}
+						{!dataFilterCards?.length && "Aun no creaste ninguna Tarjeta"}
 					</h2>
 					{loading && <Loader center />}
 					{dataFilterCards && <ListCards cards={dataFilterCards} />}

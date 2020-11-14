@@ -2,8 +2,20 @@
 
 .more {
   position: relative;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background: rgba(9, 35, 78, 0.651);
+  }
 
   &__icon {
+    text-align: center;
+
     path {
       stroke: $yellow;
     }
