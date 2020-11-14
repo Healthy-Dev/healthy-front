@@ -6,11 +6,18 @@ export const initialState = {
 	...makeReducer("get_user"),
 	...makeReducer("update_user"),
 	...makeReducer("message_user"),
+	...makeReducer("delete_user"),
 };
 
 const resetState = {
 	loading: false,
 	error: false,
+	data: null,
+};
+
+const failure = {
+	loading: false,
+	error: true,
 	data: null,
 };
 
@@ -43,11 +50,7 @@ const reducer = generalStatus.createReducer(
 		}),
 		[types.GET_USER_FAILURE]: (state) => ({
 			...state,
-			get_user: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			get_user: failure,
 		}),
 		[types.UPDATE_USER_REQUEST]: (state) => ({
 			...state,
@@ -82,12 +85,28 @@ const reducer = generalStatus.createReducer(
 		},
 		[types.UPDATE_USER_FAILURE]: (state) => ({
 			...state,
-			update_user: {
-				loading: false,
-				error: true,
-				data: null,
-			},
+			update_user: failure,
 			message_user: { data: "No se pudo actualizar tus datos!" },
+		}),
+
+		[types.DELETE_USER_REQUEST]: (state) => ({
+			...state,
+			delete_user: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.DELETE_USER_SUCCESS]: (state) => ({
+			...state,
+			delete_user: { data: null },
+			update_user: { data: null },
+			get_user: { data: null },
+			message_user: { data: "Healthy Dev le informa que el usuario ha sido eliminado" },
+		}),
+		[types.DELETE_USER_FAILURE]: (state) => ({
+			...state,
+			delete_user: failure,
+			message_user: { data: "No se pudo eliminar esta cuenta!" },
 		}),
 	},
 	initialState,

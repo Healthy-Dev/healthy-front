@@ -10,3 +10,7 @@ export const GET_USER_FAILURE = userDuck.defineType("GET_USER_FAILURE");
 export const UPDATE_USER_REQUEST = userDuck.defineType("UPDATE_USER_REQUEST");
 export const UPDATE_USER_SUCCESS = userDuck.defineType("UPDATE_USER_SUCCESS");
 export const UPDATE_USER_FAILURE = userDuck.defineType("UPDATE_USER_FAILURE");
+
+export const DELETE_USER_REQUEST = userDuck.defineType("DELETE_USER_REQUEST");
+export const DELETE_USER_SUCCESS = userDuck.defineType("DELETE_USER_SUCCESS");
+export const DELETE_USER_FAILURE = userDuck.defineType("DELETE_USER_FAILURE");
