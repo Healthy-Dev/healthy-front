@@ -6,6 +6,8 @@
 	position: relative;
 
 	&__img {
+		position: relative;
+		display: block;
 
 		img {
 			width: 100%;
@@ -26,10 +28,16 @@
 	}
 
 	&__loader {
-		position: absolute;
-		left: 5%;
+		position: absolute !important;
 		top: 5%;
-		color: $yellow;
+		right: 5%;
+		width: 20px !important;
+		height: 20px !important;
+
+		&>div {
+			border: 3px solid $yellow !important;
+			border-color: $yellow $yellow transparent transparent !important;
+		}
 	}
 
 	&__error {
