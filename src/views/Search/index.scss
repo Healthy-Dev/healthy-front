@@ -17,6 +17,10 @@
 		width: 100%;
 	}
 
+	&__content {
+		margin: 1rem 0;
+	}
+
 	&__title {
 		color: $ivory;
 		margin: 1rem 0;
@@ -27,6 +31,7 @@
 			text-transform: uppercase;
 		}
 	}
+
 
 	&__cards {
 		margin-top: 2.5rem;

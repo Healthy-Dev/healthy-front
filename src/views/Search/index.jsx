@@ -1,28 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
+
 import useLocalStorage from "hooks/useLocalStorage";
+import useAuth from "hooks/useAuth";
 
 import Layout from "components/_shared/Layout";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
-import Loading from "components/_shared/Loading";
-import CardsSearch from "components/Search/Cards";
+import ListCards from "components/_shared/ListCards";
+import NotResults from "components/Search/NotResults";
+import Loader from "components/_shared/Loader";
 
 import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
 import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
-import useAuth from "hooks/useAuth";
 
 const Search = ({ history }) => {
 	const { isAuth } = useAuth();
+	const dispatch = useDispatch();
+
 	useEffect(() => {
 		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
+	const [cards, setCards] = useState([]);
 
-	const dispatch = useDispatch();
 	const { data: searchData, loading: searchLoading } = useSelector((state) =>
 		SearchCardsSelector(state),
 	);
@@ -51,21 +55,28 @@ const Search = ({ history }) => {
 		}
 	}, []); //eslint-disable-line
 
+	useEffect(() => {
+		if (filterOrSearch.name === "search") setCards(searchData);
+		if (filterOrSearch.name === "filter") setCards(filterByCategoryData);
+	}, [searchData, filterByCategoryData]); //eslint-disable-line
+
 	return (
 		<Layout title="Buscar">
 			<div className="search">
 				<InputSearch getCards={searchCards} history={history} />
 				<Tags filterByCategories={filterByCategories} />
 
-				{(searchLoading || filterByCategoryLoading) && <Loading />}
+				<div className="search__content">
+					<h2 className="search__title">
+						Buscar: <span>{filterOrSearch.value}</span>
+					</h2>
 
-				{filterOrSearch.name === "filter" && filterByCategoryData && (
-					<CardsSearch data={filterByCategoryData} query={filterOrSearch.value} />
-				)}
+					{cards && <ListCards cards={cards} />}
 
-				{filterOrSearch.name === "search" && searchData && (
-					<CardsSearch data={searchData} query={filterOrSearch.value} />
-				)}
+					{(searchLoading || filterByCategoryLoading) && <Loader center />}
+
+					{cards?.length === 0 && <NotResults />}
+				</div>
 			</div>
 		</Layout>
 	);

@@ -12,6 +12,17 @@
   font-family: $font-plain;
   box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
 
+  .loader-icon {
+    width: 20px;
+    height: 20px;
+
+    &>div {
+      border: 3px solid transparent;
+      border-color: $darker-blue transparent transparent transparent;
+    }
+  }
+
+
   &:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }

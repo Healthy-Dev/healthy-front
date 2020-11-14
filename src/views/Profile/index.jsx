@@ -1,25 +1,26 @@
 import React, { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
 import Layout from "components/_shared/Layout";
-import CardsUser from "components/Profile/Carrousel";
-import Loading from "components/_shared/Loading";
 import MoreOptions from "components/_shared/MoreOptions";
+import Alert from "components/_shared/Alert";
+import ListCards from "components/_shared/ListCards";
+import Loader from "components/_shared/Loader";
 
 import { ReactComponent as TwitterIcon } from "assets/icons/twitter.svg";
 import { ReactComponent as InstagramIcon } from "assets/icons/instagram.svg";
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
 import { getUserRequest, deleteUserData, hiddenMsgUser } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
 import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
 import { UserSelector, MessageUserSelector } from "state/user/selectors";
+
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
-import Alert from "components/_shared/Alert";
 
 const Profile = ({ history }) => {
 	const { showComponent, showModal } = useContext(ContextModal);
@@ -111,12 +112,12 @@ const Profile = ({ history }) => {
 					</section>
 					<MoreOptions optionsModal={optionsModal} />
 				</div>
-				{loading && <Loading />}
 				<section>
 					<h2 className="subtitle">
-						{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
+						{!dataFilterCards?.length ? "Aun no creaste ninguna Tarjeta" : ""}
 					</h2>
-					{dataFilterCards && <CardsUser data={dataFilterCards} />}
+					{loading && <Loader center />}
+					{dataFilterCards && <ListCards cards={dataFilterCards} />}
 				</section>
 			</div>
 		</Layout>

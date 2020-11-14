@@ -1,24 +1,15 @@
 @import "theme";
 
 .card {
-	min-width: 150px;
-	height: 220px;
-	box-shadow: 0 0 4px rgb(9, 38, 68);
+	// min-width: 150px;
+	// max-width: 200px;
+	height: 250px;
+	box-shadow: 0 0 10px rgb(5, 11, 44);
 	position: relative;
 
 	&:hover img {
 		transform: scale(1.05);
 		transition: transform .5s ease;
-	}
-
-	@include desktop {
-		height: 250px;
-		width: 200px;
-
-	}
-
-	@include tablet {
-		height: 250px;
 	}
 
 	&::after {
@@ -33,16 +24,16 @@
 		background: linear-gradient(to top, rgba(3, 17, 31, 0.459), transparent), linear-gradient(to top, rgba(3, 17, 31, 0.459), transparent);
 	}
 
-	&>div {
-		height: 100%;
+	&__img {
 		height: 100%;
 		overflow: hidden;
 		border-radius: $radius-1;
 
 		img {
+			border-radius: $radius-1;
 			width: 100%;
-			overflow: hidden;
 			height: 100%;
+			overflow: hidden;
 			object-fit: cover;
 		}
 	}

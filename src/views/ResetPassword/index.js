@@ -51,11 +51,9 @@ const ResetPassword = ({ history }) => {
 				<input
 					type="text"
 					required
-					name="password"
 					placeholder="Nueva contraseña"
 					onChange={handleChange}
 					onKeyDown={handlePress}
-					value={password.password}
 				/>
 				{password.error && <p className="error">{password?.error}</p>}
 				<Button onClick={sendResetPass}>

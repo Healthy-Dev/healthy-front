@@ -6,7 +6,7 @@
   margin: auto;
 
   @include desktop {
-    padding: 0;
+    padding: $s0 0;
     width: 100%;
     display: grid;
     grid-template-columns: 350px 1fr;
@@ -36,6 +36,7 @@
 
     @include tablet {
       max-width: 100%;
+      margin-bottom: 2rem;
     }
 
     @include desktop {
@@ -111,8 +112,7 @@
   }
 
   .subtitle {
-    color: $ivory;
+    color: $yellow;
     font-size: $s0;
-    margin-bottom: $s1;
   }
 }

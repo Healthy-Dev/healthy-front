@@ -11,7 +11,7 @@ const Card = ({ img, title, id }) => {
 
 	return (
 		<div className="card" onClick={handleClick}>
-			<div>
+			<div className="card__img">
 				<img src={img} alt="card" />
 			</div>
 			<h2>{title}</h2>
