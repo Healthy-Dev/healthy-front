@@ -10,11 +10,21 @@ import HeaderProfile from "components/Profile/Header";
 
 // Redux
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
-import { getUserRequest, deleteUserData, hiddenMsgUser } from "state/user/actions";
+import {
+	getUserRequest,
+	deleteUserData,
+	hiddenMsgUser,
+	deleteUserRequest,
+} from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
 import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
-import { UserSelector, MessageUserSelector } from "state/user/selectors";
+import {
+	UserSelector,
+	MessageUserSelector,
+	DeleteUserSelector,
+	UpdateUserSelector,
+} from "state/user/selectors";
 
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
@@ -28,6 +38,8 @@ const Profile = ({ history }) => {
 	const { data: dataUser, error: errorUser } = useSelector((state) =>
 		UserSelector(state),
 	);
+	const { error: errorDeleteUser } = useSelector((state) => DeleteUserSelector(state));
+	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
 	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
 	const { data: dataFilterCards, loading } = useSelector((state) =>
@@ -65,19 +77,25 @@ const Profile = ({ history }) => {
 	}
 
 	function deleteUser() {
-		console.log("delete User");
+		// NOTE: Confirmar el origen del token
+		dispatch(deleteUserRequest({ token }));
 	}
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: editProfile },
-		{ title: "Cerrar Sesion", fn: deleteDataUser },
 		{ title: "Eliminar Cuenta", fn: deleteUser },
+		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 
 	return (
 		<Layout title="Perfil">
 			{messageAlert && (
-				<Alert click={hiddenAlert} error={errorUser} showButtonClose success={!errorUser}>
+				<Alert
+					click={hiddenAlert}
+					error={errorUser || errorDeleteUser || errorUpdateUser}
+					showButtonClose
+					success={!errorUser && !errorDeleteUser && !errorUpdateUser}
+				>
 					{messageAlert}
 				</Alert>
 			)}

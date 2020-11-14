@@ -6,5 +6,5 @@ export const getUser = ({ payload: { token } }) =>
 export const updateUser = ({ payload: { token, data } }) =>
 	fakeHttpModule.put("v1/users/me", token, data, TYPES.json);
 
-export const deleteUser = ({ token }) =>
-	fakeHttpModule.delete(`v1/users/?token=${token}`, undefined, undefined);
+export const deleteUser = ({ payload: { token } }) =>
+	fakeHttpModule.delete(`v1/users/?token=${token}`, undefined, undefined, TYPES.json);
