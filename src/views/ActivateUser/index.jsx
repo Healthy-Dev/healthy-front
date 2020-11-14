@@ -9,11 +9,8 @@ import { requestVerify } from "state/auth/actions";
 import Button from "components/_shared/Button";
 import HealthyDev from "components/_shared/HealthyDev";
 
-import useAuth from "hooks/useAuth";
-
 const UserCreated = ({ history }) => {
 	const { search } = useLocation();
-	const { startSession } = useAuth();
 
 	const dispatch = useDispatch();
 	const { errorMessage, data, error, messageWarning, warning } = useSelector((state) =>
@@ -27,9 +24,9 @@ const UserCreated = ({ history }) => {
 		if (isTokenFromEmail) {
 			dispatch(requestVerify({ token }));
 		}
-		if (data) startSession(token);
 		// eslint-disable-next-line
-	}, [isTokenFromEmail, token, dispatch, data]);
+	}, [token, dispatch]);
+	console.log(data);
 
 	return (
 		<div className="activate">
@@ -42,7 +39,7 @@ const UserCreated = ({ history }) => {
 					</Button>
 				)}
 				{data && data}
-				{data && <Button onClick={() => history.push("/")}>Continuar</Button>}
+				{data && <Button onClick={() => history.push("/login")}>Iniciar Sesión</Button>}
 				{warning && messageWarning}
 				{warning && (
 					<Button onClick={() => history.push("/login")}>Iniciar Sesión</Button>
