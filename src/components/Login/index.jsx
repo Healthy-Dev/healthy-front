@@ -53,36 +53,43 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 				</Button>
 			</a>
 
-			<label name="usernameOrEmail" htmlFor="user">
-				Email/Usuario
-			</label>
-			<input
-				id="user"
-				type="text"
-				name="usernameOrEmail"
-				placeholder="ejemplo@healthydev.com"
-				ref={register({ required: true })}
-			/>
-			{errors.usernameOrEmail && <MessageError message="Ingrese su usuario o email." />}
-
-			<label name="password" htmlFor="password">
-				Contraseña
-			</label>
-			<div className="input__container">
+			<section className="form__login--input">
+				<label name="usernameOrEmail" htmlFor="user">
+					Email/Usuario
+				</label>
 				<input
-					id="password"
-					type={isPasswordHidden ? "password" : "text"}
-					name="password"
-					placeholder="******"
-					ref={register({
-						required: true,
-					})}
+					id="user"
+					type="text"
+					name="usernameOrEmail"
+					placeholder="ejemplo@healthydev.com"
+					ref={register({ required: true })}
 				/>
-				<div onClick={() => setPasswordHidden(!isPasswordHidden)} className="input__icon">
-					{isPasswordHidden ? <Eye /> : <EyeOff />}
+				{errors.usernameOrEmail && <MessageError message="Ingrese su usuario o email." />}
+			</section>
+
+			<section className="form__login--input">
+				<label name="password" htmlFor="password">
+					Contraseña
+				</label>
+				<div className="input__container">
+					<input
+						id="password"
+						type={isPasswordHidden ? "password" : "text"}
+						name="password"
+						placeholder="******"
+						ref={register({
+							required: true,
+						})}
+					/>
+					<div
+						onClick={() => setPasswordHidden(!isPasswordHidden)}
+						className="input__icon"
+					>
+						{isPasswordHidden ? <Eye /> : <EyeOff />}
+					</div>
 				</div>
-			</div>
-			{errors.password && <MessageError message="Ingrese su contraseña." />}
+				{errors.password && <MessageError message="Ingrese su contraseña." />}
+			</section>
 
 			<p
 				role="button"

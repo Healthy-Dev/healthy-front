@@ -23,73 +23,73 @@
 		height: auto;
 	}
 
-	.input__container {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		background-color: $medium-grey;
-		border-radius: $radius-1;
-		width: 100%;
-		margin-top: $s-2;
-		margin-bottom: $s-3;
+	&--input {
+		margin-bottom: $s1;
+
+		.input__container {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: $medium-grey;
+			border-radius: $radius-1;
+			width: 100%;
+			margin-top: $s-2;
+
+			input {
+				margin-bottom: 0px;
+				margin-top: 0px;
+				border-radius: $radius-1;
+			}
+
+			.input__icon {
+				width: 20%;
+				text-align: center;
+
+				@include desktop {
+					width: 10%;
+					display: flex;
+					align-items: center;
+				}
+
+				@include tablet {
+					width: 10%;
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
 
 		input {
-			margin-bottom: 0px;
-			margin-top: 0px;
+			width: 100%;
+			border: none;
+			font-size: $s0;
+			color: $ivory;
+			padding: $s-1;
+			margin-bottom: 0;
+			margin-top: $s-2;
 			border-radius: $radius-1;
-		}
 
-		.input__icon {
-			width: 20%;
-			text-align: center;
-
-			@include desktop {
-				width: 10%;
-				display: flex;
-				align-items: center;
+			&::placeholder {
+				opacity: 1;
+				color: $light-grey;
 			}
 
-			@include tablet {
-				width: 10%;
-				display: flex;
-				align-items: center;
+			&:valid {
+				background-color: $medium-grey;
+			}
+
+			&[name="password"] {
+				width: 80%;
 			}
 		}
 	}
 
-	label {
-		margin-top: .5rem;
-	}
-
-	input {
-		border: none;
-		font-size: $s0;
-		color: $ivory;
-		padding: $s-1;
-		margin-bottom: 0;
-		margin-top: $s-2;
-		border-radius: $radius-1;
-
-		&::placeholder {
-			opacity: 1;
-			color: $light-grey;
-		}
-
-		&:valid {
-			background-color: $medium-grey;
-		}
-
-		&[name="password"] {
-			width: 80%;
-		}
-	}
 
 	p {
 		color: $light-grey;
 		font-size: $s-1;
-		margin-bottom: $s-2;
-		margin-top: $s-2;
+		margin-top: .5rem;
 	}
 
 	[role="button"] {
@@ -100,7 +100,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: $s0;
+		margin-bottom: $s1;
 
 		svg {
 			margin-right: 1rem;
@@ -121,7 +121,6 @@
 		}
 
 		&.button__login {
-			margin-top: $s1;
 			margin-bottom: $s-2;
 		}
 	}
