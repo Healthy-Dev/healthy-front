@@ -93,6 +93,12 @@ const reducer = generalStatus.createReducer(
 						(card) => card.id !== Number(payload.reqData.cardId),
 					),
 				},
+				filterByUserCreator: {
+					...state.filterByUserCreator,
+					data: state.filterByUserCreator.data.filter(
+						(card) => card.id !== Number(payload.reqData.cardId),
+					),
+				},
 			};
 		},
 		[types.DELETE_CARD_FAIULRE]: (state) => ({
@@ -168,6 +174,10 @@ const reducer = generalStatus.createReducer(
 				getCards: {
 					...state.getCards,
 					data: [fakeCard, ...state.getCards.data],
+				},
+				filterByUserCreator: {
+					...state.filterByUserCreator,
+					data: [fakeCard, ...state.filterByUserCreator.data],
 				},
 				messageCard: { data: "Se creo correctamente!", error: false },
 			};
