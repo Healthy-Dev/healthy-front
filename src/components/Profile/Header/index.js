@@ -22,11 +22,12 @@ const HeaderProfile = ({ dataUser, dataFilterCards, optionsModal }) => {
 				<h3>@{dataUser?.user.username}</h3>
 				<section className="social">
 					<p>
-						<span>{dataFilterCards?.length}</span> Tarjetas
+						<span>{dataFilterCards?.length}</span>
+						{dataFilterCards?.length === 1 ? " tarjeta" : " tarjetas"}
 					</p>
-					/
 					{(dataUser?.user.instagram || dataUser?.user.twitter) && (
 						<>
+							/
 							<a href={dataUser?.user.instagram} target="_blank noopener noreferrer">
 								<InstagramIcon />
 							</a>

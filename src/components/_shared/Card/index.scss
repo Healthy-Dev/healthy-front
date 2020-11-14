@@ -52,6 +52,11 @@
 		color: $ivory;
 		font-weight: 400;
 		letter-spacing: .5px;
+		text-transform: lowercase;
+
+		&::first-letter {
+			text-transform: uppercase;
+		}
 
 		@include desktop {
 			font-size: $s0 - 1;

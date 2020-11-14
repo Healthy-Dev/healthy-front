@@ -95,9 +95,11 @@ const reducer = generalStatus.createReducer(
 				},
 				filterByUserCreator: {
 					...state.filterByUserCreator,
-					data: state.filterByUserCreator.data.filter(
-						(card) => card.id !== Number(payload.reqData.cardId),
-					),
+					data:
+						state.filterByUserCreator.data &&
+						state.filterByUserCreator.data.filter(
+							(card) => card.id !== Number(payload.reqData.cardId),
+						),
 				},
 			};
 		},
@@ -177,7 +179,9 @@ const reducer = generalStatus.createReducer(
 				},
 				filterByUserCreator: {
 					...state.filterByUserCreator,
-					data: [fakeCard, ...state.filterByUserCreator.data],
+					data: state.filterByUserCreator.data
+						? [fakeCard, ...state.filterByUserCreator.data]
+						: [fakeCard],
 				},
 				messageCard: { data: "Se creo correctamente!", error: false },
 			};
