@@ -1,5 +1,17 @@
 @import "theme";
 
+@keyframes downModal {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .more {
   position: relative;
   width: 35px;
@@ -22,21 +34,29 @@
   }
 
   &__modal {
-    background: #0b2f52;
+    background: #03383f;
     box-shadow: 0 0 2px rgba(10, 103, 126, 0.5);
-    border-radius: $radius-1 - 4;
+    border-radius: $radius-1;
     color: $ivory;
     position: absolute;
     right: 0;
-    top: 0;
-    margin-right: 8px;
-    width: 150px;
-    text-align: center;
+    top: .5rem;
+    margin-right: .5rem;
+    width: 135px;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    justify-content: space-around;
+    align-items: center;
+    padding: .5rem;
+    animation: downModal .5s;
+    -moz-animation: downModal .5s;
+    -webkit-animation: downModal .5s;
 
     li {
-      padding: .5rem 1rem .3rem 1rem;
       color: $ivory;
       cursor: pointer;
+      font-size: .8em;
 
       &:hover {
         color: rgb(207, 207, 207);

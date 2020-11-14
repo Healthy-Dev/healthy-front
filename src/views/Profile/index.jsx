@@ -66,7 +66,7 @@ const Profile = ({ history }) => {
 	}, [dispatch]); //eslint-disable-line
 
 	useEffect(() => {
-		if (dataUser && dataUser.user && !dataFilterCards) {
+		if (dataUser?.user && !dataFilterCards && !dataFilterCards?.length) {
 			dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
 		}
 	}, [dataUser, dataFilterCards, dispatch]);
@@ -107,7 +107,7 @@ const Profile = ({ history }) => {
 				/>
 				<section>
 					<h2 className="subtitle">
-						{!dataFilterCards?.length && "Aun no creaste ninguna Tarjeta"}
+						{!dataFilterCards?.length && "No tienes tarjetas creadas"}
 					</h2>
 					{loading && <Loader center />}
 					{dataFilterCards && <ListCards cards={dataFilterCards} />}
