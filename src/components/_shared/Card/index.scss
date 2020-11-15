@@ -7,27 +7,80 @@
 	box-shadow: 0 0 10px rgb(5, 11, 44);
 	position: relative;
 
-	&:hover img {
-		transform: scale(1.05);
-		transition: transform .5s ease;
-	}
-
-	&::after {
-		content: "";
+	&__top {
 		position: absolute;
-		border-radius: $radius-1;
 		top: 0;
-		bottom: 0;
 		left: 0;
-		right: 0;
-		z-index: 5;
-		background: linear-gradient(to top, rgba(3, 17, 31, 0.459), transparent), linear-gradient(to top, rgba(3, 17, 31, 0.459), transparent);
+		padding: $s-1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		z-index: 15;
+
+		&--user {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: $s-1;
+
+			img {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				object-fit: cover;
+				box-shadow: 0 0 4px 5px rgba(31, 31, 31, 0.623);
+			}
+
+			h3 {
+				color: $ivory;
+				font-size: 16px;
+			}
+		}
+
+		&--likes {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: $s-1;
+
+			svg {
+				stroke: $yellow;
+				cursor: pointer;
+			}
+
+			span {
+				color: $ivory;
+				font-weight: 500;
+			}
+		}
+
 	}
 
 	&__img {
 		height: 100%;
+		width: 100%;
 		overflow: hidden;
 		border-radius: $radius-1;
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			border-radius: $radius-1;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 3;
+			background: linear-gradient(to bottom, rgba(3, 17, 31, 0.473), transparent),
+				linear-gradient(to top, rgba(3, 17, 31, 0.63), transparent);
+		}
+
+		&:hover img {
+			transform: scale(1.08);
+			transition: transform .5s ease;
+		}
 
 		img {
 			border-radius: $radius-1;
@@ -41,13 +94,12 @@
 	h2 {
 		border-bottom-left-radius: $radius-1 - 2px;
 		border-bottom-right-radius: $radius-1 - 2px;
-		// background: $darker-blue;
 		position: absolute;
 		z-index: 10;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		font-size: $s-1 + 1.8;
+		font-size: $s-1 + 2;
 		padding: $s-1;
 		color: $ivory;
 		font-weight: 400;
@@ -59,7 +111,7 @@
 		}
 
 		@include desktop {
-			font-size: $s0 - 1;
+			font-size: $s0;
 		}
 
 		@include tablet {
