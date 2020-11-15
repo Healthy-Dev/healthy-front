@@ -6,11 +6,6 @@ export const GetCardSelector = createSelector([reducer], (Cards) => Cards?.getCa
 
 export const GetCardsSelector = createSelector([reducer], (Cards) => Cards?.getCards);
 
-export const GetCardsLikesByMe = createSelector(
-	[reducer],
-	(Cards) => Cards?.cardsLikesByMe,
-);
-
 export const DeleteCardSelector = createSelector([reducer], (Cards) => Cards?.deleteCard);
 
 export const EditCardSelector = createSelector([reducer], (Cards) => Cards?.editCard);
@@ -50,4 +45,9 @@ export const FilterByUserCreator = createSelector(
 export const hiddenMesgSelector = createSelector(
 	[reducer],
 	(Cards) => Cards?.messageCard,
+);
+
+export const GetCardsLikesByMe = createSelector(
+	[reducer],
+	(Cards) => Cards?.cardsLikeByMe,
 );

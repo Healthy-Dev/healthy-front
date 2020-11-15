@@ -14,7 +14,7 @@ export const initialState = {
 	...makeReducer("filterCardsByCategory"),
 	...makeReducer("cardCategories"),
 	...makeReducer("filterByUserCreator"),
-	...makeReducer("cardsLikesByMe"),
+	...makeReducer("cardsLikeByMe"),
 	...makeReducer("messageCard"),
 };
 
@@ -67,24 +67,27 @@ const reducer = generalStatus.createReducer(
 			getCards: { loading: true, error: false },
 		}),
 		[types.GET_CARDS_SUCCESS]: (state, { payload }) => {
-			const cardsLikedMe = (userId) =>
+			const getCards = (userId) =>
 				payload.filter((card) => card.likesBy.find((like) => like.id === userId));
 
-			const cardsByMe = (userId) => payload.filter((card) => card.creator.id === userId);
+			// const cardsByMe = (userId) => payload.filter((card) => card.creator.id === userId);
 
 			return {
 				...state,
 				getCards: { loading: false, error: false, data: payload },
-				cardsLikesByMe: {
+				cardsLikeByMe: {
+					...state.cardsLikesByMe,
 					loading: false,
 					error: false,
-					data: (id) => cardsLikedMe(id),
+					data: null,
+					getCardsLikeByMe: (id) => getCards(id),
 				},
-				filterByUserCreator: {
-					loading: false,
-					error: false,
-					data: (id) => cardsByMe(id),
-				},
+				// filterByUserCreator: {
+				// 	...state.filterByUserCreator,
+				// 	loading: false,
+				// 	error: false,
+				// 	data: (id) => cardsByMe(id),
+				// },
 			};
 		},
 		[types.GET_CARDS_FAIULRE]: (state) => ({

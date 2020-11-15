@@ -22,7 +22,7 @@ import {
 import { userLogout } from "state/auth/actions";
 // Selectores
 import {
-	FilterByUserCreator,
+	// FilterByUserCreator,
 	GetCardsSelector,
 	GetCardsLikesByMe,
 } from "state/cards/selectors";
@@ -35,9 +35,11 @@ import {
 
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
+import { ILikeContext } from "state/cardsILike/context";
 // import { filterCardsByUserCreator } from "state/cards/services";
 
 const Profile = ({ history }) => {
+	const { cardsILike, setCardsILike } = useContext(ILikeContext);
 	const { showComponent, showModal } = useContext(ContextModal);
 	const { token, closeSession, isAuth } = useAuth();
 
@@ -49,8 +51,8 @@ const Profile = ({ history }) => {
 	const { error: errorDeleteUser } = useSelector((state) => DeleteUserSelector(state));
 	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
 
-	const { data: getCardCreatedByMe } = useSelector((state) => FilterByUserCreator(state));
-	const { data: getCardsLikesByMe } = useSelector((state) => GetCardsLikesByMe(state));
+	// const { data: getCardCreatedByMe } = useSelector((state) => FilterByUserCreator(state));
+	const { getCardsLikeByMe } = useSelector((state) => GetCardsLikesByMe(state));
 
 	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
@@ -58,7 +60,7 @@ const Profile = ({ history }) => {
 		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
-	const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
+	// const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
 	const [cardsCreatedByMe, setCardsCreatedByMe] = useState([]);
 
 	useEffect(() => {
@@ -66,10 +68,12 @@ const Profile = ({ history }) => {
 		if (!dataUser) dispatch(getUserRequest({ token }));
 	}, [dispatch]); //eslint-disable-line
 
+	//guardar estosa dtos en otro estado;
 	useEffect(() => {
 		if (dataCards && dataUser) {
-			setLCardsLikesByMe(() => getCardsLikesByMe(dataUser.user.id));
-			setCardsCreatedByMe(() => getCardCreatedByMe(dataUser.user.id));
+			const Ilike = getCardsLikeByMe(dataUser.user.id);
+			setCardsILike(Ilike);
+			setCardsCreatedByMe(() => getCardsLikeByMe(dataUser.user.id));
 		}
 	}, [dataCards, dataUser]); //eslint-disable-line
 
@@ -125,8 +129,8 @@ const Profile = ({ history }) => {
 						optionsModal={optionsModal}
 					/>
 
-					{cardsLikesByMe && (
-						<List cards={cardsLikesByMe} title="Guardadas" icon={CreateIcon} />
+					{cardsILike.length > 0 && (
+						<List cards={cardsILike} title="Guardadas" icon={CreateIcon} />
 					)}
 					{loading && <Loader center className="profile__loader" />}
 				</section>
