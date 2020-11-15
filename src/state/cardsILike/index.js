@@ -11,14 +11,16 @@ export const ILikeContext = createContext();
 const CardsILikeProvider = ({ children }) => {
 	const [cards, setCards] = useState([]);
 
-	const { token } = useAuth();
+	const { token, isAuth } = useAuth();
 	const dispatch = useDispatch();
 	const { data: userData, loading } = useSelector((state) => UserSelector(state));
 	const { data: cardsData } = useSelector((state) => GetCardsSelector(state));
 
 	useEffect(() => {
-		if (!cardsData) dispatch(requestGetCards());
-		if (!userData) dispatch(getUserRequest({ token }));
+		if (isAuth) {
+			if (!cardsData) dispatch(requestGetCards());
+			if (!userData) dispatch(getUserRequest({ token }));
+		}
 	}, [dispatch, cardsData]); //eslint-disable-line
 
 	useEffect(() => {
