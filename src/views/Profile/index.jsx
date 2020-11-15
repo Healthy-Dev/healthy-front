@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
-import { ReactComponent as CreateIcon } from "assets/icons/file-plus.svg";
+import { ReactComponent as CreateIcon } from "assets/icons/create.svg";
 import { ReactComponent as BookMarkIcon } from "assets/icons/bookmark.svg";
 
 import Layout from "components/_shared/Layout";
@@ -12,7 +12,7 @@ import HeaderProfile from "components/Profile/Header";
 import List from "components/Profile/List";
 
 // Redux
-import { requestGetCards } from "state/cards/actions";
+import { requestCardsByUserCreator } from "state/cards/actions";
 import {
 	getUserRequest,
 	deleteUserData,
@@ -21,11 +21,7 @@ import {
 } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
-import {
-	// FilterByUserCreator,
-	GetCardsSelector,
-	GetCardsLikesByMe,
-} from "state/cards/selectors";
+import { FilterByUserCreator } from "state/cards/selectors";
 import {
 	UserSelector,
 	MessageUserSelector,
@@ -35,24 +31,24 @@ import {
 
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
-import { ILikeContext } from "state/cardsILike/context";
+import { ILikeContext } from "state/cardsILike";
 // import { filterCardsByUserCreator } from "state/cards/services";
 
 const Profile = ({ history }) => {
-	const { cardsILike, setCardsILike } = useContext(ILikeContext);
+	const { cardsILike, loading } = useContext(ILikeContext);
 	const { showComponent, showModal } = useContext(ContextModal);
 	const { token, closeSession, isAuth } = useAuth();
 
 	const dispatch = useDispatch();
-	const { data: dataCards, loading } = useSelector((state) => GetCardsSelector(state));
 	const { data: dataUser, error: errorUser } = useSelector((state) =>
 		UserSelector(state),
 	);
+	const { data: cardsByCreator, loading: loadingCreator } = useSelector((state) =>
+		FilterByUserCreator(state),
+	);
+
 	const { error: errorDeleteUser } = useSelector((state) => DeleteUserSelector(state));
 	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
-
-	// const { data: getCardCreatedByMe } = useSelector((state) => FilterByUserCreator(state));
-	const { getCardsLikeByMe } = useSelector((state) => GetCardsLikesByMe(state));
 
 	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
@@ -60,33 +56,23 @@ const Profile = ({ history }) => {
 		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
-	// const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
-	const [cardsCreatedByMe, setCardsCreatedByMe] = useState([]);
-
 	useEffect(() => {
-		if (!dataCards) dispatch(requestGetCards());
 		if (!dataUser) dispatch(getUserRequest({ token }));
 	}, [dispatch]); //eslint-disable-line
 
-	//guardar estosa dtos en otro estado;
 	useEffect(() => {
-		if (dataCards && dataUser) {
-			const Ilike = getCardsLikeByMe(dataUser.user.id);
-			setCardsILike(Ilike);
-			setCardsCreatedByMe(() => getCardsLikeByMe(dataUser.user.id));
+		if (dataUser?.user && !cardsByCreator && !cardsByCreator?.length) {
+			dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
 		}
-	}, [dataCards, dataUser]); //eslint-disable-line
-
-	// useEffect(() => {
-	// 	if (dataUser?.user && !dataFilterCards && !dataFilterCards?.length) {
-	// 		dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
-	// 	}
-	// }, [dataUser, dataFilterCards, dispatch]);
+	}, [dataUser, cardsByCreator, dispatch]);
 
 	function deleteDataUser() {
 		dispatch(userLogout());
 		dispatch(deleteUserData());
 		closeSession();
+		setTimeout(() => {
+			history.replace("/login");
+		}, 2000);
 	}
 
 	function hiddenAlert() {
@@ -125,21 +111,22 @@ const Profile = ({ history }) => {
 				<section>
 					<HeaderProfile
 						dataUser={dataUser}
-						dataFilterCards={cardsCreatedByMe}
+						dataFilterCards={cardsByCreator?.length}
+						cardsILike={cardsILike?.length}
 						optionsModal={optionsModal}
 					/>
 
 					{cardsILike.length > 0 && (
-						<List cards={cardsILike} title="Guardadas" icon={CreateIcon} />
+						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
 					)}
 					{loading && <Loader center className="profile__loader" />}
 				</section>
 
 				<div className="profile__content">
-					{cardsCreatedByMe && (
-						<List cards={cardsCreatedByMe} title="Creadas" icon={BookMarkIcon} />
+					{cardsByCreator && (
+						<List cards={cardsByCreator} title="Creadas" icon={CreateIcon} />
 					)}
-					{loading && <Loader center className="profile__loader" />}
+					{loadingCreator && <Loader center className="profile__loader" />}
 				</div>
 			</div>
 		</Layout>

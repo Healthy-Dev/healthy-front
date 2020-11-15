@@ -5,7 +5,7 @@ import { ReactComponent as TwitterIcon } from "assets/icons/twitter.svg";
 import { ReactComponent as InstagramIcon } from "assets/icons/instagram.svg";
 import MoreOptions from "components/_shared/MoreOptions";
 
-const HeaderProfile = ({ dataUser, dataFilterCards, optionsModal }) => {
+const HeaderProfile = ({ dataUser, dataFilterCards, optionsModal, cardsILike }) => {
 	return (
 		<div className="profile__header">
 			<div className="profile__header--img">
@@ -21,10 +21,16 @@ const HeaderProfile = ({ dataUser, dataFilterCards, optionsModal }) => {
 				<h2>{dataUser?.user.name}</h2>
 				<h3>@{dataUser?.user.username}</h3>
 				<section className="social">
-					<p>
-						<span>{dataFilterCards?.length}</span>
-						{dataFilterCards?.length === 1 ? " tarjeta" : " tarjetas"}
-					</p>
+					<div>
+						<p>
+							<span>{dataFilterCards}</span>
+							{dataFilterCards === 1 ? " creada" : " creadas"}
+						</p>
+						<p>
+							<span>{cardsILike}</span>
+							{cardsILike === 1 ? " guardada" : " guardadas"}
+						</p>
+					</div>
 					{(dataUser?.user.instagram || dataUser?.user.twitter) && (
 						<>
 							/

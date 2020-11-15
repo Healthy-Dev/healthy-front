@@ -10,7 +10,7 @@ import { ConnectedRouter } from "connected-react-router";
 // import Application from "containers/app";
 import Routes from "containers";
 import ModalContext from "hooks/useModal";
-import CardsILikeProvider from "state/cardsILike/context";
+import CardsILikeProvider from "state/cardsILike";
 
 const store = makeStore();
 

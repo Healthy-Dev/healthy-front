@@ -3,14 +3,23 @@ import "./index.scss";
 import { ReactComponent as IconLike } from "assets/icons/heart.svg";
 import { useAnimation } from "./useAnimation";
 
-const CountLikes = ({ likesCount, isILiked, iLiked, disLiked }) => {
+const CountLikes = ({
+	likesCount,
+	isILiked,
+	iLiked,
+	disLiked,
+	deleteCardILike,
+	setCardILike,
+}) => {
 	const { animate, ref } = useAnimation();
 
 	function clickLike() {
 		if (isILiked) {
 			disLiked();
+			deleteCardILike();
 		} else {
 			iLiked();
+			setCardILike();
 			animate();
 		}
 	}

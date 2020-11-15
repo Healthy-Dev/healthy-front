@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./index.scss";
-import { ReactComponent as IconBack } from "assets/icons/arrow-left.svg";
 import { useHistory } from "react-router-dom";
 
+import { ReactComponent as IconBack } from "assets/icons/arrow-left.svg";
 import CountLikes from "../LikesCount";
 
+import { ILikeContext } from "state/cardsILike";
+
 const CardImage = ({
+	id,
 	photo,
 	title,
 	likesCount,
@@ -15,6 +18,8 @@ const CardImage = ({
 	category,
 }) => {
 	const history = useHistory();
+	const { deleteCardILike, setCardILike } = useContext(ILikeContext);
+
 	return (
 		<section className="card__header">
 			<figure className="card__header--img">
@@ -29,6 +34,8 @@ const CardImage = ({
 					isILiked={isILiked}
 					iLiked={iLiked}
 					disLiked={disLiked}
+					deleteCardILike={() => deleteCardILike(id)}
+					setCardILike={() => setCardILike(id)}
 				/>
 			</div>
 			<section className="card__header--title">
