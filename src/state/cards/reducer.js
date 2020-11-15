@@ -70,13 +70,20 @@ const reducer = generalStatus.createReducer(
 			const cardsLikedMe = (userId) =>
 				payload.filter((card) => card.likesBy.find((like) => like.id === userId));
 
+			const cardsByMe = (userId) => payload.filter((card) => card.creator.id === userId);
+
 			return {
 				...state,
 				getCards: { loading: false, error: false, data: payload },
 				cardsLikesByMe: {
 					loading: false,
 					error: false,
-					data: cardsLikedMe,
+					data: (id) => cardsLikedMe(id),
+				},
+				filterByUserCreator: {
+					loading: false,
+					error: false,
+					data: (id) => cardsByMe(id),
 				},
 			};
 		},

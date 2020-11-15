@@ -17,6 +17,11 @@
 
   @include tablet {
     width: 100%;
-    padding: $s2;
+    padding: $s1 0;
+  }
+
+  &__loader {
+    width: 35px !important;
+    height: 35px !important;
   }
 }

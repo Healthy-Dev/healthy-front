@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
+import { ReactComponent as CreateIcon } from "assets/icons/file-plus.svg";
+import { ReactComponent as BookMarkIcon } from "assets/icons/bookmark.svg";
+
 import Layout from "components/_shared/Layout";
 import Alert from "components/_shared/Alert";
 import Loader from "components/_shared/Loader";
@@ -9,7 +12,7 @@ import HeaderProfile from "components/Profile/Header";
 import List from "components/Profile/List";
 
 // Redux
-import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
+import { requestGetCards } from "state/cards/actions";
 import {
 	getUserRequest,
 	deleteUserData,
@@ -32,6 +35,7 @@ import {
 
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
+// import { filterCardsByUserCreator } from "state/cards/services";
 
 const Profile = ({ history }) => {
 	const { showComponent, showModal } = useContext(ContextModal);
@@ -44,11 +48,36 @@ const Profile = ({ history }) => {
 	);
 	const { error: errorDeleteUser } = useSelector((state) => DeleteUserSelector(state));
 	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
+
+	const { data: getCardCreatedByMe } = useSelector((state) => FilterByUserCreator(state));
+	const { data: getCardsLikesByMe } = useSelector((state) => GetCardsLikesByMe(state));
+
 	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
-	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+	useEffect(() => {
+		if (!isAuth) history.replace("/login");
+	}, [isAuth]); //eslint-disable-line
 
-	const { data: getCardsLikesByMe } = useSelector((state) => GetCardsLikesByMe(state));
+	const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
+	const [cardsCreatedByMe, setCardsCreatedByMe] = useState([]);
+
+	useEffect(() => {
+		if (!dataCards) dispatch(requestGetCards());
+		if (!dataUser) dispatch(getUserRequest({ token }));
+	}, [dispatch]); //eslint-disable-line
+
+	useEffect(() => {
+		if (dataCards && dataUser) {
+			setLCardsLikesByMe(() => getCardsLikesByMe(dataUser.user.id));
+			setCardsCreatedByMe(() => getCardCreatedByMe(dataUser.user.id));
+		}
+	}, [dataCards, dataUser]); //eslint-disable-line
+
+	// useEffect(() => {
+	// 	if (dataUser?.user && !dataFilterCards && !dataFilterCards?.length) {
+	// 		dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
+	// 	}
+	// }, [dataUser, dataFilterCards, dispatch]);
 
 	function deleteDataUser() {
 		dispatch(userLogout());
@@ -59,29 +88,6 @@ const Profile = ({ history }) => {
 	function hiddenAlert() {
 		dispatch(hiddenMsgUser());
 	}
-
-	useEffect(() => {
-		if (!isAuth) history.replace("/login");
-	}, [isAuth]); //eslint-disable-line
-
-	const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
-
-	useEffect(() => {
-		if (dataCards && dataUser) {
-			setLCardsLikesByMe(() => getCardsLikesByMe(dataUser.user.id));
-		}
-	}, [dataCards, dataUser]); //eslint-disable-line
-
-	useEffect(() => {
-		if (!dataCards) dispatch(requestGetCards());
-		if (!dataUser) dispatch(getUserRequest({ token }));
-	}, [dispatch]); //eslint-disable-line
-
-	useEffect(() => {
-		if (dataUser?.user && !dataFilterCards && !dataFilterCards?.length) {
-			dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
-		}
-	}, [dataUser, dataFilterCards, dispatch]);
 
 	function editProfile() {
 		showModal();
@@ -115,19 +121,21 @@ const Profile = ({ history }) => {
 				<section>
 					<HeaderProfile
 						dataUser={dataUser}
-						dataFilterCards={dataFilterCards}
+						dataFilterCards={cardsCreatedByMe}
 						optionsModal={optionsModal}
 					/>
 
-					{loading && <Loader center />}
-					{cardsLikesByMe?.length > 0 && (
-						<List cards={cardsLikesByMe} title="Guardadas" />
+					{cardsLikesByMe && (
+						<List cards={cardsLikesByMe} title="Guardadas" icon={CreateIcon} />
 					)}
+					{loading && <Loader center className="profile__loader" />}
 				</section>
 
-				<div className="content">
-					{loading && <Loader center />}
-					{dataFilterCards && <List cards={dataFilterCards} title="Creadas" />}
+				<div className="profile__content">
+					{cardsCreatedByMe && (
+						<List cards={cardsCreatedByMe} title="Creadas" icon={BookMarkIcon} />
+					)}
+					{loading && <Loader center className="profile__loader" />}
 				</div>
 			</div>
 		</Layout>
