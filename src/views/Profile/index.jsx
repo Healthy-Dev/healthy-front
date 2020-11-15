@@ -4,9 +4,9 @@ import "./index.scss";
 
 import Layout from "components/_shared/Layout";
 import Alert from "components/_shared/Alert";
-import ListCards from "components/_shared/ListCards";
 import Loader from "components/_shared/Loader";
 import HeaderProfile from "components/Profile/Header";
+import List from "components/Profile/List";
 
 // Redux
 import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
@@ -71,10 +71,9 @@ const Profile = ({ history }) => {
 
 	useEffect(() => {
 		if (dataCards && dataUser) {
-			console.log(dataCards, dataUser);
 			cardsLikedMe();
 		}
-	}, [dataCards, dataUser]);
+	}, [dataCards, dataUser]); //eslint-disable-line
 
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
@@ -102,6 +101,7 @@ const Profile = ({ history }) => {
 		{ title: "Eliminar Cuenta", fn: deleteUser },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
+
 	return (
 		<Layout title="Perfil">
 			{messageAlert && (
@@ -121,26 +121,12 @@ const Profile = ({ history }) => {
 						dataFilterCards={dataFilterCards}
 						optionsModal={optionsModal}
 					/>
-					<section className="profile__cards">
-						<h2 className="profile__cards--title">
-							{!cardLikesByMe?.length
-								? "No tienes tarjetas guardadas"
-								: "Tarjetas Guardadas"}
-						</h2>
-						{cardLikesByMe.length > 0 && <ListCards cards={cardLikesByMe} />}
-					</section>
+					{cardLikesByMe?.length > 0 && <List cards={cardLikesByMe} title="Guardadas" />}
 				</section>
 				<div className="content">
-					<section className="profile__cards">
-						<h2 className="profile__cards--title">
-							{!dataFilterCards?.length
-								? "No tienes tarjetas creadas"
-								: "Tarjetas Creadas"}
-						</h2>
-						{dataFilterCards && <ListCards cards={dataFilterCards} />}
-					</section>
+					{loading && <Loader center />}
+					{dataFilterCards && <List cards={dataFilterCards} title="Creadas" />}
 				</div>
-				{loading && <Loader center />}
 			</div>
 		</Layout>
 	);

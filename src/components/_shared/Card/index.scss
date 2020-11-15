@@ -11,22 +11,23 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		padding: $s-1;
+		padding: $s-1 .5rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
 		z-index: 15;
+		font-size: 14px;
 
 		&--user {
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
-			gap: $s-1;
+			gap: .5rem;
 
 			img {
-				width: 40px;
-				height: 40px;
+				width: 30px;
+				height: 30px;
 				border-radius: 50%;
 				object-fit: cover;
 				box-shadow: 0 0 4px 5px rgba(31, 31, 31, 0.623);
@@ -34,7 +35,6 @@
 
 			h3 {
 				color: $ivory;
-				font-size: 16px;
 			}
 		}
 
@@ -42,19 +42,53 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap: $s-1;
+			gap: .5em;
 
 			svg {
 				stroke: $yellow;
 				cursor: pointer;
 			}
 
-			span {
+			p {
 				color: $ivory;
 				font-weight: 500;
 			}
 		}
 
+
+		@include desktop {
+			padding: $s-1;
+			font-size: 16px;
+
+			&--user {
+				gap: $s-1;
+
+				img {
+					width: 40px;
+					height: 40px;
+				}
+			}
+
+			&--likes {
+				gap: $s-1;
+			}
+		}
+
+		@include tablet {
+			&--user {
+				gap: $s-1;
+				font-size: 16px;
+
+				img {
+					width: 40px;
+					height: 40px;
+				}
+			}
+
+			&--likes {
+				gap: $s-1;
+			}
+		}
 	}
 
 	&__img {
@@ -92,18 +126,16 @@
 	}
 
 	h2 {
-		border-bottom-left-radius: $radius-1 - 2px;
-		border-bottom-right-radius: $radius-1 - 2px;
 		position: absolute;
 		z-index: 10;
 		bottom: 0;
 		left: 0;
 		width: 100%;
 		font-size: $s-1 + 2;
-		padding: $s-1;
+		padding: $s-1 .5rem;
 		color: $ivory;
 		font-weight: 400;
-		letter-spacing: .5px;
+		letter-spacing: .2px;
 		text-transform: lowercase;
 
 		&::first-letter {

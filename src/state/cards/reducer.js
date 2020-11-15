@@ -168,6 +168,13 @@ const reducer = generalStatus.createReducer(
 				likesCount: 0,
 				photo: "data:image/jpeg;base64," + data.photo,
 				title: data.title,
+				creator: {
+					id: 0,
+					name: "",
+					profilePhoto:
+						"https://us.123rf.com/450wm/apoev/apoev1612/apoev161200008/68697464-icono-de-perfil-avatar-por-defecto-marcador-de-posici%C3%B3n-gray.jpg?ver=6",
+				},
+				likesBy: [],
 			};
 
 			return {
