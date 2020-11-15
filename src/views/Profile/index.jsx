@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
@@ -60,6 +60,22 @@ const Profile = ({ history }) => {
 		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
+	const [cardLikesByMe, setCardsLikesByMe] = useState([]);
+
+	function cardsLikedMe() {
+		const likesCards = dataCards.filter((card) =>
+			card.likesBy.find((like) => like.id === dataUser.user.id),
+		);
+		setCardsLikesByMe(likesCards);
+	}
+
+	useEffect(() => {
+		if (dataCards && dataUser) {
+			console.log(dataCards, dataUser);
+			cardsLikedMe();
+		}
+	}, [dataCards, dataUser]);
+
 	useEffect(() => {
 		if (!dataCards) dispatch(requestGetCards());
 		if (!dataUser) dispatch(getUserRequest({ token }));
@@ -86,7 +102,6 @@ const Profile = ({ history }) => {
 		{ title: "Eliminar Cuenta", fn: deleteUser },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
-
 	return (
 		<Layout title="Perfil">
 			{messageAlert && (
@@ -100,18 +115,32 @@ const Profile = ({ history }) => {
 				</Alert>
 			)}
 			<div className="profile">
-				<HeaderProfile
-					dataUser={dataUser}
-					dataFilterCards={dataFilterCards}
-					optionsModal={optionsModal}
-				/>
 				<section>
-					<h2 className="subtitle">
-						{!dataFilterCards?.length && "No tienes tarjetas creadas"}
-					</h2>
-					{loading && <Loader center />}
-					{dataFilterCards && <ListCards cards={dataFilterCards} />}
+					<HeaderProfile
+						dataUser={dataUser}
+						dataFilterCards={dataFilterCards}
+						optionsModal={optionsModal}
+					/>
+					<section className="profile__cards">
+						<h2 className="profile__cards--title">
+							{!cardLikesByMe?.length
+								? "No tienes tarjetas guardadas"
+								: "Tarjetas Guardadas"}
+						</h2>
+						{cardLikesByMe.length > 0 && <ListCards cards={cardLikesByMe} />}
+					</section>
 				</section>
+				<div className="content">
+					<section className="profile__cards">
+						<h2 className="profile__cards--title">
+							{!dataFilterCards?.length
+								? "No tienes tarjetas creadas"
+								: "Tarjetas Creadas"}
+						</h2>
+						{dataFilterCards && <ListCards cards={dataFilterCards} />}
+					</section>
+				</div>
+				{loading && <Loader center />}
 			</div>
 		</Layout>
 	);

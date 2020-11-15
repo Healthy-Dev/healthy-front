@@ -20,8 +20,14 @@
     padding: $s2;
   }
 
-  .subtitle {
-    color: $yellow;
-    font-size: $s0;
+  &__cards {
+    margin: $s1 0;
+
+    &--title {
+      color: $yellow;
+      margin: 1rem 0;
+      font-size: $s0;
+    }
   }
+
 }
