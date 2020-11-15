@@ -118,10 +118,14 @@ const reducer = generalStatus.createReducer(
 			const fakeUpdateData = {
 				id: payload.data.id,
 				likesCount: payload.data.likesCount,
-				title: data.title,
-				photo: data.photo
-					? "data:image/jpeg;base64," + data.photo
-					: state.getCard.data.photo,
+				// title: data.title,
+				// photo: data.photo
+				title: payload.data.title,
+				photo: payload.data.photo,
+				// ? "data:image/jpeg;base64," + data.photo
+				// : state.getCard.data.photo,
+				creator: payload.data.creator,
+				likesBy: [],
 			};
 
 			return {
@@ -142,7 +146,15 @@ const reducer = generalStatus.createReducer(
 				},
 				getCard: {
 					...state.getCard,
-					data: { ...payload.data, ...fakeUpdateData },
+					data: { ...payload.data },
+				},
+				filterByUserCreator: {
+					...state.filterByUserCreator,
+					data:
+						state.filterByUserCreator.data &&
+						state.filterByUserCreator.data.map((card) =>
+							card.id === payload.reqData.cardId ? fakeUpdateData : card,
+						),
 				},
 			};
 		},
