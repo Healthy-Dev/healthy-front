@@ -52,6 +52,8 @@
 		}
 
 		.login-logo {
+			color: $ivory;
+
 			@include desktop {
 				display: none;
 			}

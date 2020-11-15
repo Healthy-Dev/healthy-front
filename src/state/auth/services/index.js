@@ -1,9 +1,7 @@
 import { fakeHttpModule, TYPES } from "common/http";
 
-export const postLogin = ({ payload }) => {
-	console.log(payload);
-	return fakeHttpModule.post("v1/auth/signin", null, payload, TYPES.json);
-};
+export const postLogin = ({ payload }) =>
+	fakeHttpModule.post("v1/auth/signin", null, payload, TYPES.json);
 
 export const postRegister = ({ payload }) =>
 	fakeHttpModule.post("v1/auth/signup", null, payload, TYPES.json);
@@ -27,12 +25,10 @@ export const forgotPassword = ({ payload: { email } }) =>
 		TYPES.json,
 	);
 
-export const resetPassword = ({ payload: { token, password } }) => {
-	console.log(password);
-	return fakeHttpModule.post(
+export const resetPassword = ({ payload: { token, password } }) =>
+	fakeHttpModule.post(
 		`v1/auth/reset-password/?token=${token}`,
 		undefined,
 		password,
 		TYPES.json,
 	);
-};
