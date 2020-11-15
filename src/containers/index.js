@@ -8,10 +8,9 @@ import Loading from "components/_shared/Loading";
 const User = () => (
 	<Suspense fallback={<Loading />}>
 		<Switch>
-			{routes.map((route, i) => {
-				console.log(route.path);
-				return <MultipleRoutes key={`${i}_${route.path}`} {...route} />;
-			})}
+			{routes.map((route, i) => (
+				<MultipleRoutes key={`${i}_${route.path}`} {...route} />
+			))}
 		</Switch>
 	</Suspense>
 );
