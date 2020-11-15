@@ -18,7 +18,11 @@ import {
 } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
-import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
+import {
+	FilterByUserCreator,
+	GetCardsSelector,
+	GetCardsLikesByMe,
+} from "state/cards/selectors";
 import {
 	UserSelector,
 	MessageUserSelector,
@@ -34,7 +38,7 @@ const Profile = ({ history }) => {
 	const { token, closeSession, isAuth } = useAuth();
 
 	const dispatch = useDispatch();
-	const { data: dataCards } = useSelector((state) => GetCardsSelector(state));
+	const { data: dataCards, loading } = useSelector((state) => GetCardsSelector(state));
 	const { data: dataUser, error: errorUser } = useSelector((state) =>
 		UserSelector(state),
 	);
@@ -42,9 +46,9 @@ const Profile = ({ history }) => {
 	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
 	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
-	const { data: dataFilterCards, loading } = useSelector((state) =>
-		FilterByUserCreator(state),
-	);
+	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+
+	const { data: getCardsLikesByMe } = useSelector((state) => GetCardsLikesByMe(state));
 
 	function deleteDataUser() {
 		dispatch(userLogout());
@@ -60,18 +64,11 @@ const Profile = ({ history }) => {
 		if (!isAuth) history.replace("/login");
 	}, [isAuth]); //eslint-disable-line
 
-	const [cardLikesByMe, setCardsLikesByMe] = useState([]);
-
-	function cardsLikedMe() {
-		const likesCards = dataCards.filter((card) =>
-			card.likesBy.find((like) => like.id === dataUser.user.id),
-		);
-		setCardsLikesByMe(likesCards);
-	}
+	const [cardsLikesByMe, setLCardsLikesByMe] = useState([]);
 
 	useEffect(() => {
 		if (dataCards && dataUser) {
-			cardsLikedMe();
+			setLCardsLikesByMe(() => getCardsLikesByMe(dataUser.user.id));
 		}
 	}, [dataCards, dataUser]); //eslint-disable-line
 
@@ -121,8 +118,13 @@ const Profile = ({ history }) => {
 						dataFilterCards={dataFilterCards}
 						optionsModal={optionsModal}
 					/>
-					{cardLikesByMe?.length > 0 && <List cards={cardLikesByMe} title="Guardadas" />}
+
+					{loading && <Loader center />}
+					{cardsLikesByMe?.length > 0 && (
+						<List cards={cardsLikesByMe} title="Guardadas" />
+					)}
 				</section>
+
 				<div className="content">
 					{loading && <Loader center />}
 					{dataFilterCards && <List cards={dataFilterCards} title="Creadas" />}
