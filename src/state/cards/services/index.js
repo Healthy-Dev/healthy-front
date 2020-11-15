@@ -1,7 +1,12 @@
 import { fakeHttpModule, TYPES } from "common/http";
 
 export const getCards = () =>
-	fakeHttpModule.get("v1/cards", undefined, undefined, TYPES.json);
+	fakeHttpModule.get(
+		"v1/cards?expand=category,creator,likes",
+		undefined,
+		undefined,
+		TYPES.json,
+	);
 
 export const editCard = ({ payload: { cardId, token, payload } }) =>
 	fakeHttpModule.put(`v1/cards/${cardId}`, token, payload, TYPES.json);
