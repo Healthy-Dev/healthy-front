@@ -1,0 +1,36 @@
+@import "theme";
+
+.link__button {
+  text-decoration: none;
+
+  &--title {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $s1;
+
+    svg {
+      margin-right: 1rem;
+      width: 18px;
+      height: 18px;
+    }
+
+    &.facebook {
+      color: $ivory;
+      background-color: $light-blue;
+      box-shadow: 0px 2px 10px rgba(39, 145, 244, 0.59);
+    }
+
+    &.google {
+      color: $ivory;
+      background-color: $red;
+      box-shadow: 0px 2px 10px rgba(244, 39, 39, 0.59);
+    }
+  }
+}

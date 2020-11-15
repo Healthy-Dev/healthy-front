@@ -9,12 +9,10 @@ import "./index.scss";
 import Button from "../_shared/Button";
 import MessageError from "./MessageError";
 import Loader from "components/_shared/Loader";
-import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
-import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 
-const CreateCardForm = ({ sendLogin, loading }) => {
+const LoginForm = ({ sendLogin, loading }) => {
 	const { register, handleSubmit, errors, reset } = useForm();
 	const history = useHistory();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -32,27 +30,6 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 
 	return (
 		<form className="form__login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-			<a
-				href="https://healthydev.herokuapp.com/v1/auth/facebook"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<Button className="blue" type="button">
-					<FacebookIcon />
-					Continuar con Facebook
-				</Button>
-			</a>
-			<a
-				href="https://healthydev.herokuapp.com/v1/auth/google"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<Button className="red" type="button">
-					<GoogleIcon />
-					Continuar con Google
-				</Button>
-			</a>
-
 			<section className="form__login--input">
 				<label name="usernameOrEmail" htmlFor="user">
 					Email/Usuario
@@ -108,4 +85,4 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 		</form>
 	);
 };
-export default CreateCardForm;
+export default LoginForm;

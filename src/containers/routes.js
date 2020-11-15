@@ -14,8 +14,14 @@ const Register = lazy(() => import("views/Register/"));
 const Search = lazy(() => import("views/Search/"));
 const RecoverPassword = lazy(() => import("views/RecoverPassword"));
 const ResetPassword = lazy(() => import("views/ResetPassword"));
+const Social = lazy(() => import("views/Social"));
 
 export default [
+	{
+		path: "/social",
+		component: Social,
+		exact: true,
+	},
 	{
 		path: "/reset-password",
 		component: ResetPassword,

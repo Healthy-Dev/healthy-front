@@ -58,7 +58,7 @@ const RegisterView = ({ history }) => {
 					<h2 className="desktop-title">REGISTRO</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
-				<HealthyDev className="register-logo" />
+				<HealthyDev className="register-logo" top />
 				<Register sendFormRegister={sendFormRegister} loading={loading} />
 			</div>
 			<img src={registerBackground} className="register-img" alt="fondo" />

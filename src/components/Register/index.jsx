@@ -40,7 +40,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				<input
 					name="username"
 					type="text"
-					placeholder="Ingresa su nombre se usuario"
+					placeholder="Ingresa un nombre de usuario"
 					ref={register({ required: true, maxLength: 30, minLength: 4 })}
 				/>
 				{errors.username && errors.username.type === "required" && (
@@ -59,7 +59,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				<input
 					name="email"
 					type="email"
-					placeholder="Ingresa tu email"
+					placeholder="Ingresa un email"
 					ref={register({ required: true, pattern: EMAIL_FORMAT })}
 				/>
 				{errors.email && errors.email.type === "required" && (
@@ -133,7 +133,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				{loading ? <Loader /> : "Registrarme"}
 			</Button>
 			<Link to="/login" className="link">
-				Iniciar Sesion
+				Iniciar Sesión
 			</Link>
 		</form>
 	);
