@@ -113,51 +113,35 @@ const reducer = generalStatus.createReducer(
 			...state,
 			editCard: { loading: true, error: false },
 		}),
-		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => {
-			const data = JSON.parse(payload.reqData.payload);
-			const fakeUpdateData = {
-				id: payload.data.id,
-				likesCount: payload.data.likesCount,
-				// title: data.title,
-				// photo: data.photo
-				title: payload.data.title,
-				photo: payload.data.photo,
-				// ? "data:image/jpeg;base64," + data.photo
-				// : state.getCard.data.photo,
-				creator: payload.data.creator,
-				likesBy: [],
-			};
-
-			return {
-				...state,
-				messageCard: { data: "Se actualizo correctamente!", error: false },
-				editCard: {
-					loading: false,
-					error: false,
-					data: payload.data,
-				},
-				getCards: {
-					...state.getCards,
-					data:
-						state.getCards.data &&
-						state.getCards.data.map((card) =>
-							card.id === payload.reqData.cardId ? fakeUpdateData : card,
-						),
-				},
-				getCard: {
-					...state.getCard,
-					data: { ...payload.data },
-				},
-				filterByUserCreator: {
-					...state.filterByUserCreator,
-					data:
-						state.filterByUserCreator.data &&
-						state.filterByUserCreator.data.map((card) =>
-							card.id === payload.reqData.cardId ? fakeUpdateData : card,
-						),
-				},
-			};
-		},
+		[types.EDIT_CARD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			messageCard: { data: "Se actualizo correctamente!", error: false },
+			editCard: {
+				loading: false,
+				error: false,
+				data: payload.data,
+			},
+			getCards: {
+				...state.getCards,
+				data:
+					state.getCards.data &&
+					state.getCards.data.map((card) =>
+						card.id === payload.reqData.cardId ? { ...payload.data, likesBy: [] } : card,
+					),
+			},
+			getCard: {
+				...state.getCard,
+				data: { ...payload.data },
+			},
+			filterByUserCreator: {
+				...state.filterByUserCreator,
+				data:
+					state.filterByUserCreator.data &&
+					state.filterByUserCreator.data.map((card) =>
+						card.id === payload.reqData.cardId ? { ...payload.data, likesBy: [] } : card,
+					),
+			},
+		}),
 		[types.EDIT_CARD_FAIULRE]: (state) => ({
 			...state,
 			editCard: {
