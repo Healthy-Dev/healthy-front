@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestRegister, hiddenMsgAlert } from "state/auth/actions";
 import { RegisterSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
-import Register from "components/Register";
+import RegisterForm from "components/Register";
 import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
@@ -33,7 +33,7 @@ const RegisterView = ({ history }) => {
 
 	useEffect(() => {
 		if (data) {
-			setTimeout(() => history.replace("/activate"), 2500);
+			setTimeout(() => history.replace("/user-created"), 2500);
 		}
 	}, [data]); //eslint-disable-line
 
@@ -59,7 +59,7 @@ const RegisterView = ({ history }) => {
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
 				<HealthyDev className="register-logo" top />
-				<Register sendFormRegister={sendFormRegister} loading={loading} />
+				<RegisterForm sendFormRegister={sendFormRegister} loading={loading} />
 			</div>
 			<img src={registerBackground} className="register-img" alt="fondo" />
 		</div>

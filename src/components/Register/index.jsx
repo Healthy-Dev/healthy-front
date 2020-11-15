@@ -16,7 +16,7 @@ import Loader from "components/_shared/Loader";
 const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
-const CreateAccountForm = ({ sendFormRegister, loading }) => {
+const RegisterForm = ({ sendFormRegister, loading }) => {
 	const { register, handleSubmit, errors, getValues, reset } = useForm();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 	const [isPassword2Hidden, setPassword2Hidden] = useState(true);
@@ -138,4 +138,4 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 		</form>
 	);
 };
-export default CreateAccountForm;
+export default RegisterForm;

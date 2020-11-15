@@ -8,14 +8,20 @@ import { requestVerify } from "state/auth/actions";
 
 import Button from "components/_shared/Button";
 import HealthyDev from "components/_shared/HealthyDev";
+import Loader from "components/_shared/Loader";
 
 const UserCreated = ({ history }) => {
 	const { search } = useLocation();
 
 	const dispatch = useDispatch();
-	const { errorMessage, data, error, messageWarning, warning } = useSelector((state) =>
-		VerifySelector(state),
-	);
+	const {
+		errorMessage,
+		loading,
+		data,
+		error,
+		messageWarning,
+		warning,
+	} = useSelector((state) => VerifySelector(state));
 
 	const isTokenFromEmail = search.includes("token");
 	const token = search.replace("?token=", "");
@@ -30,8 +36,9 @@ const UserCreated = ({ history }) => {
 
 	return (
 		<div className="activate">
-			<h2 className="activate__title">¡Activar Cuenta!</h2>
+			<h2 className="activate__title">Verificación</h2>
 			<section>
+				{loading && <Loader center />}
 				{error && errorMessage}
 				{error && (
 					<Button onClick={() => history.push("/user-created")}>
