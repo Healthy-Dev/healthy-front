@@ -8,6 +8,7 @@
 	justify-content: flex-end;
 	height: 100%;
 	width: 100%;
+	position: relative;
 
 	@include desktop {
 		justify-content: flex-start;
