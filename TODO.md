@@ -19,7 +19,7 @@
 - [ ] En una _Card_ que creo con una cuenta en el **Home** y en el **Perfil** me apareció [este avatar](https://us.123rf.com/450wm/apoev/apoev1612/apoev161200008/68697464-icono-de-perfil-avatar-por-defecto-marcador-de-posici%C3%B3n-gray.jpg?ver=6) en vez del _placeholder_, cuando entro lo toma bien
 - [ ] En _"Buscar el Label"_ no toma **Varios**
 - [ ] Agregar página 404
-- [ ] En **Android** al llenar el formulario y abrir el teclado se superpone el título y el form
+- [x] En **Android** al llenar el formulario y abrir el teclado se superpone el título y el form (myke-roly)
 - [ ] Queda el mensaje de _Success_ o _Error_, se debería eliminar al cambiar de pantalla o después de unos segundos
 - [ ] La imagen de la **Card** tiene un movimiento raro al abrir el _Menu_
 - [ ] Revisar textos utilizados
