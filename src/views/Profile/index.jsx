@@ -17,7 +17,7 @@ import {
 	getUserRequest,
 	deleteUserData,
 	hiddenMsgUser,
-	deleteUserRequest,
+	// deleteUserRequest,
 } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
@@ -84,14 +84,9 @@ const Profile = ({ history }) => {
 		showComponent("edit-profile");
 	}
 
-	function deleteUser() {
-		// NOTE: Confirmar el origen del token
-		dispatch(deleteUserRequest({ token }));
-	}
-
 	let optionsModal = [
 		{ title: "Editar perfil", fn: editProfile },
-		{ title: "Eliminar Cuenta", fn: deleteUser },
+		// { title: "Eliminar Cuenta", fn: deleteUser },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 

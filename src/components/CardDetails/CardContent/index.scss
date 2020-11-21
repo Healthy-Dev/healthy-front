@@ -9,6 +9,7 @@
   background-color: $dark-blue;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 5px rgb(17, 18, 51);
+  overflow: hidden;
 
   @include desktop {
     max-width: 450px;
