@@ -10,11 +10,6 @@
 	width: 100%;
 	position: relative;
 
-	@include desktop {
-		justify-content: flex-start;
-		height: auto;
-	}
-
 	.form__input {
 		width: 100%;
 		margin-bottom: $s0;
@@ -54,8 +49,12 @@
 		background-color: $medium-grey;
 		border-radius: $radius-1;
 
+		input {
+			width: 100% !important;
+		}
+
 		.input__icon {
-			width: 20%;
+			width: 15%;
 			text-align: center;
 		}
 	}
@@ -63,13 +62,6 @@
 	p {
 		color: $light-grey;
 		font-size: $s-1;
-	}
-
-	.tooltip {
-		display: inline-block;
-		position: relative;
-		border-bottom: 1px dotted #666;
-		text-align: left;
 	}
 
 	[role="button"] {
