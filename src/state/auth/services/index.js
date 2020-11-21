@@ -16,3 +16,19 @@ export const resendVerification = ({ payload: { email } }) =>
 		undefined,
 		TYPES.json,
 	);
+
+export const forgotPassword = ({ payload: { email } }) =>
+	fakeHttpModule.get(
+		`v1/auth/forgot-password/${email}`,
+		undefined,
+		undefined,
+		TYPES.json,
+	);
+
+export const resetPassword = ({ payload: { token, password } }) =>
+	fakeHttpModule.post(
+		`v1/auth/reset-password/?token=${token}`,
+		undefined,
+		password,
+		TYPES.json,
+	);

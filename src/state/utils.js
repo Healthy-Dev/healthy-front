@@ -40,17 +40,18 @@ export const makeWorker = (service, actions) => {
 				reponse: response,
 			});
 		}
+		console.log({ reqData: payload, data: data });
 		switch (response.status) {
 			case 200:
-				yield payload && put(actions.success(data, { reqData: payload }));
+				yield payload && put(actions.success({ reqData: payload, data: data }));
 				yield !payload && put(actions.success(data));
 				break;
 			case 201:
-				yield payload && put(actions.success({ ...data, reqData: payload }));
+				yield payload && put(actions.success({ reqData: payload, data: data }));
 				yield !payload && put(actions.success(data));
 				break;
 			case 204:
-				yield payload && put(actions.success({ ...data, reqData: payload }));
+				yield payload && put(actions.success({ reqData: payload, data: data }));
 				yield !payload && put(actions.success(data));
 				break;
 			case 401:
@@ -63,7 +64,7 @@ export const makeWorker = (service, actions) => {
 				} else yield put(actions.fail({ data: data, response: response }));
 				break;
 			case 409:
-				yield put(actions.fail({ data: data, response: response }));
+				yield put(actions.conflict({ data: data, response: response }));
 				break;
 			default:
 				yield put(actions.fail({ data: data, reponse: response }));

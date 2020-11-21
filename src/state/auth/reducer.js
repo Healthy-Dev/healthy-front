@@ -7,10 +7,24 @@ export const initialState = {
 	...makeReducer("register"),
 	...makeReducer("verify"),
 	...makeReducer("resendVerification"),
+	...makeReducer("messageAuth"),
+	...makeReducer("forgotPassword"),
+	...makeReducer("resetPassword"),
+};
+
+const resetState = {
+	loading: false,
+	error: false,
+	warning: false,
+	data: null,
 };
 
 const reducer = generalStatus.createReducer(
 	{
+		[types.HIDDEN_MSG_ALERT]: (state) => ({
+			...state,
+			messageAuth: { data: null },
+		}),
 		[types.LOGIN_REQUEST]: (state) => ({
 			...state,
 			login: {
@@ -23,30 +37,34 @@ const reducer = generalStatus.createReducer(
 			login: {
 				loading: false,
 				error: false,
-				data: payload,
+				data: payload.data,
 			},
 		}),
-		[types.LOGIN_FAILURE]: (state) => ({
-			...state,
-			login: {
-				loading: false,
-				error: true,
-				data: null,
-			},
-		}),
+		[types.LOGIN_FAILURE]: (state) => {
+			return {
+				...state,
+				login: {
+					loading: false,
+					error: true,
+					data: null,
+				},
+				messageAuth: { data: "Verifique los datos ingresados" },
+			};
+		},
 		[types.USER_LOGOUT]: (state) => ({
 			...state,
-			login: {
-				loading: false,
-				error: false,
-				data: undefined,
-			},
+			login: resetState,
+			register: resetState,
+			verify: resetState,
+			resendVerification: resetState,
+			messageAuth: resetState,
 		}),
 		[types.REGISTER_REQUEST]: (state) => ({
 			...state,
 			register: {
 				loading: true,
 				error: false,
+				warning: false,
 			},
 		}),
 		[types.REGISTER_SUCCESS]: (state, { payload }) => ({
@@ -54,7 +72,8 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: false,
 				error: false,
-				data: payload,
+				warning: false,
+				data: payload.data,
 			},
 		}),
 		[types.REGISTER_FAILURE]: (state, { payload }) => ({
@@ -62,19 +81,22 @@ const reducer = generalStatus.createReducer(
 			register: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
-				errorMessage: payload.data.message,
+			},
+			messageAuth: {
+				data: payload.data?.message[0].constraints.matches || payload.data?.message,
 			},
 		}),
 		[types.REGISTER_WARNING]: (state, { payload }) => ({
 			...state,
 			register: {
 				loading: false,
-				error: true,
+				error: false,
 				warning: true,
 				data: null,
-				messageWarning: payload.data?.message,
 			},
+			messageAuth: { data: payload.data?.message },
 		}),
 		[types.VERIFY_REQUEST]: (state) => ({
 			...state,
@@ -88,7 +110,8 @@ const reducer = generalStatus.createReducer(
 			verify: {
 				loading: false,
 				error: false,
-				data: payload,
+				warning: false,
+				data: payload.data?.message,
 			},
 		}),
 		[types.VERIFY_FAILURE]: (state, { payload }) => ({
@@ -96,6 +119,7 @@ const reducer = generalStatus.createReducer(
 			verify: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
 				errorMessage: payload.data?.message,
 			},
@@ -122,7 +146,8 @@ const reducer = generalStatus.createReducer(
 			resendVerification: {
 				loading: false,
 				error: false,
-				data: payload,
+				warning: false,
+				data: payload.data,
 			},
 		}),
 		[types.RESEND_VERIFY_FAILURE]: (state, { payload }) => ({
@@ -130,6 +155,7 @@ const reducer = generalStatus.createReducer(
 			resendVerification: {
 				loading: false,
 				error: true,
+				warning: false,
 				data: null,
 				errorMessage: payload.data?.message,
 			},
@@ -142,6 +168,54 @@ const reducer = generalStatus.createReducer(
 				warning: true,
 				data: null,
 				messageWarning: payload.data?.message,
+			},
+		}),
+		[types.FORGOT_PASSWORD_REQUEST]: (state) => ({
+			...state,
+			forgotPassword: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.FORGOT_PASSWORD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			forgotPassword: {
+				loading: false,
+				error: false,
+				data: payload.data,
+			},
+		}),
+		[types.FORGOT_PASSWORD_FAILURE]: (state, { payload }) => ({
+			...state,
+			forgotPassword: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMsg: payload.data?.message,
+			},
+		}),
+		[types.RESET_PASSWORD_REQUEST]: (state) => ({
+			...state,
+			resetPassword: {
+				loading: true,
+				error: false,
+			},
+		}),
+		[types.RESET_PASSWORD_SUCCESS]: (state, { payload }) => ({
+			...state,
+			resetPassword: {
+				loading: false,
+				error: false,
+				data: payload.data,
+			},
+		}),
+		[types.RESET_PASSWORD_FAILURE]: (state, { payload }) => ({
+			...state,
+			resetPassword: {
+				loading: false,
+				error: true,
+				data: null,
+				errorMsg: payload.data?.message,
 			},
 		}),
 	},

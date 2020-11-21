@@ -2,9 +2,26 @@
 
 .search__tags {
   margin: 1.5rem 0 0 0;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include desktop {
+    overflow: hidden;
+    width: 50%;
+    display: inline-block;
+  }
+
+  @include tablet {
+    overflow: hidden;
+  }
 
   &--tag {
-    width: auto;
     background: #424d578a;
     border-radius: $radius-1;
     border: none;
@@ -13,5 +30,6 @@
     padding: .5rem 1rem;
     margin: 0 .8rem .5rem 0;
     outline: none;
+    white-space: nowrap;
   }
 }

@@ -16,7 +16,7 @@ import Loader from "components/_shared/Loader";
 const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
-const CreateAccountForm = ({ sendFormRegister, loading }) => {
+const RegisterForm = ({ sendFormRegister, loading }) => {
 	const { register, handleSubmit, errors, getValues, reset } = useForm();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 	const [isPassword2Hidden, setPassword2Hidden] = useState(true);
@@ -40,7 +40,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				<input
 					name="username"
 					type="text"
-					placeholder="Ingresa su nombre se usuario"
+					placeholder="Ingresa un nombre de usuario"
 					ref={register({ required: true, maxLength: 30, minLength: 4 })}
 				/>
 				{errors.username && errors.username.type === "required" && (
@@ -59,7 +59,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				<input
 					name="email"
 					type="email"
-					placeholder="Ingresa tu email"
+					placeholder="Ingresa un email"
 					ref={register({ required: true, pattern: EMAIL_FORMAT })}
 				/>
 				{errors.email && errors.email.type === "required" && (
@@ -111,11 +111,7 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 						ref={register({
 							required: true,
 							validate: (value) =>
-								value === getValues("password") ? (
-									true
-								) : (
-									<MessageError message="Las contraseñas no coinciden." />
-								),
+								value === getValues("password") ? true : "Las contraseñas no coinciden",
 						})}
 					/>
 					<div
@@ -137,9 +133,9 @@ const CreateAccountForm = ({ sendFormRegister, loading }) => {
 				{loading ? <Loader /> : "Registrarme"}
 			</Button>
 			<Link to="/login" className="link">
-				Iniciar Sesion
+				Iniciar Sesión
 			</Link>
 		</form>
 	);
 };
-export default CreateAccountForm;
+export default RegisterForm;

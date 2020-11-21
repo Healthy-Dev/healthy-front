@@ -1,0 +1,28 @@
+@import "theme";
+
+.auth__social {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.644);
+  }
+
+  &--loader {
+    z-index: 5;
+    position: absolute !important;
+    top: 50% !important;
+  }
+
+  .alert__close {
+    z-index: 10;
+  }
+}

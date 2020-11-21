@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import "./index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { GetCardsCategories } from "state/cards/selectors";
+import { requestGetCardsCategories } from "state/cards/actions";
 
-const Tags = ({ filterByCategories, categories, categoriesLoading }) => {
+const Tags = ({ filterByCategories }) => {
+	const dispatch = useDispatch();
+	const { data, loading } = useSelector((state) => GetCardsCategories(state));
+
+	useEffect(() => {
+		if (!data) dispatch(requestGetCardsCategories());
+	}, [data, dispatch]);
 	return (
 		<div className="search__tags">
-			{categoriesLoading ? (
-				<button className="search__tags--tag"></button>
-			) : (
-				categories.map((category, index) => (
+			{loading && <button className="search__tags--tag"></button>}
+			{data &&
+				data.map((category, index) => (
 					<button
 						className="search__tags--tag"
 						onClick={() => filterByCategories(category.id, category.name)}
@@ -16,16 +24,13 @@ const Tags = ({ filterByCategories, categories, categoriesLoading }) => {
 					>
 						{category.name}
 					</button>
-				))
-			)}
+				))}
 		</div>
 	);
 };
 
 Tags.prototype = {
 	filterByCategories: PropTypes.func,
-	categories: PropTypes.array,
-	categoriesLoading: PropTypes.bool,
 };
 
 export default Tags;

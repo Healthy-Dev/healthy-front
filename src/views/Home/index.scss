@@ -1,5 +1,24 @@
 @import "theme";
 
+.home {
+	padding: $s0;
+	padding-bottom: 6rem;
+
+	@include desktop {
+		padding: $s2 0;
+	}
+
+	@include tablet {
+		padding: $s2 0;
+	}
+}
+
+.line {
+	width: 100%;
+	height: 3px;
+	background: $yellow;
+}
+
 .logo-home {
 	width: 100%;
 	height: 75px;
@@ -14,32 +33,11 @@
 
 	@include desktop {
 		display: none;
+		padding: $s0 0;
 	}
 
 	@include tablet {
 		display: none;
-	}
-}
-
-.content {
-	min-height: 100vh;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	gap: $s1 $s0;
-	background-color: $dark-blue;
-	padding: $s2 $s0;
-	padding-bottom: 6rem;
-	grid-template-rows: masonry !important;
-
-	@include tablet {
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: $s2;
-		padding: $s2 0;
-	}
-
-	@include desktop {
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: $s2;
-		padding: $s2 0;
+		padding: $s0 0;
 	}
 }

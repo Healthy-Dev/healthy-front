@@ -1,7 +1,13 @@
 import React from "react";
-import { ReactComponent as LoaderIcon } from "assets/icons/loader.svg";
 import "./index.scss";
 
-export default function Loader() {
-	return <LoaderIcon className="loader-icon" />;
+export default function Loader({ className, center }) {
+	return (
+		<div className={`loader-icon ${className} ${center && "center"}`}>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	);
 }

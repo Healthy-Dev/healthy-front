@@ -1,0 +1,92 @@
+@import "theme";
+
+.profile__header {
+  width: 100%;
+  color: $ivory;
+  background: $darker-blue;
+  padding: 1rem;
+  border-radius: $radius-1;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  margin-bottom: $s0;
+  overflow: hidden;
+
+  @include tablet {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  @include desktop {
+    max-width: 400px;
+  }
+
+  &--img {
+    width: 100px;
+    height: 100px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: $radius0;
+      box-shadow: 0 0 7px rgba(6, 40, 71, 0.89);
+    }
+  }
+
+  &--user {
+
+    h2 {
+      font-size: $s2;
+      letter-spacing: 1.2px;
+      color: rgb(236, 236, 236);
+      padding-right: 1rem;
+    }
+
+    h3 {
+      color: rgb(156, 156, 156);
+      font-size: $s0;
+      margin-top: .5rem;
+    }
+  }
+
+  .social {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .7rem;
+    margin-top: .5rem;
+
+
+    svg {
+      stroke: rgb(250, 250, 250);
+      width: 18px;
+
+      &:hover {
+        transform: scale(1.2);
+        transition: stroke .3s;
+        stroke: $yellow;
+        stroke-width: 3;
+      }
+    }
+
+    p {
+      font-size: .9em;
+
+      span {
+        // font-size: 1rem;
+        color: $yellow;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .more {
+    position: absolute;
+    top: .5rem;
+    right: .4rem;
+  }
+}

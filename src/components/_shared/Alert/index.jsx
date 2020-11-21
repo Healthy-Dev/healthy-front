@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./index.scss";
 import PropTypes from "prop-types";
-import { changeState } from "libs/changeState";
 import { ReactComponent as IconClose } from "assets/icons/x.svg";
+import { ReactComponent as OKIcon } from "assets/icons/check.svg";
+import { ReactComponent as ErrorIcon } from "assets/icons/alert-circle.svg";
 
 const Alert = ({
 	className = "",
@@ -11,6 +12,7 @@ const Alert = ({
 	success = false,
 	confirm = false,
 	showButtonClose = false,
+	click = () => {},
 }) => {
 	let finalClassName = "alert ";
 	error && (finalClassName += "alert__error ");
@@ -19,16 +21,26 @@ const Alert = ({
 	finalClassName += className;
 
 	const [showAlert, setShowAlert] = useState(true);
+
+	function handleClick() {
+		setShowAlert(false);
+		click();
+	}
+
 	return (
 		<>
 			{showAlert && (
 				<div className={finalClassName}>
 					{showButtonClose && (
-						<span className="alert__close" onClick={() => changeState(setShowAlert)}>
+						<span className="alert__close" onClick={handleClick}>
 							<IconClose />
 						</span>
 					)}
-					{children}
+					<p className="alert__msg">
+						{error && <ErrorIcon />}
+						{success && <OKIcon />}
+						<span>{children}</span>
+					</p>
 				</div>
 			)}
 		</>

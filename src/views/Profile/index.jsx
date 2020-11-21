@@ -1,82 +1,133 @@
 import React, { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
+import { ReactComponent as CreateIcon } from "assets/icons/create.svg";
+import { ReactComponent as BookMarkIcon } from "assets/icons/bookmark.svg";
+
 import Layout from "components/_shared/Layout";
-import CardsUser from "components/Profile/Carrousel";
-import Loading from "components/_shared/Loading";
-import MoreOptions from "components/_shared/MoreOptions";
+import Alert from "components/_shared/Alert";
+import Loader from "components/_shared/Loader";
+import HeaderProfile from "components/Profile/Header";
+import List from "components/Profile/List";
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { requestCardsByUserCreator, requestGetCards } from "state/cards/actions";
-import { getUserRequest } from "state/user/actions";
+import { requestCardsByUserCreator } from "state/cards/actions";
+import {
+	getUserRequest,
+	deleteUserData,
+	hiddenMsgUser,
+	deleteUserRequest,
+} from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
-import { FilterByUserCreator, GetCardsSelector } from "state/cards/selectors";
-import { UserSelector } from "state/user/selectors";
+import { FilterByUserCreator } from "state/cards/selectors";
+import {
+	UserSelector,
+	MessageUserSelector,
+	DeleteUserSelector,
+	UpdateUserSelector,
+} from "state/user/selectors";
+
 import useAuth from "hooks/useAuth";
 import { ContextModal } from "hooks/useModal";
+import { ILikeContext } from "state/cardsILike";
+// import { filterCardsByUserCreator } from "state/cards/services";
 
-const Profile = () => {
+const Profile = ({ history }) => {
+	const { cardsILike, loading } = useContext(ILikeContext);
 	const { showComponent, showModal } = useContext(ContextModal);
-	const { token, closeSession } = useAuth();
-
-	const deleteDataUser = () => {
-		dispatch(userLogout());
-		closeSession();
-	};
+	const { token, closeSession, isAuth } = useAuth();
 
 	const dispatch = useDispatch();
-	const { data: dataCards, loading: loadingCards } = useSelector((state) =>
-		GetCardsSelector(state),
+	const { data: dataUser, error: errorUser } = useSelector((state) =>
+		UserSelector(state),
 	);
-	const { data: dataUser } = useSelector((state) => UserSelector(state));
+	const { data: cardsByCreator, loading: loadingCreator } = useSelector((state) =>
+		FilterByUserCreator(state),
+	);
 
-	const { data: dataFilterCards } = useSelector((state) => FilterByUserCreator(state));
+	const { error: errorDeleteUser } = useSelector((state) => DeleteUserSelector(state));
+	const { error: errorUpdateUser } = useSelector((state) => UpdateUserSelector(state));
+
+	const { data: messageAlert } = useSelector((state) => MessageUserSelector(state));
 
 	useEffect(() => {
-		if (!dataCards) dispatch(requestGetCards());
+		if (!isAuth) history.replace("/login");
+	}, [isAuth]); //eslint-disable-line
+
+	useEffect(() => {
 		if (!dataUser) dispatch(getUserRequest({ token }));
-	}, [dispatch, token]); //eslint-disable-line
+	}, [dispatch]); //eslint-disable-line
 
 	useEffect(() => {
-		if (dataUser && dataUser.user && !dataFilterCards) {
+		if (dataUser?.user && !cardsByCreator && !cardsByCreator?.length) {
 			dispatch(requestCardsByUserCreator({ creatorId: dataUser?.user.id }));
 		}
-	}, [dataUser, dataFilterCards, dispatch]);
+	}, [dataUser, cardsByCreator, dispatch]);
+
+	function deleteDataUser() {
+		dispatch(userLogout());
+		dispatch(deleteUserData());
+		closeSession();
+		setTimeout(() => {
+			history.replace("/login");
+		}, 2000);
+	}
+
+	function hiddenAlert() {
+		dispatch(hiddenMsgUser());
+	}
+
+	function editProfile() {
+		showModal();
+		showComponent("edit-profile");
+	}
+
+	function deleteUser() {
+		// NOTE: Confirmar el origen del token
+		dispatch(deleteUserRequest({ token }));
+	}
 
 	let optionsModal = [
-		{
-			title: "Editar perfil",
-			fn: () => {
-				showModal();
-				showComponent("edit-profile");
-			},
-		},
-		{ title: "Cerrar Sesion", fn: () => deleteDataUser() },
+		{ title: "Editar perfil", fn: editProfile },
+		{ title: "Eliminar Cuenta", fn: deleteUser },
+		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 
 	return (
 		<Layout title="Perfil">
+			{messageAlert && (
+				<Alert
+					click={hiddenAlert}
+					error={errorUser || errorDeleteUser || errorUpdateUser}
+					showButtonClose
+					success={!errorUser && !errorDeleteUser && !errorUpdateUser}
+				>
+					{messageAlert}
+				</Alert>
+			)}
 			<div className="profile">
-				<div className="profile__header">
-					<div className="profile__header--img">
-						<img
-							src={
-								(dataUser && dataUser.user.profilePhoto) ||
-								"https://www.component-creator.com/images/testimonials/defaultuser.png"
-							}
-							alt="profile"
-						/>
-					</div>
-					<h2>{dataUser && dataUser.user.name}</h2>
-					<MoreOptions optionsModal={optionsModal} />
+				<section>
+					<HeaderProfile
+						dataUser={dataUser}
+						dataFilterCards={cardsByCreator?.length}
+						cardsILike={cardsILike?.length}
+						optionsModal={optionsModal}
+					/>
+
+					{cardsILike.length > 0 && (
+						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
+					)}
+					{loading && <Loader center className="profile__loader" />}
+				</section>
+
+				<div className="profile__content">
+					{cardsByCreator && (
+						<List cards={cardsByCreator} title="Creadas" icon={CreateIcon} />
+					)}
+					{loadingCreator && <Loader center className="profile__loader" />}
 				</div>
-				{loadingCards && <Loading />}
-				<h2 className="subtitle">
-					{!dataFilterCards?.lenght ? "Aun no creaste ninguna Tarjeta" : "Mis Tarjetas"}
-				</h2>
-				{dataFilterCards && <CardsUser data={dataFilterCards} />}
 			</div>
 		</Layout>
 	);

@@ -1,28 +1,65 @@
 @import "theme";
 
+@keyframes downModalOptions {
+  from {
+    opacity: 0;
+    transform: translate(50%, -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
 .more {
   position: relative;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background: #041527;
+  }
 
   &__icon {
+    text-align: center;
+
     path {
       stroke: $yellow;
     }
   }
 
   &__modal {
-    background: $medium-grey;
+    background: #041527;
     border-radius: $radius-1;
+    box-shadow: 0 0 0px 2px rgba(2, 9, 29, 0.5);
     color: $ivory;
     position: absolute;
-    right: 0;
-    top: 0;
-    margin-right: 8px;
-    width: 150px;
-    text-align: center;
+    right: .5rem;
+    top: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: $s-1;
+    padding: $s0;
+    animation: downModalOptions .3s !important;
+    -moz-animation: downModalOptions .3s;
+    -webkit-animation: downModalOptions .3s;
 
     li {
-      padding: .5rem 1rem .3rem 1rem;
       color: $ivory;
+      cursor: pointer;
+      font-size: .9em;
+      white-space: nowrap;
+
+      &:hover {
+        color: rgb(207, 207, 207);
+      }
     }
   }
 }

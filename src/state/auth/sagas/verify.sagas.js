@@ -9,7 +9,7 @@ function* watchVerify() {
 		success: actions.successVerify,
 		fail: actions.failureVerify,
 		retry: actions.requestVerify,
-		warning: actions.warningVerify,
+		conflict: actions.warningVerify,
 	});
 	yield takeLatest(types.VERIFY_REQUEST, workerVerify);
 }

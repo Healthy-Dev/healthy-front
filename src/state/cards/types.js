@@ -1,5 +1,8 @@
 import cardsDuck from ".";
 
+export const SHOW_MSG_ALERT = cardsDuck.defineType("SHOW_MSG_ALERT");
+export const HIDDEN_MSG_ALERT = cardsDuck.defineType("HIDDEN_MSG_ALERT");
+
 export const FILTER_CARDS_BY_USERCREATOR_REQUEST = cardsDuck.defineType(
 	"FILTER_CARDS_BY_USERCREATOR_REQUEST",
 );

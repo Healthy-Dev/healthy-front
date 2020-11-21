@@ -1,6 +1,7 @@
 import authDuck from ".";
 import * as types from "./types";
 
+export const hiddenMsgAlert = authDuck.createAction(types.HIDDEN_MSG_ALERT);
 export const userLogout = authDuck.createAction(types.USER_LOGOUT);
 
 export const requestLogin = authDuck.createAction(types.LOGIN_REQUEST);
@@ -30,3 +31,11 @@ export const failureResendVerification = authDuck.createAction(
 export const warningResendVerification = authDuck.createAction(
 	types.RESEND_VERIFY_WARNING,
 );
+
+export const requestForgotPassword = authDuck.createAction(types.FORGOT_PASSWORD_REQUEST);
+export const successForgotPassword = authDuck.createAction(types.FORGOT_PASSWORD_SUCCESS);
+export const failureForgotPassword = authDuck.createAction(types.FORGOT_PASSWORD_FAILURE);
+
+export const requestResetPassword = authDuck.createAction(types.RESET_PASSWORD_REQUEST);
+export const successResetPassword = authDuck.createAction(types.RESET_PASSWORD_SUCCESS);
+export const failureResetPassword = authDuck.createAction(types.RESET_PASSWORD_FAILURE);

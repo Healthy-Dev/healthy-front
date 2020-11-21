@@ -11,8 +11,8 @@ const TopNavBar = ({ title }) => {
 
 	return (
 		<div className="top-navbar">
-			<button onClick={goBack}>Cancelar</button>
 			<h2>{title}</h2>
+			<button onClick={goBack}>Cancelar</button>
 		</div>
 	);
 };

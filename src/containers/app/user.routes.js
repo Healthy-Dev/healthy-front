@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
-const UserCreated = lazy(() => import("views/UserCreated/"));
+const UserCreated = lazy(() => import("views/ActivateUser"));
 const Login = lazy(() => import("views/Login/"));
 const Register = lazy(() => import("views/Register/"));
 const Onboarding = lazy(() => import("views/Onboarding/"));

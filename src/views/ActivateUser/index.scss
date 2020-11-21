@@ -1,0 +1,51 @@
+@import "theme";
+
+.activate {
+	position: relative;
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: $s0;
+	font-family: $font-plain;
+	background-color: $dark-blue;
+	color: $ivory;
+	background-image: linear-gradient(to bottom,
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0.548),
+			rgba(4, 26, 47, 0.76),
+			rgba(4, 26, 47, 0.897),
+			rgb(4, 26, 47)),
+		url("../../assets/img/success.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+
+	section {
+		margin: 1rem 0;
+		max-width: 400px;
+
+		button {
+			margin: 1.5rem 0;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		margin-top: 150px;
+		margin-bottom: $s0;
+		font-size: $s1;
+
+		@include desktop {
+			font-size: $s3;
+		}
+
+		@include tablet {
+			font-size: $s1;
+		}
+	}
+}

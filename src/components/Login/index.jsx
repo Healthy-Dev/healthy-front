@@ -9,12 +9,10 @@ import "./index.scss";
 import Button from "../_shared/Button";
 import MessageError from "./MessageError";
 import Loader from "components/_shared/Loader";
-import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
-import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 
-const CreateCardForm = ({ sendLogin, loading }) => {
+const LoginForm = ({ sendLogin, loading }) => {
 	const { register, handleSubmit, errors, reset } = useForm();
 	const history = useHistory();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -32,53 +30,51 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 
 	return (
 		<form className="form__login" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-			<Button className="blue" fullWidth>
-				<FacebookIcon />
-				Continuar con Facebook
-			</Button>
-			<Button className="red" fullWidth>
-				<GoogleIcon />
-				Continuar con Google
-			</Button>
-
-			<label name="usernameOrEmail" htmlFor="user">
-				Email/Usuario
-			</label>
-			<input
-				id="user"
-				type="text"
-				name="usernameOrEmail"
-				placeholder="ejemplo@healthydev.com"
-				ref={register({ required: true })}
-			/>
-			{errors.usernameOrEmail && <MessageError message="Ingrese su usuario o email." />}
-
-			<label name="password" htmlFor="password">
-				Contraseña
-			</label>
-			<div className="input__container">
+			<section className="form__login--input">
+				<label name="usernameOrEmail" htmlFor="user">
+					Email/Usuario
+				</label>
 				<input
-					id="password"
-					type={isPasswordHidden ? "password" : "text"}
-					name="password"
-					placeholder="******"
-					ref={register({
-						required: true,
-					})}
+					id="user"
+					type="text"
+					name="usernameOrEmail"
+					placeholder="ejemplo@healthydev.com"
+					ref={register({ required: true })}
 				/>
-				<div onClick={() => setPasswordHidden(!isPasswordHidden)} className="input__icon">
-					{isPasswordHidden ? <Eye /> : <EyeOff />}
+				{errors.usernameOrEmail && <MessageError message="Ingrese su usuario o email." />}
+			</section>
+
+			<section className="form__login--input">
+				<label name="password" htmlFor="password">
+					Contraseña
+				</label>
+				<div className="input__container">
+					<input
+						id="password"
+						type={isPasswordHidden ? "password" : "text"}
+						name="password"
+						placeholder="******"
+						ref={register({
+							required: true,
+						})}
+					/>
+					<div
+						onClick={() => setPasswordHidden(!isPasswordHidden)}
+						className="input__icon"
+					>
+						{isPasswordHidden ? <Eye /> : <EyeOff />}
+					</div>
 				</div>
-			</div>
+				{errors.password && <MessageError message="Ingrese su contraseña." />}
+			</section>
 
 			<p
 				role="button"
-				className="button__link--grey"
-				onClick={() => history.push("/reset_password")}
+				className="forgot-password"
+				onClick={() => history.push("/recover_password")}
 			>
 				¿Olvidaste tu contraseña?
 			</p>
-			{errors.password && <MessageError message="Ingrese su contraseña." />}
 
 			<Button
 				className="button__login"
@@ -89,4 +85,4 @@ const CreateCardForm = ({ sendLogin, loading }) => {
 		</form>
 	);
 };
-export default CreateCardForm;
+export default LoginForm;

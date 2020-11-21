@@ -1,71 +1,149 @@
 @import "theme";
 
-a {
-	text-decoration: none;
-}
-
 .card {
-	min-width: 150px;
-	min-height: 200px;
-	height: 230px;
+	// min-width: 150px;
+	// max-width: 200px;
+	height: 250px;
+	box-shadow: 0 0 10px rgb(5, 11, 44);
 	position: relative;
-	box-shadow: 0 0 4px rgba(3, 17, 31, 0.685);
 
-	@include desktop {
-		height: 300px;
-		width: 250px;
+	&__top {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: $s-1 .5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		z-index: 15;
+		font-size: 14px;
 
-		&:hover img {
-			transform: scale(1.05);
-			transition: transform .5s ease;
+		&--user {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: .5rem;
+
+			img {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				object-fit: cover;
+				box-shadow: 0 0 4px 5px rgba(31, 31, 31, 0.623);
+			}
+
+			h3 {
+				color: $ivory;
+			}
+		}
+
+		&--likes {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: .5em;
+
+			svg {
+				stroke: $yellow;
+				cursor: pointer;
+			}
+
+			p {
+				color: $ivory;
+				font-weight: 500;
+			}
+		}
+
+
+		@include desktop {
+			padding: $s-1;
+			font-size: 16px;
+
+			&--user {
+				gap: $s-1;
+
+				img {
+					width: 40px;
+					height: 40px;
+				}
+			}
+
+			&--likes {
+				gap: $s-1;
+			}
+		}
+
+		@include tablet {
+			&--user {
+				gap: $s-1;
+				font-size: 16px;
+
+				img {
+					width: 40px;
+					height: 40px;
+				}
+			}
+
+			&--likes {
+				gap: $s-1;
+			}
 		}
 	}
 
-	@include tablet {
-		height: 275px;
-	}
-
-	&::after {
-		content: "";
-		position: absolute;
-		border-radius: $radius-1;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 5;
-		background: linear-gradient(to top, rgba(3, 17, 31, 0.719), transparent), linear-gradient(to top, rgba(3, 17, 31, 0.849), transparent);
-	}
-
-	&>div {
+	&__img {
 		height: 100%;
+		width: 100%;
 		overflow: hidden;
 		border-radius: $radius-1;
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			border-radius: $radius-1;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 3;
+			background: linear-gradient(to bottom, rgba(3, 17, 31, 0.473), transparent),
+				linear-gradient(to top, rgba(3, 17, 31, 0.63), transparent);
+		}
+
+		&:hover img {
+			transform: scale(1.08);
+			transition: transform .5s ease;
+		}
 
 		img {
+			border-radius: $radius-1;
 			width: 100%;
-			overflow: hidden;
 			height: 100%;
+			overflow: hidden;
 			object-fit: cover;
 		}
 	}
 
 	h2 {
-		border-bottom-left-radius: $radius-1 - 2px;
-		border-bottom-right-radius: $radius-1 - 2px;
 		position: absolute;
 		z-index: 10;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		font-size: $s-1;
-		padding: $s0 $s-1;
+		font-size: $s-1 + 2;
+		padding: $s-1 .5rem;
 		color: $ivory;
 		font-weight: 400;
-		letter-spacing: .5px;
+		letter-spacing: .2px;
+		text-transform: lowercase;
+
+		&::first-letter {
+			text-transform: uppercase;
+		}
 
 		@include desktop {
-			font-size: $s0 - 1;
+			font-size: $s0;
 		}
 
 		@include tablet {

@@ -13,6 +13,7 @@ import UploadImage from "./UploadImage";
 import MessageError from "./MessageError";
 import Button from "components/_shared/Button";
 import Loader from "components/_shared/Loader";
+import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
 
 const CreateCardForm = ({ sendForm, loading, data }) => {
 	const dispatch = useDispatch();
@@ -47,28 +48,14 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 
 	useEffect(() => {
 		if (!categoriesData) dispatch(requestGetCardsCategories());
-	}, []); //eslint-disable-line
+	}, [categoriesData]); //eslint-disable-line
 
 	return (
 		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-			<div className="upload-form-container">
-				<UploadImage
-					photo={photo}
-					changePhoto={data.photo}
-					setPhoto={setPhoto}
-					setSizeImg={setSizeImg}
-					refForm={register}
-				/>
-				{photo && isImgTooBig && (
-					<MessageError message="La imagen no puede pesar mas de 15Mb" />
-				)}
-			</div>
-
 			<section className="input">
-				<label>Título</label>
 				<input
 					name="title"
-					placeholder="Ingresa un título"
+					placeholder="Título"
 					ref={register({ required: true, maxLength: 50 })}
 				/>
 				{errors.title && errors.title.type === "required" && (
@@ -80,29 +67,10 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 			</section>
 
 			<section className="input">
-				<label>Categorías</label>
-				<select className="select" name="category" ref={register({ required: true })}>
-					<option value={(data.category && data.category.id) || ""}>
-						{(data.category && data.category.name) || "Categorias"}
-					</option>
-					{categoriesData &&
-						categoriesData.map((category) => (
-							<option key={category.id} value={category.id}>
-								{category.name}
-							</option>
-						))}
-				</select>
-				{errors.category && errors.category.type === "required" && (
-					<MessageError message="Seleccione una Categoria" />
-				)}
-			</section>
-
-			<section className="input">
-				<label>Descripción</label>
 				<textarea
 					rows="5"
 					name="description"
-					placeholder="Explicá en que consiste el artículo"
+					placeholder="Descripción"
 					ref={register({ required: true, minLength: 100 })}
 				></textarea>
 				{errors.description && errors.description.type === "minLength" && (
@@ -113,11 +81,28 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 				)}
 			</section>
 
+			<section className="input select">
+				<select name="category" ref={register({ required: true })}>
+					<option value={(data.category && data.category.id) || ""}>
+						{(data.category && data.category.name) || "Categorias"}
+					</option>
+					{categoriesData &&
+						categoriesData.map((category) => (
+							<option key={category.id} value={category.id}>
+								{category.name}
+							</option>
+						))}
+				</select>
+				<ChevronDownIcon className="select__icon" />
+				{errors.category && errors.category.type === "required" && (
+					<MessageError message="Seleccione una Categoria" />
+				)}
+			</section>
+
 			<section className="input">
-				<label>URL</label>
 				<input
 					name="externalUrl"
-					placeholder="Ingresa una URL"
+					placeholder="URL"
 					ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
 				/>
 				{errors.externalUrl && errors.externalUrl.type === "required" && (
@@ -130,10 +115,21 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					<MessageError message="Ingrese una Url válida" />
 				)}
 			</section>
-
-			<Button type="submit">
-				{loading ? <Loader /> : data ? "Editar articulo" : "Agregar articulo"}
-			</Button>
+			<section className="form__bottom">
+				<UploadImage
+					photo={photo}
+					changePhoto={data.photo}
+					setPhoto={setPhoto}
+					setSizeImg={setSizeImg}
+					refForm={register}
+				/>
+				{photo && isImgTooBig && (
+					<MessageError message="La imagen no puede pesar más de 15Mb" />
+				)}
+				<Button type="submit">
+					{loading ? <Loader /> : data ? "Editar articulo" : "Agregar articulo"}
+				</Button>
+			</section>
 		</form>
 	);
 };

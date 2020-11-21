@@ -102,6 +102,14 @@
       bottom: $s2;
     }
 
+    @include tablet {
+      width: 30%;
+      left: auto;
+      top: auto;
+      right: $s2 + $s2;
+      bottom: $s2;
+    }
+
     &--button {
       position: absolute;
       width: 100%;

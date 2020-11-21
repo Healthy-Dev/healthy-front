@@ -1,34 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
+
 import useLocalStorage from "hooks/useLocalStorage";
+import useAuth from "hooks/useAuth";
 
 import Layout from "components/_shared/Layout";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
-import Loading from "components/_shared/Loading";
-import CardsSearch from "components/Search/Cards";
+import ListCards from "components/_shared/ListCards";
+import NotResults from "components/Search/NotResults";
+import Loader from "components/_shared/Loader";
 
-import { requestSearchCards } from "state/cards/actions";
-import { SearchCardsSelector } from "state/cards/selectors";
-
-import { requestGetCardsCategories } from "state/cards/actions";
-import { GetCardsCategories } from "state/cards/selectors";
-
-import { requestCardsByCategory } from "state/cards/actions";
-import { filterCardsByCategory } from "state/cards/selectors";
+import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
+import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
 
 const Search = ({ history }) => {
+	const { isAuth } = useAuth();
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (!isAuth) history.replace("/login");
+	}, [isAuth]); //eslint-disable-line
+
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
+	const [cards, setCards] = useState([]);
 
-	const dispatch = useDispatch();
 	const { data: searchData, loading: searchLoading } = useSelector((state) =>
 		SearchCardsSelector(state),
-	);
-
-	const { data: categoriesData, loading: categoriesLoading } = useSelector((state) =>
-		GetCardsCategories(state),
 	);
 
 	const {
@@ -50,33 +50,33 @@ const Search = ({ history }) => {
 	}
 
 	useEffect(() => {
-		if (!categoriesData) dispatch(requestGetCardsCategories());
-
 		if (history.location.search.includes(`?query=`) && locationQuery) {
 			if (!searchData) searchCards();
 		}
 	}, []); //eslint-disable-line
 
+	useEffect(() => {
+		if (filterOrSearch.name === "search") setCards(searchData);
+		if (filterOrSearch.name === "filter") setCards(filterByCategoryData);
+	}, [searchData, filterByCategoryData]); //eslint-disable-line
+
 	return (
 		<Layout title="Buscar">
 			<div className="search">
 				<InputSearch getCards={searchCards} history={history} />
+				<Tags filterByCategories={filterByCategories} />
 
-				{categoriesLoading && <Tags categoriesLoading />}
+				<div className="search__content">
+					<h2 className="search__title">
+						Buscar: <span>{filterOrSearch.value}</span>
+					</h2>
 
-				{categoriesData && (
-					<Tags filterByCategories={filterByCategories} categories={categoriesData} />
-				)}
+					{cards && <ListCards cards={cards} />}
 
-				{(searchLoading || filterByCategoryLoading) && <Loading />}
+					{(searchLoading || filterByCategoryLoading) && <Loader center />}
 
-				{filterOrSearch.name === "filter" && filterByCategoryData && (
-					<CardsSearch data={filterByCategoryData} query={filterOrSearch.value} />
-				)}
-
-				{filterOrSearch.name === "search" && searchData && (
-					<CardsSearch data={searchData} query={filterOrSearch.value} />
-				)}
+					{cards?.length === 0 && <NotResults />}
+				</div>
 			</div>
 		</Layout>
 	);

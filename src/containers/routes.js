@@ -1,7 +1,8 @@
 import { lazy } from "react";
 
 // Containers
-const UserCreated = lazy(() => import("views/UserCreated/"));
+const UserCreated = lazy(() => import("views/UserCreated"));
+const ActivateUser = lazy(() => import("views/ActivateUser"));
 const CardDetails = lazy(() => import("views/CardDetails/"));
 const CreateCard = lazy(() => import("views/CreateCard/"));
 const EditCard = lazy(() => import("views/EditCard/"));
@@ -11,17 +12,39 @@ const Login = lazy(() => import("views/Login/"));
 const Profile = lazy(() => import("views/Profile/"));
 const Register = lazy(() => import("views/Register/"));
 const Search = lazy(() => import("views/Search/"));
+const RecoverPassword = lazy(() => import("views/RecoverPassword"));
+const ResetPassword = lazy(() => import("views/ResetPassword"));
+const Social = lazy(() => import("views/Social"));
 
 export default [
+	{
+		path: "/social",
+		component: Social,
+		exact: true,
+	},
+	{
+		path: "/reset-password",
+		component: ResetPassword,
+		exact: true,
+	},
+	{
+		path: "/recover_password",
+		component: RecoverPassword,
+		exact: true,
+	},
 	{
 		path: "/",
 		component: Home,
 		exact: true,
-		auth: false,
+	},
+	{
+		path: "/user-created",
+		component: UserCreated,
+		exact: true,
 	},
 	{
 		path: "/activate",
-		component: UserCreated,
+		component: ActivateUser,
 		exact: true,
 	},
 	{

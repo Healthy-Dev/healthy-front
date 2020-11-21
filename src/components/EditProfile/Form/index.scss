@@ -3,32 +3,44 @@
 .editProfile__form {
   width: 100%;
   height: 100%;
-  z-index: 100;
-  position: relative;
-  margin-top: 20px;
+  // border: 1px solid red;
+  padding: $s0;
+
+  @include desktop {
+    padding: $s1;
+  }
+
+  @include tablet {
+    padding: $s1;
+  }
+
+  .flex-img {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: end;
+  }
 
   &--input {
-    margin: $s1 0;
     width: 100%;
+    margin-bottom: $s0;
 
     .img {
       display: block;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
+      width: 80px;
+      height: 80px;
+      // margin: 0 auto;
       position: relative;
-
-
 
       &::before {
         content: "";
         width: 100%;
         height: 100%;
         position: absolute;
-        background: #00000081;
+        background: #000000a9;
         border-radius: $radius-1;
       }
-
 
       img {
         width: 100%;
@@ -39,15 +51,13 @@
 
       .icon {
         position: absolute;
-        top: 65%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        stroke: red;
-        width: 40px;
-        height: 30px;
+        right: 10%;
+        bottom: 5%;
+        width: 30px;
+        height: 40px;
 
         path {
-          stroke: $green;
+          stroke: $ivory;
         }
       }
     }
@@ -57,28 +67,26 @@
       display: none;
     }
 
-    label {
-      font-size: $s0;
-      color: $ivory;
-    }
-
     input {
       width: 100%;
       border-radius: $radius-1;
       font-family: $font-plain;
-      border: none;
-      font-size: $s0;
-      background-color: $medium-grey;
-      color: $ivory;
+      font-size: $s-1 + 2;
+      border: 1px solid #0d263f;
+      background: #021527;
+      color: #c9c9c9;
       padding: $s-1;
-      margin-top: .5rem;
 
       @include desktop {
-        font-size: 1em;
+        font-size: $s-1 + 2;
+      }
+
+      @include tablet {
+        font-size: $s0;
       }
 
       &::placeholder {
-        color: $light-grey;
+        color: rgb(94, 94, 94);
       }
     }
   }

@@ -2,27 +2,29 @@
 
 .card__content {
   position: relative;
+  top: 60vh;
   z-index: 11;
   transform: translateY(-50px);
-  padding: $s2;
-  background-color: $darker-blue;
+  padding: $s1;
+  background-color: $dark-blue;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 5px rgb(17, 18, 51);
 
   @include desktop {
     max-width: 450px;
-    margin-top: 0;
+    top: 0;
     box-shadow: none;
+    background: transparent;
     transform: translateY(0);
-    padding: $s1;
+    padding-top: 0;
   }
 
   @include tablet {
-    margin-top: 0;
+    background: transparent;
+    top: 0;
     transform: translateY(0);
-    box-shadow: 0 0 10px rgb(17, 18, 51);
-    border-radius: 10px;
-    margin-left: -5%;
+    box-shadow: none;
+    padding-top: 0;
   }
 
   &--more {
@@ -40,6 +42,8 @@
       width: 70px;
       height: 70px;
       margin-right: $s0;
+      background-color: white;
+      border-radius: $radius-1;
 
       img {
         border-radius: $radius-1;
@@ -60,13 +64,13 @@
 
     &-button {
       grid-area: button;
-      background: $yellow;
       width: $s4;
-      padding: .2rem .5rem;
+      background: $yellow;
       border: none;
-      font-size: $s-1;
       border-radius: $radius-1;
-      box-shadow: 0px 2px 10px rgba(244, 221, 39, 0.59);
+      color: #1d1d1d;
+      font-size: $s-1;
+      padding: .2rem .5rem;
     }
 
     &-options {
@@ -87,9 +91,34 @@
     color: $ivory;
     line-height: 1.50;
     letter-spacing: .5px;
+    word-wrap: break-word;
 
     a {
       color: $green;
     }
+  }
+}
+
+.similar {
+  background: $dark-blue;
+  position: relative;
+  z-index: 111000;
+  margin-top: 2rem;
+
+  h3 {
+    color: white;
+    margin: 1rem 0;
+    font-size: 1.5em;
+
+    span {
+      color: $yellow;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }

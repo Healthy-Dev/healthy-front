@@ -4,26 +4,24 @@ import logoHealthy from "assets/icons/Logo-heatlhy.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 
-import { requestRegister } from "state/auth/actions";
-import { RegisterSelector } from "state/auth/selectors";
+import { requestRegister, hiddenMsgAlert } from "state/auth/actions";
+import { RegisterSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
-import Register from "components/Register";
+import RegisterForm from "components/Register";
 import Alert from "components/_shared/Alert";
 // Styles
 import "./index.scss";
 import useAuth from "hooks/useAuth";
+import HealthyDev from "components/_shared/HealthyDev";
 
 const RegisterView = ({ history }) => {
 	const { isAuth } = useAuth();
-	const {
-		loading,
-		errorMessage,
-		error,
-		data,
-		warning,
-		messageWarning,
-	} = useSelector((state) => RegisterSelector(state));
+	const { loading, error, data, warning } = useSelector((state) =>
+		RegisterSelector(state),
+	);
 	const dispatch = useDispatch();
+
+	const { data: message } = useSelector((state) => hiddenMsgAuthSelector(state));
 
 	useEffect(() => {
 		if (isAuth) history.replace("/");
@@ -35,32 +33,33 @@ const RegisterView = ({ history }) => {
 
 	useEffect(() => {
 		if (data) {
-			setTimeout(() => history.replace("/activate"), 2500);
+			setTimeout(() => history.replace("/user-created"), 2500);
 		}
 	}, [data]); //eslint-disable-line
+
+	function hiddenAlert() {
+		dispatch(hiddenMsgAlert());
+	}
 
 	return (
 		<div className="register-container">
 			<div className="register-form">
-				{error && errorMessage && (
-					<Alert showButtonClose error>
-						{errorMessage && errorMessage}
-					</Alert>
-				)}
-				{warning && messageWarning && (
-					<Alert showButtonClose error>
-						{messageWarning && messageWarning}
+				{message && (
+					<Alert
+						showButtonClose
+						error={error || warning}
+						success={!error && !warning}
+						click={hiddenAlert}
+					>
+						{message}
 					</Alert>
 				)}
 				<div className="desktop-title-wrapper">
 					<h2 className="desktop-title">REGISTRO</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
-				<h1 className="title">
-					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
-				</h1>
-				<h2 className="register-title">Registrate</h2>
-				<Register sendFormRegister={sendFormRegister} loading={loading} />
+				<HealthyDev className="register-logo" top />
+				<RegisterForm sendFormRegister={sendFormRegister} loading={loading} />
 			</div>
 			<img src={registerBackground} className="register-img" alt="fondo" />
 		</div>

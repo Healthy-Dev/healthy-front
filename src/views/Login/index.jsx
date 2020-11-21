@@ -1,28 +1,36 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
+import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 
-import { requestLogin } from "state/auth/actions";
-import { LoginSelector } from "state/auth/selectors";
+import { requestLogin, hiddenMsgAlert } from "state/auth/actions";
+import { LoginSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
-import Login from "components/Login";
+import LoginForm from "components/Login";
 import Alert from "components/_shared/Alert";
 import useAuth from "hooks/useAuth";
 // Styles
 import "./index.scss";
 import loginBackground from "assets/img/desktopLoginBg.png";
 import logoHealthy from "assets/icons/Logo-heatlhy.svg";
+import HealthyDev from "components/_shared/HealthyDev";
+import LinkButton from "components/Login/LinkButton";
 
-const LoginView = () => {
-	const history = useHistory();
+const LoginView = ({ history }) => {
 	const dispatch = useDispatch();
-	const { data, loading, error } = useSelector((state) => LoginSelector(state));
 	const { isAuth, startSession } = useAuth();
+	const { data, loading, error, warning } = useSelector((state) => LoginSelector(state));
+
+	const { data: messageAuth } = useSelector((state) => hiddenMsgAuthSelector(state));
 
 	const loginUser = (payload) => {
 		dispatch(requestLogin(payload));
 	};
+
+	function hiddenAlert() {
+		dispatch(hiddenMsgAlert());
+	}
 
 	useEffect(() => {
 		if (isAuth) history.replace("/");
@@ -34,34 +42,39 @@ const LoginView = () => {
 		}
 	}, [data]); //eslint-disable-line
 
+	let linkFacebook = "https://healthydev.herokuapp.com/v1/auth/facebook";
+	let linkGoogle = "https://healthydev.herokuapp.com/v1/auth/google";
+
 	return (
 		<div className="login-wrapper">
+			{messageAuth && (
+				<Alert
+					error={error || warning}
+					success={!error}
+					showButtonClose
+					click={hiddenAlert}
+				>
+					{messageAuth}
+				</Alert>
+			)}
 			<div className="login-container">
-				{error ? (
-					<Alert showButtonClose error>
-						Disculpa, no pudimos loguear tu usuario con esa información.{" "}
-						<a href="!#" onClick={() => history.push("/reset_password")}>
-							¿Necesitás resetear tu contraseña?
-						</a>
-					</Alert>
-				) : null}
 				<div className="desktop-title-wrapper">
 					<h2 className="desktop-title">INICIAR SESION</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
-				<h1>
-					<span className="healthy">Healthy</span> <span className="dev">Dev</span>
-				</h1>
-				<div className="login-footer">
-					<Login sendLogin={loginUser} loading={loading} />
+
+				<HealthyDev className="login-logo" top />
+
+				<div className="login-content">
+					<section>
+						<LinkButton link={linkFacebook} icon={FacebookIcon} title="facebook" />
+						<LinkButton link={linkGoogle} icon={GoogleIcon} title="google" />
+						<LoginForm sendLogin={loginUser} loading={loading} />
+					</section>
 					<footer>
-						<p>¿Todavía no tenés una cuenta?</p>
-						<p
-							role="button"
-							className="button__link"
-							onClick={() => history.push("/register")}
-						>
-							Registrate
+						<p role="button" className="button__link">
+							¿Todavía no tenés una cuenta?{" "}
+							<span onClick={() => history.push("/register")}>Registrate</span>
 						</p>
 					</footer>
 				</div>

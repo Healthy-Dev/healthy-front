@@ -8,6 +8,7 @@
 	justify-content: flex-end;
 	height: 100%;
 	width: 100%;
+	position: relative;
 
 	@include desktop {
 		justify-content: flex-start;
@@ -20,7 +21,7 @@
 
 		label {
 			display: inline-block;
-			margin: .5rem 0;
+			margin-bottom: .2rem;
 		}
 
 		input {
@@ -32,34 +33,30 @@
 			font-size: $s0;
 			color: $ivory;
 			padding: $s-1;
-		}
 
-		.input__container {
-			width: 100%;
-			position: relative;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			background-color: $medium-grey;
-			border-radius: $radius-1;
+			&::placeholder {
+				opacity: 1;
+				color: $light-grey;
+			}
 
-			.input__icon {
-				width: 20%;
-				text-align: center;
+			&[name="password"] {
+				width: 80%;
 			}
 		}
+	}
 
-		&::placeholder {
-			opacity: 1;
-			color: $light-grey;
-		}
+	.input__container {
+		width: 100%;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: $medium-grey;
+		border-radius: $radius-1;
 
-		&:valid {
-			background-color: $medium-grey;
-		}
-
-		&[name="password"] {
-			width: 80%;
+		.input__icon {
+			width: 20%;
+			text-align: center;
 		}
 	}
 

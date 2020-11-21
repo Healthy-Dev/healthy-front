@@ -27,17 +27,16 @@ const CardContent = ({
 		category,
 	};
 
+	function editar() {
+		showModal();
+		showComponent("edit-card");
+		setID(id);
+		setExtra(editData);
+	}
+
 	let optionsModalCreator = [
-		{
-			title: "Editar",
-			fn: () => {
-				showModal();
-				showComponent("edit-card");
-				setID(id);
-				setExtra(editData);
-			},
-		},
-		{ title: "Elimar", fn: () => toggleModalConfirm() },
+		{ title: "Editar", fn: editar },
+		{ title: "Eliminar", fn: toggleModalConfirm },
 		{ title: "Reportar", fn: () => console.log("report") },
 	];
 
@@ -55,7 +54,7 @@ const CardContent = ({
 					<img src={creatorInfo.profilePhoto} alt="profile" />
 				</div>
 				<h3 className="card__content--more-user">{creatorInfo.name}</h3>
-				<button className="card__content--more-button">Seguir</button>
+				{/* <button className="card__content--more-button">Seguir</button> */}
 				<div className="card__content--more-options">
 					<MoreOptions
 						optionsModal={isYourCard() ? optionsModalCreator : optionsModalDefault}
