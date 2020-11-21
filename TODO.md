@@ -4,10 +4,6 @@
 - [ ] Details: Dar formato fecha/hora
 - [ ] Idea: En los detalles de la **Card** estaría bueno que la categoría lleve a una pantalla con todas las _Cards_ de esa categoría
 - [ ] A futuro si se sigue, estaría bueno ver de prevenir los _bounce_ del scroll en Mobile
-- [ ] Cuando te registrás, ¿no tendría que redireccionar al **Home**?, porque me lleva a poder reenviar verificación, aunque el cartel diga _"Usuario Creado"_
-- [ ] Si la cuenta no está activada el _like_ en vez de indicar algo similar si el _backend_ trae _"Healthy dev le informa que debe activar la cuenta por email primero"_ muestra incorrectamente la cantidad
-- [ ] Pregunta para ver las **Cards**: ¿No puedo verlas sin estar registrado? Como visitante, sin permisos sería lo mismo que el _user_ no activado respecto a las _Cards_, en _backend_ permitimos traer las _Cards_ sin _token_
-- [ ] El **"+"** para agregar artículo si no está la cuenta activa no debería estar. Porque te deja cargar todo y al guardar te tira _"No se pudo crear su tarjeta. Inténtelo más tarde."_
 - [ ] Cuando verificás/activás cuentas si tenés _token_, ¿no debería ir al **Home**?
 - [ ] En **vista general** no actualiza los _likes_ si no refresco página, o sea, le doy _like_ a la _Card_, vuelvo al _Home_ y si no refresco no muestra actualizado
 - [ ] Al editar artículo, ¿el botón debería decir **Guardar** o **Confirmar** en vez de _"Editar Artículo"_?
@@ -26,9 +22,10 @@
 - [ ] Revisar _likes_ que no son tomados, _likes_ que son tomados pero no cambian la UI y dejan poner de vuelta el _like_
 
 ## TODO extraído del channel de Discord #healthy-dev-app
-
-- [ ] @lala*soad: El post de Andrés no muestra la info hasta presionar en *"Seguir Leyendo"\_
+- [ ] Varios: No permitir navegar por paginas sin registro ni cuenta activada
 - [ ] @Javo.py: En las opciones de perfil no muestra el icono de los 3 puntos
+- [ ] @Marionetta07: Al editar perfil notificación "El usuario ha sido actualizado con éxito" sigue estando aunque haya cambiado de pantalla
+- [ ] @Sebastián García: Al editar perfil la notificación "El usuario ha sido actualizado con éxito" le aparecio en modo en rojo e icon de alerta
 - [ ] @Javo.py: Espacio sin aprovechar en los _details_ (versión web)
 - [ ] @LuAr: Al abrir menu de _details_ se mueve la imagen header (versión mobile)
 - [ ] @LiKatRod: Más de un filtrado
@@ -37,3 +34,7 @@
 - [ ] @Yas: _"Español rioplatense"_ en la página de Log In (el resto de la web está en neutro)
 - [ ] @Mauro19Hz: Problemas con los _likes_ + Si editás perfil se eliminan las _Cards_ guardadas
 - [ ] @Yas: No queda claro el objetivo del mail
+- [ ] @Yas: No queda claro Seguir leyendo ya que te redigue a web externa (puede ser video)
+- [ ] @azulxc: Confuso que no tenga esa opcion en el registro pero te deje de una en el inicio de sesion social login
+
+
