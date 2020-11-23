@@ -13,13 +13,14 @@
 - [ ] El _like_ desde el **Home** no estaría dejando o cambiar el cursor para que no parezca que se puede dar click
 - [ ] ¿URL es obligatorio?, si es así lo tenemos que cambiar en el _backend_ también
 - [ ] En una _Card_ que creo con una cuenta en el **Home** y en el **Perfil** me apareció [este avatar](https://us.123rf.com/450wm/apoev/apoev1612/apoev161200008/68697464-icono-de-perfil-avatar-por-defecto-marcador-de-posici%C3%B3n-gray.jpg?ver=6) en vez del _placeholder_, cuando entro lo toma bien
-- [ ] En _"Buscar el Label"_ no toma **Varios**
 - [ ] Agregar página 404
 - [x] En **Android** al llenar el formulario y abrir el teclado se superpone el título y el form (myke-roly)
 - [ ] Queda el mensaje de _Success_ o _Error_, se debería eliminar al cambiar de pantalla o después de unos segundos
 - [ ] La imagen de la **Card** tiene un movimiento raro al abrir el _Menu_
 - [ ] Revisar textos utilizados
 - [ ] Revisar _likes_ que no son tomados, _likes_ que son tomados pero no cambian la UI y dejan poner de vuelta el _like_
+- [x] Corrección eye confirm password (Andrés)
+- [x] Modificar validación nombre de usuario (Andrés)
 
 ## TODO extraído del channel de Discord #healthy-dev-app
 - [ ] Varios: No permitir navegar por paginas sin registro ni cuenta activada
