@@ -19,8 +19,8 @@
 - [ ] La imagen de la **Card** tiene un movimiento raro al abrir el _Menu_
 - [ ] Revisar textos utilizados
 - [ ] Revisar _likes_ que no son tomados, _likes_ que son tomados pero no cambian la UI y dejan poner de vuelta el _like_
-- [x] Corrección eye confirm password (Andrés)
-- [x] Modificar validación nombre de usuario (Andrés)
+- [x] Corrección icono eye confirm password en registro de usuario (Andrés)
+- [x] Modificar validación nombre de usuario en registro de usuario(Andrés)
 
 ## TODO extraído del channel de Discord #healthy-dev-app
 - [ ] Varios: No permitir navegar por paginas sin registro ni cuenta activada
