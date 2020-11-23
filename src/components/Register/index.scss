@@ -21,7 +21,7 @@
 
 		label {
 			display: inline-block;
-			margin-bottom: .2rem;
+			margin-bottom: 0.2rem;
 		}
 
 		input {
@@ -38,10 +38,12 @@
 				opacity: 1;
 				color: $light-grey;
 			}
-
-			&[name="password"] {
-				width: 80%;
-			}
+		}
+		&[name="password"] {
+			width: 80%;
+		}
+		&[name="confirmPassword"] {
+			width: 80%;
 		}
 	}
 
