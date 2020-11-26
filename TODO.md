@@ -9,7 +9,7 @@
 - [ ] Al editar artículo, ¿el botón debería decir **Guardar** o **Confirmar** en vez de _"Editar Artículo"_?
 - [ ] El _"Eliminar cuenta"_ es desde el email no desde el perfil con el _token_, igual si querés lo implementamos en el _backend_ esa opción
 - [ ] El _"Eliminar cuenta"_ desde el email todavía no está implementado, ¿no?
-- [ ] En el _"Recuperar contraseña"_ si puede quedar en tipo password (asteriscos)
+- [ ] En el _"Recuperar contraseña"_ si puede quedar en tipo password (asteriscos) (Andrés)
 - [ ] El _like_ desde el **Home** no estaría dejando o cambiar el cursor para que no parezca que se puede dar click
 - [ ] ¿URL es obligatorio?, si es así lo tenemos que cambiar en el _backend_ también
 - [ ] En una _Card_ que creo con una cuenta en el **Home** y en el **Perfil** me apareció [este avatar](https://us.123rf.com/450wm/apoev/apoev1612/apoev161200008/68697464-icono-de-perfil-avatar-por-defecto-marcador-de-posici%C3%B3n-gray.jpg?ver=6) en vez del _placeholder_, cuando entro lo toma bien
