@@ -34,34 +34,30 @@ const HomeView = () => {
 
 	return (
 		<>
-			{!isAuth ? (
-				<Onboarding />
-			) : (
-				<Layout title="inicio" logo>
-					{msg && (
-						<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
-							{msg}
-						</Alert>
-					)}
+			<Layout title="inicio" logo>
+				{msg && (
+					<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
+						{msg}
+					</Alert>
+				)}
 
-					<div className="presentation">
-						<img src={Imagen} alt="presentation" />
-						<h2>Solo diviertete!</h2>
-					</div>
+				<div className="presentation">
+					<img src={Imagen} alt="presentation" />
+					<h2>Solo diviertete!</h2>
+				</div>
 
-					<div className="line"></div>
+				<div className="line"></div>
 
-					<div className="logo-home">
-						<NavHome />
-					</div>
+				<div className="logo-home">
+					<NavHome />
+				</div>
 
-					<div className="home">
-						{loading && <Loader center />}
-						{data && <ListCards cards={data} />}
-					</div>
-					<IconPlus />
-				</Layout>
-			)}
+				<div className="home">
+					{loading && <Loader center />}
+					{data && <ListCards cards={data} />}
+				</div>
+				<IconPlus />
+			</Layout>
 		</>
 	);
 };
