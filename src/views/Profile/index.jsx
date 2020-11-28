@@ -111,17 +111,17 @@ const Profile = ({ history }) => {
 						optionsModal={optionsModal}
 					/>
 
-					{cardsILike.length > 0 && (
-						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
-					)}
-					{loading && <Loader center className="profile__loader" />}
-				</section>
-
-				<div className="profile__content">
 					{cardsByCreator && (
 						<List cards={cardsByCreator} title="Creadas" icon={CreateIcon} />
 					)}
 					{loadingCreator && <Loader center className="profile__loader" />}
+				</section>
+
+				<div className="profile__content">
+					{cardsILike.length > 0 && (
+						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
+					)}
+					{loading && <Loader center className="profile__loader" />}
 				</div>
 			</div>
 		</Layout>
