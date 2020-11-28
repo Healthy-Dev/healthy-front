@@ -29,7 +29,13 @@ const CountLikes = ({
 	return (
 		<div className="like">
 			<span className="like__count">{likesCount}</span>
-			<button className="like__btn" onClick={clickLike} ref={ref} disabled={!isAuth}>
+			<button
+				className="like__btn"
+				onClick={clickLike}
+				ref={ref}
+				disabled={!isAuth}
+				title={!isAuth && "Necesitas crear una cuenta!"}
+			>
 				<IconLike className={`like--icon ${isILiked && "liked"}`} />
 			</button>
 		</div>
