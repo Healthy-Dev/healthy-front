@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./index.scss";
 import Imagen from "assets/img/card-home.jpg";
 
-import Onboarding from "views/Onboarding";
+// import Onboarding from "views/Onboarding";
 import Layout from "components/_shared/Layout";
 import IconPlus from "components/ButtonAdd";
 import NavHome from "components/_shared/Logo";
@@ -14,11 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
 import { GetCardsSelector, hiddenMesgSelector } from "state/cards/selectors";
 
-import useAuth from "hooks/useAuth";
-
 const HomeView = () => {
 	const dispatch = useDispatch();
-	const { isAuth } = useAuth();
 	const { data, loading } = useSelector((state) => GetCardsSelector(state));
 	const { data: msg, error: errorMsg } = useSelector((state) =>
 		hiddenMesgSelector(state),
