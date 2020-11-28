@@ -5,7 +5,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: $s1;
-  grid-template-rows: masonry !important;
+
+  .card {
+    max-width: 450px;
+  }
 
   @include tablet {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
