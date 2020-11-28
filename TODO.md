@@ -37,5 +37,12 @@
 - [ ] @Yas: No queda claro el objetivo del mail
 - [ ] @Yas: No queda claro Seguir leyendo ya que te redigue a web externa (puede ser video)
 - [ ] @azulxc: Confuso que no tenga esa opcion en el registro pero te deje de una en el inicio de sesion social login
+- [ ] @LiKatRod: Pasar imágenes de pantalla de inicio a cloudinary, para evitar carga lenta
+- [ ] @LiKatRod: Con una sola card en modo escritorio toma todo el ancho de la pantalla
+- [ ] @LiKatRod: Al editar perfil no trae todas las cards, hace falta una recarga
+- [ ] @LiKatRod: En la búsqueda/filtro figura por defecto alimentación pero no trae cards de alimentación
+- [ ] @LiKatRod: En móvil se pierden las categorías, no se ven todas
+- [ ] @LiKatRod: Infinite scroll en listado de cards ¿Está implementado?
+
 
 
