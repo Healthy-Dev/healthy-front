@@ -33,13 +33,13 @@
 - [ ] @LiKatRod: Preferencias de _user_ al iniciar App
 - [x] @Lautaro López: Typo en sección **Buscar** -> _"No se encontraron resultados"_ en vez de _"No se encontró resultados"_  (fran)
 - [ ] @Yas: _"Español rioplatense"_ en la página de Log In (el resto de la web está en neutro)
-- [ ] @Mauro19Hz: Problemas con los _likes_ + Si editás perfil se eliminan las _Cards_ guardadas
+- [x] @Mauro19Hz: Problemas con los _likes_ + Si editás perfil se eliminan las _Cards_ guardadas (fran)
 - [ ] @Yas: No queda claro el objetivo del mail
 - [ ] @Yas: No queda claro Seguir leyendo ya que te redigue a web externa (puede ser video)
 - [ ] @azulxc: Confuso que no tenga esa opcion en el registro pero te deje de una en el inicio de sesion social login
 - [ ] @LiKatRod: Pasar imágenes de pantalla de inicio a cloudinary, para evitar carga lenta  (fran)
 - [x] @LiKatRod: Con una sola card en modo escritorio toma todo el ancho de la pantalla (fran)
-- [ ] @LiKatRod: Al editar perfil no trae todas las cards, hace falta una recarga
+- [x] @LiKatRod: Al editar perfil no trae todas las cards, hace falta una recarga (fran)
 - [ ] @LiKatRod: En la búsqueda/filtro figura por defecto alimentación pero no trae cards de alimentación
 - [ ] @LiKatRod: En móvil se pierden las categorías, no se ven todas
 - [ ] @LiKatRod: Infinite scroll en listado de cards ¿Está implementado?
