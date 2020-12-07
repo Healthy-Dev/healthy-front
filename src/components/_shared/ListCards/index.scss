@@ -17,6 +17,13 @@
   }
 
   @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $s2;
+  }
+}
+
+.profile__cards .list-cards {
+  @include desktop {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: $s2;
   }
