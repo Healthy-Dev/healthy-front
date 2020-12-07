@@ -24,20 +24,20 @@
 
 ## TODO extraído del channel de Discord #healthy-dev-app
 - [ ] Varios: No permitir navegar por paginas sin registro ni cuenta activada
-- [ ] @Javo.py: En las opciones de perfil no muestra el icono de los 3 puntos
-- [ ] @Marionetta07: Al editar perfil notificación "El usuario ha sido actualizado con éxito" sigue estando aunque haya cambiado de pantalla
-- [ ] @Sebastián García: Al editar perfil la notificación "El usuario ha sido actualizado con éxito" le aparecio en modo en rojo e icon de alerta
+- [x] @Javo.py: En las opciones de perfil no muestra el icono de los 3 puntos (fran)
+- [ ] @Marionetta07: Al editar perfil notificación "El usuario ha sido actualizado con éxito" sigue estando aunque haya cambiado de pantalla (fran)
+- [ ] @Sebastián García: Al editar perfil la notificación "El usuario ha sido actualizado con éxito" le aparecio en modo en rojo e icon de alerta  (fran)
 - [ ] @Javo.py: Espacio sin aprovechar en los _details_ (versión web)
-- [ ] @LuAr: Al abrir menu de _details_ se mueve la imagen header (versión mobile)
+- [ ] @LuAr: Al abrir menu de _details_ se mueve la imagen header (versión mobile)  (fran)
 - [ ] @LiKatRod: Más de un filtrado
 - [ ] @LiKatRod: Preferencias de _user_ al iniciar App
-- [ ] @Lautaro López: Typo en sección **Buscar** -> _"No se encontraron resultados"_ en vez de _"No se encontró resultados"_
-- [ ] @Yas: _"Español rioplatense"_ en la página de Log In (el resto de la web está en neutro)
+- [ ] @Lautaro López: Typo en sección **Buscar** -> _"No se encontraron resultados"_ en vez de _"No se encontró resultados"_  (fran)
+- [ ] @Yas: _"Español rioplatense"_ en la página de Log In (el resto de la web está en neutro)  (fran)
 - [ ] @Mauro19Hz: Problemas con los _likes_ + Si editás perfil se eliminan las _Cards_ guardadas
 - [ ] @Yas: No queda claro el objetivo del mail
 - [ ] @Yas: No queda claro Seguir leyendo ya que te redigue a web externa (puede ser video)
 - [ ] @azulxc: Confuso que no tenga esa opcion en el registro pero te deje de una en el inicio de sesion social login
-- [ ] @LiKatRod: Pasar imágenes de pantalla de inicio a cloudinary, para evitar carga lenta
+- [ ] @LiKatRod: Pasar imágenes de pantalla de inicio a cloudinary, para evitar carga lenta  (fran)
 - [ ] @LiKatRod: Con una sola card en modo escritorio toma todo el ancho de la pantalla
 - [ ] @LiKatRod: Al editar perfil no trae todas las cards, hace falta una recarga
 - [ ] @LiKatRod: En la búsqueda/filtro figura por defecto alimentación pero no trae cards de alimentación
