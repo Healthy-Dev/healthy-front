@@ -16,7 +16,7 @@
 - [ ] Agregar página 404
 - [x] En **Android** al llenar el formulario y abrir el teclado se superpone el título y el form (myke-roly)
 - [x] Queda el mensaje de _Success_ o _Error_, se debería eliminar al cambiar de pantalla o después de unos segundos (fran)
-- [ ] La imagen de la **Card** tiene un movimiento raro al abrir el _Menu_
+- [x] La imagen de la **Card** tiene un movimiento raro al abrir el _Menu_ (fran)
 - [ ] Revisar textos utilizados
 - [ ] Revisar _likes_ que no son tomados, _likes_ que son tomados pero no cambian la UI y dejan poner de vuelta el _like_ (fran)
 - [x] Corrección icono eye confirm password en registro de usuario (Andrés)
@@ -28,7 +28,7 @@
 - [x] @Marionetta07: Al editar perfil notificación "El usuario ha sido actualizado con éxito" sigue estando aunque haya cambiado de pantalla (fran)
 - [x] @Sebastián García: Al editar perfil la notificación "El usuario ha sido actualizado con éxito" le aparecio en modo en rojo e icon de alerta  (fran)
 - [ ] @Javo.py: Espacio sin aprovechar en los _details_ (versión web)
-- [ ] @LuAr: Al abrir menu de _details_ se mueve la imagen header (versión mobile)
+- [x] @LuAr: Al abrir menu de _details_ se mueve la imagen header (versión mobile) (fran)
 - [ ] @LiKatRod: Más de un filtrado
 - [ ] @LiKatRod: Preferencias de _user_ al iniciar App
 - [x] @Lautaro López: Typo en sección **Buscar** -> _"No se encontraron resultados"_ en vez de _"No se encontró resultados"_  (fran)
