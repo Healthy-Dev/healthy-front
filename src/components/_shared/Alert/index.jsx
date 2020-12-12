@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { ReactComponent as IconClose } from "assets/icons/x.svg";
 import { ReactComponent as OKIcon } from "assets/icons/check.svg";
 import { ReactComponent as ErrorIcon } from "assets/icons/alert-circle.svg";
+import { useEffect } from "react";
 
 const Alert = ({
 	className = "",
@@ -26,6 +27,10 @@ const Alert = ({
 		setShowAlert(false);
 		click();
 	}
+
+	useEffect(() => {
+		setTimeout(() => showAlert && handleClick(), 5000)
+	}, [showAlert])
 
 	return (
 		<>

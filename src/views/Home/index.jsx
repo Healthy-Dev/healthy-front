@@ -9,6 +9,7 @@ import NavHome from "components/_shared/Logo";
 import Alert from "components/_shared/Alert";
 import ListCards from "components/_shared/ListCards";
 import Loader from "components/_shared/Loader";
+import { useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
@@ -20,6 +21,14 @@ const HomeView = () => {
 	const { data: msg, error: errorMsg } = useSelector((state) =>
 		hiddenMesgSelector(state),
 	);
+
+	const history = useHistory()
+
+	useEffect(() => {
+		history.listen(() => {
+			dispatch(requestGetCards());
+		})
+	},[dispatch, history])
 
 	useEffect(() => {
 		if (!data) dispatch(requestGetCards());
