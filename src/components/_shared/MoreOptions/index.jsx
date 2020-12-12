@@ -22,12 +22,14 @@ const MoreOptions = ({ optionsModal }) => {
 	}
 
 	return (
-		<div className="more" onClick={() => setShowModal(!showModal)}>
-			<MoreIcon className="more__icon" />
+		<>
+			<div className="more" onClick={() => setShowModal(!showModal)}>
+				<MoreIcon className="more__icon" />
+			</div>
 			{showModal && (
 				<ModalOptions optionsModal={optionsModal} handleClick={handleClick} />
 			)}
-		</div>
+		</>
 	);
 };
 

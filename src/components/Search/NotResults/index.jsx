@@ -14,7 +14,7 @@ const NotResults = () => {
       <div></div>
       <div></div>
     </div>
-    <p className="notresults__text">No se encontro resultados</p>
+    <p className="notresults__text">No se encontraron resultados</p>
   </div>;
 };
 

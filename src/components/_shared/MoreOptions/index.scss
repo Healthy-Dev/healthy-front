@@ -33,33 +33,35 @@
     }
   }
 
-  &__modal {
-    background: #041527;
-    border-radius: $radius-1;
-    box-shadow: 0 0 0px 2px rgba(2, 9, 29, 0.5);
+}
+
+.more__modal {
+  background: #041527;
+  border-radius: $radius-1;
+  box-shadow: 0 0 0px 2px rgba(2, 9, 29, 0.5);
+  color: $ivory;
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: $s-1;
+  padding: $s0;
+  animation: downModalOptions .3s !important;
+  -moz-animation: downModalOptions .3s;
+  -webkit-animation: downModalOptions .3s;
+
+  li {
     color: $ivory;
-    position: absolute;
-    right: .5rem;
-    top: .5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    gap: $s-1;
-    padding: $s0;
-    animation: downModalOptions .3s !important;
-    -moz-animation: downModalOptions .3s;
-    -webkit-animation: downModalOptions .3s;
+    cursor: pointer;
+    font-size: .9em;
+    white-space: nowrap;
 
-    li {
-      color: $ivory;
-      cursor: pointer;
-      font-size: .9em;
-      white-space: nowrap;
-
-      &:hover {
-        color: rgb(207, 207, 207);
-      }
+    &:hover {
+      color: rgb(207, 207, 207);
     }
   }
 }

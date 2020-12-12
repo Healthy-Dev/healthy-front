@@ -17,7 +17,7 @@ import {
 	getUserRequest,
 	deleteUserData,
 	hiddenMsgUser,
-	deleteUserRequest,
+	// deleteUserRequest,
 } from "state/user/actions";
 import { userLogout } from "state/auth/actions";
 // Selectores
@@ -84,14 +84,9 @@ const Profile = ({ history }) => {
 		showComponent("edit-profile");
 	}
 
-	function deleteUser() {
-		// NOTE: Confirmar el origen del token
-		dispatch(deleteUserRequest({ token }));
-	}
-
 	let optionsModal = [
 		{ title: "Editar perfil", fn: editProfile },
-		{ title: "Eliminar Cuenta", fn: deleteUser },
+		// { title: "Eliminar Cuenta", fn: deleteUser },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 
@@ -116,17 +111,17 @@ const Profile = ({ history }) => {
 						optionsModal={optionsModal}
 					/>
 
-					{cardsILike.length > 0 && (
-						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
-					)}
-					{loading && <Loader center className="profile__loader" />}
-				</section>
-
-				<div className="profile__content">
 					{cardsByCreator && (
 						<List cards={cardsByCreator} title="Creadas" icon={CreateIcon} />
 					)}
 					{loadingCreator && <Loader center className="profile__loader" />}
+				</section>
+
+				<div className="profile__content">
+					{cardsILike.length > 0 && (
+						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
+					)}
+					{loading && <Loader center className="profile__loader" />}
 				</div>
 			</div>
 		</Layout>

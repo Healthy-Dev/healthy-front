@@ -45,8 +45,9 @@
 			gap: .5em;
 
 			svg {
-				stroke: $yellow;
-				cursor: pointer;
+				fill: $yellow;
+				color: $yellow;
+				width: 1em;
 			}
 
 			p {
@@ -68,10 +69,6 @@
 					height: 40px;
 				}
 			}
-
-			&--likes {
-				gap: $s-1;
-			}
 		}
 
 		@include tablet {
@@ -83,10 +80,6 @@
 					width: 40px;
 					height: 40px;
 				}
-			}
-
-			&--likes {
-				gap: $s-1;
 			}
 		}
 	}

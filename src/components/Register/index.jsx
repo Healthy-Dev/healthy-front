@@ -37,7 +37,7 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 	return (
 		<form className="form__register" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
 			<section className="form__input">
-				<label name="username">Nombre se Usuario</label>
+				<label name="username">Nombre de Usuario</label>
 				<input
 					name="username"
 					type="text"

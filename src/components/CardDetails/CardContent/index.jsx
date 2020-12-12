@@ -44,7 +44,8 @@ const CardContent = ({
 
 	function formatDate(createdAT) {
 		const date = new Date(createdAT);
-		return date.toDateString();
+		const options = { year: 'numeric', month: 'long', day: 'numeric' };
+		return date.toLocaleDateString('es-AR', options);
 	}
 
 	return (

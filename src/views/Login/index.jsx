@@ -59,7 +59,7 @@ const LoginView = ({ history }) => {
 			)}
 			<div className="login-container">
 				<div className="desktop-title-wrapper">
-					<h2 className="desktop-title">INICIAR SESION</h2>
+					<h2 className="desktop-title">INICIAR SESIÓN</h2>
 					<img className="desktop-logo" alt="logo" src={logoHealthy} />
 				</div>
 
@@ -72,9 +72,9 @@ const LoginView = ({ history }) => {
 						<LoginForm sendLogin={loginUser} loading={loading} />
 					</section>
 					<footer>
-						<p role="button" className="button__link">
-							¿Todavía no tenés una cuenta?{" "}
-							<span onClick={() => history.push("/register")}>Registrate</span>
+						<p role="button" className="button__link" onClick={() => history.push("/register")}>
+							¿Todavía no tienés una cuenta?{" "}
+							<span>Registrate</span>
 						</p>
 					</footer>
 				</div>

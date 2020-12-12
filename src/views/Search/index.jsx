@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 
 import useLocalStorage from "hooks/useLocalStorage";
-import useAuth from "hooks/useAuth";
 
 import Layout from "components/_shared/Layout";
 import Tags from "components/Search/Tags";
@@ -16,12 +15,7 @@ import { requestSearchCards, requestCardsByCategory } from "state/cards/actions"
 import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
 
 const Search = ({ history }) => {
-	const { isAuth } = useAuth();
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		if (!isAuth) history.replace("/login");
-	}, [isAuth]); //eslint-disable-line
 
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");

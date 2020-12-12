@@ -13,7 +13,7 @@ export const useAnimation = () => {
 		},
 
 		{
-			transform: "scale(2)",
+			transform: "scale(1.5)",
 			opacity: "0",
 		},
 
@@ -28,8 +28,8 @@ export const useAnimation = () => {
 	];
 
 	const options = {
-		duration: 500,
-		animationTimingFunction: "ease-out",
+		duration: 400,
+		animationTimingFunction: "ease-in-out",
 	};
 
 	function animate() {

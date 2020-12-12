@@ -2,16 +2,16 @@
 
 .search__input {
   width: 100%;
-  border-radius: $radius-1;
-  border: 2px solid #424D57;
-  font-size: $s0;
-  color: $ivory;
-  background: $dark-blue;
   display: flex;
   padding-left: 1rem;
   padding-right: .5rem;
   justify-content: flex-start;
   align-items: center;
+  border-radius: $radius-1;
+  font-family: $font-plain;
+  font-size: $s-1;
+  border: 2px solid #0d263f;
+  background: #021527;
 
   @include desktop {
     width: 50%;
@@ -40,7 +40,7 @@
 
   input {
     background: transparent;
-    width: 80%;
+    width: 100%;
     padding: .7rem 0;
     border: none;
     font-size: medium;

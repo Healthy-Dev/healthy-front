@@ -5,15 +5,17 @@
   align-items: center;
   gap: .5rem;
 
-  div {
+  &__btn {
     width: 2rem;
     height: 2rem;
     position: relative;
-    background-color: rgba(14, 14, 14, 0.418);
+    background-color: rgba(14, 14, 14, 0.288);
+    border: none;
     border-radius: 50%;
     display: grid;
     justify-content: center;
     align-items: center;
+    outline: none;
 
     &::before {
       content: '';
@@ -26,6 +28,7 @@
 
   &--icon {
     width: 1.35rem;
+    color: $yellow;
   }
 
   .liked {

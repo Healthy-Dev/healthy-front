@@ -18,8 +18,8 @@ const Card = ({ img, title, id, creator, likesCount }) => {
 					<h3>{creator.name}</h3>
 				</div>
 				<div className="card__top--likes">
-					<LikesIcon />
 					<p>{likesCount}</p>
+					<LikesIcon />
 				</div>
 			</section>
 			<div className="card__img" onClick={handleClick}>

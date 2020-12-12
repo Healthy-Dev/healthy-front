@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./index.scss";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
@@ -9,6 +9,10 @@ const InputSearch = ({ getCards, history }) => {
 	const [query, setQuery] = useState("");
 	const [inputFocus, setInputFocus] = useState(false);
 	const inputRef = useRef(undefined);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
 
 	function getCardsEnter(e) {
 		if (!query) return;
@@ -43,10 +47,11 @@ const InputSearch = ({ getCards, history }) => {
 	return (
 		<div className="search__input">
 			<span className="search__input--icon">
-        {inputFocus 
-          ? <BackIcon className="back" onClick={onBlurInput} />
-          : <SearchIcon />
-				}
+				{inputFocus ? (
+					<BackIcon className="back" onClick={onBlurInput} />
+				) : (
+					<SearchIcon />
+				)}
 			</span>
 			<input
 				id="input-search"
@@ -67,8 +72,8 @@ const InputSearch = ({ getCards, history }) => {
 };
 
 InputSearch.propTypes = {
-  getCards: PropTypes.func,
-  history: PropTypes.any
-}
+	getCards: PropTypes.func,
+	history: PropTypes.any,
+};
 
 export default InputSearch;
