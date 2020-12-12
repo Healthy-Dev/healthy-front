@@ -13,6 +13,7 @@ import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 import Loader from "components/_shared/Loader";
 
 /* Password should be at least one capital letter, one small letter, one number and 8 character length */
+const USERNAME_FORMAT = /(?=^.{4,20}$)^[a-zA-Z]+[a-zA-Z\-\_0-9.]+[a-zA-Z0-9]+$/;
 const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 
@@ -41,17 +42,21 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 					name="username"
 					type="text"
 					placeholder="Ingresa un nombre de usuario"
-					ref={register({ required: true, maxLength: 30, minLength: 4 })}
+					ref={register({ required: true, minLength: 4, pattern: USERNAME_FORMAT, maxLength: 30  })}
 				/>
 				{errors.username && errors.username.type === "required" && (
 					<MessageError message="Ingrese un nombre de usuario." />
 				)}
+				{errors.username && errors.username.type === "minLength" && (
+					<MessageError message="Mínimo 4 caracteres." />
+				)}
 				{errors.username && errors.username.type === "maxLength" && (
 					<MessageError message="Maximo 30 caracteres." />
 				)}
-				{errors.username && errors.username.type === "minlength" && (
-					<MessageError message="Minimo 4 caracteres." />
+				{errors.username && errors.username.type === "pattern" && (
+					<MessageError message="Comience con letras, puede contener letras y números, y punto, guion medio o bajo en medio." />
 				)}
+
 			</section>
 
 			<section className="form__input">
