@@ -5,7 +5,23 @@
 	height: 80px;
 	position: relative;
 
+	&:hover {
+		img {
+			opacity: 0.8;
+		}
+	}
+
+	.iconUpload {
+		position: absolute;
+		right: 5%;
+		bottom: 5%;
+		background-color: #61676797;
+		border-radius: 5px;
+		padding: 3px;
+	}
+
 	&__img {
+		cursor: pointer;
 
 		img {
 			width: 100%;
@@ -20,7 +36,7 @@
 		background: rgba(53, 53, 53, 0.843);
 		border-radius: 4px;
 		color: $yellow;
-		padding: .2rem;
+		padding: 0.2rem;
 		left: 5%;
 		top: 5%;
 	}
@@ -32,7 +48,7 @@
 		width: 20px !important;
 		height: 20px !important;
 
-		&>div {
+		& > div {
 			border: 3px solid $yellow !important;
 			border-color: $yellow $yellow transparent transparent !important;
 		}
