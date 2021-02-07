@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./index.scss";
 import PropTypes from "prop-types";
 import { ReactComponent as IconClose } from "assets/icons/x.svg";
@@ -23,14 +23,16 @@ const Alert = ({
 
 	const [showAlert, setShowAlert] = useState(true);
 
-	function handleClick() {
+	const handleClick = useCallback(() => {
 		setShowAlert(false);
 		click();
-	}
+	}, [click]);
 
 	useEffect(() => {
-		setTimeout(() => showAlert && handleClick(), 5000)
-	}, [showAlert])
+		const timeout = setTimeout(() => showAlert && handleClick(), 5000);
+
+		return () => clearTimeout(timeout);
+	}, [handleClick, showAlert]);
 
 	return (
 		<>

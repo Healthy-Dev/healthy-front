@@ -42,7 +42,12 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 					name="username"
 					type="text"
 					placeholder="Ingresa un nombre de usuario"
-					ref={register({ required: true, minLength: 4, pattern: USERNAME_FORMAT, maxLength: 30  })}
+					ref={register({
+						required: true,
+						minLength: 4,
+						pattern: USERNAME_FORMAT,
+						maxLength: 30,
+					})}
 				/>
 				{errors.username && errors.username.type === "required" && (
 					<MessageError message="Ingrese un nombre de usuario." />
@@ -56,7 +61,6 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 				{errors.username && errors.username.type === "pattern" && (
 					<MessageError message="Comience con letras, puede contener letras y números, y punto, guion medio o bajo en medio." />
 				)}
-
 			</section>
 
 			<section className="form__input">

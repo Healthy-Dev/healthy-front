@@ -2,7 +2,6 @@ import React from "react";
 import "./index.scss";
 import { ReactComponent as IconLike } from "assets/icons/heart.svg";
 import { useAnimation } from "./useAnimation";
-import useAuth from "hooks/useAuth";
 
 const CountLikes = ({
 	likesCount,
@@ -13,7 +12,6 @@ const CountLikes = ({
 	setCardILike,
 }) => {
 	const { animate, ref } = useAnimation();
-	const { isAuth } = useAuth();
 
 	function clickLike() {
 		if (isILiked) {
@@ -29,13 +27,7 @@ const CountLikes = ({
 	return (
 		<div className="like">
 			<span className="like__count">{likesCount}</span>
-			<button
-				className="like__btn"
-				onClick={clickLike}
-				ref={ref}
-				disabled={!isAuth}
-				title={!isAuth && "Necesitas crear una cuenta!"}
-			>
+			<button className="like__btn" onClick={clickLike} ref={ref}>
 				<IconLike className={`like--icon ${isILiked && "liked"}`} />
 			</button>
 		</div>

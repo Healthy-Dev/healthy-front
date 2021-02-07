@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 // Hooks
 import { useForm } from "react-hook-form";
 // Styles
 import "./index.scss";
-
-import { useDispatch, useSelector } from "react-redux";
-import { requestGetCardsCategories } from "state/cards/actions";
-import { GetCardsCategories } from "state/cards/selectors";
 
 // Components
 import UploadImage from "./UploadImage";
 import MessageError from "./MessageError";
 import Button from "components/_shared/Button";
 import Loader from "components/_shared/Loader";
-import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
+import CategoriesField from "./CategoriesField";
+
+const URL_FORMAT = /^(ftp|http|https):\/\/[^ "]+$/;
+const MAX_SIZE_IMAGE = 15 * 1024 * 1024; // 15mb
 
 const CreateCardForm = ({ sendForm, loading, data }) => {
-	const dispatch = useDispatch();
-	const { data: categoriesData } = useSelector((state) => GetCardsCategories(state));
+	const [photo, setPhoto] = useState(null);
 
 	let defaultValues = {
 		title: data.title,
@@ -26,29 +24,24 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 	};
 
 	const { register, handleSubmit, errors } = useForm({ defaultValues });
-	const [photo, setPhoto] = useState(null);
-	const [sizeImg, setSizeImg] = useState(0);
-	const isImgTooBig = sizeImg > 15 * 1024 * 1024;
-	const formatPhoto = photo && photo.split("base64,")[1];
 
-	const onSubmit = ({ title, description, externalUrl, category }) => {
-		if (isImgTooBig) return;
+	const formatPhoto = (photo) => photo.split("base64,")[1];
+
+	const isLargeImage = useCallback((sizeImg) => sizeImg > MAX_SIZE_IMAGE, []);
+
+	const onSubmit = ({ title, description, externalUrl, category, image }) => {
+		if (image.length && isLargeImage(image[0].size)) return;
+
 		sendForm(
 			JSON.stringify({
 				title,
 				description,
-				photo: photo ? formatPhoto : undefined,
+				photo: photo ? formatPhoto(photo) : undefined,
 				externalUrl,
 				categoryId: category,
 			}),
 		);
 	};
-
-	const URL_FORMAT = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
-
-	useEffect(() => {
-		if (!categoriesData) dispatch(requestGetCardsCategories());
-	}, [categoriesData]); //eslint-disable-line
 
 	return (
 		<form className="CreateCardForm" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -58,10 +51,10 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					placeholder="Título"
 					ref={register({ required: true, maxLength: 50 })}
 				/>
-				{errors.title && errors.title.type === "required" && (
+				{errors?.title?.type === "required" && (
 					<MessageError message="Ingrese un Título" />
 				)}
-				{errors.title && errors.title.type === "maxLength" && (
+				{errors?.title?.type === "maxLength" && (
 					<MessageError message="Máximo 50 caracteres" />
 				)}
 			</section>
@@ -73,31 +66,21 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					placeholder="Descripción"
 					ref={register({ required: true, minLength: 100 })}
 				></textarea>
-				{errors.description && errors.description.type === "minLength" && (
-					<MessageError message="Mínimo 100 caracteres" />
+				{errors?.description?.type === "minLength" && (
+					<MessageError message="Mínimo 50 caracteres" />
 				)}
-				{errors.description && errors.description.type === "required" && (
+				{errors?.description?.type === "required" && (
 					<MessageError message="Ingrese una descripción" />
 				)}
 			</section>
 
-			<section className="input select">
-				<select name="category" ref={register({ required: true })}>
-					<option value={(data.category && data.category.id) || ""}>
-						{(data.category && data.category.name) || "Categorias"}
-					</option>
-					{categoriesData &&
-						categoriesData.map((category) => (
-							<option key={category.id} value={category.id}>
-								{category.name}
-							</option>
-						))}
-				</select>
-				<ChevronDownIcon className="select__icon" />
-				{errors.category && errors.category.type === "required" && (
-					<MessageError message="Seleccione una Categoria" />
-				)}
-			</section>
+			<CategoriesField
+				name="category"
+				placeholder="Categorias"
+				validationRef={register({ required: true })}
+				defaultValue={data.category}
+				error={errors?.category?.type}
+			/>
 
 			<section className="input">
 				<input
@@ -105,32 +88,33 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					placeholder="URL"
 					ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
 				/>
-				{errors.externalUrl && errors.externalUrl.type === "required" && (
+				{errors?.externalUrl?.type === "required" && (
 					<MessageError message="Ingrese una Url" />
 				)}
-				{errors.externalUrl && errors.externalUrl.type === "maxLength" && (
+				{errors?.externalUrl?.type === "maxLength" && (
 					<MessageError message="Máximo 250 caracteres" />
 				)}
-				{errors.externalUrl && errors.externalUrl.type === "pattern" && (
+				{errors?.externalUrl?.type === "pattern" && (
 					<MessageError message="Ingrese una Url válida" />
 				)}
 			</section>
+
 			<section className="form__bottom">
 				<UploadImage
 					photo={photo}
+					name="image"
 					changePhoto={data.photo}
+					validateImage={register({ required: !data.photo })}
 					setPhoto={setPhoto}
-					setSizeImg={setSizeImg}
-					refForm={register}
+					isLargeImage={isLargeImage}
+					error={errors?.image?.type}
 				/>
-				{photo && isImgTooBig && (
-					<MessageError message="La imagen no puede pesar más de 15Mb" />
-				)}
 				<Button type="submit">
-					{loading ? <Loader /> : data ? "Editar articulo" : "Agregar articulo"}
+					{loading ? <Loader /> : data ? "Editar artículo" : "Agregar artículo"}
 				</Button>
 			</section>
 		</form>
 	);
 };
+
 export default CreateCardForm;

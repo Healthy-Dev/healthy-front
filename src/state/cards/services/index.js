@@ -2,7 +2,7 @@ import { fakeHttpModule, TYPES } from "common/http";
 
 export const getCards = () =>
 	fakeHttpModule.get(
-		"v1/cards?offset=2&limit=50&expand=creator,likes",
+		"v1/cards?offset=1&limit=25&expand=creator,likes",
 		undefined,
 		undefined,
 		TYPES.json,
@@ -44,7 +44,7 @@ export const getCardsCategories = () =>
 
 export const filterCardsByUserCreator = ({ payload: { creatorId } }) =>
 	fakeHttpModule.get(
-		`v1/cards?offset=2&limit=50&expand=creator,likes&creatorId=${creatorId}`,
+		`v1/cards?offset=1&limit=15&expand=creator,likes&creatorId=${creatorId}`,
 		undefined,
 		undefined,
 		TYPES.json,
