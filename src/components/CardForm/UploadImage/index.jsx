@@ -26,6 +26,10 @@ const UploadImage = ({
 			const reader = new FileReader();
 			const [file] = e.target.files;
 
+			if (!file) {
+				return setPhoto(null);
+			}
+
 			setUploading(true);
 			setSizeImg(file.size);
 
