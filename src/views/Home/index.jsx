@@ -9,26 +9,27 @@ import NavHome from "components/_shared/Logo";
 import Alert from "components/_shared/Alert";
 import ListCards from "components/_shared/ListCards";
 import Loader from "components/_shared/Loader";
-import { useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
 import { GetCardsSelector, hiddenMesgSelector } from "state/cards/selectors";
+import useAuth from "hooks/useAuth";
+import Onboarding from "views/Onboarding";
 
-const HomeView = () => {
+const HomeView = ({ history }) => {
 	const dispatch = useDispatch();
 	const { data, loading } = useSelector((state) => GetCardsSelector(state));
 	const { data: msg, error: errorMsg } = useSelector((state) =>
 		hiddenMesgSelector(state),
 	);
 
-	const history = useHistory()
+	const { isAuth } = useAuth();
 
 	useEffect(() => {
 		history.listen(() => {
 			dispatch(requestGetCards());
-		})
-	},[dispatch, history])
+		});
+	}, [dispatch, history]);
 
 	useEffect(() => {
 		if (!data) dispatch(requestGetCards());
@@ -38,33 +39,31 @@ const HomeView = () => {
 		dispatch(hiddenMsgAlert());
 	}
 
+	if (!isAuth) {
+		return <Onboarding />;
+	}
+
 	return (
-		<>
-			<Layout title="inicio" logo>
-				{msg && (
-					<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
-						{msg}
-					</Alert>
-				)}
-
-				<div className="presentation">
-					<img src={Imagen} alt="presentation" />
-					<h2>Solo diviertete!</h2>
-				</div>
-
-				<div className="line"></div>
-
-				<div className="logo-home">
-					<NavHome />
-				</div>
-
-				<div className="home">
-					{loading && <Loader center />}
-					{data && <ListCards cards={data} />}
-				</div>
-				<IconPlus />
-			</Layout>
-		</>
+		<Layout title="inicio" logo>
+			{msg && (
+				<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
+					{msg}
+				</Alert>
+			)}
+			<div className="presentation">
+				<img src={Imagen} alt="presentation" />
+				<h2>Solo diviertete!</h2>
+			</div>
+			<div className="line"></div>
+			<div className="logo-home">
+				<NavHome />
+			</div>
+			<div className="home">
+				{loading && <Loader center />}
+				{data && <ListCards cards={data} />}
+			</div>
+			<IconPlus />
+		</Layout>
 	);
 };
 

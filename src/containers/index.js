@@ -5,7 +5,7 @@ import routes from "./routes";
 import MultipleRoutes from "components/_shared/MultipleRoutes";
 import Loading from "components/_shared/Loading";
 
-const User = () => (
+const Routes = () => (
 	<Suspense fallback={<Loading />}>
 		<Switch>
 			{routes.map((route, i) => (
@@ -15,4 +15,4 @@ const User = () => (
 	</Suspense>
 );
 
-export default User;
+export default Routes;
