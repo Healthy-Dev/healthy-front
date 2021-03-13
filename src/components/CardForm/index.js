@@ -11,6 +11,8 @@ import Button from "components/_shared/Button";
 import Loader from "components/_shared/Loader";
 import CategoriesField from "./CategoriesField";
 
+const TITLE_FORMAT = /^[a-zA-Z0-9. ]{1,50}$/
+const DESCRIPTION_FORMAT = /^[a-zA-Z0-9,." ]{50,500}$/
 const URL_FORMAT = /^(ftp|http|https):\/\/[^ "]+$/;
 const MAX_SIZE_IMAGE = 15 * 1024 * 1024; // 15mb
 
@@ -49,13 +51,20 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 				<input
 					name="title"
 					placeholder="Título"
-					ref={register({ required: true, maxLength: 50 })}
+					ref={register({
+						required: true,
+						maxLength: 50,
+						pattern: TITLE_FORMAT
+					})}
 				/>
 				{errors?.title?.type === "required" && (
 					<MessageError message="Ingrese un Título" />
 				)}
 				{errors?.title?.type === "maxLength" && (
 					<MessageError message="Máximo 50 caracteres" />
+				)}
+				{errors?.title?.type === 'pattern' && (
+					<MessageError message="Ingrese solo caracteres válidos" />
 				)}
 			</section>
 
@@ -64,13 +73,20 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 					rows="5"
 					name="description"
 					placeholder="Descripción"
-					ref={register({ required: true, minLength: 100 })}
+					ref={register({
+						required: true,
+						minLength: 50,
+						pattern: DESCRIPTION_FORMAT
+					})}
 				></textarea>
-				{errors?.description?.type === "minLength" && (
-					<MessageError message="Mínimo 50 caracteres" />
-				)}
 				{errors?.description?.type === "required" && (
 					<MessageError message="Ingrese una descripción" />
+				)}
+				{errors?.description?.type === 'pattern' && (
+					<MessageError message="Ingrese solo caracteres válidos" />
+				)}
+				{errors?.description?.type === "minLength" && (
+					<MessageError message="Mínimo 50 caracteres" />
 				)}
 			</section>
 
@@ -85,15 +101,9 @@ const CreateCardForm = ({ sendForm, loading, data }) => {
 			<section className="input">
 				<input
 					name="externalUrl"
-					placeholder="URL"
-					ref={register({ required: true, maxLength: 254, pattern: URL_FORMAT })}
+					placeholder="URL (opcional)"
+					ref={register({ pattern: URL_FORMAT })}
 				/>
-				{errors?.externalUrl?.type === "required" && (
-					<MessageError message="Ingrese una Url" />
-				)}
-				{errors?.externalUrl?.type === "maxLength" && (
-					<MessageError message="Máximo 250 caracteres" />
-				)}
 				{errors?.externalUrl?.type === "pattern" && (
 					<MessageError message="Ingrese una Url válida" />
 				)}

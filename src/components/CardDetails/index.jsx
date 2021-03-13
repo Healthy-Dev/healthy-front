@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./index.scss";
 
 import Image from "./CardImage";
 import Content from "./CardContent";
 import ModalConfirmDelete from "./ModalConfirmDelete";
-import { changeState } from "libs/changeState";
 
 const Card = ({
 	data,
@@ -17,11 +16,15 @@ const Card = ({
 }) => {
 	const [modalConfirm, setModalConfirm] = useState(false);
 
+	const handleModalConfirm = useCallback(() => {
+		setModalConfirm(state => !state)
+	}, [])
+
 	return (
 		<>
 			{modalConfirm && (
 				<ModalConfirmDelete
-					toggleModalConfirm={() => changeState(setModalConfirm)}
+					toggleModalConfirm={handleModalConfirm}
 					deleteCard={deleteCard}
 					id={data.id}
 				/>
@@ -45,7 +48,7 @@ const Card = ({
 				category={data.category}
 				createdAt={data.updatedAt}
 				title={data.title}
-				toggleModalConfirm={() => changeState(setModalConfirm)}
+				toggleModalConfirm={handleModalConfirm}
 				isYourCard={isYourCard}
 			/>
 		</>
