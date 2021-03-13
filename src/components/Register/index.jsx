@@ -13,7 +13,7 @@ import { ReactComponent as EyeOff } from "assets/icons/eye-off.svg";
 import Loader from "components/_shared/Loader";
 
 /* Password should be at least one capital letter, one small letter, one number and 8 character length */
-const USERNAME_FORMAT = /(?=^.{4,20}$)^[a-zA-Z]+[a-zA-Z\-\_0-9.]+[a-zA-Z0-9]+$/;
+const USERNAME_FORMAT = /(?=^.{4,20}$)^[a-zA-Z]+[a-zA-Z\-\_0-9.]+[a-zA-Z0-9]+$/; //eslint-disable-line
 const PASSWORD_FORMAT = /^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
 const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 

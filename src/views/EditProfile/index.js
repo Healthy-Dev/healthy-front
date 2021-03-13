@@ -6,10 +6,10 @@ import { UserSelector, UpdateUserSelector } from "state/user/selectors";
 import { updateUserRequest } from "state/user/actions";
 
 import EditProfileForm from "components/EditProfile/Form";
-import Loading from "components/_shared/Loading";
 import TopNavbar from "components/_shared/TopNavbar";
 
 import { ContextModal } from "hooks/useModal";
+import Loading from "components/_shared/Loading";
 
 const EditProfile = () => {
 	const { hiddenModal } = useContext(ContextModal);

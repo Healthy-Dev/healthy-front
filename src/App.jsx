@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import makeStore, { history } from "state";
 import { ConnectedRouter } from "connected-react-router";
 
-import Routes from "containers";
+import Routes from "router";
 import ModalContext from "hooks/useModal";
 import CardsILikeProvider from "state/cardsILike";
 
