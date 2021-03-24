@@ -18,7 +18,6 @@ const InputSearch = ({ getCards, history }) => {
 		if (!query) return;
 		if (e.keyCode === 13) {
 			getCards();
-			setQuery("");
 			setInputFocus(false);
 		}
 	}

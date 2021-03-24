@@ -44,7 +44,7 @@ const HomeView = ({ history }) => {
 	}
 
 	return (
-		<Layout title="inicio" logo>
+		<Layout>
 			{msg && (
 				<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
 					{msg}

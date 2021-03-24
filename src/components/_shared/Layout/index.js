@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import NavHome from "components/_shared/Logo";
+import React, { useContext, useMemo } from "react";
 import NavBar from "components/_shared/NavBar";
-import Title from "components/_shared/Title";
 import "./styles.scss";
 import { ContextModal } from "hooks/useModal";
 
@@ -9,20 +7,12 @@ import EditCard from "views/EditCard";
 import EditProfile from "views/EditProfile";
 import CreateCard from "views/CreateCard";
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children }) => {
 	const { isModalOpen, hiddenModal, id, component } = useContext(ContextModal);
 
-	return (
-		<div className="layout">
-			<section className="aside">
-				<NavHome />
-			</section>
-			<main className="main" style={isModalOpen ? whenModalIsOpen : null}>
-				<Title title={title} />
-				{children}
-			</main>
-			<NavBar onClick={hiddenModal} />
-			{isModalOpen && (
+	const modal = useMemo(() => {
+		if (isModalOpen) {
+			return (
 				<div className="modals">
 					<div className="modals__content">
 						{component === "add-card" && <CreateCard />}
@@ -30,14 +20,19 @@ const Layout = ({ children, title }) => {
 						{component === "edit-profile" && <EditProfile id={id} />}
 					</div>
 				</div>
-			)}
+			)
+		}
+	}, [component, id, isModalOpen])
+
+	return (
+		<div className="layout">
+			{modal}
+			<main className="main">
+				{children}
+			</main>
+			<NavBar onClick={hiddenModal} />
 		</div>
 	);
-};
-
-const whenModalIsOpen = {
-	overflow: "hidden",
-	height: "100vh",
 };
 
 export default Layout;

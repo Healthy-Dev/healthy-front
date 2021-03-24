@@ -19,7 +19,7 @@ const Search = ({ history }) => {
 
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
-	const [cards, setCards] = useState([]);
+	const [cards, setCards] = useState(null);
 
 	const { data: searchData, loading: searchLoading } = useSelector((state) =>
 		SearchCardsSelector(state),
@@ -36,7 +36,7 @@ const Search = ({ history }) => {
 		setFilterOrSearch({ name: "search", value: locationQuery });
 	}, [locationQuery, dispatch, setFilterOrSearch]);
 
-	function filterByCategories(categoryId, categoryName) {
+	function handleFilterByCategory(categoryId, categoryName) {
 		setFilterOrSearch({ name: "filter", value: categoryName });
 
 		if (filterOrSearch.value !== categoryName)
@@ -55,20 +55,16 @@ const Search = ({ history }) => {
 	}, [searchData, filterByCategoryData]); //eslint-disable-line
 
 	return (
-		<Layout title="Buscar">
+		<Layout>
 			<div className="search">
 				<InputSearch getCards={searchCards} history={history} />
-				<Tags filterByCategories={filterByCategories} />
-
+				<Tags filterByCategories={handleFilterByCategory} />
 				<div className="search__content">
-					<h2 className="search__title">
-						Buscar: <span>{filterOrSearch.value}</span>
-					</h2>
-
-					{cards && <ListCards cards={cards} />}
-
+					{cards && <>
+						<h2 className="search__title">Resultados</h2>
+						<ListCards cards={cards} />
+					</>}
 					{(searchLoading || filterByCategoryLoading) && <Loader center />}
-
 					{cards?.length === 0 && <NotResults />}
 				</div>
 			</div>

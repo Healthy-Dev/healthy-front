@@ -1,207 +1,182 @@
 @import "theme";
 
 @keyframes upModal {
-  from {
-    transform: translateY(100%);
-  }
+	from {
+		transform: translateY(100%);
+	}
 
-  to {
-    transform: translatey(0);
-  }
+	to {
+		transform: translatey(0);
+	}
 }
 
 .layout {
-  display: grid;
-  grid-template-areas: "aside aside aside",
-    "main main main",
-    "navbar navbar navbar";
+	display: grid;
+	grid-template-areas: "main main main", "navbar navbar navbar";
 }
 
 .modals {
-  position: fixed;
-  width: 100%;
-  min-height: 100vh;
-  background: #000000b6;
-  padding: 1rem;
-  top: 0;
-  left: 0;
-  z-index: 111111011;
+	position: fixed;
+	width: 100%;
+	min-height: 100vh;
+	background: #000000b6;
+	padding: 1rem;
+	top: 0;
+	left: 0;
+	z-index: 111111011;
 
-  @include desktop {
-    height: auto;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    overflow: hidden;
-  }
+	@include desktop {
+		height: auto;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem 0;
+		overflow: hidden;
+	}
 
-  @include tablet {
-    height: auto;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    overflow: hidden;
-  }
+	@include tablet {
+		height: auto;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem 0;
+		overflow: hidden;
+	}
 
-  &__content {
-    height: auto;
-    width: 100%;
-    animation: upModal .33s ease;
-    background: $dark-blue;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
+	&__content {
+		height: auto;
+		width: 100%;
+		animation: upModal 0.33s ease;
+		background: $dark-blue;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(10, 30, 87, 0.842);
 
-    @include desktop {
-      padding-bottom: 0;
-      max-width: 500px;
-    }
+		@include desktop {
+			padding-bottom: 0;
+			max-width: 500px;
+		}
 
-    @include tablet {
-      padding-bottom: 0;
-      max-width: 500px;
-    }
-  }
-}
-
-.aside {
-  width: 100%;
-  display: none;
+		@include tablet {
+			padding-bottom: 0;
+			max-width: 500px;
+		}
+	}
 }
 
 .main {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
 
-  .presentation {
-    display: none;
-    height: 300px;
-    width: 100%;
-    position: relative;
-    margin: $s2 0;
+	.presentation {
+		display: none;
+		height: 300px;
+		width: 100%;
+		position: relative;
+		margin: $s2 0;
 
-    &::after {
-      content: "";
-      position: absolute;
-      border-radius: $radius-1;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to right, rgba(3, 17, 31, 0.685), transparent);
-    }
+		&::after {
+			content: "";
+			position: absolute;
+			border-radius: $radius-1;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: linear-gradient(to right, rgba(3, 17, 31, 0.685), transparent);
+		}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      box-shadow: 0 5px 15px rgba(3, 17, 31, 0.89);
-      border-radius: $radius-1;
-      // border-bottom-right-radius: 150px;
-    }
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			box-shadow: 0 5px 15px rgba(3, 17, 31, 0.89);
+			border-radius: $radius-1;
+			// border-bottom-right-radius: 150px;
+		}
 
-    h2 {
-      position: absolute;
-      width: 80%;
-      z-index: 2;
-      bottom: 8%;
-      left: 4%;
-      color: $ivory;
-      font-size: 2rem;
-    }
-  }
+		h2 {
+			position: absolute;
+			width: 80%;
+			z-index: 2;
+			bottom: 8%;
+			left: 4%;
+			color: $ivory;
+			font-size: 2rem;
+		}
+	}
 }
 
 @include desktop {
-  .layout {
-    grid-template-areas: "navbar main main";
-  }
+	.layout {
+		grid-template-areas: "navbar main main";
+	}
 
-  .aside {
-    display: block;
-    position: absolute;
-    grid-area: aside;
-    width: 300px;
-    top: 0;
-    right: 0;
-  }
+	.main {
+		width: 90vw;
+		grid-area: main;
+		margin-left: 80px;
+		padding: $s1 $s3;
 
-  .main {
-    width: 90vw;
-    grid-area: main;
-    margin-left: 80px;
-    padding: $s1 $s3;
+		.presentation {
+			display: block;
+		}
+	}
 
-    .presentation {
-      display: block;
-    }
-  }
+	.navbar {
+		border: 0;
+		border-right: 1px solid $medium-grey;
+		top: 0;
+		left: 0;
+		grid-area: navbar;
+		width: 80px;
+		height: 100vh;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 2rem;
+		gap: 3.5rem;
 
-  .navbar {
-    border: 0;
-    border-right: 1px solid $medium-grey;
-    top: 0;
-    left: 0;
-    grid-area: navbar;
-    width: 80px;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 2rem;
-    gap: 3.5rem;
-
-    button:nth-child(3) {
-      position: absolute;
-      bottom: 5%;
-    }
-  }
+		button:nth-child(3) {
+			position: absolute;
+			bottom: 5%;
+		}
+	}
 }
-
 
 /** *************************************** Tablet *************************************** */
 
 @include tablet {
-  .aside {
-    display: block;
-    width: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+	.main {
+		width: 90vw;
+		margin-left: 80px;
+		padding: $s1 $s2;
 
-  .main {
-    width: 90vw;
-    margin-left: 80px;
-    padding: $s1 $s2;
+		.presentation {
+			display: block;
+			height: 250px;
 
-    .presentation {
-      display: block;
-      height: 250px;
+			h2 {
+				font-size: $s1;
+			}
+		}
+	}
 
-      h2 {
-        font-size: $s1;
-      }
-    }
-  }
+	.navbar {
+		border: 0;
+		border-right: 1px solid $medium-grey;
+		top: 0;
+		left: 0;
+		width: 80px;
+		height: 100vh;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 2rem;
+		gap: 3.5rem;
 
-  .navbar {
-    border: 0;
-    border-right: 1px solid $medium-grey;
-    top: 0;
-    left: 0;
-    width: 80px;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 2rem;
-    gap: 3.5rem;
-
-    button:nth-child(3) {
-      position: absolute;
-      bottom: 5%;
-    }
-  }
+		button:nth-child(3) {
+			position: absolute;
+			bottom: 5%;
+		}
+	}
 }
