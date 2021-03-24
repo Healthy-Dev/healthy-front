@@ -74,7 +74,7 @@ const CardDetailsView = () => {
 	};
 
 	return (
-		<Layout title="Detalle de tarjeta">
+		<Layout>
 			<div className="card__detail">
 				{msg && (
 					<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>

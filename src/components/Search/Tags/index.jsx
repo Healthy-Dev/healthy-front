@@ -12,19 +12,19 @@ const Tags = ({ filterByCategories }) => {
 	useEffect(() => {
 		if (!data) dispatch(requestGetCardsCategories());
 	}, [data, dispatch]);
+
 	return (
 		<div className="search__tags">
 			{loading && <button className="search__tags--tag"></button>}
-			{data &&
-				data.map((category, index) => (
-					<button
-						className="search__tags--tag"
-						onClick={() => filterByCategories(category.id, category.name)}
-						key={index}
-					>
-						{category.name}
-					</button>
-				))}
+			{data?.map((category) => (
+				<button
+					className="search__tags--tag"
+					onClick={() => filterByCategories(category.id, category.name)}
+					key={category.id}
+				>
+					{category.name}
+				</button>
+			))}
 		</div>
 	);
 };

@@ -1,35 +1,37 @@
 @import "theme";
 
 .search__tags {
-  margin: 1.5rem 0 0 0;
-  width: 100%;
-  overflow: scroll;
-  display: flex;
-  align-items: center;
+	margin-top: $s-1;
+	width: 100%;
+	overflow: scroll;
+	display: flex;
+	align-items: center;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
-  @include desktop {
-    overflow: hidden;
-    width: 50%;
-    display: inline-block;
-  }
+	@include desktop {
+		margin-top: $s2;
+		overflow: hidden;
+		flex-wrap: wrap;
+	}
 
-  @include tablet {
-    overflow: hidden;
-  }
+	&--tag {
+		background: #424d578a;
+		border-radius: $rounded;
+		border: none;
+		color: $green-main;
+		font-size: $s-1 * 1.085;
+		margin-right: 0.5rem;
+		margin-bottom: 1rem;
+		padding: 0.5rem 1.5rem;
+		outline: none;
+		white-space: nowrap;
+		text-transform: uppercase;
 
-  &--tag {
-    background: #424d578a;
-    border-radius: $radius-1;
-    border: none;
-    color: $yellow;
-    font-size: $s-1 * 1.085;
-    padding: .5rem 1rem;
-    margin: 0 .8rem .5rem 0;
-    outline: none;
-    white-space: nowrap;
-  }
+		@include desktop {
+			margin-right: 1.5rem;
+		}
+	}
 }

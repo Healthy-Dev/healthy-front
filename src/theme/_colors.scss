@@ -1,17 +1,17 @@
 // new colors
 
-$green-main: #65DAAF;
-$green-main-2: #55BAB9;
+$green-main: #65daaf;
+$green-main-2: #55bab9;
 $ivory: #fcfcfc;
 $medium-grey: #424d57;
-$light-grey: #9ca9b6;
+$light-grey: #424d57;
 $darker-blue: #03111f;
 $dark-blue: #041a2f;
-$orange: #FF7800;
+$orange: #ff7800;
 $red: #ed254e;
 $light-blue: #3454d1;
 
-$main-gradient: linear-gradient(to right, $green-1 , $green-2) 
+$main-gradient: linear-gradient(to right, $green-main, $green-main-2);
 
 // old colors
 
@@ -54,4 +54,3 @@ $teal-400: #1d867b;
 $teal-300: #26b0a1; //base
 $teal-200: #2bc5b4;
 $teal-100: #4ad8c9;
-

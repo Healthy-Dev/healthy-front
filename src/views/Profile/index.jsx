@@ -86,12 +86,11 @@ const Profile = ({ history }) => {
 
 	let optionsModal = [
 		{ title: "Editar perfil", fn: editProfile },
-		// { title: "Eliminar Cuenta", fn: deleteUser },
 		{ title: "Cerrar Sesion", fn: deleteDataUser },
 	];
 
 	return (
-		<Layout title="Perfil">
+		<Layout>
 			{messageAlert && (
 				<Alert
 					click={hiddenAlert}
