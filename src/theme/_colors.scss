@@ -4,7 +4,7 @@ $green-main: #65daaf;
 $green-main-2: #55bab9;
 $ivory: #fcfcfc;
 $medium-grey: #424d57;
-$light-grey: #424d57;
+$light-grey: #9CA9B6;
 $darker-blue: #03111f;
 $dark-blue: #041a2f;
 $orange: #ff7800;
@@ -12,6 +12,7 @@ $red: #ed254e;
 $light-blue: #3454d1;
 
 $main-gradient: linear-gradient(to right, $green-main, $green-main-2);
+$onboarding-background: linear-gradient(to right, transparent, $dark-blue);
 
 // old colors
 

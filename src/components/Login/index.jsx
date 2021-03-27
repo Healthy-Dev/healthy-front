@@ -77,7 +77,7 @@ const LoginForm = ({ sendLogin, loading }) => {
 			</p>
 
 			<Button
-				className="button__login"
+				className="button-main button__login"
 				disabled={Object.entries(errors).length > 0 ? true : false}
 			>
 				{loading ? <Loader /> : "Ingresar"}
