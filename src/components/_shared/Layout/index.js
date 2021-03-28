@@ -8,7 +8,7 @@ import EditProfile from "views/EditProfile";
 import CreateCard from "views/CreateCard";
 
 const Layout = ({ children }) => {
-  const { isModalOpen, hiddenModal, id, component } = useContext(ContextModal);
+  const { isModalOpen, id, component } = useContext(ContextModal);
 
   const modal = useMemo(() => {
     if (isModalOpen) {
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
       <main className="main">
         {children}
       </main>
-      <NavBar onClick={hiddenModal} />
+      <NavBar />
     </div>
   );
 };

@@ -93,7 +93,6 @@
       object-fit: cover;
       box-shadow: 0 5px 15px rgba(3, 17, 31, 0.89);
       border-radius: $radius-1;
-      // border-bottom-right-radius: 150px;
     }
 
     h2 {
@@ -125,22 +124,12 @@
   }
 
   .navbar {
-    border: 0;
-    border: none;
     top: 0;
     left: 0;
     grid-area: navbar;
     width: 80px;
     height: 100vh;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 2rem;
-    gap: 3.5rem;
-
-    button:nth-child(3) {
-      position: absolute;
-      bottom: 5%;
-    }
   }
 }
 
@@ -163,19 +152,11 @@
   }
 
   .navbar {
-    border: 0;
     top: 0;
     left: 0;
+    grid-area: navbar;
     width: 80px;
     height: 100vh;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 2rem;
-    gap: 3.5rem;
-
-    button:nth-child(3) {
-      position: absolute;
-      bottom: 5%;
-    }
   }
 }

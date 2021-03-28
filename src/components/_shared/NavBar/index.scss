@@ -40,7 +40,7 @@
     font-size: $s-1;
   }
 }
-.fill-yellow {
+.active {
   @include desktop {
     background: $dark-blue;
   }
@@ -54,5 +54,41 @@
   span {
     display: block;
     color: $green-main;
+  }
+}
+
+.btn-create {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  outline: none;
+  border: none;
+  position: fixed;
+  bottom: 15%;
+  right: 5%;
+  z-index: 99;
+
+  @include desktop {
+    position: static;
+    width: 35px;
+    height: 35px;
+  }
+
+  @include tablet {
+    position: static;
+  }
+
+  svg {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background: $green-main;
+    padding: 0.5rem;
+    box-shadow: 0 0 4px $green-main;
+
+    path {
+      stroke: $dark-blue;
+    }
   }
 }

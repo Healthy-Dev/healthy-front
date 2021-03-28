@@ -4,7 +4,6 @@ import Imagen from "assets/img/card-home.jpg";
 
 // import Onboarding from "views/Onboarding";
 import Layout from "components/_shared/Layout";
-import IconPlus from "components/ButtonAdd";
 import NavHome from "components/_shared/Logo";
 import Alert from "components/_shared/Alert";
 import ListCards from "components/_shared/ListCards";
@@ -17,54 +16,53 @@ import useAuth from "hooks/useAuth";
 import Onboarding from "views/Onboarding";
 
 const HomeView = ({ history }) => {
-	const dispatch = useDispatch();
-	const { data, loading } = useSelector((state) => GetCardsSelector(state));
-	const { data: msg, error: errorMsg } = useSelector((state) =>
-		hiddenMesgSelector(state),
-	);
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => GetCardsSelector(state));
+  const { data: msg, error: errorMsg } = useSelector((state) =>
+    hiddenMesgSelector(state),
+  );
 
-	const { isAuth } = useAuth();
+  const { isAuth } = useAuth();
 
-	useEffect(() => {
-		history.listen(() => {
-			dispatch(requestGetCards());
-		});
-	}, [dispatch, history]);
+  useEffect(() => {
+    history.listen(() => {
+      dispatch(requestGetCards());
+    });
+  }, [dispatch, history]);
 
-	useEffect(() => {
-		if (!data) dispatch(requestGetCards());
-	}, [dispatch, data]); //eslint-disable-line
+  useEffect(() => {
+    if (!data) dispatch(requestGetCards());
+  }, [dispatch, data]); //eslint-disable-line
 
-	function deleteMsg() {
-		dispatch(hiddenMsgAlert());
-	}
+  function deleteMsg() {
+    dispatch(hiddenMsgAlert());
+  }
 
-	if (!isAuth) {
-		return <Onboarding />;
-	}
+  if (!isAuth) {
+    return <Onboarding />;
+  }
 
-	return (
-		<Layout>
-			{msg && (
-				<Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
-					{msg}
-				</Alert>
-			)}
-			<div className="presentation">
-				<img src={Imagen} alt="presentation" />
-				<h2>Solo diviertete!</h2>
-			</div>
-			<div className="line"></div>
-			<div className="logo-home">
-				<NavHome />
-			</div>
-			<div className="home">
-				{loading && <Loader center />}
-				{data && <ListCards cards={data} />}
-			</div>
-			<IconPlus />
-		</Layout>
-	);
+  return (
+    <Layout>
+      {msg && (
+        <Alert click={deleteMsg} error={errorMsg} success={!errorMsg} showButtonClose>
+          {msg}
+        </Alert>
+      )}
+      <div className="presentation">
+        <img src={Imagen} alt="presentation" />
+        <h2>Solo diviertete!</h2>
+      </div>
+      <div className="line"></div>
+      <div className="logo-home">
+        <NavHome />
+      </div>
+      <div className="home">
+        {loading && <Loader center />}
+        {data && <ListCards cards={data} />}
+      </div>
+    </Layout>
+  );
 };
 
 export default HomeView;
