@@ -2,7 +2,7 @@ import React from "react";
 import "./index.scss";
 import ListCards from "components/_shared/ListCards";
 
-const List = ({ cards, title, icon: Icon }) => (
+const List = ({ cards, userId, title, icon: Icon }) => (
 	<section className="profile__cards">
 		<h2 className="profile__cards--title">
 			{!cards?.length ? (
@@ -14,7 +14,7 @@ const List = ({ cards, title, icon: Icon }) => (
 				</>
 			)}
 		</h2>
-		<ListCards cards={cards} />
+		<ListCards cards={cards} userId={userId} />
 	</section>
 );
 

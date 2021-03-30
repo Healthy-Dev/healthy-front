@@ -13,6 +13,7 @@ import Loader from "components/_shared/Loader";
 
 import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
 import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
+import { UserSelector } from "state/user/selectors";
 
 const Search = ({ history }) => {
 	const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Search = ({ history }) => {
 	let locationQuery = history.location.search.replace("?query=", "");
 	const [filterOrSearch, setFilterOrSearch] = useLocalStorage("filterOrSearch", "");
 	const [cards, setCards] = useState(null);
-
+	const { data: userData } = useSelector((state) => UserSelector(state));
 	const { data: searchData, loading: searchLoading } = useSelector((state) =>
 		SearchCardsSelector(state),
 	);
@@ -60,11 +61,11 @@ const Search = ({ history }) => {
 				<InputSearch getCards={searchCards} history={history} />
 				<Tags filterByCategories={handleFilterByCategory} />
 				<div className="search__content">
-					{cards && <>
+					{cards && userData && <>
 						<h2 className="search__title">Resultados</h2>
-						<ListCards cards={cards} />
+						<ListCards cards={cards} userId={userData?.user.id}/>
 					</>}
-					{(searchLoading || filterByCategoryLoading) && <Loader center />}
+					{(searchLoading || filterByCategoryLoading || !userData) && <Loader center />}
 					{cards?.length === 0 && <NotResults />}
 				</div>
 			</div>

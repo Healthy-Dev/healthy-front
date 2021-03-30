@@ -13,12 +13,14 @@ import Loader from "components/_shared/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
 import { GetCardsSelector, hiddenMesgSelector } from "state/cards/selectors";
+import { UserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
 import Onboarding from "views/Onboarding";
 
 const HomeView = ({ history }) => {
 	const dispatch = useDispatch();
 	const { data, loading } = useSelector((state) => GetCardsSelector(state));
+	const { data: userData } = useSelector((state) => UserSelector(state));
 	const { data: msg, error: errorMsg } = useSelector((state) =>
 		hiddenMesgSelector(state),
 	);
@@ -42,7 +44,6 @@ const HomeView = ({ history }) => {
 	if (!isAuth) {
 		return <Onboarding />;
 	}
-
 	return (
 		<Layout>
 			{msg && (
@@ -59,8 +60,8 @@ const HomeView = ({ history }) => {
 				<NavHome />
 			</div>
 			<div className="home">
-				{loading && <Loader center />}
-				{data && <ListCards cards={data} />}
+				{(loading || !userData) && <Loader center />}
+				{data && userData && <ListCards cards={data} userId={userData?.user.id} />}
 			</div>
 			<IconPlus />
 		</Layout>
