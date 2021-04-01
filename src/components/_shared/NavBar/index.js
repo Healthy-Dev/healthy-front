@@ -16,25 +16,29 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <LinkButton
-        path="/"
-        name="Inicio"
-        icon={HomeIcon}
-        onClickButton={() => handleNavigationButtonPress('/')}
-      />
-      <LinkButton
-        path="/search"
-        name="Buscar"
-        icon={SearchIcon}
-        onClickButton={() => handleNavigationButtonPress('search')}
-      />
-      <CreateCardButton />
-      <LinkButton
-        path="/profile"
-        name="Perfil"
-        icon={UserIcon}
-        onClickButton={() => handleNavigationButtonPress('profile')}
-      />
+      <section className="navbar__top">
+        <LinkButton
+          path="/"
+          name="Inicio"
+          icon={HomeIcon}
+          onClickButton={() => handleNavigationButtonPress('/')}
+        />
+        <LinkButton
+          path="/search"
+          name="Buscar"
+          icon={SearchIcon}
+          onClickButton={() => handleNavigationButtonPress('search')}
+        />
+      </section>
+      <section className="navbar__bottom">
+        <CreateCardButton />
+        <LinkButton
+          path="/profile"
+          name="Perfil"
+          icon={UserIcon}
+          onClickButton={() => handleNavigationButtonPress('profile')}
+        />
+      </section>
     </nav >
   );
 };

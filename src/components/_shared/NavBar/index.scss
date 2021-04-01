@@ -9,7 +9,36 @@
   justify-content: space-around;
   border-top: 1px solid $medium-grey;
   background: $darker-blue;
-  padding: $s-1 0;
+  padding: $s0 0;
+  @include desktop {
+    padding: $s1 0;
+    justify-content: space-between;
+  }
+  @include tablet {
+    padding: $s1 0;
+    justify-content: space-between;
+  }
+  &__top,
+  &__bottom {
+    display: flex;
+    align-items: center;
+    @include desktop {
+      width: 100% !important;
+      flex-direction: column;
+      gap: 60px;
+    }
+    @include tablet {
+      width: 100% !important;
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+  &__top {
+    width: 66.6%;
+  }
+  &__bottom {
+    width: 33.3%;
+  }
 }
 
 .nav-bar-button {
