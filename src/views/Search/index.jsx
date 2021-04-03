@@ -13,11 +13,28 @@ import { requestSearchCards, requestCardsByCategory } from "state/cards/actions"
 import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 
+const typesQuery = {
+	SEARCH: "search",
+	FILTERBYCATEGORY: "filter",
+}
+
+const validsQueryString = {
+	SEARCH: "?query=",
+	FILTERBYCATEGORY: "?categoryId=",
+}
+
+const path = "/search/";
+
 const Search = ({ history }) => {
 	const dispatch = useDispatch();
 
-	let locationQueryName = history.location.search.includes("?query=")?"search":history.location.search.includes("?filter=")?"filter":"";
-	let locationQueryValue = history.location.search.replace("?query=", "").replace("?filter=", "");
+	let locationQueryType = history.location.search.includes(validsQueryString.SEARCH)?
+		typesQuery.SEARCH:
+		history.location.search.includes(validsQueryString.FILTERBYCATEGORY)?
+		typesQuery.FILTERBYCATEGORY:
+		"";
+	let locationQueryValue = history.location.search.replace(validsQueryString.SEARCH, "")
+		.replace(validsQueryString.FILTERBYCATEGORY, "");
 
 	const [filterOrSearch, setFilterOrSearch] = useState(null);
 	const [cards, setCards] = useState(null);
@@ -39,15 +56,15 @@ const Search = ({ history }) => {
 	}
 
 	function handleFilterByCategory(categoryId) {
-		if(filterOrSearch && ((filterOrSearch.name === "filter") && (parseInt(filterOrSearch.value,10) === categoryId)))
+		if(filterOrSearch && ((filterOrSearch.type === typesQuery.FILTERBYCATEGORY) && (parseInt(filterOrSearch.value,10) === categoryId)))
 			return;
-		history.push(`/search/?filter=${categoryId}`)
+		history.push(`${path}${validsQueryString.FILTERBYCATEGORY}${categoryId}`)
 	}
 
 	function handleGetCards(){
-		if(filterOrSearch && ((filterOrSearch.name === "search") && (filterOrSearch.value === query)))
+		if(filterOrSearch && ((filterOrSearch.type === typesQuery.SEARCH) && (filterOrSearch.value === query)))
 			return;
-		history.push(`/search/?query=${query}`);
+		history.push(`${path}${validsQueryString.SEARCH}${query}`);
 	}
 
 	useEffect(() => {
@@ -55,35 +72,34 @@ const Search = ({ history }) => {
 			if(!query) return;
 			dispatch(requestSearchCards(query));
 			setCategorySelectedId(null);
-			setFilterOrSearch({ name: "search", value: query });
+			setFilterOrSearch({ type: typesQuery.SEARCH, value: query });
 		}
 		function filterByCategory(id){
-			setFilterOrSearch({ name: "filter", value: id });
+			setFilterOrSearch({ type: typesQuery.FILTERBYCATEGORY, value: id });
 			setQuery("");
 			dispatch(requestCardsByCategory(parseInt(id,10)));
 		} 
-
-		if(!locationQueryName || !locationQueryValue) {
+		if(!locationQueryType || !locationQueryValue) {
 			setQuery("");
 			setCategorySelectedId(null)
 			setCards(null);
 			return;
 		}
 
-		if(locationQueryName === "search" ){
+		if(locationQueryType === typesQuery.SEARCH ){
 			setQuery(locationQueryValue);
 			searchCards(locationQueryValue);
 		}
 		
-		if(locationQueryName === "filter" ){
+		if(locationQueryType === typesQuery.FILTERBYCATEGORY ){
 			setCategorySelectedId(parseInt(locationQueryValue,10));
 			filterByCategory(locationQueryValue);
 		} 
-	}, [locationQueryName,locationQueryValue,dispatch]);
+	}, [locationQueryType,locationQueryValue,dispatch]);
 
 	useEffect(() => {
-		if (filterOrSearch?.name === "search") setCards(searchData);
-		if (filterOrSearch?.name === "filter") setCards(filterByCategoryData);
+		if (filterOrSearch?.type === typesQuery.SEARCH) setCards(searchData);
+		if (filterOrSearch?.type === typesQuery.FILTERBYCATEGORY) setCards(filterByCategoryData);
 	}, [searchData, filterByCategoryData]); //eslint-disable-line
 
 	return (
