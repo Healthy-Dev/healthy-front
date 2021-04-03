@@ -29,17 +29,16 @@
 			left: 0;
 			width: 100%;
 			font-size: $s-1 + 2;
-			padding: 0 1.5rem;
+			padding: 0 1.5em;
 			color: $ivory;
 			font-weight: 400;
-			letter-spacing: 0.2px;
 			text-transform: lowercase;
 			&::first-letter {
 				text-transform: uppercase;
 			}
 
 			@include desktop {
-				font-size: $s1b;
+				font-size: $s0;
 			}
 
 			@include tablet {

@@ -3,7 +3,6 @@ import CardThumbnail from "../CardThumbnail";
 import "./index.scss";
 
 const ListCards = ({ cards, userId } ) => {
-	console.log('las card', cards, userId);
 	return(
 	<div className="list-cards">
 		{cards &&
