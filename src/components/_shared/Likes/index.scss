@@ -43,6 +43,9 @@
 				width: 1.3em;
 			}
 		}
+		&--clickable {
+			cursor: pointer;
+		}
 	}
 	&__count {
 		display: none;
