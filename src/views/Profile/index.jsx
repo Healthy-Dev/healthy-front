@@ -111,16 +111,16 @@ const Profile = ({ history }) => {
 					/>
 
 					{cardsByCreator && (
-						<List cards={cardsByCreator} title="Creadas" icon={CreateIcon} />
+						<List cards={cardsByCreator} userId={dataUser?.user.id} title="Creadas" icon={CreateIcon} />
 					)}
 					{loadingCreator && <Loader center className="profile__loader" />}
 				</section>
 
 				<div className="profile__content">
 					{cardsILike.length > 0 && (
-						<List cards={cardsILike} title="Guardadas" icon={BookMarkIcon} />
+						<List cards={cardsILike} userId={dataUser?.user.id} title="Guardadas" icon={BookMarkIcon} />
 					)}
-					{loading && <Loader center className="profile__loader" />}
+					{(loading || !dataUser) && <Loader center className="profile__loader" />}
 				</div>
 			</div>
 		</Layout>
