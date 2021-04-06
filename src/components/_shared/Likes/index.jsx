@@ -15,13 +15,14 @@ const Likes = ({
 }) => {
   const { animate, ref } = useAnimation();
 
-  const classNameLikesIcon = "likes__icon "+(isILiked?"likes__icon--liked":"");
-  const classNameLikesCount = "likes__count " +
-                              (likesCount?"":"likes__count--without-likes") +
-                              (viewInMobile?"likes__count--view-in-mobile":"");
+  const classNameLikesIcon = "likes__icon"+
+                              (isILiked?" likes__icon--liked":"")+
+                              (readOnly?"":" likes__icon--clickable");
+  const classNameLikesCount = "likes__count" +
+                              (likesCount?"":" likes__count--without-likes") +
+                              (viewInMobile?" likes__count--view-in-mobile":"");
 
   function clickLike() {
-    console.log('clicked');
     if(readOnly) return;
     if (isILiked) {
       disLiked();
