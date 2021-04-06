@@ -1,42 +1,42 @@
 @import "theme";
 
 .tags {
-	margin-top: $s-1;
-	width: 100%;
-	overflow: scroll;
-	display: flex;
-	align-items: center;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	@include desktop {
-		margin-top: $s2;
-		overflow: hidden;
-		flex-wrap: wrap;
-	}
+  margin-top: $s-1;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @include desktop {
+    margin-top: $s2;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
 }
 
 .tag {
-	background: #424d578a;
-	border-radius: $rounded;
-	border: none;
-	color: $green-main;
-	font-size: $s-1 * 1.085;
-	font-weight: 400;
-	margin-right: 0.5rem;
-	margin-bottom: 1rem;
-	padding: 0.5rem 1.5rem;
-	outline: none;
-	white-space: nowrap;
-	text-transform: uppercase;
+  background: #424d578a;
+  border-radius: $rounded;
+  border: none;
+  color: $green-main;
+  font-size: $s-1 * 1.085;
+  font-weight: 400;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.5rem;
+  outline: none;
+  white-space: nowrap;
+  text-transform: uppercase;
 
-	@include desktop {
-		margin-right: 1.5rem;
-	}
+  @include desktop {
+    margin-right: 1.5rem;
+  }
 
-	&--selected {
-		background-color: $green-main;
-		color: $dark-blue;
-		font-weight: 500;
-	}
+  &--selected {
+    background-color: $green-main;
+    color: $dark-blue;
+    font-weight: 500;
+  }
 }

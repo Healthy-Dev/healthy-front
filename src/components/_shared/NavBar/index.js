@@ -1,37 +1,46 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./index.scss";
-import { Link, useLocation } from "react-router-dom";
-import { ReactComponent as HomeHeart } from "assets/icons/home.svg";
-import { ReactComponent as Search } from "assets/icons/search.svg";
+import { useHistory } from "react-router-dom";
+
+import { ReactComponent as HomeIcon } from "assets/icons/home.svg";
+import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 
-const NavBar = ({ onClick }) => {
-	const location = useLocation();
+import CreateCardButton from "./CreateCardButton";
+import LinkButton from "./LinkButton";
 
-	let isLocation = location.pathname;
+const NavBar = () => {
+  const { push } = useHistory();
 
-	const links = [
-		{ id: 0, path: "/", class: "nav-bar-icons", icon: HomeHeart },
-		{ id: 1, path: "/search", class: "nav-bar-icons", icon: Search },
-		{ id: 3, path: "/profile", class: "nav-bar-icons", icon: UserIcon },
-	];
+  const handleNavigationButtonPress = useCallback((pathName) => push(pathName), [push])
 
-	const Icons = ({ Icon, ...arg }) => <Icon {...arg} />;
-
-	return (
-		<nav className="navbar" onClick={onClick}>
-			{links.map((link) => (
-				<button className="nav-bar-button" key={link.id}>
-					<Link to={link.path}>
-						<Icons
-							Icon={link.icon}
-							className={`${link.class} ${isLocation === link.path && "fill-yellow"}`}
-						/>
-					</Link>
-				</button>
-			))}
-		</nav>
-	);
+  return (
+    <nav className="navbar">
+      <section className="navbar__top">
+        <LinkButton
+          path="/"
+          name="Inicio"
+          icon={HomeIcon}
+          onClickButton={() => handleNavigationButtonPress('/')}
+        />
+        <LinkButton
+          path="/search"
+          name="Buscar"
+          icon={SearchIcon}
+          onClickButton={() => handleNavigationButtonPress('search')}
+        />
+      </section>
+      <section className="navbar__bottom">
+        <CreateCardButton />
+        <LinkButton
+          path="/profile"
+          name="Perfil"
+          icon={UserIcon}
+          onClickButton={() => handleNavigationButtonPress('profile')}
+        />
+      </section>
+    </nav >
+  );
 };
 
 export default NavBar;

@@ -1,47 +1,46 @@
 @import "theme";
 
 .search {
-	padding: $s1 $s0;
-	padding-bottom: 6.5rem;
-	width: 96vw;
-	margin: auto;
-	overflow: hidden;
+  padding: $s1 0;
+  padding-bottom: 6.5rem;
+  width: 96vw;
+  margin: auto;
+  overflow: hidden;
 
-	@include desktop {
-		width: 100%;
-		padding: $s0 0;
-	}
+  @include desktop {
+    width: 100%;
+    padding: $s0 0;
+  }
 
-	@include tablet {
-		padding: $s0 0;
-		width: 100%;
-	}
+  @include tablet {
+    padding: $s0 0;
+    width: 100%;
+  }
 
-	&__content {
-		margin: 1rem 0;
-	}
+  &__content {
+    margin: 1rem 0;
+  }
 
-	&__title {
-		color: $ivory;
-		margin: 1rem 0;
-		font-size: 1.2rem;
+  &__title {
+    color: $ivory;
+    margin: 1rem 0;
+    font-size: 1.2rem;
 
-		span {
-			color: $yellow;
-			text-transform: uppercase;
-		}
-	}
+    span {
+      color: $yellow;
+      text-transform: uppercase;
+    }
+  }
 
+  &__cards {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $s0;
 
-	&__cards {
-		margin-top: 2.5rem;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: $s0;
-
-		@include desktop {
-			grid-template-columns: 1fr 1fr 1fr 1fr;
-			gap: $s1;
-		}
-	}
+    @include desktop {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: $s1;
+    }
+  }
 }

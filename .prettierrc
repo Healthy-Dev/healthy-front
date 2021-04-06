@@ -3,7 +3,7 @@
   "trailingComma": "all",
   "singleQuote": false,
   "printWidth": 90,
-  "useTabs": true,
+  "useTabs": false,
   "arrowParens": "always",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
@@ -19,7 +19,7 @@
     {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "options": {
-        "useTabs": true,
+        "useTabs": false,
         "tabWidth": 2
       }
     }

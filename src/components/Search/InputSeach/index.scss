@@ -1,50 +1,49 @@
 @import "theme";
 
 .search__input {
-	width: 100%;
-	display: flex;
-	padding-left: 1rem;
-	padding-right: 0.5rem;
-	justify-content: flex-start;
-	align-items: center;
-	border-radius: $radius2;
-	font-family: $font-plain;
-	font-size: $s-1;
-	border: 1px solid $light-grey;
-	background: $darker-blue;
+  width: 100%;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: $radius2;
+  font-family: $font-plain;
+  font-size: $s-1;
+  border: 1px solid $light-grey;
+  background: $darker-blue;
 
-	&--icon {
-		margin: 0 $s-2;
+  &--icon {
+    margin-right: $s-2;
 
-		svg {
-			padding: 0.1rem;
-			color: $light-grey;
-		}
+    svg {
+      color: $light-grey;
+    }
 
-		.back {
-			color: $green-main;
-			border-right: 2px solid #424d57;
-		}
+    .back {
+      color: $green-main;
+      border-right: 2px solid #424d57;
+    }
 
-		.close {
-			padding: 0.3rem;
-			background: $green-main;
-			border-radius: $rounded;
-		}
-	}
+    .close {
+      padding: 0.3rem;
+      background: $green-main;
+      border-radius: $rounded;
+    }
+  }
 
-	input {
-		background: transparent;
-		width: 100%;
-		margin: 0 $s-1;
-		padding: 0.8rem 0;
-		border: none;
-		font-size: medium;
-		outline: none;
-		color: $ivory;
+  input {
+    background: transparent;
+    width: 100%;
+    margin: 0 $s-1;
+    padding: 0.8rem 0;
+    border: none;
+    font-size: medium;
+    outline: none;
+    color: $ivory;
 
-		::placeholder {
-			color: $light-grey;
-		}
-	}
+    ::placeholder {
+      color: $light-grey;
+    }
+  }
 }

@@ -16,9 +16,10 @@
 
     div {
       width: $s3;
-      opacity: .3;
+      opacity: 0.3;
       height: $s3;
       background: $blue-300;
+      border-radius: $radius-1;
     }
 
     :nth-child(5) {
@@ -31,5 +32,11 @@
     width: 100%;
     font-size: $s0;
     margin-top: 2rem;
+    text-align: center;
+    &--span {
+      margin-bottom: $s0;
+      font-size: $s2;
+      display: block;
+    }
   }
 }
