@@ -23,7 +23,7 @@ const validsQueryString = {
   FILTERBYCATEGORY: "?categoryId=",
 }
 
-const path = "/search/";
+const path = "/search";
 
 const Search = ({ history }) => {
   const dispatch = useDispatch();
