@@ -30,7 +30,7 @@ const CardImage = ({
 				</button>
 				<Likes
 					readOnly={false}
-					viewInMobile={true}
+					viewCountInMobile={true}
 					likesCount={likesCount}
 					isILiked={isILiked}
 					iLiked={iLiked}
