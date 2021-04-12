@@ -11,14 +11,14 @@ const Likes = ({
   disLiked,
   deleteCardILike,
   setCardILike,
-  viewInMobile=false
+  viewCountInMobile=false
 }) => {
   const { animate, ref } = useAnimation();
 
   const classNameLikesIcon = "likes__icon"+
                               (isILiked?" likes__icon--liked":"")+
                               (readOnly?"":" likes__icon--clickable");
-  const classNameLikesCount = "likes__count" +
+  const classNameLikesCount = "viewCountInMobile" +
                               (likesCount?"":" likes__count--without-likes") +
                               (viewInMobile?" likes__count--view-in-mobile":"");
 
