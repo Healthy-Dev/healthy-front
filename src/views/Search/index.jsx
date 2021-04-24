@@ -5,7 +5,7 @@ import "./index.scss";
 import Layout from "components/_shared/Layout";
 import Tags from "components/Search/Tags";
 import InputSearch from "components/Search/InputSeach";
-import ListCards from "components/_shared/ListCards";
+import CardsList from "components/_shared/CardsList";
 import NotResults from "components/Search/NotResults";
 import Loader from "components/_shared/Loader";
 
@@ -110,7 +110,7 @@ const Search = ({ history }) => {
         <div className="search__content">
           {cards && userData && <>
             <h2 className="search__title">Resultados</h2>
-            <ListCards cards={cards} userId={userData?.user.id} />
+            <CardsList cards={cards} userId={userData?.user.id} />
           </>}
           {(searchLoading || filterByCategoryLoading || !userData) && <Loader center />}
           {cards?.length === 0 && <NotResults />}

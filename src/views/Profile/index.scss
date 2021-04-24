@@ -2,26 +2,29 @@
 
 .profile {
   padding: $s0;
-  padding-bottom: $s4;
+  padding-bottom: $s5;
   margin: auto;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 
   @include desktop {
     padding: $s0 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 2rem;
-    align-items: flex-start;
-    justify-content: space-between;
   }
 
   @include tablet {
-    width: 100%;
-    padding: $s1 0;
+    padding: $s0 0;
   }
 
-  &__loader {
-    width: 35px !important;
-    height: 35px !important;
+  .more {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.4rem;
+    @include desktop {
+      display: none;
+    }
+    @include tablet {
+      display: none;
+    }
   }
 }
