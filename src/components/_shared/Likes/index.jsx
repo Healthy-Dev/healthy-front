@@ -18,9 +18,9 @@ const Likes = ({
   const classNameLikesIcon = "likes__icon"+
                               (isILiked?" likes__icon--liked":"")+
                               (readOnly?"":" likes__icon--clickable");
-  const classNameLikesCount = "viewCountInMobile" +
+  const classNameLikesCount = "likes__count" +
                               (likesCount?"":" likes__count--without-likes") +
-                              (viewInMobile?" likes__count--view-in-mobile":"");
+                              (viewCountInMobile?" likes__count--view-in-mobile":"");
 
   function clickLike() {
     if(readOnly) return;
