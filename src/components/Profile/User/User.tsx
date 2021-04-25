@@ -4,7 +4,7 @@ import { ReactComponent as InstagramIcon } from "../../../assets/icons/instagram
 import { ReactComponent as TwitterIcon } from "../../../assets/icons/twitter.svg";
 
 const IMAGE_DEFAULT =
-  "https://www.component-creator.com/images/testimonials/defaultuser.png";
+  "https://res.cloudinary.com/du7xgj6ms/image/upload/v1605986953/UserPlaceHolder_sgvgm4.png";
 
 type UserProps = {
   dataUser: any;
