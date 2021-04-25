@@ -8,13 +8,15 @@
   justify-content: center;
   padding: $s0;
   color: $ivory;
-  background-image: linear-gradient(to bottom,
+  background-image: linear-gradient(
+      to bottom,
       rgba(4, 26, 47, 0),
       rgba(4, 26, 47, 0),
       rgba(4, 26, 47, 0.548),
       rgba(4, 26, 47, 0.76),
       rgba(4, 26, 47, 0.897),
-      rgb(4, 26, 47)),
+      rgb(4, 26, 47)
+    ),
     url("../../assets/img/recover-password.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,7 +66,7 @@
       text-align: center;
       font-size: $s0;
       text-transform: uppercase;
-      color: $yellow;
+      color: $green-main;
       margin: 1rem 0;
       font-weight: bold;
     }

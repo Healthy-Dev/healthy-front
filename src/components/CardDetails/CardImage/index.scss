@@ -31,7 +31,6 @@
     height: 100%;
     margin: 0;
 
-
     img {
       width: 100%;
       height: 100%;
@@ -65,8 +64,8 @@
     }
 
     .card__btn {
-      padding: .5rem 1rem;
-      background: $yellow;
+      padding: 0.5rem 1rem;
+      background: $green-main;
       border: none;
       border-radius: 5px;
       color: $darker-blue;
@@ -77,9 +76,8 @@
       font-size: $s1 + 5;
       color: $ivory;
       font-weight: 700;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
       margin-top: 1rem;
-
     }
   }
 
@@ -96,10 +94,10 @@
     color: $ivory;
 
     .back {
-      padding: .5rem .7rem;
+      padding: 0.5rem 0.7rem;
       background: rgba(3, 17, 31, 0.23);
       border-radius: $radius-1;
-      color: $yellow;
+      color: $green-main;
       border: none;
     }
   }

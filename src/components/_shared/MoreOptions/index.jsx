@@ -1,36 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import { ReactComponent as MoreIcon } from "assets/icons/more-vert.svg";
-import ModalOptions from "./ModalOptions";
+import ModalOptions from "../ModalOptions/ModalOptions";
 
 const MoreOptions = ({ optionsModal }) => {
-	const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-	// Usamos esta funcionalidad para ocultar el modal cuando se hace click fuera de este
-	useEffect(() => {
-		const outModalFocus = (e) => {
-			if (e.target.parentNode.className !== "more__modal") setShowModal(false);
-		};
-		document.body.addEventListener("click", outModalFocus);
+  // const handleClick = useCallback(async (callback) => {
+  //   await callback();
+  //   setShowModal(false);
+  // }, [])
 
-		return () => document.body.removeEventListener("click", outModalFocus);
-	}, []);
-
-	function handleClick(fn) {
-		fn();
-		setShowModal(false);
-	}
-
-	return (
-		<>
-			<div className="more" onClick={() => setShowModal(!showModal)}>
-				<MoreIcon className="more__icon" />
-			</div>
-			{showModal && (
-				<ModalOptions optionsModal={optionsModal} handleClick={handleClick} />
-			)}
-		</>
-	);
+  return (
+    <>
+      <div className="more" onClick={() => setShowModal(prev => !prev)}>
+        <MoreIcon className="more__icon" />
+      </div>
+      <ModalOptions
+        openModal={showModal}
+        closeModal={() => setShowModal(false)}
+        optionsModal={optionsModal}
+      />
+    </>
+  );
 };
 
 export default MoreOptions;

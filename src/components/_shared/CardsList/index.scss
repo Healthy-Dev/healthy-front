@@ -1,0 +1,25 @@
+@import "theme";
+
+.list-cards {
+  width: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $s0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .card {
+    max-width: 450px;
+  }
+
+  @include tablet {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    justify-content: start;
+    gap: $s2;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $s2;
+  }
+}

@@ -6,7 +6,7 @@ import Imagen from "assets/img/card-home.jpg";
 import Layout from "components/_shared/Layout";
 import NavHome from "components/_shared/Logo";
 import Alert from "components/_shared/Alert";
-import ListCards from "components/_shared/ListCards";
+import CardsList from "components/_shared/CardsList";
 import Loader from "components/_shared/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -60,7 +60,7 @@ const HomeView = ({ history }) => {
       </div>
       <div className="home">
         {(loading || !userData) && <Loader center />}
-        {data && userData && <ListCards cards={data} userId={userData?.user.id} />}
+        {data && userData && <CardsList cards={data} userId={userData?.user.id} />}
       </div>
     </Layout>
   );

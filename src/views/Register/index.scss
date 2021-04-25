@@ -1,120 +1,121 @@
 @import "theme";
 
 .register-container {
-	display: flex;
-	width: 100%;
-	height: 100vh;
-	background-color: $dark-blue;
-	background-image: linear-gradient(to bottom,
-			rgba(4, 26, 47, 0),
-			rgba(4, 26, 47, 0.3),
-			rgba(4, 26, 47, 0.5),
-			rgba(4, 26, 47, 0.75),
-			rgba(4, 26, 47, 0.99),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1),
-			rgba(4, 26, 47, 1)),
-		url("../../assets/img/login-background.png");
-	background-repeat: no-repeat;
-	background-size: contain;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: $dark-blue;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(4, 26, 47, 0),
+      rgba(4, 26, 47, 0.3),
+      rgba(4, 26, 47, 0.5),
+      rgba(4, 26, 47, 0.75),
+      rgba(4, 26, 47, 0.99),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1),
+      rgba(4, 26, 47, 1)
+    ),
+    url("../../assets/img/login-background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 
-	@include desktop {
-		background: $dark-blue;
-	}
+  @include desktop {
+    background: $dark-blue;
+  }
 
-	@include tablet {
-		background: $dark-blue;
-	}
+  @include tablet {
+    background: $dark-blue;
+  }
 
-	.register-form {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		font-family: $font-plain;
-		font-size: $s0;
-		color: $ivory;
-		padding: $s1;
+  .register-form {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-plain;
+    font-size: $s0;
+    color: $ivory;
+    padding: $s1;
 
-		@include desktop {
-			margin-left: $s5;
-			width: 45%;
-		}
+    @include desktop {
+      margin-left: $s5;
+      width: 45%;
+    }
 
-		@include tablet {
-			width: 55%;
-			margin-left: $s4;
-		}
+    @include tablet {
+      width: 55%;
+      margin-left: $s4;
+    }
 
-		.register-logo {
+    .register-logo {
+      @include desktop {
+        display: none;
+      }
 
-			@include desktop {
-				display: none;
-			}
+      @include tablet {
+        display: none;
+      }
+    }
 
-			@include tablet {
-				display: none;
-			}
-		}
+    .desktop-title-wrapper {
+      display: none;
+      width: 100%;
+      padding-bottom: $s2;
 
-		.desktop-title-wrapper {
-			display: none;
-			width: 100%;
-			padding-bottom: $s2;
+      @include desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-			@include desktop {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
+      @include tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-			@include tablet {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
+      .desktop-title {
+        font-size: $s2;
+        font-weight: 700;
+      }
+    }
 
-			.desktop-title {
-				font-size: $s2;
-				font-weight: 700;
-			}
-		}
+    .link {
+      width: fit-content;
+      color: $green-main;
+      text-decoration: none;
+      font-size: $s-1 + 1;
+      margin: 0.5rem 0;
 
-		.link {
-			width: fit-content;
-			color: $yellow;
-			text-decoration: none;
-			font-size: $s-1 +1;
-			margin: .5rem 0;
+      &:hover {
+        font-weight: 500;
+      }
+    }
+  }
 
-			&:hover {
-				font-weight: 500;
-			}
-		}
-	}
+  .register-img {
+    display: none;
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
 
-	.register-img {
-		display: none;
-		object-fit: cover;
-		height: 100vh;
-		width: 100%;
+    @include desktop {
+      display: block;
+      width: 55%;
+    }
 
-		@include desktop {
-			display: block;
-			width: 55%;
-		}
-
-		@include tablet {
-			display: block;
-			width: 44%;
-		}
-	}
+    @include tablet {
+      display: block;
+      width: 44%;
+    }
+  }
 }

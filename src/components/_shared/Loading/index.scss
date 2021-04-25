@@ -36,14 +36,14 @@
     align-items: center;
 
     &--line {
-      margin: .2rem;
+      margin: 0.2rem;
       border-radius: 50px;
       height: 5px;
       width: 35px;
 
       &:first-child {
         width: 45px;
-        background: $yellow;
+        background: $green-main;
         animation: leftToRight 1175ms ease infinite;
       }
 
@@ -58,7 +58,6 @@
         background: $green;
         animation: leftToRight 1175ms ease infinite;
       }
-
     }
   }
 
