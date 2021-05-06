@@ -6,7 +6,7 @@
 	width: 100%;
 
 	@include desktop {
-		justify-content: flex-start;
+		justify-content: center;
 		height: auto;
 	}
 
@@ -94,7 +94,6 @@
 
 	&.button__login {
 		margin-bottom: $s-2;
-
 	}
 
 	.forgot-password {

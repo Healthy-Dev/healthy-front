@@ -12,7 +12,7 @@ import Alert from "components/_shared/Alert";
 import useAuth from "hooks/useAuth";
 // Styles
 import "./index.scss";
-import loginBackground from "assets/img/desktopLoginBg.png";
+import RowImages from "components/_shared/RowImages";
 import logoHealthy from "assets/icons/Logo-heatlhy.svg";
 import HealthyDev from "components/_shared/HealthyDev";
 import LinkButton from "components/Login/LinkButton";
@@ -46,40 +46,36 @@ const LoginView = ({ history }) => {
 	let linkGoogle = "https://healthydev.herokuapp.com/v1/auth/google";
 
 	return (
-		<div className="login-wrapper">
-			{messageAuth && (
-				<Alert
-					error={error || warning}
-					success={!error}
-					showButtonClose
-					click={hiddenAlert}
-				>
-					{messageAuth}
-				</Alert>
-			)}
-			<div className="login-container">
-				<div className="desktop-title-wrapper">
-					<h2 className="desktop-title">INICIAR SESIÓN</h2>
-					<img className="desktop-logo" alt="logo" src={logoHealthy} />
-				</div>
+		<div className="login">
+			<RowImages />
+			<div className="gradient" />
+			<div className="login-wrapper">
+				<div className="login-container">
+					<div className="desktop-title-wrapper">
+						<h2 className="desktop-title">INICIAR SESIÓN</h2>
+						<img className="desktop-logo" alt="logo" src={logoHealthy} />
+					</div>
 
-				<HealthyDev className="login-logo" top />
+					<HealthyDev className="login-logo" top />
 
-				<div className="login-content">
-					<section>
-						<LinkButton link={linkFacebook} icon={FacebookIcon} title="facebook" />
-						<LinkButton link={linkGoogle} icon={GoogleIcon} title="google" />
-						<LoginForm sendLogin={loginUser} loading={loading} />
-					</section>
-					<footer>
-						<p role="button" className="button__link" onClick={() => history.push("/register")}>
-							¿Todavía no tienés una cuenta?{" "}
-							<span>Registrate</span>
-						</p>
-					</footer>
+					<div className="login-content">
+						<section className="login-content-buttons">
+							<LoginForm sendLogin={loginUser} loading={loading} />
+							<LinkButton link={linkFacebook} icon={FacebookIcon} title="facebook" />
+							<LinkButton link={linkGoogle} icon={GoogleIcon} title="google" />
+						</section>
+						<footer>
+							<p
+								role="button"
+								className="button__link"
+								onClick={() => history.push("/register")}
+							>
+								¿Todavía no tienés una cuenta? <span>Registrate</span>
+							</p>
+						</footer>
+					</div>
 				</div>
 			</div>
-			<img className="login-img" alt="portada" src={loginBackground} />
 		</div>
 	);
 };
