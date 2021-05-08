@@ -122,7 +122,7 @@ const Search = ({ history }) => {
         <div className="search__content">
           {(searchLoading || filterByCategoryLoading) && <Loader center />}
           {!!cards && <>
-            {!!searchData || !!filterByCategoryData && <h2 className="search__title">Resultados</h2>}
+            {(!!searchData || filterByCategoryData) && <h2 className="search__title">Resultados</h2>}
             <CardsList cards={cards} userId={userData?.user.id} />
           </>}
 
