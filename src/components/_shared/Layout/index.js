@@ -6,8 +6,9 @@ import { ContextModal } from "hooks/useModal";
 import EditCard from "views/EditCard";
 import EditProfile from "views/EditProfile";
 import CreateCard from "views/CreateCard";
+import BackButton from "../BackButton/BackButton";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, backButton }) => {
   const { isModalOpen, id, component } = useContext(ContextModal);
 
   const modal = useMemo(() => {
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
     <div className="layout">
       {modal}
       <main className="main">
+        {backButton && <BackButton />}
         {children}
       </main>
       <NavBar />

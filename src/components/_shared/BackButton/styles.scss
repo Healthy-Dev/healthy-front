@@ -1,0 +1,20 @@
+@import "theme";
+
+.back {
+  padding: 0.5rem 0.7rem;
+  background: rgba(3, 17, 31, 0.23);
+  border-radius: $radius-1;
+  color: $green-main;
+  border: none;
+  position: fixed;
+  z-index: 99999;
+  top: 1.5rem;
+  left: 1.5rem;
+
+  @include desktop {
+    display: none;
+  }
+  @include tablet {
+    display: none;
+  }
+}
