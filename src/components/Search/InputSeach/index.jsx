@@ -5,8 +5,8 @@ import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as CloseIcon } from "assets/icons/close.svg";
 import { ReactComponent as BackIcon } from "assets/icons/arrow-left.svg";
 
-const InputSearch = ({ getCards, history }) => {
-	const [query, setQuery] = useState("");
+const InputSearch = ({  query, handleSetQuery, handleGetCards }) => {
+	
 	const [inputFocus, setInputFocus] = useState(false);
 	const inputRef = useRef(undefined);
 
@@ -14,32 +14,28 @@ const InputSearch = ({ getCards, history }) => {
 		inputRef.current.focus();
 	}, []);
 
-	function getCardsEnter(e) {
-		if (!query) return;
-		if (e.keyCode === 13) {
-			getCards();
+	function handleKeyDown({ keyCode }) {
+		if ((keyCode === 13) && query.trim()) {
 			setInputFocus(false);
+			handleGetCards();
 		}
 	}
 
 	function handleChange(e) {
-		let query = e.target.value;
+		const query = e.target.value;
 		setInputFocus(true);
-		history.replace(`?query=${query}`);
-		setQuery(query);
+		handleSetQuery(query);
 	}
 
 	function onBlurInput() {
 		inputRef.current.blur();
-		history.push("/search");
 		setInputFocus(false);
-		setQuery("");
+		handleSetQuery("");
 	}
 
 	function cleanInput() {
-		setQuery("");
+		handleSetQuery("");
 		inputRef.current.focus();
-		history.push(`?query=`);
 		setInputFocus(true);
 	}
 
@@ -58,7 +54,7 @@ const InputSearch = ({ getCards, history }) => {
 				value={query}
 				placeholder="¿Qué estás buscando?"
 				onChange={handleChange}
-				onKeyDown={getCardsEnter}
+				onKeyDown={handleKeyDown}
 				ref={inputRef}
 			/>
 			{query.length > 0 && (
@@ -71,8 +67,9 @@ const InputSearch = ({ getCards, history }) => {
 };
 
 InputSearch.propTypes = {
-	getCards: PropTypes.func,
-	history: PropTypes.any,
-};
+	query: PropTypes.string,
+	handleSetQuery: PropTypes.func,
+	handleGetCards: PropTypes.func,
+}; 
 
 export default InputSearch;

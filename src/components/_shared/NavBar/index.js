@@ -1,37 +1,84 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import "./index.scss";
-import { Link, useLocation } from "react-router-dom";
-import { ReactComponent as HomeHeart } from "assets/icons/home.svg";
-import { ReactComponent as Search } from "assets/icons/search.svg";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { ReactComponent as HomeIcon } from "assets/icons/home.svg";
+import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 
-const NavBar = ({ onClick }) => {
-	const location = useLocation();
+import { userLogout } from "state/auth/actions";
+import { deleteUserData } from "state/user/actions";
 
-	let isLocation = location.pathname;
+import useAuth from "hooks/useAuth";
+import { ContextModal } from "hooks/useModal";
 
-	const links = [
-		{ id: 0, path: "/", class: "nav-bar-icons", icon: HomeHeart },
-		{ id: 1, path: "/search", class: "nav-bar-icons", icon: Search },
-		{ id: 3, path: "/profile", class: "nav-bar-icons", icon: UserIcon },
-	];
+import CreateCardButton from "./CreateCardButton";
+import LinkButton from "./LinkButton";
 
-	const Icons = ({ Icon, ...arg }) => <Icon {...arg} />;
+const NavBar = () => {
+  const { push, replace } = useHistory();
+  const { closeSession } = useAuth();
+  const { showComponent, showModal } = useContext(ContextModal);
+  const dispatch = useDispatch();
 
-	return (
-		<nav className="navbar" onClick={onClick}>
-			{links.map((link) => (
-				<button className="nav-bar-button" key={link.id}>
-					<Link to={link.path}>
-						<Icons
-							Icon={link.icon}
-							className={`${link.class} ${isLocation === link.path && "fill-yellow"}`}
-						/>
-					</Link>
-				</button>
-			))}
-		</nav>
-	);
+  const handleNavigationButtonClick = useCallback((pathName) => {
+    push(pathName)
+  }, [push])
+
+  const logout = useCallback(async () => {
+    dispatch(userLogout());
+    dispatch(deleteUserData());
+    closeSession();
+    setTimeout(() => {
+      replace("/login");
+    }, 500);
+  }, [replace, dispatch, closeSession])
+
+  const editProfile = useCallback(() => {
+    showModal();
+    showComponent("edit-profile");
+  }, [showComponent, showModal])
+
+  const goToProfile = useCallback(() => {
+    push('/profile')
+  }, [push])
+
+  const OPTIONS_MODAL = [
+    { title: "Ver perfil", fn: goToProfile },
+    { title: "Editar perfil", fn: editProfile },
+    { title: "Cerrar sesión", fn: logout },
+  ];
+
+  return (
+    <nav className="navbar">
+      <section className="navbar__top">
+        <LinkButton
+          path="/"
+          name="Inicio"
+          icon={HomeIcon}
+          onClickButton={() => handleNavigationButtonClick('/')}
+        />
+        <LinkButton
+          path="/search"
+          name="Buscar"
+          icon={SearchIcon}
+          onClickButton={() => handleNavigationButtonClick('/search')}
+        />
+      </section>
+      <section className="navbar__bottom navbar__bottom--profile">
+        <CreateCardButton />
+        <LinkButton
+          modal
+          optionModal={OPTIONS_MODAL}
+          path="/profile"
+          name="Perfil"
+          icon={UserIcon}
+          onClickButton={() => handleNavigationButtonClick('/profile')}
+        />
+      </section>
+    </nav >
+  );
 };
 
 export default NavBar;

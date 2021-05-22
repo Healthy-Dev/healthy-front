@@ -4,26 +4,27 @@ import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { GetCardsCategories } from "state/cards/selectors";
 import { requestGetCardsCategories } from "state/cards/actions";
-
-const Tags = ({ filterByCategories }) => {
+const Tags = ({ filterByCategories, categorySelectedId }) => {
 	const dispatch = useDispatch();
+	// eslint-disable-next-line no-unused-vars
 	const { data, loading } = useSelector((state) => GetCardsCategories(state));
-
 	useEffect(() => {
 		if (!data) dispatch(requestGetCardsCategories());
 	}, [data, dispatch]);
 
+	function selectCategory(categoryId) {
+		filterByCategories(categoryId)
+	}
 	return (
-		<div className="search__tags">
-			{loading && <button className="search__tags--tag"></button>}
+		<div className="tags">
 			{data?.map((category) => (
-				<button
-					className="search__tags--tag"
-					onClick={() => filterByCategories(category.id, category.name)}
-					key={category.id}
-				>
-					{category.name}
-				</button>
+					<button
+						className= {`tag${(categorySelectedId && category.id === categorySelectedId) ?" tag--selected":""}`}
+						onClick={() => selectCategory(category.id)}
+						key={category.id}
+					>
+						{category.name}
+					</button>
 			))}
 		</div>
 	);
@@ -31,6 +32,7 @@ const Tags = ({ filterByCategories }) => {
 
 Tags.prototype = {
 	filterByCategories: PropTypes.func,
+	categorySelectedId: PropTypes.number,
 };
 
 export default Tags;

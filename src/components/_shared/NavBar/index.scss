@@ -1,33 +1,168 @@
 @import "theme";
 
 .navbar {
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	z-index: 9999;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	background: $darker-blue;
-	border-top: 1px solid #eeeeee5d;
-	padding: 12px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid $medium-grey;
+  background: $darker-blue;
+  padding: $s0 0;
+  @include desktop {
+    padding: $s1 0;
+    justify-content: space-between;
+  }
+  @include tablet {
+    padding: $s1 0;
+    justify-content: space-between;
+  }
+  &__top,
+  &__bottom {
+    display: flex;
+    align-items: center;
+    @include desktop {
+      width: 100% !important;
+      flex-direction: column;
+      gap: 60px;
+    }
+    @include tablet {
+      width: 100% !important;
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+  &__top {
+    width: 66.6%;
+  }
+  &__bottom {
+    width: 33.3%;
+    &--profile {
+      position: relative;
+    }
+  }
 }
 
-.nav-bar-button {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
+.link-button {
+  background: transparent;
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+  color: $ivory;
+  width: 100%;
+  outline: none;
+  position: relative;
+  @include desktop {
+    padding: $s-2 0;
+  }
+  @include tablet {
+    padding: $s-2 0;
+  }
+  .nav-bar-icons {
+    width: 25px;
+  }
+  .title {
+    display: none;
+    font-size: $s-1;
+  }
+}
+.active {
+  @include desktop {
+    background: $dark-blue;
+  }
+  @include tablet {
+    background: $dark-blue;
+  }
+  .nav-bar-icons {
+    color: $green-main;
+    stroke-width: 3;
+  }
+  .title {
+    display: block;
+    color: $green-main;
+  }
+}
 
-	a {
-		.nav-bar-icons {
-			color: #ffff;
-			width: 25px;
-			height: 25px;
-		}
+.btn-create {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  outline: none;
+  border: none;
+  position: fixed;
+  bottom: 15%;
+  right: 5%;
+  z-index: 99;
 
-		.fill-yellow {
-			color: #f4dd27;
-			stroke-width: 3;
-		}
-	}
+  @include desktop {
+    position: static;
+    width: 35px;
+    height: 35px;
+  }
+
+  @include tablet {
+    position: static;
+  }
+
+  svg {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background: $green-main;
+    padding: 0.5rem;
+    box-shadow: 0 0 4px $green-main;
+
+    path {
+      stroke: $dark-blue;
+    }
+  }
+}
+
+@keyframes toRightModalOptions {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.block-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: transparent;
+  @include desktop {
+    display: block;
+  }
+  @include tablet {
+    display: block;
+  }
+}
+
+.profile-modal {
+  visibility: hidden;
+  width: 120px;
+  background: $medium-grey !important;
+  box-shadow: 0 0 0 rgba(200, 200, 200, 0.8) !important;
+  top: 0;
+  left: 70px;
+  right: 0;
+  z-index: 100;
+  animation: toRightModalOptions 0.3s !important;
+  -moz-animation: toRightModalOptions 0.3s;
+  -webkit-animation: toRightModalOptions 0.3s;
+  @include desktop {
+    visibility: visible;
+  }
+  @include tablet {
+    visibility: visible;
+  }
 }

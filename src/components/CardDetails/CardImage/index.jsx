@@ -3,9 +3,8 @@ import "./index.scss";
 import { useHistory } from "react-router-dom";
 
 import { ReactComponent as IconBack } from "assets/icons/arrow-left.svg";
-import CountLikes from "../LikesCount";
-
 import { ILikeContext } from "state/cardsILike";
+import Likes from "../../_shared/Likes";
 
 const CardImage = ({
 	id,
@@ -29,7 +28,9 @@ const CardImage = ({
 				<button className="back" onClick={() => history.goBack()}>
 					<IconBack />
 				</button>
-				<CountLikes
+				<Likes
+					readOnly={false}
+					viewCountInMobile={true}
 					likesCount={likesCount}
 					isILiked={isILiked}
 					iLiked={iLiked}

@@ -12,17 +12,17 @@ import CardsILikeProvider from "state/cardsILike";
 const store = makeStore();
 
 const App = () => (
-	<Provider store={store}>
-		<CardsILikeProvider>
-			<ModalContext>
-				<ConnectedRouter history={history}>
-					<BrowserRouter>
-						<Routes />
-					</BrowserRouter>
-				</ConnectedRouter>
-			</ModalContext>
-		</CardsILikeProvider>
-	</Provider>
+  <Provider store={store}>
+    <CardsILikeProvider>
+      <ModalContext>
+        <ConnectedRouter history={history}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </ConnectedRouter>
+      </ModalContext>
+    </CardsILikeProvider>
+  </Provider>
 );
 
 export default App;

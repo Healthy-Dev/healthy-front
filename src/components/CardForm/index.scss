@@ -1,93 +1,92 @@
 @import "theme";
 
 .CreateCardForm {
-	width: 100%;
-	padding: $s0;
+  width: 100%;
+  padding: $s0;
 
-	@include tablet {
-		padding: $s1;
-	}
+  @include tablet {
+    padding: $s1;
+  }
 
-	@include desktop {
-		padding: $s1;
-	}
+  @include desktop {
+    padding: $s1;
+  }
 
-	.input {
-		margin-bottom: $s-1;
+  .input {
+    margin-bottom: $s-1;
 
-		input,
-		textarea,
-		select {
-			width: 100%;
-			border-radius: $radius-1;
-			font-family: $font-plain;
-			font-size: $s-1;
-			border: 1px solid #0d263f;
-			background: #021527;
-			color: #c9c9c9;
-			padding: $s-1;
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: $radius-1;
+      font-family: $font-plain;
+      font-size: $s-1;
+      border: 1px solid #0d263f;
+      background: #021527;
+      color: #c9c9c9;
+      padding: $s-1;
 
-			@include desktop {
-				font-size: $s-1 + 2;
-			}
+      @include desktop {
+        font-size: $s-1 + 2;
+      }
 
-			@include tablet {
-				font-size: $s0;
-			}
+      @include tablet {
+        font-size: $s0;
+      }
 
-			&::placeholder {
-				color: rgb(94, 94, 94);
-			}
-		}
+      &::placeholder {
+        color: rgb(94, 94, 94);
+      }
+    }
 
-		textarea {
-			resize: none;
+    textarea {
+      resize: none;
 
-			&::-webkit-scrollbar {
-				width: 5px;
-				background-color: $darker-blue;
-			}
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $darker-blue;
+      }
 
-			&::-webkit-scrollbar-thumb {
-				border-radius: 10px;
-				box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-				-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-				background-color: #464646;
-			}
-		}
-	}
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background-color: #464646;
+      }
+    }
+  }
 
+  .select {
+    position: relative !important;
 
-	.select {
-		position: relative !important;
+    select {
+      -webkit-appearance: none;
+      // color: rgb(94, 94, 94);
 
-		select {
-			-webkit-appearance: none;
-			// color: rgb(94, 94, 94);
+      option {
+        color: white;
+      }
+    }
 
-			option {
-				color: white;
-			}
-		}
+    &__icon {
+      top: 0;
+      right: $s-1;
+      height: 100%;
+      position: absolute;
+      color: $green-main;
+      width: 20px;
+    }
+  }
 
-		&__icon {
-			top: 0;
-			right: $s-1;
-			height: 100%;
-			position: absolute;
-			color: $yellow;
-			width: 20px;
-		}
-	}
+  .form__bottom {
+    display: grid;
+    grid-template-columns: 80px auto;
+    gap: 1rem;
+    align-items: flex-end;
 
-	.form__bottom {
-		display: grid;
-		grid-template-columns: 80px auto;
-		gap: 1rem;
-		align-items: flex-end;
-
-		button {
-			margin-bottom: 0;
-		}
-	}
+    button {
+      margin-bottom: 0;
+    }
+  }
 }

@@ -1,0 +1,48 @@
+@import "theme";
+
+.user {
+  width: auto;
+  color: $ivory;
+  text-align: center;
+  margin-top: 30px;
+
+  &__img {
+    margin: auto;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 0.8rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: $radius0;
+    }
+  }
+
+  h2 {
+    font-size: $s2;
+    letter-spacing: 1.2px;
+    color: rgb(236, 236, 236);
+  }
+
+  &__social {
+    color: rgb(156, 156, 156);
+    font-size: $s0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+
+    svg {
+      stroke: rgb(250, 250, 250);
+
+      &:hover {
+        transform: scale(1.05);
+        transition: stroke 0.3s;
+        stroke: $green-main;
+        stroke-width: 2;
+      }
+    }
+  }
+}
