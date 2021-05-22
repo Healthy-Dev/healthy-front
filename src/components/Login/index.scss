@@ -3,14 +3,19 @@
 .form__login {
 	font-family: $font-plain;
 	font-size: $s0;
-	width: 100%;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
 
 	@include desktop {
+		width: 100%;
 		justify-content: center;
 		height: auto;
 	}
 
 	@include tablet {
+		width: 100%;
 		justify-content: flex-start;
 		height: auto;
 	}
@@ -20,8 +25,9 @@
 
 		label {
 			color: $ivory;
+			font-size: $s1c;
+			margin-bottom: $s1c;
 		}
-
 
 		.input__container {
 			position: relative;
@@ -40,7 +46,7 @@
 			}
 
 			.input__icon {
-				width: 20%;
+				width: 15%;
 				text-align: center;
 
 				@include desktop {
@@ -66,6 +72,20 @@
 			margin-bottom: 0;
 			margin-top: $s-2;
 			border-radius: $radius-1;
+			background-color: $medium-grey;
+			height: 50px;
+
+			@include desktop {
+				height: 70px;
+			}
+
+			@include tablet {
+				height: 70px;
+			}
+
+			&.input-login {
+				background-color: $medium-grey;
+			}
 
 			&::placeholder {
 				opacity: 1;
@@ -74,6 +94,14 @@
 
 			&:valid {
 				background-color: $medium-grey;
+			}
+
+			&:focus {
+				border: none;
+			}
+
+			&:focus-visible {
+				outline: none;
 			}
 
 			&[name="password"] {
@@ -85,7 +113,7 @@
 	p {
 		color: $light-grey;
 		font-size: $s-1;
-		margin-top: .5rem;
+		margin-top: 0.5rem;
 	}
 
 	[role="button"] {
@@ -98,9 +126,7 @@
 
 	.forgot-password {
 		width: fit-content;
-
-		&:hover {
-			color: white;
-		}
+		color: $green-main;
+		margin-bottom: $s1b;
 	}
 }

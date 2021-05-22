@@ -20,7 +20,7 @@ const EMAIL_FORMAT = /\S+@\S+\.\S+/;
 const RegisterForm = ({ sendFormRegister, loading }) => {
 	const { register, handleSubmit, errors, getValues, reset } = useForm();
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
-	const [isPassword2Hidden, setPassword2Hidden] = useState(true);
+	// const [isPassword2Hidden, setPassword2Hidden] = useState(true);
 
 	const onSubmit = async ({ username, email, password }) => {
 		sendFormRegister(
@@ -110,7 +110,7 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 				)}
 			</section>
 
-			<section className="form__input">
+			{/* <section className="form__input">
 				<label name="confirmPassword">Confirmar Contraseña</label>
 				<div className="input__container">
 					<input
@@ -136,14 +136,11 @@ const RegisterForm = ({ sendFormRegister, loading }) => {
 				{errors.confirmPassword && errors.confirmPassword.type === "required" && (
 					<MessageError message="Confirmar contraseña." />
 				)}
-			</section>
+			</section> */}
 
 			<Button className="button__register" fullWidth>
 				{loading ? <Loader /> : "Registrarme"}
 			</Button>
-			<Link to="/login" className="link">
-				Iniciar Sesión
-			</Link>
 		</form>
 	);
 };

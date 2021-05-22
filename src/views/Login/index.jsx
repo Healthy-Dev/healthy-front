@@ -57,21 +57,24 @@ const LoginView = ({ history }) => {
 					</div>
 
 					<HealthyDev className="login-logo" top />
+					<h2 className="mobile-title">INICIAR SESIÓN</h2>
 
 					<div className="login-content">
 						<section className="login-content-buttons">
 							<LoginForm sendLogin={loginUser} loading={loading} />
+							<div className="divider-form" />
 							<LinkButton link={linkFacebook} icon={FacebookIcon} title="facebook" />
 							<LinkButton link={linkGoogle} icon={GoogleIcon} title="google" />
 						</section>
 						<footer>
-							<p
+							<p>¿Todavía no tienés una cuenta?</p>
+							<span
 								role="button"
 								className="button__link"
 								onClick={() => history.push("/register")}
 							>
-								¿Todavía no tienés una cuenta? <span>Registrate</span>
-							</p>
+								Registrate
+							</span>
 						</footer>
 					</div>
 				</div>

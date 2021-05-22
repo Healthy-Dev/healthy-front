@@ -9,10 +9,15 @@ import { RegisterSelector, hiddenMsgAuthSelector } from "state/auth/selectors";
 // Components
 import RegisterForm from "components/Register";
 import Alert from "components/_shared/Alert";
+import LinkButton from "components/Login/LinkButton";
+// Icons
+import { ReactComponent as FacebookIcon } from "assets/icons/facebook.svg";
+import { ReactComponent as GoogleIcon } from "assets/icons/google.svg";
 // Styles
 import "./index.scss";
 import useAuth from "hooks/useAuth";
 import HealthyDev from "components/_shared/HealthyDev";
+import RowImages from "components/_shared/RowImages";
 
 const RegisterView = ({ history }) => {
 	const { isAuth } = useAuth();
@@ -41,27 +46,28 @@ const RegisterView = ({ history }) => {
 		dispatch(hiddenMsgAlert());
 	}
 
+	let linkFacebook = "https://healthydev.herokuapp.com/v1/auth/facebook";
+	let linkGoogle = "https://healthydev.herokuapp.com/v1/auth/google";
+
 	return (
-		<div className="register-container">
-			<div className="register-form">
-				{message && (
-					<Alert
-						showButtonClose
-						error={error || warning}
-						success={!error && !warning}
-						click={hiddenAlert}
-					>
-						{message}
-					</Alert>
-				)}
-				<div className="desktop-title-wrapper">
-					<h2 className="desktop-title">REGISTRO</h2>
-					<img className="desktop-logo" alt="logo" src={logoHealthy} />
+		<div className="register-wrapper">
+			<RowImages />
+			<div className="gradient" />
+			<div className="register-container">
+				<div className="register-form">
+					<div className="desktop-title-wrapper">
+						<h2 className="desktop-title">REGÍSTRATE</h2>
+						<img className="desktop-logo" alt="logo" src={logoHealthy} />
+					</div>
+					<HealthyDev className="register-logo" top />
+					<h2 className="mobile-title">REGÍSTRATE</h2>
+					<RegisterForm sendFormRegister={sendFormRegister} loading={loading} />
+					<div className="divider-form" />
+					<LinkButton link={linkFacebook} icon={FacebookIcon} title="facebook" />
+					<LinkButton link={linkGoogle} icon={GoogleIcon} title="google" />
 				</div>
-				<HealthyDev className="register-logo" top />
-				<RegisterForm sendFormRegister={sendFormRegister} loading={loading} />
+				<img src={registerBackground} className="register-img" alt="fondo" />
 			</div>
-			<img src={registerBackground} className="register-img" alt="fondo" />
 		</div>
 	);
 };

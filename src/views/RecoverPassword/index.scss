@@ -1,78 +1,84 @@
 @import "theme";
 
 .recover__pass {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: $s0;
-  color: $ivory;
-  background-image: linear-gradient(to bottom,
-      rgba(4, 26, 47, 0),
-      rgba(4, 26, 47, 0),
-      rgba(4, 26, 47, 0.548),
-      rgba(4, 26, 47, 0.76),
-      rgba(4, 26, 47, 0.897),
-      rgb(4, 26, 47)),
-    url("../../assets/img/recover-password.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: $s0;
+	color: $ivory;
+	background-image: linear-gradient(
+			to bottom,
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0),
+			rgba(4, 26, 47, 0.548),
+			rgba(4, 26, 47, 0.76),
+			rgba(4, 26, 47, 0.897),
+			rgb(4, 26, 47)
+		),
+		url("../../assets/img/recover-password.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 
-  .recover__card {
-    max-width: 400px;
-    padding: 2rem;
-    background: rgba(201, 201, 201, 0.363);
-    border-radius: 10px;
-    text-align: center;
+	.recover__card {
+		max-width: 400px;
+		padding: 2rem;
+		background: rgba(201, 201, 201, 0.363);
+		border-radius: 10px;
+		text-align: center;
 
-    &--title {
-      font-weight: 500;
-      font-size: $s1;
-      color: rgb(240, 240, 240);
+		&--title {
+			font-weight: 500;
+			font-size: $s1;
+			color: rgb(240, 240, 240);
 
-      @include desktop {
-        font-size: $s2;
-      }
+			@include desktop {
+				font-size: $s2;
+			}
 
-      @include tablet {
-        font-size: $s1;
-      }
-    }
+			@include tablet {
+				font-size: $s1;
+			}
+		}
 
-    &--msg {
-      margin: 1.5rem 0;
-      font-size: $s0;
-      color: rgb(212, 212, 212);
-    }
+		&--msg {
+			margin: 1.5rem 0;
+			font-size: $s0;
+			color: rgb(212, 212, 212);
+		}
 
-    input {
-      font-size: $s0;
+		input {
+			font-size: $s0;
+			width: 100%;
+			border-radius: $radius-1;
+			font-size: $s0;
+			background-color: $medium-grey;
+			border: 2px solid #807f7f;
+			color: $ivory;
+			padding: $s0;
+			text-align: center;
+		}
+
+		span {
+			display: inline-block;
+			text-align: center;
+			font-size: $s0;
+			text-transform: uppercase;
+			color: $yellow;
+			margin: 1rem 0;
+			font-weight: bold;
+		}
+
+		.error {
+			color: rgb(235, 121, 121);
+			margin-top: $s-2;
+			font-size: $s-1 + 1;
+		}
+
+		.button-recover {
       width: 100%;
-      border-radius: $radius-1;
-      font-size: $s0;
-      background-color: $medium-grey;
-      border: 2px solid #807f7f;
-      color: $ivory;
-      padding: $s0;
-      text-align: center;
-    }
-
-    span {
-      display: inline-block;
-      text-align: center;
-      font-size: $s0;
-      text-transform: uppercase;
-      color: $yellow;
-      margin: 1rem 0;
-      font-weight: bold;
-    }
-
-    .error {
-      color: rgb(235, 121, 121);
-      margin-top: $s-2;
-      font-size: $s-1 + 1;
-    }
-  }
+		}
+	}
 }

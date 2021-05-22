@@ -7,8 +7,16 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	height: 100%;
-	width: 100%;
+	width: 90%;
 	position: relative;
+
+	@include desktop {
+		width: 100%;
+	}
+
+	@include tablet {
+		width: 100%;
+	}
 
 	.form__input {
 		width: 100%;
@@ -28,6 +36,15 @@
 			font-size: $s0;
 			color: $ivory;
 			padding: $s-1;
+			height: 50px;
+
+			@include desktop {
+				height: 70px;
+			}
+
+			@include tablet {
+				height: 70px;
+			}
 
 			&::placeholder {
 				opacity: 1;
@@ -72,6 +89,7 @@
 
 	.button__register {
 		margin-top: $s1;
+		background-image: $main-gradient;
 	}
 
 	.button__link--grey {

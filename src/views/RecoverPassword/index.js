@@ -50,7 +50,7 @@ const RecoverPassword = () => {
 					onKeyDown={handlePress}
 				/>
 				{email.error && <p className="error">{email?.error}</p>}
-				<Button onClick={sendRecoverPass}>
+				<Button className="button-recover" onClick={sendRecoverPass}>
 					{loading ? <Loader /> : "Ingresa tu Email"}
 				</Button>
 			</section>

@@ -2,6 +2,7 @@
 
 .link__button {
   text-decoration: none;
+  width: 100%;
 
   &--title {
     &::first-letter {
@@ -13,7 +14,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: $s1;
+    margin: $s1c auto;
+    width: 90%;
+
+    @include desktop {
+      width: 100%; 
+    }
 
     svg {
       margin-right: 1rem;
