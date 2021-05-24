@@ -9,8 +9,8 @@ import CardsList from "components/_shared/CardsList";
 import NotResults from "components/Search/NotResults";
 import Loader from "components/_shared/Loader";
 
-import { requestSearchCards, requestCardsByCategory } from "state/cards/actions";
-import { SearchCardsSelector, filterCardsByCategory } from "state/cards/selectors";
+import { requestSearchCards, requestCardsByCategory, requestGetCards } from "state/cards/actions";
+import { SearchCardsSelector, filterCardsByCategory, GetCardsSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 
 const typesQuery = {
@@ -41,6 +41,7 @@ const Search = ({ history }) => {
   const [categorySelectedId, setCategorySelectedId] = useState(null);
   const [query, setQuery] = useState("");
 
+  const { data } = useSelector((state) => GetCardsSelector(state));
   const { data: userData } = useSelector((state) => UserSelector(state));
   const { data: searchData, loading: searchLoading } = useSelector((state) =>
     SearchCardsSelector(state),
@@ -98,9 +99,20 @@ const Search = ({ history }) => {
   }, [locationQueryType, locationQueryValue, dispatch]);
 
   useEffect(() => {
-    if (filterOrSearch?.type === typesQuery.SEARCH) setCards(searchData);
-    if (filterOrSearch?.type === typesQuery.FILTERBYCATEGORY) setCards(filterByCategoryData);
-  }, [searchData, filterByCategoryData]); //eslint-disable-line
+    if (!data) dispatch(requestGetCards());
+
+    switch (filterOrSearch?.type) {
+      case typesQuery.SEARCH:
+        setCards(searchData)
+        break;
+      case typesQuery.FILTERBYCATEGORY:
+        setCards(filterByCategoryData)
+        break;
+      default:
+        setCards(data)
+        break
+    }
+  }, [searchData, filterByCategoryData, data]); //eslint-disable-line
 
   return (
     <Layout>
@@ -108,13 +120,15 @@ const Search = ({ history }) => {
         <InputSearch handleGetCards={handleGetCards} query={query} handleSetQuery={handleSetQuery} />
         <Tags filterByCategories={handleFilterByCategory} categorySelectedId={categorySelectedId} />
         <div className="search__content">
-          {cards && userData && <>
-            <h2 className="search__title">Resultados</h2>
+          {(searchLoading || filterByCategoryLoading) && <Loader center />}
+          {!!cards && <>
+            {(!!searchData || filterByCategoryData) && <h2 className="search__title">Resultados</h2>}
             <CardsList cards={cards} userId={userData?.user.id} />
           </>}
-          {(searchLoading || filterByCategoryLoading || !userData) && <Loader center />}
+
           {cards?.length === 0 && <NotResults />}
         </div>
+
       </div>
     </Layout>
   );

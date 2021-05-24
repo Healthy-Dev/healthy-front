@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "./index.scss";
 import Imagen from "assets/img/card-home.jpg";
 
-// import Onboarding from "views/Onboarding";
 import Layout from "components/_shared/Layout";
 import NavHome from "components/_shared/Logo";
 import Alert from "components/_shared/Alert";
@@ -14,9 +13,10 @@ import { requestGetCards, hiddenMsgAlert } from "state/cards/actions";
 import { GetCardsSelector, hiddenMesgSelector } from "state/cards/selectors";
 import { UserSelector } from "state/user/selectors";
 import useAuth from "hooks/useAuth";
+
 import Onboarding from "views/Onboarding";
 
-const HomeView = ({ history }) => {
+const HomeView = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => GetCardsSelector(state));
   const { data: userData } = useSelector((state) => UserSelector(state));
@@ -25,12 +25,6 @@ const HomeView = ({ history }) => {
   );
 
   const { isAuth } = useAuth();
-
-  useEffect(() => {
-    history.listen(() => {
-      dispatch(requestGetCards());
-    });
-  }, [dispatch, history]);
 
   useEffect(() => {
     if (!data) dispatch(requestGetCards());
@@ -43,6 +37,7 @@ const HomeView = ({ history }) => {
   if (!isAuth) {
     return <Onboarding />;
   }
+
   return (
     <Layout>
       {msg && (
