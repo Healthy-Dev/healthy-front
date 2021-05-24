@@ -89,16 +89,8 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 24px;
     color: $ivory;
-
-    .back {
-      padding: 0.5rem 0.7rem;
-      background: rgba(3, 17, 31, 0.23);
-      border-radius: $radius-1;
-      color: $green-main;
-      border: none;
-    }
   }
 }
