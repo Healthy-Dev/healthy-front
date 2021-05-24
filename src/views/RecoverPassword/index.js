@@ -40,23 +40,24 @@ const RecoverPassword = () => {
     }
   }
 
-  function showInputEmail() {
-    return (
-      <section>
-        <input
-          type="email"
-          required
-          placeholder="Ingrese su email"
-          onChange={handleChange}
-          onKeyDown={handlePress}
-        />
-        {email.error && <p className="error">{email?.error}</p>}
-        <Button onClick={sendRecoverPass}>
-          {loading ? <Loader /> : "Ingresa tu Email"}
-        </Button>
-      </section>
-    );
-  }
+	function showInputEmail() {
+		return (
+			<section>
+				<input
+					type="email"
+					required
+					placeholder="Ingrese su email"
+					onChange={handleChange}
+					onKeyDown={handlePress}
+				/>
+				{email.error && <p className="error">{email?.error}</p>}
+				<Button className="button-recover" onClick={sendRecoverPass}>
+					{loading ? <Loader /> : "Ingresa tu Email"}
+				</Button>
+			</section>
+		);
+	}
+
 
   return (
     <div className="recover__pass">

@@ -35,6 +35,7 @@ const LoginForm = ({ sendLogin, loading }) => {
 					Email/Usuario
 				</label>
 				<input
+					className="input-login"
 					id="user"
 					type="text"
 					name="usernameOrEmail"
@@ -50,6 +51,7 @@ const LoginForm = ({ sendLogin, loading }) => {
 				</label>
 				<div className="input__container">
 					<input
+						className="input-login"
 						id="password"
 						type={isPasswordHidden ? "password" : "text"}
 						name="password"
@@ -77,7 +79,7 @@ const LoginForm = ({ sendLogin, loading }) => {
 			</p>
 
 			<Button
-				className="button__login"
+				className="button-main button__login"
 				disabled={Object.entries(errors).length > 0 ? true : false}
 			>
 				{loading ? <Loader /> : "Ingresar"}
