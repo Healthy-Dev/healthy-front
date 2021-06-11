@@ -23,13 +23,13 @@ const ResetPassword = ({ history }) => {
   );
   const { search } = useLocation();
   const token = search.replace("?token=", "");
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch } = useForm({
+    mode: "all",
+  });
 
-  function sendResetPass() {
-    dispatch(requestResetPassword({ token, password: "12345" }));
-  }
-
-  const onSubmit = () => {};
+  const onSubmit = ({ password }) => {
+    dispatch(requestResetPassword({ token, password: JSON.stringify(password) }));
+  };
 
   return (
     <div className="recover__pass">
@@ -63,9 +63,10 @@ const ResetPassword = ({ history }) => {
                 errors={errors}
                 safeable
                 ref={register({
+                  required: true,
                   pattern: {
                     value: PASSWORD_FORMAT,
-                    message: "Ingresa al menos 8 caracteres y 1 numero.",
+                    message: "Al menos una mayúscula, una minúscula y un número.",
                   },
                 })}
                 placeholder="******"
@@ -76,11 +77,12 @@ const ResetPassword = ({ history }) => {
                 label="Confirmar contraseña"
                 errors={errors}
                 ref={register({
+                  required: true,
                   validate: (value) =>
                     value === watch("password") || "Las contraseñas no coinciden.",
                   pattern: {
                     value: PASSWORD_FORMAT,
-                    message: "Ingresa al menos 8 caracteres y 1 numero.",
+                    message: "Al menos una mayúscula, una minúscula y un número.",
                   },
                 })}
                 placeholder="******"
